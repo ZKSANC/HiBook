@@ -1,20 +1,91 @@
 @charset "UTF-8";
 
-
-
 body {
-  margin: 0;
+  margin: 0px;
+  padding: 0px;
+  background-color: #fff;
+}
+
+.topBar {
+	width : 900px;
+	height : 30px;
+	background-color: #fff;
+	display : flex;
+	justify-content: flex-end;
+	margin : 0 auto;
+}
+
+.topBar > div {
+	font-size : 12px;
+	color : #8C8C8C;
+	margin : 5px 0px;
+	padding : 0px 30px;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+#login:hover, #joinMember:hover {
+	background-color: #212529;
+	color: #fff;
 }
 
 .top {
+	width : 900px;
 	height : 100px;
-	background-color: #F8F9FA;
-	display: flex;
-	flex-direction: row;
+	margin : 0 auto;
+	display : flex;
+	justify-content: space-between;
+	align-items : center;
+	background-color: #fff;
 }
 
 .top > div {
-	height : 80px;
+	height : 70px;
+	text-align : center;
+}
+
+.rogo {
+	width : 150px;
+	background-color: #FBF7FF;
+}
+
+.search {
+  position : relative;
+  width : 300px;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+
+input {
+  width: 90%;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+img {
+  position : absolute;
+  width: 17px;
+  top: 10px;
+  right : 15px;
+  margin: 0;
+}
+
+.mypage {
+	width : 150px;
+}
+
+#mypageMenu {
+	padding : 2px 0px;
+}
+
+#mypageMenu:hover {
+	background-color: #212529;
+	color: #fff;
 }
 
 .bannerBack {
@@ -39,7 +110,6 @@ h1 {
 	color : #fff;
 	display : black;
     font-size: 2em;
-    margin-bottom: 0.1em;
 }
 
 p {
@@ -53,7 +123,7 @@ p {
 }
 
 #wrap {
-  width : 1000px;
+  width : 900px;
   background-color: #fff;
 }
 
