@@ -6,6 +6,10 @@ body {
   background-color: #fff;
 }
 
+div {
+	word-break : break-all;
+}
+
 .topBar {
 	width : 900px;
 	height : 30px;
@@ -48,6 +52,7 @@ a {
 }
 
 .rogo {
+	cursor : pointer;
 	width : 150px;
 	background-color: #FBF7FF;
 }
@@ -118,19 +123,19 @@ a {
     display: block;
 }
 
-.navBar, .bottomBar {
+.navBar {
 	height : 60px;
-	background-color: #F8F9FA;
+	background-color: #F5F5F5;
 	padding : 5px 0px;
 }
 
 .navContanier {
 	width : 900px;
-	margin : 0 auto;
+	height : 100%;
+	margin : 0px auto;
 }
 
 .navContanier ul {
-	padding : 5px 0px;
 	display : flex; 
 	justify-content: space-between;
 	padding-left: 0px;
@@ -156,13 +161,11 @@ a {
   margin : 0 auto;
   padding : 30px 0px;
   background-color: #fff;
-  border : 1px solid black;
 }
 
 .boardContainer > div {
 	margin : 10px;
 	padding : 10px;
-	border : 1px solid black;
 }
 
 .cardContainer {
@@ -176,15 +179,50 @@ a {
 	flex : 0 0 auto;
 	width : 25%;
 	height : 300px;
-	border : 1px solid black;
 	box-sizing: border-box;
 }
 
-.board1 > #subject {
+.innerCard {
+	margin : auto;
+	width : 190px;
+	height : 285px;
+	display: flex;
+	flex-direction: column;
+	cursor : pointer;
+}
+
+.innerTop {
+	width : 100%;
+	height : 50%;
+	overflow: hidden;
+}
+
+.innerTop img {
+	width : 100%;
+	height : 100%;
+	object-fit : cover;
+	border-radius: 10px;
+}
+
+.innerBottom {
+	width : 100%;
+	height : 50%;
+}
+
+.cardText {
+	width : 100%;
+	height : 90%;
+	margin : auto;
+	line-height: 1;
+	text-align: left;
+}
+
+.board1 > #boardTag {
 	margin-bottom: 0px;
 
 }
-#subject {
+
+#boardTag {
 	font-size: 25px;
 	font-weight: bold;
 }
@@ -200,37 +238,77 @@ table {
   width: 100%;
 }
 
-th,
-td {
+th, td {
   padding: 6px 15px;
 }
+
 th {
   background: #42444e;
   color: #fff;
   text-align: left;
 }
+
 tr:first-child th:first-child {
   border-top-left-radius: 6px;
 }
+
 tr:first-child th:last-child {
   border-top-right-radius: 6px;
 }
+
 td {
   border-right: 1px solid #c6c9cc;
   border-bottom: 1px solid #c6c9cc;
 }
+
 td:first-child {
   border-left: 1px solid #c6c9cc;
 }
+
 tr:last-child td:first-child {
   border-bottom-left-radius: 6px;
 }
+
 tr:last-child td:last-child {
   border-bottom-right-radius: 6px;
 }
 
+.bottomBar {
+	background-color: #F5F5F5;
+	height : 180px;
+	padding : 30px 0px;
+}
+
 .bottom {
 	width : 900px;
-	height : 50px;
-	margin : 0 auto;
+	height : 100%;
+	margin : 0px auto;
+	position: relative;
 }
+
+.bottom > .text {
+	margin-left : 20px;
+	display : block;
+	line-height: 2;
+	font-size: 12px;
+	position: absolute;
+ 	top: 50%;
+	transform: translate(0, -50%);
+}
+
+.bottom ul {
+	padding-left : 0px;
+	list-style : none;
+	display : flex; 
+	flex-wrap : wrap;
+	justify-content: flex-start;
+	gap : 0px 15px;
+}
+
+ul > li {
+	color : #666666;
+}
+
+
+
+
