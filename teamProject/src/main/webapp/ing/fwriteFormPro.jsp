@@ -36,13 +36,13 @@ dto.setImgUrls(imgUrls);
 boardDAO dao = new boardDAO();
 dao.insertBoard(dto);
 %> 
-<%=name %>
-<%=subject %>
-<%=content %>
-<%=imgUrls[0] %>
-<%=imgUrls[1] %>
-<%=imgUrls[2] %>
-<%=imgUrls[3] %>
-<%=imgUrls[4] %>
+<%=name %><br>
+<%=subject %><br>
+<%=content %><br>
+<%=imgUrls[0] %><br>
+<%=imgUrls[1] %><br>
+<%=imgUrls[2] %><br>
+<%=imgUrls[3] %><br>
+<%=imgUrls[4] %><br>
 </body>
 </html>

@@ -1,6 +1,3 @@
-<%@page import="board.boardDAO"%>
-<%@page import="java.sql.Timestamp"%>
-<%@page import="board.boardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -33,8 +30,9 @@ function checkWrite() {
 				})
 			 ).then(() => {			    
 				 	const imageElList = document.getElementsByName("imgUrls");
-				    	if(imgUrls[0]!=null) {
-						    for(let i = 0; i < imageElList.length; i++) {						   
+					 	if(imgUrls[0]!=null) {
+						    for(let i = 0; i < imageElList.length; i++) {	
+						    	if(imgUrls[i]==null) {break;}
 						    	imageElList[i].value = imgUrls[i];
 						    }
 				    	}
@@ -50,17 +48,17 @@ function checkWrite() {
 </head>
 <body>
 <%
-/* String id = (String)session.getAttribute("id");
+String id = (String)session.getAttribute("id");
 if(id==null) {
 	response.sendRedirect("MemberloginForm.me");
-} */
+}
 %> 
 <h1>파일첨부</h1>
-<form name="move" action="fwriteFormPro.jsp" method="post">
+<form name="move" action="FileBoardWritePro.bo" method="post">
 <table border="1">
 <tr><td>글쓴이</td>
-	<td><input type="text" name="name" value=""></td></tr>
-<tr><td id="test">글제목</td>
+	<td><input type="text" name="name" value="<%=id %>" readonly></td></tr>
+<tr><td>글제목</td>
 	<td><input type="text" name="subject" value=""></td></tr>
 <tr><td>첨부파일</td>
 	<td><input id="img" type="file" name="files[]" multiple></td>
@@ -68,12 +66,12 @@ if(id==null) {
 	<td><textarea name="content" rows="10" cols="20" ></textarea></td></tr>
 </table>
 <input type="button" value="글쓰기" name ="sub" id="sub" onclick="checkWrite();">
-<input type="button" value="돌아가기" onclick="main.jsp"><br>
-<input type="hidden" value="" id="imgUrls0" name="imgUrls"><br>
-<input type="hidden" value="" id="imgUrls1" name="imgUrls"><br>
-<input type="hidden" value="" id="imgUrls2" name="imgUrls"><br>
-<input type="hidden" value="" id="imgUrls3" name="imgUrls"><br>
-<input type="hidden" value="" id="imgUrls4" name="imgUrls"><br>
+<input type="button" value="돌아가기" onclick="location.href='MemberMain.me'">
+<input type="hidden" value="url" id="imgUrls0" name="imgUrls"><br>
+<input type="hidden" value="url" id="imgUrls1" name="imgUrls"><br>
+<input type="hidden" value="url" id="imgUrls2" name="imgUrls"><br>
+<input type="hidden" value="url" id="imgUrls3" name="imgUrls"><br>
+<input type="hidden" value="url" id="imgUrls4" name="imgUrls"><br>
 </form>
 </body>
 </html>

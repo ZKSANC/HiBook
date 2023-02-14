@@ -20,7 +20,6 @@ function fun1() {
 	<div id="login"><a href="로그인.jsp">로그인</a></div>
 	<div id="joinMember"><a href="회원가입.jsp">회원가입</a></div>
 </div>
-
 <div class="top">
 	<div class="rogo" onclick="fun1()"><h2>Hibook</h2></div>
 	<div class="search">
