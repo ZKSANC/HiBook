@@ -36,16 +36,15 @@ public class boardDAO {
 				num = rs.getInt(1)+1;
 			}
 			
-			sql="insert into board(num,name,subject,content,readcount,date,file) values(?,?,?,?,?,?,?)";
+			sql="insert into board(num,name,subject,content,date,file) values(?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			
 			pstmt.setInt(1, num);  
 			pstmt.setString(2, dto.getName()); 
 			pstmt.setString(3, dto.getSubject());
 			pstmt.setString(4, dto.getContent());
-			pstmt.setInt(5, dto.getReadcount());
-			pstmt.setTimestamp(6, dto.getDate());
-			pstmt.setString(7, dto.getFile());
+			pstmt.setTimestamp(5, dto.getDate());
+			pstmt.setString(6, dto.getFile());
 			
 			pstmt.executeUpdate();
 			
@@ -91,8 +90,8 @@ public class boardDAO {
 				dto.setNum(rs.getInt("num"));
 				dto.setName(rs.getString("name"));
 				dto.setSubject(rs.getString("subject"));
-				dto.setReadcount(rs.getInt("readcount"));
 				dto.setDate(rs.getTimestamp("date"));
+				dto.setReadcount(rs.getInt("readcount"));
 				dto.setFile(rs.getString("file"));
 				dtolist.add(dto);
 			}
@@ -152,6 +151,26 @@ public class boardDAO {
 			if(rs!=null) try { rs.close();} catch (Exception e2) {}
 		}
 		return dto;
+	}
+	
+	public void updateReadCount(boardDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {	
+			con = getConnection();
+			
+			String sql="update board set readcount=readcount+1 where num=?";
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setInt(1, dto.getNum());
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+			if(con!=null) try { con.close();} catch (Exception e2) {}
+		}
 	}
 	
 	public void updateBoard(boardDTO dto) {

@@ -1,3 +1,6 @@
+<%@page import="com.itwillbs.util.ComCdDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.itwillbs.util.ComCdDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -52,6 +55,14 @@ String id = (String)session.getAttribute("id");
 if(id==null) {
 	response.sendRedirect("MemberloginForm.me");
 }
+
+ComCdDAO cdao = new ComCdDAO();
+ComCdDTO cdto = new ComCdDTO();
+ArrayList<ComCdDTO> cdtoList0 = cdao.getComCdList(cdto.getCdGrpnms()[0]);
+ArrayList<ComCdDTO> cdtoList1 = cdao.getComCdList(cdto.getCdGrpnms()[1]);
+ArrayList<ComCdDTO> cdtoList2 = cdao.getComCdList(cdto.getCdGrpnms()[2]);
+ArrayList<ComCdDTO> cdtoList3 = cdao.getComCdList(cdto.getCdGrpnms()[3]);
+ArrayList<ComCdDTO> cdtoList4 = cdao.getComCdList(cdto.getCdGrpnms()[4]);
 %> 
 <h1>파일첨부</h1>
 <form name="move" action="FileBoardWritePro.bo" method="post">
@@ -64,9 +75,65 @@ if(id==null) {
 	<td><input id="img" type="file" name="files[]" multiple></td>
 <tr><td>글내용</td>
 	<td><textarea name="content" rows="10" cols="20" ></textarea></td></tr>
+<tr><td><%=cdto.getCdGrpnms()[0] %></td>
+	<td><select>
+         <%
+            for(int i=0; i<cdtoList0.size();i++) {
+         %>
+            <option name="<%=cdtoList0.get(i).getCd() %>" value="<%=cdtoList0.get(i).getCd() %>"><%=cdtoList0.get(i).getCdNm() %>
+            </option>         
+         <%
+            } 
+         %>
+    </select></td></tr>
+<tr><td><%=cdto.getCdGrpnms()[1] %></td>
+	<td><select>
+         <%
+            for(int i=0; i<cdtoList1.size();i++) {
+         %>
+            <option name="<%=cdtoList1.get(i).getCd() %>" value="<%=cdtoList1.get(i).getCd() %>"><%=cdtoList1.get(i).getCdNm() %>
+            </option>         
+         <%
+            } 
+         %>
+    </select></td></tr>
+<tr><td><%=cdto.getCdGrpnms()[2] %></td>
+	<td><select>
+         <%
+            for(int i=0; i<cdtoList2.size();i++) {
+         %>
+            <option name="<%=cdtoList2.get(i).getCd() %>" value="<%=cdtoList2.get(i).getCd() %>"><%=cdtoList2.get(i).getCdNm() %>
+            </option>         
+         <%
+            } 
+         %>
+    </select></td></tr>
+<tr><td><%=cdto.getCdGrpnms()[3] %></td>
+	<td><select>
+         <%
+            for(int i=0; i<cdtoList3.size();i++) {
+         %>
+            <option name="<%=cdtoList3.get(i).getCd() %>" value="<%=cdtoList3.get(i).getCd() %>"><%=cdtoList3.get(i).getCdNm() %>
+            </option>         
+         <%
+            } 
+         %>
+    </select></td></tr>
+<tr><td><%=cdto.getCdGrpnms()[4] %></td>
+	<td><select>
+         <%
+            for(int i=0; i<cdtoList4.size();i++) {
+         %>
+            <option name="<%=cdtoList4.get(i).getCd() %>" value="<%=cdtoList4.get(i).getCd() %>"><%=cdtoList4.get(i).getCdNm() %>
+            </option>         
+         <%
+            } 
+         %>
+    </select></td></tr>
 </table>
 <input type="button" value="글쓰기" name ="sub" id="sub" onclick="checkWrite();">
 <input type="button" value="돌아가기" onclick="location.href='MemberMain.me'">
+
 <input type="hidden" value="url" id="imgUrls0" name="imgUrls"><br>
 <input type="hidden" value="url" id="imgUrls1" name="imgUrls"><br>
 <input type="hidden" value="url" id="imgUrls2" name="imgUrls"><br>

@@ -69,7 +69,7 @@ for(int i = 0; i < dto.getImgUrls().length; i++) {
 	<% for(int i = 0; i < length; i++) { %>
 	<tr><td>첨부이미지<%=i+1%></td><td><img src="<%= dto.getImgUrls()[i]%>" width=260px ></td></tr>
 	<% } %>
-	<tr><td>첨부파일</td><td><input type="file" name="file"></td></tr>
+	<tr><td>첨부파일</td><td><input type="file" name="file" multiple></td></tr>
 	<tr><td colspan="2">
 	<input type="button" value="게시글목록" onclick="location.href='BoardList.bo'"></td></tr>
 </table>

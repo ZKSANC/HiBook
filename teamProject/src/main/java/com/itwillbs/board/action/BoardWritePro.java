@@ -20,14 +20,12 @@ public class BoardWritePro implements Action{
 		String subject = request.getParameter("subject");
 		String content = request.getParameter("content");
 		String[] imgUrls = request.getParameterValues("imgUrls");
-		int readcount = 0; 
 
 		boardDTO dto = new boardDTO();
 		dto.setName(name);
 		dto.setSubject(subject);
 		dto.setContent(content);
 		dto.setDate(new Timestamp(System.currentTimeMillis()));
-		dto.setReadcount(readcount);
 		dto.setImgUrls(imgUrls);
 		
 		boardDAO dao = new boardDAO();

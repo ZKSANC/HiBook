@@ -15,7 +15,6 @@ public class FileBoardUpdateForm implements Action{
 		int num = Integer.parseInt(request.getParameter("num"));
 		
 		boardDAO dao = new boardDAO();
-		
 		boardDTO dto = dao.getBoard(num);
 		
 		request.setAttribute("dto", dto);

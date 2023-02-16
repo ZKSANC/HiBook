@@ -1,7 +1,9 @@
 package com.itwillbs.board.action;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.board.db.boardDAO;
 import com.itwillbs.board.db.boardDTO;
@@ -13,9 +15,16 @@ public class BoardContent implements Action{
 		
 		int num = Integer.parseInt(request.getParameter("num"));
 		
+		HttpSession session = request.getSession();
+		String id=(String)session.getAttribute("id");
+		
 		boardDAO dao = new boardDAO();
 		boardDTO dto = dao.getBoard(num);
 		
+		if (id!=null) { 
+			System.out.println("조회수증가");
+			dao.updateReadCount(dto); }
+	
 		request.setAttribute("dto", dto);
 		
 		ActionForward forward = new ActionForward();
