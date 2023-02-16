@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.itwillbs.util.ComCdDTO"%>
+<%@page import="com.itwillbs.util.ComCdDAO"%>
 <%@page import="com.itwillbs.board.db.boardDTO"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -55,7 +58,33 @@ int length = 0;
 for(int i = 0; i < dto.getImgUrls().length; i++) {
 	if(!(dto.getImgUrls()[i].equals("url"))) {length++;}
 }
+ComCdDAO cdao = new ComCdDAO();
+ComCdDTO cdto = new ComCdDTO();
+ArrayList<ComCdDTO> cdtoList0 = cdao.getComCdList(cdto.getCdGrpnms()[0]);
+ArrayList<ComCdDTO> cdtoList1 = cdao.getComCdList(cdto.getCdGrpnms()[1]);
+ArrayList<ComCdDTO> cdtoList2 = cdao.getComCdList(cdto.getCdGrpnms()[2]);
+ArrayList<ComCdDTO> cdtoList3 = cdao.getComCdList(cdto.getCdGrpnms()[3]);
+ArrayList<ComCdDTO> cdtoList4 = cdao.getComCdList(cdto.getCdGrpnms()[4]);
 %>
+<script type="text/javascript" src="js/jquery-3.6.3.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	if (typeof jQuery == 'undefined') {
+
+		alert("작동 안된다");
+
+		}else{
+
+		alert("작동 잘되네");
+
+		}
+	$('#book_st').val('<%=dto.getBook_st() %>').prop("selected",true);
+	$('#book_type').val('<%=dto.getBook_type() %>').prop("selected",true);
+	$('#trade_st').val('<%=dto.getTrade_st() %>').prop("selected",true);
+	$('#trade_type').val('<%=dto.getTrade_type() %>').prop("selected",true);
+	$('#trade_inperson').val('<%=dto.getTrade_inperson() %>').prop("selected",true);
+});
+</script>
 <h1>파일글수정</h1>
 <form action="FileBoardUpdatePro.bo" method="post">
 <input type="hidden" name="num" value="<%=dto.getNum() %>">
@@ -69,6 +98,61 @@ for(int i = 0; i < dto.getImgUrls().length; i++) {
 	<% for(int i = 0; i < length; i++) { %>
 	<tr><td>첨부이미지<%=i+1%></td><td><img src="<%= dto.getImgUrls()[i]%>" width=260px ></td></tr>
 	<% } %>
+		<tr><td><%=cdto.getCdGrpnms()[0] %></td>
+		<td><select name="<%=cdtoList0.get(0).getCdGrp() %>" id="<%=cdtoList0.get(0).getCdGrp() %>">
+	         <%
+	            for(int i=0; i<cdtoList0.size();i++) {
+	         %>
+	            <option value="<%=cdtoList0.get(i).getCdNm() %>"><%=cdtoList0.get(i).getCdNm() %>
+	            </option>         
+	         <%
+	            } 
+	         %>
+	    </select></td></tr>
+	<tr><td><%=cdto.getCdGrpnms()[1] %></td>
+		<td><select name="<%=cdtoList1.get(0).getCdGrp() %>" id="<%=cdtoList1.get(0).getCdGrp() %>">
+	         <%
+	            for(int i=0; i<cdtoList1.size();i++) {
+	         %>
+	            <option value="<%=cdtoList1.get(i).getCdNm() %>"><%=cdtoList1.get(i).getCdNm() %>
+	            </option>         
+	         <%
+	            } 
+	         %>
+	    </select></td></tr>
+	<tr><td><%=cdto.getCdGrpnms()[2] %></td>
+		<td><select name="<%=cdtoList2.get(0).getCdGrp() %>" id="<%=cdtoList2.get(0).getCdGrp() %>">
+	         <%
+	            for(int i=0; i<cdtoList2.size();i++) {
+	         %>
+	            <option value="<%=cdtoList2.get(i).getCdNm() %>"><%=cdtoList2.get(i).getCdNm() %>
+	            </option>         
+	         <%
+	            } 
+	         %>
+	    </select></td></tr>
+	<tr><td><%=cdto.getCdGrpnms()[3] %></td>
+		<td><select name="<%=cdtoList3.get(0).getCdGrp() %>" id="<%=cdtoList3.get(0).getCdGrp() %>">
+	         <%
+	            for(int i=0; i<cdtoList3.size();i++) {
+	         %>
+	            <option value="<%=cdtoList3.get(i).getCdNm() %>"><%=cdtoList3.get(i).getCdNm() %>
+	            </option>         
+	         <%
+	            } 
+	         %>
+	    </select></td></tr>
+	<tr><td><%=cdto.getCdGrpnms()[4] %></td>
+		<td><select name="<%=cdtoList4.get(0).getCdGrp() %>" id="<%=cdtoList4.get(0).getCdGrp() %>">
+	         <%
+	            for(int i=0; i<cdtoList4.size();i++) {
+	         %>
+	            <option value="<%=cdtoList4.get(i).getCdNm() %>"><%=cdtoList4.get(i).getCdNm() %>
+	            </option>         
+	         <%
+	            } 
+	         %>
+	    </select></td></tr>
 	<tr><td>첨부파일</td><td><input type="file" name="file" multiple></td></tr>
 	<tr><td colspan="2">
 	<input type="button" value="게시글목록" onclick="location.href='BoardList.bo'"></td></tr>

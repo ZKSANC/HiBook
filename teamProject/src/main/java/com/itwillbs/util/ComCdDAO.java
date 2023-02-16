@@ -100,7 +100,6 @@ public class ComCdDAO {
 			while(rs.next()) {
 				// MemberDTO 객체생성
 				ComCdDTO dto=new ComCdDTO();
-				System.out.println("회원정보저장 주소 : "+dto);
 				// set메서드 호출 <= 열접근
 				dto.setCdGrp(rs.getString("cd_grp"));
 				dto.setCdGrpNm(rs.getString("cd_grp_nm"));

@@ -116,7 +116,7 @@ public class boardDAO {
 			String sql="select * from board where num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);  
-			 
+			
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -127,7 +127,12 @@ public class boardDAO {
 				dto.setContent(rs.getString("content"));
 				dto.setReadcount(rs.getInt("readcount"));
 				dto.setDate(rs.getTimestamp("date"));
-		}
+				dto.setBook_st(rs.getString("book_st"));
+				dto.setBook_type(rs.getString("book_type"));
+				dto.setTrade_st(rs.getString("trade_st"));
+				dto.setTrade_type(rs.getString("trade_type"));
+				dto.setTrade_inperson(rs.getString("trade_inperson"));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

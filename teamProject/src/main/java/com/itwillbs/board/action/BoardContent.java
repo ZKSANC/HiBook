@@ -23,7 +23,8 @@ public class BoardContent implements Action{
 		
 		if (id!=null) { 
 			System.out.println("조회수증가");
-			dao.updateReadCount(dto); }
+			dao.updateReadCount(dto); 
+			dto = dao.getBoard(num);}
 	
 		request.setAttribute("dto", dto);
 		

@@ -36,7 +36,7 @@ public class boardDAO {
 				num = rs.getInt(1)+1;
 			}
 			
-			sql="insert into board(num,name,subject,content,date,file) values(?,?,?,?,?,?)";
+			sql="insert into board(num,name,subject,content,date,book_st,book_type,trade_inperson,trade_st,trade_type) values(?,?,?,?,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			
 			pstmt.setInt(1, num);  
@@ -44,28 +44,32 @@ public class boardDAO {
 			pstmt.setString(3, dto.getSubject());
 			pstmt.setString(4, dto.getContent());
 			pstmt.setTimestamp(5, dto.getDate());
-			pstmt.setString(6, dto.getFile());
+			pstmt.setString(6,dto.getBook_st());
+			pstmt.setString(7,dto.getBook_type());
+			pstmt.setString(8,dto.getTrade_inperson());
+			pstmt.setString(9,dto.getTrade_st());
+			pstmt.setString(10,dto.getTrade_type());
 			
 			pstmt.executeUpdate();
 			
-			if(dto.getImgUrls()!=null) {
-				sql="insert into filedate(board_num, url) values(?,?)";	
+	
+			sql="insert into filedate(board_num, url) values(?,?)";	
 				
-				for(int i = 0; i < dto.getImgUrls().length; i++ ) {
-					pstmt=con.prepareStatement(sql);
+			for(int i = 0; i < dto.getImgUrls().length; i++ ) {
+				pstmt=con.prepareStatement(sql);
 					
-					pstmt.setInt(1, num); 
-					pstmt.setString(2, dto.getImgUrls()[i]); 
+				pstmt.setInt(1, num); 
+				pstmt.setString(2, dto.getImgUrls()[i]); 
 					
-					pstmt.executeUpdate();
-				} 
-			}
+				pstmt.executeUpdate();
+			} 
+
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if(rs!=null) try { rs.close();} catch (Exception e2) {}
 			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+			if(rs!=null) try { rs.close();} catch (Exception e2) {}
 			if(con!=null) try { con.close();} catch (Exception e2) {}
 		}
 	}
@@ -127,6 +131,11 @@ public class boardDAO {
 				dto.setContent(rs.getString("content"));
 				dto.setReadcount(rs.getInt("readcount"));
 				dto.setDate(rs.getTimestamp("date"));
+				dto.setBook_st(rs.getString("book_st"));
+				dto.setBook_type(rs.getString("book_type"));
+				dto.setTrade_st(rs.getString("trade_st"));
+				dto.setTrade_type(rs.getString("trade_type"));
+				dto.setTrade_inperson(rs.getString("trade_inperson"));
 			}
 			
 			sql="select * from filedate where board_num=?"; 
