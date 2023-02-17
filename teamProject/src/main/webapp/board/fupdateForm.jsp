@@ -10,6 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 	<%
 	boardDTO dto = (boardDTO)request.getAttribute("dto");
 	int length = 0;
@@ -28,13 +29,64 @@
 <script type="text/javascript" src="js/jquery-3.6.3.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		//멀티이미지 미리보기 불러오기
+		$("#img").on("change", function(event) {
+	    var files = event.target.files;
+	    var imageContainer = $("#imgWrap");
+		
+	    for (var i = 0; i < files.length; i++) {
+	        var file = files[i];
+	        var reader = new FileReader();
+	        reader.onload = (function(theFile) {
+	            return function(e) {
+	                var img = $('<img>', {
+	                    src: e.target.result,
+	                    class: 'preview-image'
+	                });
+	                var label = $('<div>', {
+	                    text: theFile.name,
+	                    class: 'preview-label'
+	                });
+	                var container = $('<div>', {
+	                    class: 'preview-container'
+	                });
+	                container.append(label, img);
+	                imageContainer.append(container);
+	            };
+	        })(file);
+	        reader.readAsDataURL(file);
+	   		}
+		});
+		//미리보기 이미지클릭 시 해당 이미지 및 파일 삭제 동작 
+		$("#imgWrap").on("click", ".preview-image", function() {
+	 		var fileName = $(this).prev().text(); 
+			$(this).parent().remove();
+			var files = document.getElementById("img").files;
+			var index = 0;
+ 	 		for (var i = 0; i < files.length; i++) {
+				if (files[i].name === fileName) {
+					index = i;
+				    break;
+				}	
+			} 	
+ 	 		const deleteImgFile = (num) => {	
+ 	 		    const dataTransfer = new DataTransfer();
+ 	 		    let files = $('#img')[0].files;
+ 	 		    let fileArray = Array.from(files);
+ 	 		    fileArray.splice(num, 1);
+ 	 		    fileArray.forEach(file => { dataTransfer.items.add(file); });
+ 	 		    $('#img')[0].files = dataTransfer.files;
+ 	 		  }
+ 	 		  deleteImgFile(index);
+		});
+		// DB select 값 가져오기
 		$('#option').val('<%=dto.getBook_st() %>').prop("selected",true);
 		$('#book_type').val('<%=dto.getBook_type() %>').prop("selected", true);
 		$('#trade_st').val('<%=dto.getTrade_st() %>').prop("selected",true);
 		$('#trade_type').val('<%=dto.getTrade_type() %>').prop("selected",true);
 		$('#trade_inperson').val('<%=dto.getTrade_inperson() %>').prop("selected",true);
-	});
-
+	}); //j쿼리
+	//클라우디너리 업로드
 	function checkWrite() {
 		 var result = confirm("게시글을 수정하시겠습니까?");
 		 if (result == true){     
@@ -153,11 +205,13 @@
 	    
 	<tr><td>첨부파일</td>
 		<td><input id="img" type="file" name="files[]" multiple></td>
-	<tr><td colspan="2">
-	<input type="button" value="글수정" name ="sub" id="sub" onclick="checkWrite();">
-	<input type="button" value="게시글목록" onclick="location.href='BoardList.bo'"></td></tr>
 	</table>
+	<div id="imgWrap">이미지 미리보기<br>
+	</div>
+	<input type="button" value="글수정" name ="sub" id="sub" onclick="checkWrite();">
+	<input type="button" value="게시글목록" onclick="location.href='BoardList.bo'">
 	
+	<!-- 클라우디너리 배열값 -->
 	<input type="hidden" value="url" id="imgUrls0" name="imgUrls"><br>
 	<input type="hidden" value="url" id="imgUrls1" name="imgUrls"><br>
 	<input type="hidden" value="url" id="imgUrls2" name="imgUrls"><br>

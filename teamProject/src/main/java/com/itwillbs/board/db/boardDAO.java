@@ -201,21 +201,23 @@ public class boardDAO {
 			
 			pstmt.executeUpdate();
 			
-			// minFile setting start
+			// minFileId setting start
 			int minFileId = 0;
 			sql="select min(file_num) from filedate where board_num=?";
-			pstmt.setInt(1, dto.getNum()); 
-			
 			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setInt(1, dto.getNum()); 
  
 			rs=pstmt.executeQuery();
+			
+			System.out.println(minFileId);
 			
 			if(rs.next()) {
 				minFileId = rs.getInt("min(file_num)");
 			}
-			// minFile setting end
+			// minFileId setting end
 			
-			sql="update filedate set url=? where board_num=? and min(file_num)";	
+			sql="update filedate set url=? where board_num=? and file_num=?";	
 			
 			for(int i = 0; i < dto.getImgUrls().length; i++ ) {
 				pstmt=con.prepareStatement(sql);

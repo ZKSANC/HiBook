@@ -8,7 +8,62 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-3.6.3.js"></script>
 <script type="text/javascript">
+	// j쿼리
+	$(document).ready(function(){
+		//멀티이미지 미리보기 불러오기
+		$("#img").on("change", function(event) {
+	    var files = event.target.files;
+	    var imageContainer = $("#imgWrap");
+		
+	    for (var i = 0; i < files.length; i++) {
+	        var file = files[i];
+	        var reader = new FileReader();
+	        reader.onload = (function(theFile) {
+	            return function(e) {
+	                var img = $('<img>', {
+	                    src: e.target.result,
+	                    class: 'preview-image'
+	                });
+	                var label = $('<div>', {
+	                    text: theFile.name,
+	                    class: 'preview-label'
+	                });
+	                var container = $('<div>', {
+	                    class: 'preview-container'
+	                });
+	                container.append(label, img);
+	                imageContainer.append(container);
+	            };
+	        })(file);
+	        reader.readAsDataURL(file);
+	   		}
+		});
+		//미리보기 이미지클릭 시 해당 이미지 및 파일 삭제 동작 
+		$("#imgWrap").on("click", ".preview-image", function() {
+	 		var fileName = $(this).prev().text(); 
+			$(this).parent().remove();
+			var files = document.getElementById("img").files;
+			var index = 0;
+ 	 		for (var i = 0; i < files.length; i++) {
+				if (files[i].name === fileName) {
+					index = i;
+				    break;
+				}	
+			} 	
+ 	 		const deleteImgFile = (num) => {	
+ 	 		    const dataTransfer = new DataTransfer();
+ 	 		    let files = $('#img')[0].files;
+ 	 		    let fileArray = Array.from(files);
+ 	 		    fileArray.splice(num, 1);
+ 	 		    fileArray.forEach(file => { dataTransfer.items.add(file); });
+ 	 		    $('#img')[0].files = dataTransfer.files;
+ 	 		  }
+ 	 		  deleteImgFile(index);
+		});
+	}); // j쿼리
+	//클라우디너리 업로드
 	function checkWrite() {
 		 var result = confirm("게시글을 등록하시겠습니까?");
 		 if (result == true){     
@@ -48,6 +103,13 @@
 	   } 
 	}
 </script>
+<style> 
+	.preview-image {
+    	max-width: 200px;
+        max-height: 200px;
+        margin: 5px;
+     }
+</style>
 </head>
 <body>
 	<%
@@ -135,9 +197,12 @@
 		<tr><td>첨부파일</td>
 			<td><input id="img" type="file" name="files[]" multiple></td>
 	</table>
+	<div id="imgWrap">이미지 미리보기<br>
+	</div>
 	<input type="button" value="글쓰기" name ="sub" id="sub" onclick="checkWrite();">
 	<input type="button" value="돌아가기" onclick="location.href='MemberMain.me'">
 	
+	<!-- 클라우디너리 배열값 -->
 	<input type="hidden" value="url" id="imgUrls0" name="imgUrls"><br>
 	<input type="hidden" value="url" id="imgUrls1" name="imgUrls"><br>
 	<input type="hidden" value="url" id="imgUrls2" name="imgUrls"><br>

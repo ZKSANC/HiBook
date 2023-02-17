@@ -29,6 +29,9 @@ public class FileBoardUpdatePro implements Action{
 		String trade_st = request.getParameter("trade_st");
 		String trade_inperson = request.getParameter("trade_inperson");
 		
+		System.out.println(imgUrls[0]);
+		System.out.println(imgUrls[1]);
+		
 		boardDTO dto = new boardDTO();
 		dto.setNum(num);
 		dto.setName(name);
