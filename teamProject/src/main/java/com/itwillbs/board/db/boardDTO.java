@@ -9,8 +9,8 @@ public class boardDTO {
 	private String content;
 	private int readcount;
 	private Timestamp date;
-	private String file;
 	private String[] imgUrls;
+	
 	private String book_st;
 	private String book_type;
 	private String trade_type;
@@ -47,6 +47,7 @@ public class boardDTO {
 	public void setTrade_inperson(String trade_inperson) {
 		this.trade_inperson = trade_inperson;
 	}
+	
 	public String[] getImgUrls() {
 		if(imgUrls!=null){
 			String[] tempimgUrls= new String[imgUrls.length];
@@ -64,12 +65,7 @@ public class boardDTO {
 			this.imgUrls = null;
 		}
 	}
-	public String getFile() {
-		return file;
-	}
-	public void setFile(String file) {
-		this.file = file;
-	}
+	
 	public int getNum() {
 		return num;
 	}

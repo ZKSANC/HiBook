@@ -14,56 +14,41 @@ public class FileBoardUpdatePro implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("FileBoardWritePro excute()");
+		System.out.println("FileBoardUpdatePro execute()");
 		
-	System.out.println("FileBoardUpdatePro execute()");
+		request.setCharacterEncoding("utf-8");
 		
-				//객체생성
-				// 1. request 
-				// 2. 웹서버 업로드 폴더 위치 => webapp - upload 폴더 만들기
-				String uploadPath=request.getRealPath("/upload");
-				System.out.println(uploadPath);
-				// 3. 파일크기  10M
-				int maxSize=10*1024*1024;
-				// 4. 한글처리
-				// 5. 업로드 파일이름 동일할때 => 파일이름변경(DefaultFileRenamePolicy)
-				MultipartRequest multi=new MultipartRequest
-				(request, uploadPath,maxSize,"utf-8",new DefaultFileRenamePolicy());
-				
-				// multi  => num, name, subject, content 파라미터 => 변수 저장 
-				int num=Integer.parseInt(multi.getParameter("num"));
-				String name=multi.getParameter("name");
-				String subject=multi.getParameter("subject");
-				String content=multi.getParameter("content");
-				//첨부파일
-				// 추가 -> 업로드된 파일이름 정보
-				String file=multi.getFilesystemName("file");
-				// 수정할 업로드 파일이 없으면 기존파일 유지
-				if(file==null) {
-					file=multi.getParameter("oldfile");
-				}
-				
-				// BoardDTO 객체생성
-				boardDTO dto=new boardDTO();
-				// set메서드호출 num, name, subject, content 저장
-				dto.setNum(num);
-				dto.setName(name);
-				dto.setSubject(subject);
-				dto.setContent(content);
-				// file 추가
-				dto.setFile(file);
-
-				// BoardDAO 객체생성
-				boardDAO dao=new boardDAO();
-				// 리턴할형 없음 fupdateBoard(BoardDTO dto) 메서드 정의
-				// fupdateBoard(dto) 메서드 호출
-				dao.fupdateBoard(dto);
-
-				// list.jsp 이동
-				ActionForward forward=new ActionForward();
-				forward.setPath("BoardList.bo");
-				forward.setRedirect(true);
-				return forward;
+		int num = Integer.parseInt(request.getParameter("num"));
+		String name = request.getParameter("name");
+		String subject = request.getParameter("subject");
+		String content = request.getParameter("content");
+		String[] imgUrls = request.getParameterValues("imgUrls");
+		String book_st = request.getParameter("book_st");
+		String book_type = request.getParameter("book_type");
+		String trade_type = request.getParameter("trade_type");
+		String trade_st = request.getParameter("trade_st");
+		String trade_inperson = request.getParameter("trade_inperson");
+		
+		boardDTO dto = new boardDTO();
+		dto.setNum(num);
+		dto.setName(name);
+		dto.setSubject(subject);
+		dto.setContent(content);
+		dto.setImgUrls(imgUrls);
+		dto.setBook_st(book_st);
+		dto.setBook_type(book_type);
+		dto.setTrade_inperson(trade_inperson);
+		dto.setTrade_type(trade_type);
+		dto.setTrade_st(trade_st);
+		
+		boardDAO dao = new boardDAO();
+		dao.updateBoard(dto);
+		
+		ActionForward forward=new ActionForward();
+		forward.setPath("BoardList.bo");
+		forward.setRedirect(true);
+		
+		return forward;
 	}
 	
 }

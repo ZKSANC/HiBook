@@ -22,7 +22,6 @@ public class BoardFrontController extends HttpServlet{
 	}
 	
 	
-	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("BoardFrontController doProcess()");
 		

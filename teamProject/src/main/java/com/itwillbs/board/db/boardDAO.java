@@ -64,7 +64,6 @@ public class boardDAO {
 				pstmt.executeUpdate();
 			} 
 
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -96,7 +95,6 @@ public class boardDAO {
 				dto.setSubject(rs.getString("subject"));
 				dto.setDate(rs.getTimestamp("date"));
 				dto.setReadcount(rs.getInt("readcount"));
-				dto.setFile(rs.getString("file"));
 				dtolist.add(dto);
 			}
 		} catch (Exception e) {
@@ -185,48 +183,57 @@ public class boardDAO {
 	public void updateBoard(boardDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {	
 			con = getConnection();
 			
-			String sql="update board set subject=?, content=? where num=?";
+			String sql="update board set subject=?, content=?, book_st=?, book_type=?, trade_st=?, trade_type=?, trade_inperson=? where num=?";
 			pstmt=con.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getSubject());  
 			pstmt.setString(2, dto.getContent());  
-			pstmt.setInt(3, dto.getNum());
+			pstmt.setString(3, dto.getBook_st());
+			pstmt.setString(4, dto.getBook_type());
+			pstmt.setString(5, dto.getTrade_st());
+			pstmt.setString(6, dto.getTrade_type());
+			pstmt.setString(7, dto.getTrade_inperson());
+			pstmt.setInt(8, dto.getNum());
 			
 			pstmt.executeUpdate();
+			
+			// minFile setting start
+			int minFileId = 0;
+			sql="select min(file_num) from filedate where board_num=?";
+			pstmt.setInt(1, dto.getNum()); 
+			
+			pstmt=con.prepareStatement(sql);
+ 
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				minFileId = rs.getInt("min(file_num)");
+			}
+			// minFile setting end
+			
+			sql="update filedate set url=? where board_num=? and min(file_num)";	
+			
+			for(int i = 0; i < dto.getImgUrls().length; i++ ) {
+				pstmt=con.prepareStatement(sql);
+					
+				pstmt.setString(1, dto.getImgUrls()[i]); 
+				pstmt.setInt(2, dto.getNum());
+				pstmt.setInt(3, minFileId+i);
+					
+				pstmt.executeUpdate();
+			} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
 			if(con!=null) try { con.close();} catch (Exception e2) {}
+			if(rs!=null) try { rs.close();} catch (Exception e2) {}
 		}
 	}
-	
-	public void fupdateBoard(boardDTO dto) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		try {	
-			con = getConnection();
-			
-			String sql="update board set subject=?, content=?, file=? where num=?";
-			pstmt=con.prepareStatement(sql);
-			
-			pstmt.setString(1, dto.getSubject());  
-			pstmt.setString(2, dto.getContent());  
-			pstmt.setString(3, dto.getFile());  
-			pstmt.setInt(4, dto.getNum());
-			
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
-			if(con!=null) try { con.close();} catch (Exception e2) {}
-		}
-	}
-	
 	
 	public void deleteBoard(int num) {
 		Connection con = null;
@@ -273,7 +280,7 @@ public class boardDAO {
 		}
 		return allPage;
 	}
+		
 	
 	
-	
-}
+}// class
