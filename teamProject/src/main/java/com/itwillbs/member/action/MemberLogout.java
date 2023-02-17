@@ -8,7 +8,8 @@ public class MemberLogout implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberLogout");
+		System.out.println("MemberLogout excute()");
+		
 		HttpSession session = request.getSession();
 		session.invalidate();
 		

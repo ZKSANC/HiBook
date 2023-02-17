@@ -9,6 +9,8 @@ public class BoardDeletePro implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("BoardDeletePro execute()");
+		
 		int num = Integer.parseInt(request.getParameter("num"));
 		
 		boardDAO dao = new boardDAO();

@@ -12,6 +12,8 @@ public class MemberInfo implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("MemberInfo execute()");
+		
 		HttpSession session = request.getSession();
 		String id=(String)session.getAttribute("id");
 		

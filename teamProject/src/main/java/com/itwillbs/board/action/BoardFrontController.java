@@ -13,13 +13,11 @@ public class BoardFrontController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("BoardFrontController doGet()");
 		doProcess(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("BoardFrontController doPost()");
 		doProcess(request, response);
 	}
 	
@@ -27,30 +25,20 @@ public class BoardFrontController extends HttpServlet{
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("BoardFrontController doProcess()");
-		System.out.println("뽑은 가상주소 : "+request.getServletPath());
+		
 		String sPath=request.getServletPath();
+		
+		System.out.println("가상주소"+sPath);
 		
 		ActionForward forward=null;
 		Action action=null;
 		
 		if(sPath.equals("/BoardWriteForm.bo")) {
-			System.out.println("가상주소 /InsertForm.me => 실제페이지 member/insertForm.jsp 이동");
-
 			forward=new ActionForward();
 			forward.setPath("board/writeFom.jsp");
 			forward.setRedirect(false);
 			
-			
-		}else if(sPath.equals("/BoardWritePro.bo")) {
-			action = new BoardWritePro();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
-			
-			
+		
 		}else if(sPath.equals("/BoardList.bo")) {
 			action = new BoardList();
 			
@@ -77,26 +65,6 @@ public class BoardFrontController extends HttpServlet{
 			}
 		}else if(sPath.equals("/BoardContent.bo")) {
 			action = new BoardContent();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
-			
-			
-		}else if(sPath.equals("/BoardUpdateForm.bo")) {
-			action = new BoardUpdateForm();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
-			
-			
-		}else if(sPath.equals("/BoardUpdatePro.bo")) {
-			action = new BoardUpdatePro();
 			
 			try {
 				forward = action.execute(request, response);

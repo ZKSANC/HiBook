@@ -13,6 +13,8 @@ public class MemberUpdatePro implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("MemberUpdatePro execute()");
+		
 		String id=request.getParameter("id");
 		String pass=request.getParameter("pass");
 		String name=request.getParameter("name");

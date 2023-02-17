@@ -10,25 +10,6 @@
 </head>
 <body>
 글목록
-<%-- <%
-String id = (String)session.getAttribute("id");
-boardDAO dao = new boardDAO();
-
-int pageSize = 10;
-String pageNum = request.getParameter("pageNum");
-if(pageNum==null) {
-	pageNum="1";
-}
-int currentPage=Integer.parseInt(pageNum);
-//시작 페이지 번호
-int startRow = pageSize*(currentPage-1)+1;
-//끝 페이지 번호
-int endRow = startRow+pageSize-1;
-//mysql limit 시작행 및 시작행으로부터 가져올 갯수
-int start = startRow-1;
-int num = pageSize;
-ArrayList<boardDTO> dtolist = dao.getBoardList(start, num);
-%> --%>
 <%
 ArrayList<boardDTO> dtolist = (ArrayList<boardDTO>)request.getAttribute("dtolist");
 int currentPage = (Integer)request.getAttribute("currentPage");

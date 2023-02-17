@@ -12,6 +12,8 @@ public class MemberList implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("MemberList execute()");
+		
 		MemberDAO dao=new MemberDAO();
 		ArrayList<MemberDTO> memberList =dao.getMemberList();
 		

@@ -11,6 +11,8 @@ public class MemberUpdateForm implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("MemberUpdateForm execute()");
+		
 		HttpSession session = request.getSession();
 		String id=(String)session.getAttribute("id");
 		
