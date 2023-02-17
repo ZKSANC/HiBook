@@ -37,9 +37,10 @@ public class BoardFrontController extends HttpServlet{
 			forward=new ActionForward();
 			forward.setPath("board/writeFom.jsp");
 			forward.setRedirect(false);
-			
+		}
 		
-		}else if(sPath.equals("/BoardList.bo")) {
+		
+		else if(sPath.equals("/BoardList.bo")) {
 			action = new BoardList();
 			
 			try {
@@ -47,15 +48,17 @@ public class BoardFrontController extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			
-			
-		}else if(sPath.equals("/FileBoardWriteForm.bo")) {
+		}
+		
+		
+		else if(sPath.equals("/FileBoardWriteForm.bo")) {
 			forward=new ActionForward();
 			forward.setPath("board/fwriteForm.jsp");
 			forward.setRedirect(false);
-			
-			
-		}else if(sPath.equals("/FileBoardWritePro.bo")) {
+		}
+		
+		
+		else if(sPath.equals("/FileBoardWritePro.bo")) {
 			action = new FileBoardWritePro();
 			
 			try {
@@ -63,7 +66,10 @@ public class BoardFrontController extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(sPath.equals("/BoardContent.bo")) {
+		}
+
+		
+		else if(sPath.equals("/BoardContent.bo")) {
 			action = new BoardContent();
 			
 			try {
@@ -71,9 +77,10 @@ public class BoardFrontController extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			
-			
-		}else if(sPath.equals("/BoardDeletePro.bo")) {
+		}
+		
+		
+		else if(sPath.equals("/BoardDeletePro.bo")) {
 			action = new BoardDeletePro();
 			
 			try {
@@ -81,9 +88,10 @@ public class BoardFrontController extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			
-			
-		}else if(sPath.equals("/FileBoardUpdateForm.bo")) {
+		}
+		
+		
+		else if(sPath.equals("/FileBoardUpdateForm.bo")) {
 			action = new FileBoardUpdateForm();
 			
 			try {
@@ -91,9 +99,10 @@ public class BoardFrontController extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			
-			
-		}else if(sPath.equals("/FileBoardUpdatePro.bo")) {
+		}
+		
+		
+		else if(sPath.equals("/FileBoardUpdatePro.bo")) {
 			action = new FileBoardUpdatePro();
 			
 			try {
@@ -103,6 +112,7 @@ public class BoardFrontController extends HttpServlet{
 			}
 		}
 	
+		
 		if(forward != null) {
 			//이동방식비교
 			if(forward.isRedirect()==true) {
