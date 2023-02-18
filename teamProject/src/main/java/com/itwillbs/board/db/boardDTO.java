@@ -17,6 +17,49 @@ public class boardDTO {
 	private String trade_st;
 	private String trade_inperson;
 	
+	private String[] oldImgUrls;
+	private int oldImgLength;
+	
+	public int getOldImgLength() {
+		return oldImgLength;
+	}
+	public void setOldImgLength(int oldImgLength) {
+		this.oldImgLength = oldImgLength;
+	}
+	public String[] getOldImgUrls() {
+		if(oldImgUrls!=null){
+			String[] tempoldImgUrls= new String[oldImgUrls.length];
+			System.arraycopy(oldImgUrls, 0, tempoldImgUrls, 0, oldImgUrls.length);
+			return tempoldImgUrls;
+		}else{
+			return null;
+		}
+	}
+	public void setOldImgUrls(String[] oldImgUrls) {
+		if(oldImgUrls!=null){
+			this.oldImgUrls = new String[oldImgUrls.length];
+			System.arraycopy(oldImgUrls, 0, this.oldImgUrls, 0, oldImgUrls.length);
+		}else{
+			this.oldImgUrls = null;
+		}
+	}
+	public String[] getImgUrls() {
+		if(imgUrls!=null){
+			String[] tempimgUrls= new String[imgUrls.length];
+			System.arraycopy(imgUrls, 0, tempimgUrls, 0, imgUrls.length);
+			return tempimgUrls;
+		}else{
+			return null;
+		}
+	}
+	public void setImgUrls(String[] imgUrls) {
+		if(imgUrls!=null){
+			this.imgUrls = new String[imgUrls.length];
+			System.arraycopy(imgUrls, 0, this.imgUrls, 0, imgUrls.length);
+		}else{
+			this.imgUrls = null;
+		}
+	}
 	public String getBook_st() {
 		return book_st;
 	}
@@ -47,25 +90,6 @@ public class boardDTO {
 	public void setTrade_inperson(String trade_inperson) {
 		this.trade_inperson = trade_inperson;
 	}
-	
-	public String[] getImgUrls() {
-		if(imgUrls!=null){
-			String[] tempimgUrls= new String[imgUrls.length];
-			System.arraycopy(imgUrls, 0, tempimgUrls, 0, imgUrls.length);
-			return tempimgUrls;
-		}else{
-			return null;
-		}
-	}
-	public void setImgUrls(String[] imgUrls) {
-		if(imgUrls!=null){
-			this.imgUrls = new String[imgUrls.length];
-			System.arraycopy(imgUrls, 0, this.imgUrls, 0, imgUrls.length);
-		}else{
-			this.imgUrls = null;
-		}
-	}
-	
 	public int getNum() {
 		return num;
 	}

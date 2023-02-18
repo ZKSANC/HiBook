@@ -34,13 +34,14 @@ ArrayList<ComCdDTO> cdtoList4 = cdao.getComCdList(cdto.getCdGrpnms()[4]);
 $(document).ready(function(){ // j쿼리 start
 		//멀티이미지 업로드 시 미리보기 불러오기 
 		$("#img").on("change", function(event) {
+			//파일 업로드 교체 시 동작
 			if($(".preview-image").length > 0) { 
 					$(".preview-container").remove();
 
-	var files = event.target.files;
-				 var imageContainer = $("#imgWrap");
+				var files = event.target.files;
+				var imageContainer = $("#imgWrap");
 					
-	 for (var i = 0; i < files.length; i++) {
+	 			for (var i = 0; i < files.length; i++) {
 				 	var file = files[i];
 				 	var reader = new FileReader();
 				 	reader.onload = (function(theFile) {
@@ -58,10 +59,11 @@ $(document).ready(function(){ // j쿼리 start
 				                });
 				                container.append(label, img);
 				                imageContainer.append(container);
-				            };
+				      };
 					})(file);
 					reader.readAsDataURL(file);
 				}	 
+	      //첫 파일 업로드 동작	
 		    }else{
 		    	 var files = event.target.files;
 				 var imageContainer = $("#imgWrap");
@@ -84,7 +86,7 @@ $(document).ready(function(){ // j쿼리 start
 				                });
 				                container.append(label, img);
 				                imageContainer.append(container);
-				            };
+				      };
 					})(file);
 					reader.readAsDataURL(file);
 				}	 
@@ -121,17 +123,27 @@ $(document).ready(function(){ // j쿼리 start
 }); // j쿼리 end
 
 	function checkWrite() {
-		 //총 이미지 개수 저장
+		 //내용 제한 변수 값
 		 var oldImgLength = document.getElementsByClassName("old-image").length;
 		 var preImgLength = document.getElementsByClassName("preview-image").length;
 		 var totalImgLength = oldImgLength + preImgLength;
-		 console.log(totalImgLength);
-		 //이미지 개수 제한
+		 var subjectLength = document.getElementsByName("subject")[0].value.length;
+		 var contentLength = document.getElementsByName("content")[0].value.length;
+		 console.log(subjectLength);
+		 //게시글 submit 전 제한 사항
 		 if(totalImgLength > 5) {
-			 alert("한 게시글 당 이미지는 5개까지 올릴 수 있습니다.");
+			 alert("게시글 당 이미지는 5개까지 올릴 수 있습니다.");
 			 return false;
 		 }
-		 //알림창 확인 클릭 시 클라우디너리 업로드 진행
+		 if(subjectLength < 2) {
+			 alert("제목을 2글자 이상 입력해주세요.");
+			 return false;
+		 }
+		 if(contentLength < 2) {
+			 alert("내용을 2글자 이상 입력해주세요.");
+			 return false;
+		 }
+		 //내용 제한 넘길 시 클라우디너리 업로드 진행
 		 var result = confirm("게시글을 수정하시겠습니까?");
 		 if (result == true){     
 				 const url = "https://api.cloudinary.com/v1_1/dsbicmz4i/image/upload";	
@@ -301,8 +313,16 @@ $(document).ready(function(){ // j쿼리 start
 		</div>
 		<input type="button" value="글수정" name="sub" id="sub" onclick="checkWrite();"> 
 		<input type="button" value="게시글목록" onclick="location.href='BoardList.bo'">
-
-		<!-- 클라우디너리 배열값 저장 -->
+		
+		<!-- 기존 이미지 수 저장 -->
+		<input type="hidden" value="oldImgLength" name="oldImgLength"><br> 
+		<!-- 기존 이미지 배열값 저장 -->
+		<input type="hidden" value="url" id="imgUrls0" name="oldImgUrls"><br> 
+		<input type="hidden" value="url" id="imgUrls1" name="oldImgUrls"><br> 
+		<input type="hidden" value="url" id="imgUrls2" name="oldImgUrls"><br> 
+		<input type="hidden" value="url" id="imgUrls3" name="oldImgUrls"><br> 
+		<input type="hidden" value="url" id="imgUrls4" name="oldImgUrls"><br>
+		<!-- 클라우디너리의 새로운 배열값 저장 -->
 		<input type="hidden" value="url" id="imgUrls0" name="imgUrls"><br> 
 		<input type="hidden" value="url" id="imgUrls1" name="imgUrls"><br> 
 		<input type="hidden" value="url" id="imgUrls2" name="imgUrls"><br> 
