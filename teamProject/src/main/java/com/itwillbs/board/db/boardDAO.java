@@ -210,7 +210,7 @@ public class boardDAO {
  
 			rs=pstmt.executeQuery();
 			
-			System.out.println(minFileId);
+			System.out.println("file_id : "+minFileId);
 			
 			if(rs.next()) {
 				minFileId = rs.getInt("min(file_num)");

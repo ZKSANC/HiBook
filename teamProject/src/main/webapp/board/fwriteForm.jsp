@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.board.db.boardDTO"%>
 <%@page import="com.itwillbs.util.ComCdDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.itwillbs.util.ComCdDTO"%>
@@ -119,7 +120,7 @@ $(document).ready(function(){ // j쿼리 start
 		 var contentLength = document.getElementsByName("content")[0].value.length;
 		 console.log(subjectLength);
 		 //게시글 submit 전 제한 사항
-		 if(totalImgLength > 5) {
+		 if(totalImgLength > <%=boardDTO.getImgLengthMax()%>) {
 			 alert("게시글 당 이미지는 5개까지 올릴 수 있습니다.");
 			 return false;
 		 }
@@ -295,11 +296,9 @@ $(document).ready(function(){ // j쿼리 start
 		<input type="button" value="돌아가기" onclick="location.href='MemberMain.me'">
 
 		<!-- 클라우디너리 배열값 저장 -->
-		<input type="hidden" value="url" id="imgUrls0" name="imgUrls"><br> 
-		<input type="hidden" value="url" id="imgUrls1" name="imgUrls"><br> 
-		<input type="hidden" value="url" id="imgUrls2" name="imgUrls"><br> 
-		<input type="hidden" value="url" id="imgUrls3" name="imgUrls"><br> 
-		<input type="hidden" value="url" id="imgUrls4" name="imgUrls"><br>
+		<% for(int i = 0; i < boardDTO.getImgLengthMax(); i++) { %>
+			<input type="hidden" value="url" name="imgUrls"><br> 
+		<% } %> 
 	</form>
 </body>
 </html>

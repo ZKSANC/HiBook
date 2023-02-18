@@ -13,10 +13,10 @@
 <%
 boardDTO dto = (boardDTO) request.getAttribute("dto");
 // DB 실제 url 개수 들고오기
-int length = 0;
+int realUrlLength = 0;
 for (int i = 0; i < dto.getImgUrls().length; i++) {
 	if (!(dto.getImgUrls()[i].equals("url"))) {
-		length++;
+		realUrlLength++;
 	}
 }
 // DB com_code 테이블 값 가져오기
@@ -114,6 +114,11 @@ $(document).ready(function(){ // j쿼리 start
  	 		  }
  	 		  deleteImgFile(index);
 		});
+		//기존 이미지 클릭 시 삭제 구동
+		$(".old-image").on("click", function(event) {
+			console.log("클릭");
+			$(this).remove("");
+		});	
 		//해당 글에 대해 DB에 저장된 select option값 나타내기
 		$('#option').val('<%=dto.getBook_st()%>').prop("selected",true);
 		$('#book_type').val('<%=dto.getBook_type()%>').prop("selected", true);
@@ -123,15 +128,16 @@ $(document).ready(function(){ // j쿼리 start
 }); // j쿼리 end
 
 	function checkWrite() {
-		 //내용 제한 변수 값
+		 //제한 사항 변수 값
 		 var oldImgLength = document.getElementsByClassName("old-image").length;
+		 console.log("oldimg개수 : "+oldImgLength);
 		 var preImgLength = document.getElementsByClassName("preview-image").length;
+		 console.log("preimg개수 : "+oldImgLength);
 		 var totalImgLength = oldImgLength + preImgLength;
 		 var subjectLength = document.getElementsByName("subject")[0].value.length;
 		 var contentLength = document.getElementsByName("content")[0].value.length;
-		 console.log(subjectLength);
 		 //게시글 submit 전 제한 사항
-		 if(totalImgLength > 5) {
+		 if(totalImgLength > <%=boardDTO.getImgLengthMax()%>) {
 			 alert("게시글 당 이미지는 5개까지 올릴 수 있습니다.");
 			 return false;
 		 }
@@ -143,6 +149,25 @@ $(document).ready(function(){ // j쿼리 start
 			 alert("내용을 2글자 이상 입력해주세요.");
 			 return false;
 		 }
+		 //기존 이미지 및 추가 이미지 개수 변수 저장
+		 var oldImgNum = document.getElementsByName("oldImgNum");
+		 var preImgNum = document.getElementsByName("preImgNum");
+		 oldImgNum.value = oldImgLength;
+		 preImgNum.value = preImgLength;
+		 //기존 이미지 배열 저장
+		 var oldImgUrls = [];
+		 var oldImages = document.getElementsByName("old-image");
+		 for (let i = 0; i < oldImages.length; i++) {
+  			oldImgUrls.push(oldImages[i].src);
+  			console.log(oldImgUrls[i]);
+		 }
+		 const oldImageElList = document.getElementsByName("oldImgUrls");
+		 	if(oldImgUrls[0]!=null) {
+			    for(let i = 0; i < oldImageElList.length; i++) {	
+			    	if(oldImgUrls[i]==null) {break;}
+			    	oldImageElList[i].value = oldImgUrls[i];
+			    }
+	   }
 		 //내용 제한 넘길 시 클라우디너리 업로드 진행
 		 var result = confirm("게시글을 수정하시겠습니까?");
 		 if (result == true){     
@@ -172,7 +197,7 @@ $(document).ready(function(){ // j쿼리 start
 							    	if(imgUrls[i]==null) {break;}
 							    	imageElList[i].value = imgUrls[i];
 							    }
-					    	}
+					    }
 				  }).then(() => {	 
 					alert("게시글 수정");
 					document.move.submit();  
@@ -289,13 +314,13 @@ $(document).ready(function(){ // j쿼리 start
 			<!-- select box end -->
 
 			<%
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < realUrlLength; i++) {
 			%>
 			<tr>
 				<td>
 					첨부이미지<%=i + 1%></td>
 				<td>
-					<img class="old-image" id="old-image" src="<%=dto.getImgUrls()[i]%>" width=260px>
+					<img class="old-image" name="old-image" src="<%=dto.getImgUrls()[i]%>" width=260px>
 				</td>
 			</tr>
 			<%
@@ -314,20 +339,17 @@ $(document).ready(function(){ // j쿼리 start
 		<input type="button" value="글수정" name="sub" id="sub" onclick="checkWrite();"> 
 		<input type="button" value="게시글목록" onclick="location.href='BoardList.bo'">
 		
-		<!-- 기존 이미지 수 저장 -->
-		<input type="hidden" value="oldImgLength" name="oldImgLength"><br> 
+		<!-- 이미지 수 저장 -->
+		<input type="hidden" value="0" name="oldImgNum"><br> 
+		<input type="hidden" value="0" name="preImgNum"><br> 
 		<!-- 기존 이미지 배열값 저장 -->
-		<input type="hidden" value="url" id="imgUrls0" name="oldImgUrls"><br> 
-		<input type="hidden" value="url" id="imgUrls1" name="oldImgUrls"><br> 
-		<input type="hidden" value="url" id="imgUrls2" name="oldImgUrls"><br> 
-		<input type="hidden" value="url" id="imgUrls3" name="oldImgUrls"><br> 
-		<input type="hidden" value="url" id="imgUrls4" name="oldImgUrls"><br>
+		<% for(int i = 0; i < boardDTO.getImgLengthMax(); i++) { %>
+			<input type="hidden" value="url" name="oldImgUrls"><br> 
+		<% } %> 
 		<!-- 클라우디너리의 새로운 배열값 저장 -->
-		<input type="hidden" value="url" id="imgUrls0" name="imgUrls"><br> 
-		<input type="hidden" value="url" id="imgUrls1" name="imgUrls"><br> 
-		<input type="hidden" value="url" id="imgUrls2" name="imgUrls"><br> 
-		<input type="hidden" value="url" id="imgUrls3" name="imgUrls"><br> 
-		<input type="hidden" value="url" id="imgUrls4" name="imgUrls"><br>
+		<% for(int i = 0; i < boardDTO.getImgLengthMax(); i++) { %>
+			<input type="hidden" value="url" name="imgUrls"><br> 
+		<% } %>  
 	</form>
 </body>
 </html>

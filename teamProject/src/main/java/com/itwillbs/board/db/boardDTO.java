@@ -3,6 +3,7 @@ package com.itwillbs.board.db;
 import java.sql.Timestamp;
 
 public class boardDTO {
+	//DB 저장 변수
 	private int num;
 	private String name;
 	private String subject;
@@ -17,14 +18,26 @@ public class boardDTO {
 	private String trade_st;
 	private String trade_inperson;
 	
+	//DB 저장 필요없이 이미지 계산에 사용되는 변수
+	private static int imgLengthMax = 5; // 해당 static 변수 값은 get함수만 사용
 	private String[] oldImgUrls;
-	private int oldImgLength;
+	private int oldImgNum;
+	private int preImgNum;
 	
-	public int getOldImgLength() {
-		return oldImgLength;
+	public int getOldImgNum() {
+		return oldImgNum;
 	}
-	public void setOldImgLength(int oldImgLength) {
-		this.oldImgLength = oldImgLength;
+	public void setOldImgNum(int oldImgNum) {
+		this.oldImgNum = oldImgNum;
+	}
+	public int getPreImgNum() {
+		return preImgNum;
+	}
+	public void setPreImgNum(int preImgNum) {
+		this.preImgNum = preImgNum;
+	}
+	public static int getImgLengthMax() {
+		return imgLengthMax;
 	}
 	public String[] getOldImgUrls() {
 		if(oldImgUrls!=null){

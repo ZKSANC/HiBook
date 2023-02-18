@@ -29,8 +29,18 @@ public class FileBoardUpdatePro implements Action{
 		String trade_st = request.getParameter("trade_st");
 		String trade_inperson = request.getParameter("trade_inperson");
 		
-		System.out.println(imgUrls[0]);
-		System.out.println(imgUrls[1]);
+		String[] oldImgUrls = request.getParameterValues("oldImgUrls");
+		int oldImgNum = Integer.parseInt(request.getParameter("oldImgNum"));
+		int preImgNum = Integer.parseInt(request.getParameter("preImgNum"));
+		
+		System.out.println(preImgNum);
+		for(String str : imgUrls) {
+			System.out.println("preimgUrls : "+str);
+		}
+		System.out.println(oldImgNum);
+		for(String str : oldImgUrls) {
+			System.out.println("oldimgUrls : "+str);
+		}
 		
 		boardDTO dto = new boardDTO();
 		dto.setNum(num);
@@ -44,8 +54,8 @@ public class FileBoardUpdatePro implements Action{
 		dto.setTrade_type(trade_type);
 		dto.setTrade_st(trade_st);
 		
-		boardDAO dao = new boardDAO();
-		dao.updateBoard(dto);
+//		boardDAO dao = new boardDAO();
+//		dao.updateBoard(dto);
 		
 		ActionForward forward=new ActionForward();
 		forward.setPath("BoardList.bo");
