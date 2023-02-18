@@ -132,7 +132,7 @@ $(document).ready(function(){ // j쿼리 start
 		 var oldImgLength = document.getElementsByClassName("old-image").length;
 		 console.log("oldimg개수 : "+oldImgLength);
 		 var preImgLength = document.getElementsByClassName("preview-image").length;
-		 console.log("preimg개수 : "+oldImgLength);
+		 console.log("preimg개수 : "+preImgLength);
 		 var totalImgLength = oldImgLength + preImgLength;
 		 var subjectLength = document.getElementsByName("subject")[0].value.length;
 		 var contentLength = document.getElementsByName("content")[0].value.length;
@@ -150,8 +150,8 @@ $(document).ready(function(){ // j쿼리 start
 			 return false;
 		 }
 		 //기존 이미지 및 추가 이미지 개수 변수 저장
-		 var oldImgNum = document.getElementsByName("oldImgNum");
-		 var preImgNum = document.getElementsByName("preImgNum");
+		 var oldImgNum = document.getElementsByName("oldImgNum")[0];
+		 var preImgNum = document.getElementsByName("preImgNum")[0];
 		 oldImgNum.value = oldImgLength;
 		 preImgNum.value = preImgLength;
 		 //기존 이미지 배열 저장

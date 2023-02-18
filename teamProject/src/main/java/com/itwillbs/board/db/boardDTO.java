@@ -18,8 +18,8 @@ public class boardDTO {
 	private String trade_st;
 	private String trade_inperson;
 	
-	//DB 저장 필요없이 이미지 계산에 사용되는 변수
-	private static int imgLengthMax = 5; // 해당 static 변수 값은 get함수만 사용
+	//DB 저장 필요없이 글수정 계산에 사용되는 변수
+	private static int imgLengthMax = 5; // 게시글의 최대 이미지 수를 제한, 해당 static 변수 값은 get함수만 사용
 	private String[] oldImgUrls;
 	private int oldImgNum;
 	private int preImgNum;

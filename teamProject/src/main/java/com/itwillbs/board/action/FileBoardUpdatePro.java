@@ -1,6 +1,9 @@
 package com.itwillbs.board.action;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,14 +35,34 @@ public class FileBoardUpdatePro implements Action{
 		String[] oldImgUrls = request.getParameterValues("oldImgUrls");
 		int oldImgNum = Integer.parseInt(request.getParameter("oldImgNum"));
 		int preImgNum = Integer.parseInt(request.getParameter("preImgNum"));
+		int urlNum = boardDTO.getImgLengthMax()-oldImgNum-preImgNum;
 		
-		System.out.println(preImgNum);
+		System.out.println("oldimg개수 : "+oldImgNum);
+		for(String str : oldImgUrls) {
+			System.out.println("oldimgUrls : "+str);
+		}
+		
+		System.out.println("preimg개수 : "+preImgNum);
 		for(String str : imgUrls) {
 			System.out.println("preimgUrls : "+str);
 		}
-		System.out.println(oldImgNum);
-		for(String str : oldImgUrls) {
-			System.out.println("oldimgUrls : "+str);
+		
+		if(oldImgNum!=0) {
+			String[] copyOldImgUrls = Arrays.copyOfRange(oldImgUrls, 0, oldImgNum);
+			String[] copyPreImgUrls = Arrays.copyOfRange(imgUrls, 0, preImgNum);
+			ArrayList<String> arr = new ArrayList<>();
+			arr.addAll(Arrays.asList(copyOldImgUrls));
+			arr.addAll(Arrays.asList(copyPreImgUrls));
+			if(urlNum != 0) {
+				for(int i = 0; i < urlNum; i++) {
+					arr.add("url");
+				}
+			}
+			imgUrls = arr.toArray(new String[arr.size()]);
+		}
+		
+		for(String str : imgUrls) {
+			System.out.println("new imgUrls : "+str);
 		}
 		
 		boardDTO dto = new boardDTO();
@@ -54,8 +77,8 @@ public class FileBoardUpdatePro implements Action{
 		dto.setTrade_type(trade_type);
 		dto.setTrade_st(trade_st);
 		
-//		boardDAO dao = new boardDAO();
-//		dao.updateBoard(dto);
+		boardDAO dao = new boardDAO();
+		dao.updateBoard(dto);
 		
 		ActionForward forward=new ActionForward();
 		forward.setPath("BoardList.bo");
