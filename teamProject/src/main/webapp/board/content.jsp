@@ -8,8 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-<body>
+
 <%
 String id = (String)session.getAttribute("id");
 boardDTO dto = (boardDTO)request.getAttribute("dto");
@@ -17,9 +16,23 @@ int length = 0;
 for(int i = 0; i < dto.getImgUrls().length; i++) {
 	if(!(dto.getImgUrls()[i].equals("url"))) {length++;}
 	}
-
 ComCdDTO cdto = new ComCdDTO();
 %>
+
+<script type="text/javascript" src="js/jquery-3.6.3.js"></script>
+<script type="text/javascript">
+function checkDelete() {
+	var result = confirm("게시글을 삭제하시겠습니까?");
+	if (result == true){    
+		alert("게시글 삭제");
+		window.location.href = "BoardDeletePro.bo?num=<%=dto.getNum()%>";
+	}else{   
+	     return false;
+  } 
+}
+</script>
+</head>
+<body>
 <h1>글 내용 [로그인 : <%=id %>]</h1>
 <table border="1">
 	<tr><td>글번호</td><td><%=dto.getNum() %></td></tr>
@@ -50,14 +63,13 @@ ComCdDTO cdto = new ComCdDTO();
 	<% 
 	if(id != null) {
 		if(id.equals(dto.getName())) { %>
-			<input type="button" value="게시글삭제"
-			onclick="location.href='BoardDeletePro.bo?num=<%=dto.getNum()%>'">
+			<input type="button" value="게시글삭제" onclick="checkDelete();">
 			<input type="button" value="게시글수정"
 			onclick="location.href='FileBoardUpdateForm.bo?num=<%=dto.getNum()%>'"></tr>
 	<%
 		}
 	}
-	%>
+	%> 
 </table>
 </body>
 </html>

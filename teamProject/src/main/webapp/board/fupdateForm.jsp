@@ -336,7 +336,7 @@ $(document).ready(function(){ // j쿼리 start
 		<div id="imgWrap">
 			이미지 미리보기 <br>
 		</div>
-		<input type="button" value="글수정" name="sub" id="sub" onclick="checkWrite();"> 
+		<input type="button" value="게시글수정" name="sub" id="sub" onclick="checkWrite();"> 
 		<input type="button" value="게시글목록" onclick="location.href='BoardList.bo'">
 		
 		<!-- 이미지 수 저장 -->
