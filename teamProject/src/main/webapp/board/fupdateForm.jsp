@@ -120,13 +120,26 @@ $(document).ready(function(){ // j쿼리 start
 			$(this).remove("");
 		});	
 		//해당 글에 대해 DB에 저장된 select option값 나타내기
-		$('#option').val('<%=dto.getBook_st()%>').prop("selected",true);
+		$('#book_st').val('<%=dto.getBook_st()%>').prop("selected",true);
 		$('#book_type').val('<%=dto.getBook_type()%>').prop("selected", true);
 		$('#trade_st').val('<%=dto.getTrade_st()%>').prop("selected",true);
 		$('#trade_type').val('<%=dto.getTrade_type()%>').prop("selected",true);
 		$('#trade_inperson').val('<%=dto.getTrade_inperson()%>').prop("selected",true);
 }); // j쿼리 end
-
+	//가격 콤마 
+	function inputNumber(obj) {
+	      obj.value = comma(uncomma(obj.value));
+	}
+	function comma(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+	
+	function uncomma(str) {
+	    str = String(str);
+	    return str.replace(/[^\d]+/g, '');
+	} 
+	//제출 전 체크
 	function checkWrite() {
 		 //제한 사항 변수 값
 		 var oldImgLength = document.getElementsByClassName("old-image").length;
@@ -134,14 +147,14 @@ $(document).ready(function(){ // j쿼리 start
 		 var preImgLength = document.getElementsByClassName("preview-image").length;
 		 console.log("preimg개수 : "+preImgLength);
 		 var totalImgLength = oldImgLength + preImgLength;
-		 var subjectLength = document.getElementsByName("subject")[0].value.length;
+		 var titleLength = document.getElementsByName("title")[0].value.length;
 		 var contentLength = document.getElementsByName("content")[0].value.length;
 		 //게시글 submit 전 제한 사항
 		 if(totalImgLength > <%=boardDTO.getImgLengthMax()%>) {
 			 alert("게시글 당 이미지는 5개까지 올릴 수 있습니다.");
 			 return false;
 		 }
-		 if(subjectLength < 2) {
+		 if(titleLength < 2) {
 			 alert("제목을 2글자 이상 입력해주세요.");
 			 return false;
 		 }
@@ -212,19 +225,20 @@ $(document).ready(function(){ // j쿼리 start
 <body>
 	<h1>파일글수정</h1>
 	<form name="move" action="FileBoardUpdatePro.bo" method="post">
-		<input type="hidden" name="num" value="<%=dto.getNum()%>">
-		<table border="1">
+		<input type="hidden" name="market_id" value="<%=dto.getMarket_id()%>">
+		
+	<table border="1">
 			<tr>
 				<td>글쓴이</td>
 				<td>
-					<input type="text" name="name" value="<%=dto.getName()%>" readonly>
+					<input type="text" name="insert_id" value="<%=dto.getInsert_id()%>" readonly>
 				</td>
 			</tr>
 
 			<tr>
 				<td>글제목</td>
 				<td>
-					<input type="text" name="subject" value="<%=dto.getSubject()%>">
+					<input type="text" name="title" value="<%=dto.getTitle()%>">
 				</td>
 			</tr>
 
@@ -232,6 +246,13 @@ $(document).ready(function(){ // j쿼리 start
 				<td>글내용</td>
 				<td>
 					<textarea name="content" rows="10" cols="20"><%=dto.getContent()%></textarea>
+				</td>
+			</tr>
+
+			<tr>
+				<td>가격</td>
+				<td>
+					<input type="text" name="book_price" value="<%=dto.getBook_price() %>" onkeyup="inputNumber(this);">원
 				</td>
 			</tr>
 
@@ -331,7 +352,7 @@ $(document).ready(function(){ // j쿼리 start
 				<td>
 					<input id="img" type="file" name="files[]" accept="image/*" multiple>
 				</td>
-		</table>
+</table>
 
 		<div id="imgWrap">
 			이미지 미리보기 <br>

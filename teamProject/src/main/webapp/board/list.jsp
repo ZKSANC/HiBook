@@ -25,33 +25,19 @@ for(int i = 0; i < dtolist.size(); i++) {
 	boardDTO dto = dtolist.get(i);
 %>
 <tr>
-<td><%=dto.getNum() %></td>
-<td><%=dto.getName() %></td>
-<td><a href="BoardContent.bo?num=<%=dto.getNum()%>"><%=dto.getSubject() %></a></td>
-<td><%=dto.getReadcount() %></td>
-<td><%=dto.getDate() %></td>
+<td><%=dto.getMarket_id() %></td>
+<td><%=dto.getInsert_id() %></td>
+<td><a href="BoardContent.bo?boardNum=<%=dto.getMarket_id()%>"><%=dto.getTitle() %></a></td>
+<td><%=dto.getView_cnt() %></td>
+<td><%=dto.getInsert_date() %></td>
 </tr>	
 	<%
 }
 %>
 </table>
 <% 
-// startPage~endPage 1~10, 11~20, 21~30
-/* int pageBlock = 10;
-int startPage = (currentPage-1)/pageBlock*pageBlock+1;
-int endPage = startPage+pageBlock-1;
-//총 게시글 수
-int allPage = dao.getBoardPage();
-// 나타낼 페이지 수
-int pageCount = allPage/pageSize+(allPage%pageSize==0?0:1);
-// endPage 재설정
-if(endPage > pageCount) {
-	endPage = pageCount;
-}
-// */
-if(startPage > pageBlock) {
-%>
-	<a href="BoardList.bo?pageNum=<%= currentPage-pageBlock%>">[10페이지 이전]</a>
+if(startPage > pageBlock) { %>
+	<a href="BoardList.bo?pageNum=<%= currentPage-pageBlock%>">🔙</a>
 <% 
 }
 for(int i = startPage; i <= endPage; i++) {	
@@ -61,12 +47,11 @@ for(int i = startPage; i <= endPage; i++) {
 }
 if(endPage > allPage) {
 %>
-	<a href="BoardList.bo?pageNum=<%= currentPage+pageBlock%>">[10페이지 다음]</a> 
+	<a href="BoardList.bo?pageNum=<%= currentPage+pageBlock%>">🔜</a> 
 <%
 }
 %>
 <br>
-<input type="button" value="메인으로"
-onclick="location.href='MemberMain.me'">
+<input type="button" value="메인으로" onclick="location.href='MemberMain.me'">
 </body>
 </html>

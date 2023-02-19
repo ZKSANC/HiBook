@@ -13,18 +13,18 @@ public class BoardContent implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BoardContent execute()");
 		
-		int num = Integer.parseInt(request.getParameter("num"));
+		int market_id = Integer.parseInt(request.getParameter("boardNum"));
 		
 		HttpSession session = request.getSession();
 		String id=(String)session.getAttribute("id");
 		
 		boardDAO dao = new boardDAO();
-		boardDTO dto = dao.getBoard(num);
+		boardDTO dto = dao.getBoard(market_id);
 		
 		if (id!=null) { 
 			System.out.println("조회수증가");
 			dao.updateReadCount(dto); 
-			dto = dao.getBoard(num);}
+			dto = dao.getBoard(market_id);}
 	
 		request.setAttribute("dto", dto);
 		

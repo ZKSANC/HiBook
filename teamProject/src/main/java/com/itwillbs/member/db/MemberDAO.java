@@ -84,7 +84,7 @@ public class MemberDAO {
 			//1,2단계 디비연결 메서드 호출
 			con = getConnection();
 			// 3단계 SQL구문 만들어서 실행할 준비(select    where id=? and pass=?)
-			String sql="select * from members where id=? and pass=?";
+			String sql="select * from members where mem_id=? and mem_pass=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pass);

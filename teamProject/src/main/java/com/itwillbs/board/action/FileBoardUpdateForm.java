@@ -12,10 +12,10 @@ public class FileBoardUpdateForm implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("FileBoardUpdateForm execut()");
 		
-		int num = Integer.parseInt(request.getParameter("num"));
+		int market_id = Integer.parseInt(request.getParameter("boardNum"));
 		
 		boardDAO dao = new boardDAO();
-		boardDTO dto = dao.getBoard(num);
+		boardDTO dto = dao.getBoard(market_id);
 		
 		request.setAttribute("dto", dto);
 		

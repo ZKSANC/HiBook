@@ -11,10 +11,10 @@ public class BoardDeletePro implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BoardDeletePro execute()");
 		
-		int num = Integer.parseInt(request.getParameter("num"));
+		int market_id = Integer.parseInt(request.getParameter("boardNum"));
 		
 		boardDAO dao = new boardDAO();
-		dao.deleteBoard(num);
+		dao.deleteBoard(market_id);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("BoardList.bo");

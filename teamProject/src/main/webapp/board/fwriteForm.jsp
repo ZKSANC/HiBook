@@ -110,13 +110,26 @@ $(document).ready(function(){ // j쿼리 start
  	 		  deleteImgFile(index);
 		});
 }); // j쿼리 end
+  //가격 콤마
+  function inputNumber(obj) {
+        obj.value = comma(uncomma(obj.value));
+  }
+  function comma(str) {
+      str = String(str);
+      return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+  }
 
+  function uncomma(str) {
+      str = String(str);
+      return str.replace(/[^\d]+/g, '');
+  } 
+  //제출 전 체크
 	function checkWrite() {
 		 //내용 제한 변수 값
 		 var oldImgLength = document.getElementsByClassName("old-image").length;
 		 var preImgLength = document.getElementsByClassName("preview-image").length;
 		 var totalImgLength = oldImgLength + preImgLength;
-		 var subjectLength = document.getElementsByName("subject")[0].value.length;
+		 var subjectLength = document.getElementsByName("title")[0].value.length;
 		 var contentLength = document.getElementsByName("content")[0].value.length;
 		 console.log(subjectLength);
 		 //게시글 submit 전 제한 사항
@@ -187,14 +200,14 @@ $(document).ready(function(){ // j쿼리 start
 			<tr>
 				<td>글쓴이</td>
 				<td>
-					<input type="text" name="name" value="<%=id%>" readonly>
+					<input type="text" name="insert_id" value="<%=id%>" readonly>
 				</td>
 			</tr>
-
+	
 			<tr>
 				<td>글제목</td>
 				<td>
-					<input type="text" name="subject" value="">
+					<input type="text" name="title" value="">
 				</td>
 			</tr>
 
@@ -204,7 +217,14 @@ $(document).ready(function(){ // j쿼리 start
 					<textarea name="content" rows="10" cols="20"></textarea>
 				</td>
 			</tr>
-
+			
+			<tr>
+				<td>가격</td>
+				<td>
+					<input type="text" name="book_price" value="" onkeyup="inputNumber(this);">원
+				</td>
+			</tr>
+			
 			<!-- select box start -->
 			<tr>
 				<td><%=cdto.getCdGrpnms()[0]%></td>

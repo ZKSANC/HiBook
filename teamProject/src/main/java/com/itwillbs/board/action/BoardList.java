@@ -15,8 +15,8 @@ public class BoardList implements Action{
 		System.out.println("BoardList excute()");
 		
 		boardDAO dao = new boardDAO();
-
-		int pageSize = 10;
+		//한 페이지에 불러올 market_id 열 수
+		int pageSize = 20;
 		String pageNum = request.getParameter("pageNum");
 		
 		if(pageNum==null) {
@@ -33,9 +33,9 @@ public class BoardList implements Action{
 		//끝 페이지 번호
 		int endRow = startRow+pageSize-1;
 		
-		//mysql limit 시작행 및 시작행으로부터 가져올 갯수
-		int start = startRow-1;
-		int num = pageSize;
+		//mysql limit 함수 변수
+		int start = startRow-1; //시작행
+		int num = pageSize; //시작행으로부터 가져올 갯수
 		ArrayList<boardDTO> dtolist = dao.getBoardList(start, num);
 		
 		//하단에 보여지는 페이지 번호
@@ -70,4 +70,4 @@ public class BoardList implements Action{
 		return forward;
 	}
 	
-}
+}// 클래스

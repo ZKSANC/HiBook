@@ -28,37 +28,39 @@ public class boardDAO {
 		try {
 			con = getConnection();
 			
-			int num = 1;
-			String sql = "select max(num) from board";
+			int market_id = 1;
+			String sql = "select max(market_id) from market";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				num = rs.getInt(1)+1;
+				market_id = rs.getInt(1)+1;
 			}
-			
-			sql="insert into board(num,name,subject,content,date,book_st,book_type,trade_inperson,trade_st,trade_type) values(?,?,?,?,?,?,?,?,?,?)";
+			System.out.println("체크1");
+			sql="insert into market(market_id,insert_id,title,content,insert_date,book_price,book_st,book_type,trade_inperson,trade_st,trade_type) "
+				+"values(?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			
-			pstmt.setInt(1, num);  
-			pstmt.setString(2, dto.getName()); 
-			pstmt.setString(3, dto.getSubject());
+			pstmt.setInt(1, market_id);  
+			pstmt.setString(2, dto.getInsert_id()); 
+			pstmt.setString(3, dto.getTitle());
 			pstmt.setString(4, dto.getContent());
-			pstmt.setTimestamp(5, dto.getDate());
-			pstmt.setString(6,dto.getBook_st());
-			pstmt.setString(7,dto.getBook_type());
-			pstmt.setString(8,dto.getTrade_inperson());
-			pstmt.setString(9,dto.getTrade_st());
-			pstmt.setString(10,dto.getTrade_type());
+			pstmt.setTimestamp(5, dto.getInsert_date());
+			pstmt.setString(6,dto.getBook_price());
+			pstmt.setString(7,dto.getBook_st());
+			pstmt.setString(8,dto.getBook_type());
+			pstmt.setString(9,dto.getTrade_inperson());
+			pstmt.setString(10,dto.getTrade_st());
+			pstmt.setString(11,dto.getTrade_type());
 			
 			pstmt.executeUpdate();
-			
+			System.out.println("체크2");
 	
-			sql="insert into filedate(board_num, url) values(?,?)";	
+			sql="insert into market_image(market_id, url) values(?,?)";	
 				
 			for(int i = 0; i < dto.getImgUrls().length; i++ ) {
 				pstmt=con.prepareStatement(sql);
 					
-				pstmt.setInt(1, num); 
+				pstmt.setInt(1, market_id); 
 				pstmt.setString(2, dto.getImgUrls()[i]); 
 					
 				pstmt.executeUpdate();
@@ -81,7 +83,7 @@ public class boardDAO {
 		try {	
 			con = getConnection();
 			
-			String sql="select * from board order by num desc limit ?, ?";
+			String sql="select * from market order by market_id desc limit ?, ?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, num);
@@ -90,11 +92,11 @@ public class boardDAO {
 			
 			while(rs.next()) {
 				boardDTO dto = new boardDTO();
-				dto.setNum(rs.getInt("num"));
-				dto.setName(rs.getString("name"));
-				dto.setSubject(rs.getString("subject"));
-				dto.setDate(rs.getTimestamp("date"));
-				dto.setReadcount(rs.getInt("readcount"));
+				dto.setMarket_id(rs.getInt("market_id"));
+				dto.setInsert_id(rs.getString("insert_id"));
+				dto.setTitle(rs.getString("title"));
+				dto.setInsert_date(rs.getTimestamp("insert_date"));
+				dto.setView_cnt(rs.getInt("view_cnt"));
 				dtolist.add(dto);
 			}
 		} catch (Exception e) {
@@ -107,7 +109,7 @@ public class boardDAO {
 		return dtolist;
 	}
 	
-	public boardDTO getBoard(int num) {
+	public boardDTO getBoard(int market_id) {
 		boardDTO dto = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -115,20 +117,21 @@ public class boardDAO {
 		try {	
 			con = getConnection();
 			
-			String sql="select * from board where num=?";
+			String sql="select * from market where market_id=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, num);  
+			pstmt.setInt(1, market_id);  
 			
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
 				dto = new boardDTO();
-				dto.setNum(rs.getInt("num"));
-				dto.setName(rs.getString("name"));
-				dto.setSubject(rs.getString("subject"));
+				dto.setMarket_id(rs.getInt("market_id"));
+				dto.setInsert_id(rs.getString("insert_id"));
+				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
-				dto.setReadcount(rs.getInt("readcount"));
-				dto.setDate(rs.getTimestamp("date"));
+				dto.setView_cnt(rs.getInt("view_cnt"));
+				dto.setInsert_date(rs.getTimestamp("insert_date"));
+				dto.setBook_price(rs.getString("book_price"));
 				dto.setBook_st(rs.getString("book_st"));
 				dto.setBook_type(rs.getString("book_type"));
 				dto.setTrade_st(rs.getString("trade_st"));
@@ -136,17 +139,17 @@ public class boardDAO {
 				dto.setTrade_inperson(rs.getString("trade_inperson"));
 			}
 			
-			sql="select * from filedate where board_num=?"; 
+			sql="select * from market_image where market_id=?"; 
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, num);  
+			pstmt.setInt(1, market_id);  
 			 
 			rs=pstmt.executeQuery();
 			
-			String[] url = new String[5];
+			String[] url = new String[boardDTO.getImgLengthMax()];
 			int i = 0;
 			while(rs.next()) {
 				url[i] = rs.getString("url");
-				if (i <=3) {i++;}
+				if (i <=boardDTO.getImgLengthMax()-2) {i++;}
 			}
 			dto.setImgUrls(url);
 			
@@ -166,10 +169,10 @@ public class boardDAO {
 		try {	
 			con = getConnection();
 			
-			String sql="update board set readcount=readcount+1 where num=?";
+			String sql="update market set view_cnt=view_cnt+1 where market_id=?";
 			pstmt=con.prepareStatement(sql);
 			
-			pstmt.setInt(1, dto.getNum());
+			pstmt.setInt(1, dto.getMarket_id());
 			
 			pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -187,44 +190,45 @@ public class boardDAO {
 		try {	
 			con = getConnection();
 			
-			String sql="update board set subject=?, content=?, book_st=?, book_type=?, trade_st=?, trade_type=?, trade_inperson=? where num=?";
+			String sql="update market set title=?, content=?, book_price=?, book_st=?, book_type=?, trade_st=?, trade_type=?, trade_inperson=? where market_id=?";
 			pstmt=con.prepareStatement(sql);
 			
-			pstmt.setString(1, dto.getSubject());  
+			pstmt.setString(1, dto.getTitle());  
 			pstmt.setString(2, dto.getContent());  
-			pstmt.setString(3, dto.getBook_st());
-			pstmt.setString(4, dto.getBook_type());
-			pstmt.setString(5, dto.getTrade_st());
-			pstmt.setString(6, dto.getTrade_type());
-			pstmt.setString(7, dto.getTrade_inperson());
-			pstmt.setInt(8, dto.getNum());
+			pstmt.setString(3, dto.getBook_price());
+			pstmt.setString(4, dto.getBook_st());
+			pstmt.setString(5, dto.getBook_type());
+			pstmt.setString(6, dto.getTrade_st());
+			pstmt.setString(7, dto.getTrade_type());
+			pstmt.setString(8, dto.getTrade_inperson());
+			pstmt.setInt(9, dto.getMarket_id());
 			
 			pstmt.executeUpdate();
 			
-			// minFileId setting start
-			int minFileId = 0;
-			sql="select min(file_num) from filedate where board_num=?";
+			// minImageId setting start
+			int minImageId = 0;
+			sql="select min(image_id) from market_image where market_id=?";
 			pstmt=con.prepareStatement(sql);
 			
-			pstmt.setInt(1, dto.getNum()); 
+			pstmt.setInt(1, dto.getMarket_id()); 
  
 			rs=pstmt.executeQuery();
 			
-			System.out.println("file_id : "+minFileId);
+			System.out.println("minImageId : "+minImageId);
 			
 			if(rs.next()) {
-				minFileId = rs.getInt("min(file_num)");
+				minImageId = rs.getInt("min(image_id)");
 			}
-			// minFileId setting end
+			// minImageId setting end
 			
-			sql="update filedate set url=? where board_num=? and file_num=?";	
+			sql="update market_image set url=? where market_id=? and image_id=?";	
 			
 			for(int i = 0; i < dto.getImgUrls().length; i++ ) {
 				pstmt=con.prepareStatement(sql);
 					
 				pstmt.setString(1, dto.getImgUrls()[i]); 
-				pstmt.setInt(2, dto.getNum());
-				pstmt.setInt(3, minFileId+i);
+				pstmt.setInt(2, dto.getMarket_id());
+				pstmt.setInt(3, minImageId+i);
 					
 				pstmt.executeUpdate();
 			} 
@@ -237,20 +241,20 @@ public class boardDAO {
 		}
 	}
 	
-	public void deleteBoard(int num) {
+	public void deleteBoard(int market_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {	
 			con = getConnection();
 			
-			String sql="delete from filedate where board_num=?";
+			String sql="delete from market_image where market_id=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, market_id);
 			pstmt.executeUpdate();
 			
-			sql="delete from board where num=?";
+			sql="delete from market where market_id=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, market_id);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -268,7 +272,7 @@ public class boardDAO {
 		try {	
 			con = getConnection();
 			
-			String sql="select count(*) from board";
+			String sql="select count(*) from market";
 			pstmt=con.prepareStatement(sql);
  
 			rs=pstmt.executeQuery();
