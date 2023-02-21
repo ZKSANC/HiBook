@@ -9,7 +9,7 @@ function fun1() {
 	window.location.reload();
 }
 </script>
-<link href="css/front.css" rel="stylesheet" type="text/css">
+<link href="resource/css/front.css" rel="stylesheet" type="text/css">
 <title>Hibook</title>
 </head>
 
@@ -28,7 +28,7 @@ function fun1() {
 	</div>
 	<div class="mypage">
 		<div id="mypageMenu"><a href="판매.jsp">판매하기</a></div>
-		<div id="mypageMenu"><a href="마이페이지.jsp">마이페이지</a></div>
+		<div id="mypageMenu"><a href="MypageMain.mypage">마이페이지</a></div>
 		<div id="mypageMenu"><a href="채팅.jsp">1:1 채팅</a></div>
 	</div>
 </div>
