@@ -41,10 +41,11 @@ public class MemberDAO {
 	public void insertMember(MemberDTO dto) {
 		System.out.println("MemberDAO insertMember()");
 		System.out.println("MemberDTO 바구니 전달받은 주소 : " + dto);
-		System.out.println("바구니주소에서 가져온 아이디 : " + dto.getId());
-		System.out.println("바구니주소에서 가져온 비밀번호 : " + dto.getPass());
-		System.out.println("바구니주소에서 가져온 이름 : " + dto.getName());
-		System.out.println("바구니주소에서 가져온 가입날짜 : " + dto.getDate());
+		System.out.println("바구니주소에서 가져온 아이디 : " + dto.getMemId());
+		System.out.println("바구니주소에서 가져온 비밀번호 : " + dto.getMemPass());
+		System.out.println("바구니주소에서 가져온 이름 : " + dto.getMemNm());
+		System.out.println("바구니주소에서 가져온 가입날짜 : " + dto.getJoinDate());
+		System.out.println("바구니주소에서 가져온 멤버상태 : " + dto.getMemType());
 		
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -53,13 +54,14 @@ public class MemberDAO {
 			// 1~2 단계
 			con=getConnection();
 			// 3단계 SQL구문 만들어서 실행할 준비(insert)
-			String sql="insert into members(id,pass,name,date) values(?,?,?,?)";
+			String sql="insert into members(mem_id,mem_pass,mem_nm,join_date) values(?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			// ? 채워넣기
-			pstmt.setString(1, dto.getId());  
-			pstmt.setString(2, dto.getPass()); 
-			pstmt.setString(3, dto.getName());
-			pstmt.setTimestamp(4, dto.getDate());
+			pstmt.setString(1, dto.getMemId());  
+			pstmt.setString(2, dto.getMemPass()); 
+			pstmt.setString(3, dto.getMemNm());
+			pstmt.setTimestamp(4, dto.getJoinDate());
+			// pstmt.setString(5, dto.getMemType());
 			// 4단계 SQL구문을 실행(insert,update,delete)
 			pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -70,7 +72,6 @@ public class MemberDAO {
 			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
 			if(con!=null) try { con.close();} catch (Exception e2) {}
 		}
-		return;
 	}//insertMember() 메서드
 	
 	// 리턴할형(MemberDTO) userCheck(String id, String pass) 메서드 정의
@@ -100,10 +101,11 @@ public class MemberDAO {
 			    // => 세션값 생성 "id",id(페이지 상관없이 값을 유지) , main.jsp 이동
 				// dto 바구니 객체생성 => 기억장소 할당
 				dto=new MemberDTO();
-				dto.setId(rs.getString("id"));
-				dto.setPass(rs.getString("pass"));
-				dto.setName(rs.getString("name"));
-				dto.setDate(rs.getTimestamp("date"));
+				dto.setMemId(rs.getString("mem_id"));
+				dto.setMemPass(rs.getString("mem_pass"));
+				dto.setMemNm(rs.getString("mem_nm"));
+				dto.setAdminYn(rs.getString("admin_yn"));
+				dto.setJoinDate(rs.getTimestamp("join_date"));
 			}else{
 				//next() 다음행 =>       데이터 없으면 false => 아이디 비밀번호 틀림
 			    // 	           => script   "아이디 비밀번호 틀림" 뒤로이동
@@ -131,7 +133,11 @@ public class MemberDAO {
 			con=getConnection();
 			
 			//3단계 SQL구문 만들어서 실행할 준비(select 조건 where id=?)
-			String sql="select * from members where id=?";
+			String sql = "select mem_id,mem_pass,mem_nm,join_date,"
+					+ 	"(select cd_nm from com_code where cd_grp = 'mem_st' and cd = m.mem_st) AS mem_st "
+					+ 	" from members m"
+					+ 	" where mem_id = ?";
+				   
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 
@@ -145,10 +151,11 @@ public class MemberDAO {
 				// 바구니 객체생성 => 기억장소 할당
 				dto=new MemberDTO();
 				// set메서드호출 바구니에 디비에서 가져온 값 저장
-				dto.setId(rs.getString("id"));
-				dto.setPass(rs.getString("pass"));
-				dto.setName(rs.getString("name"));
-				dto.setDate(rs.getTimestamp("date"));
+				dto.setMemId(rs.getString("mem_id"));
+				dto.setMemPass(rs.getString("mem_pass"));
+				dto.setMemNm(rs.getString("mem_nm"));
+				dto.setJoinDate(rs.getTimestamp("join_date"));
+				dto.setMemType(rs.getString("mem_st"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -170,11 +177,11 @@ public class MemberDAO {
 			con=getConnection();
 			// if next() 다음행 => 리턴값 데이터 있으면 true => 아이디 비밀번호 일치
 			// => 3단계 pstmt2 SQL구문 만들어서 실행할 준비 (update set name=? where id=?)
-			String sql2="update members set name=? where id =?";
+			String sql2="update members set mem_nm=? where mem_id =?";
 			pstmt2=con.prepareStatement(sql2);
 			//? 채워넣기
-			pstmt2.setString(1, updateDto.getName()); //set 문자열(1번째 물음표, 값 name)
-			pstmt2.setString(2, updateDto.getId());  //set 문자열 (2번째 물음표, 값 id)
+			pstmt2.setString(1, updateDto.getMemNm()); //set 문자열(1번째 물음표, 값 name)
+			pstmt2.setString(2, updateDto.getMemId());  //set 문자열 (2번째 물음표, 값 id)
 			
 			// 4단계 SQL구문을 실행(insert,update,delete)
 			pstmt2.executeUpdate();
@@ -196,7 +203,7 @@ public class MemberDAO {
 			//1,2 디비연결 메서드
 			con=getConnection();
 			//3단계
-			String sql2="delete from members where id =?";
+			String sql2="delete from members where mem_id =?";
 			pstmt2=con.prepareStatement(sql2);
 			//? 채워넣기
 			pstmt2.setString(1, id);  //set 문자열 (1번째 물음표, 값 id)
@@ -232,10 +239,10 @@ public class MemberDAO {
 				MemberDTO dto=new MemberDTO();
 				System.out.println("회원정보저장 주소 : "+dto);
 				// set메서드 호출 <= 열접근
-				dto.setId(rs.getString("id"));
-				dto.setPass(rs.getString("pass"));
-				dto.setName(rs.getString("name"));
-				dto.setDate(rs.getTimestamp("date"));
+				dto.setMemId(rs.getString("mem_id"));
+				dto.setMemPass(rs.getString("mem_pass"));
+				dto.setMemNm(rs.getString("mem_nm"));
+				dto.setJoinDate(rs.getTimestamp("join_date"));
 				// 배열 한칸에 회원정보주소 저장
 				memberList.add(dto);
 			}

@@ -1,10 +1,8 @@
 package com.itwillbs.util;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -78,9 +76,48 @@ public class ComCdDAO {
 	}//getMember()
 	
 	
+	   // 리턴할형 ArrayList<MemberDTO>  getMemberList() 메서드 정의 -- 공통코드.
+	   public ArrayList<ComCdDTO> getComCdList(String cdGrpnm){
+	      ArrayList<ComCdDTO> memberList=new ArrayList<ComCdDTO>();
+	      Connection con =null;
+	      PreparedStatement pstmt=null;
+	      ResultSet rs=null;
+	      try {
+	         //1,2 디비연결 메서드
+	         con=getConnection();
+	         //3단계 SQL구문 만들어서 실행할 준비(select)
+	         String sql ="select * from com_code where cd_grp_nm = ?";
+	         pstmt=con.prepareStatement(sql);
+	         pstmt.setString(1, cdGrpnm);
+	         
+	         //4단계 SQL구문을 실행(select) => 결과 저장
+	         rs=pstmt.executeQuery();   
+	         //5단계   //조건이 true 실행문=> 다음행 데이터 있으면 true 
+	         //     =>  열접근 => 한 명 정보 MemberDTO 저장 => 배열한칸 저장 
+	         while(rs.next()) {
+	            // MemberDTO 객체생성
+	            ComCdDTO dto=new ComCdDTO();
+	            // set메서드 호출 <= 열접근
+	            dto.setCdGrp(rs.getString("cd_grp"));
+	            dto.setCdGrpNm(rs.getString("cd_grp_nm"));
+	            dto.setCd(rs.getString("cd"));
+	            dto.setCdNm(rs.getString("cd_nm"));
+	            // 배열 한칸에 회원정보주소 저장
+	            memberList.add(dto);
+	         }
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }finally {
+	         // 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
+	         if(rs!=null) try { rs.close();} catch (Exception e2) {}
+	         if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+	         if(con!=null) try { con.close();} catch (Exception e2) {}
+	      }
+	      return memberList;
+	   }//getMemberList()
 	
 	// 리턴할형 ArrayList<MemberDTO>  getMemberList() 메서드 정의 -- 공통코드.
-	public ArrayList<ComCdDTO> getComCdList(String cdGrpnm){
+	public ArrayList<ComCdDTO> getComCdListByCdGrp(String cdGrp){
 		ArrayList<ComCdDTO> memberList=new ArrayList<ComCdDTO>();
 		Connection con =null;
 		PreparedStatement pstmt=null;
@@ -89,9 +126,9 @@ public class ComCdDAO {
 			//1,2 디비연결 메서드
 			con=getConnection();
 			//3단계 SQL구문 만들어서 실행할 준비(select)
-			String sql ="select * from com_code where cd_grp_nm = ?";
+			String sql ="select cd_grp, cd_grp_nm, cd, cd_nm from com_code where cd_grp = ?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, cdGrpnm);
+			pstmt.setString(1, cdGrp);
 			
 			//4단계 SQL구문을 실행(select) => 결과 저장
 			rs=pstmt.executeQuery();	
@@ -100,6 +137,7 @@ public class ComCdDAO {
 			while(rs.next()) {
 				// MemberDTO 객체생성
 				ComCdDTO dto=new ComCdDTO();
+				System.out.println("회원정보저장 주소 : "+dto);
 				// set메서드 호출 <= 열접근
 				dto.setCdGrp(rs.getString("cd_grp"));
 				dto.setCdGrpNm(rs.getString("cd_grp_nm"));
@@ -117,7 +155,7 @@ public class ComCdDAO {
 			if(con!=null) try { con.close();} catch (Exception e2) {}
 		}
 		return memberList;
-	}//getMemberList()
+	}//getComCdListByCdGrp()
 	
 }//클래스
 

@@ -33,8 +33,12 @@ if(id!=null){
 	}
 }
 %>
-<a href="BoardList.bo">글목록</a><br>
-<a href="FileBoardWriteForm.bo">거래글쓰기</a><br>
+<a href="MarketWriteForm.ma">중고거래 글쓰기</a><br>
+<a href="MarketList.ma">중고거래 목록</a><br>
+<a href="BoardWriteForm.bo">글쓰기</a><br>
+<a href="BoardList.bo?boardType=free">자유게시판 글목록</a><br>
+<a href="BoardList.bo?boardType=notice">공지게시판 글목록</a><br>
+<a href="BoardList.bo?boardType=review">리뷰게시판 글목록</a><br>
 </body>
 </html>
 

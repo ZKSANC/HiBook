@@ -9,7 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import market.MarketDTO;
+import com.itwillbs.market.db.MarketDTO;
 
 public class WishDAO {
 	// DB연결 메서드
@@ -114,7 +114,7 @@ public class WishDAO {
 		}//
 		
 		// 해당 게시글의 찜 개수 구하는 메서드 
-		public int getWishCount(int market_id) {
+		public int getMarketWishCount(int market_id) {
 			Connection con=null;
 			PreparedStatement pstmt=null;
 			ResultSet rs=null;
@@ -145,6 +145,7 @@ public class WishDAO {
 		
 		// 마이페이지- 찜목록 메서드 
 		public ArrayList<MarketDTO> getWishList(String id, int startRow, int pageSize){
+			MarketDTO dto = null;
 			Connection con=null;
 			PreparedStatement pstmt=null;
 			ResultSet rs=null;
@@ -164,16 +165,31 @@ public class WishDAO {
 				//5
 				while(rs.next()) {
 					// 하나의 글의 바구니에 저장
-					MarketDTO dto=new MarketDTO(); 
+					dto=new MarketDTO(); 
 					dto.setMarket_id(rs.getInt("market_id"));
-					dto.setContent_img1(rs.getString("content_img1"));
 					dto.setTitle(rs.getString("title"));
 					dto.setInsert_id(rs.getString("insert_id"));
-					dto.setBook_price(rs.getInt("book_price"));
+					dto.setBook_price(rs.getString("book_price"));
 					dto.setInsert_date(rs.getTimestamp("insert_date"));
 					// 바구니의 주소값을 배열 한칸에 저장
 					getwishlist.add(dto);
 				}
+				
+				sql="select * from market_image where market_id=?"; 
+				
+				pstmt=con.prepareStatement(sql);
+				/* pstmt.setInt(1, market_id); */ 
+				 
+				rs=pstmt.executeQuery();
+				
+				String[] url = new String[MarketDTO.getImgLengthMax()];
+				int i = 0;
+				while(rs.next()) {
+					url[i] = rs.getString("url");
+					if (i <=MarketDTO.getImgLengthMax()-2) {i++;}
+				}
+				dto.setImgUrls(url);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally {

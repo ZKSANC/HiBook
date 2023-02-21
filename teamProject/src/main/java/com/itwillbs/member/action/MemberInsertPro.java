@@ -20,20 +20,20 @@ public class MemberInsertPro implements Action{
 		//request 한글처리
 		request.setCharacterEncoding("utf-8");
 		// request 태그이름에 해당하는 값을 가져오기 => 변수에 저장
-		String id=request.getParameter("id");
-		String pass=request.getParameter("pass");
-		String name=request.getParameter("name");
+		String memId = request.getParameter("mem_id");
+		String memPass = request.getParameter("mem_pass");
+		String memNm = request.getParameter("mem_nm");
 		//가입날짜 => 시스템 날짜 
 		// java.sql.Timestamp 자바내장객체 => 날짜 
-		Timestamp date=new Timestamp(System.currentTimeMillis());
+		Timestamp joinDate=new Timestamp(System.currentTimeMillis());
 		
 		MemberDTO dto=new MemberDTO();
 		System.out.println("MemberDTO 바구니 주소 : "+dto);
 		// => 기억장소에 id, pass, name, date 값을 저장
-		dto.setId(id);
-		dto.setPass(pass);
-		dto.setName(name);
-		dto.setDate(date);
+		dto.setMemId(memId);
+		dto.setMemPass(memPass);
+		dto.setMemNm(memNm);
+		dto.setJoinDate(joinDate);
 		
 		MemberDAO dao=new MemberDAO();
 		System.out.println("MemberDAO 주소 : "+dao);

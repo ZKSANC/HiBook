@@ -1,20 +1,20 @@
-package com.itwillbs.board.action;
+package com.itwillbs.market.action;
 
 import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.board.db.boardDAO;
-import com.itwillbs.board.db.boardDTO;
+import com.itwillbs.market.db.MarketDAO;
+import com.itwillbs.market.db.MarketDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class FileBoardWritePro implements Action{
+public class MarketWritePro implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("FileBoardWritePro excute()");	
+		System.out.println("MarketWritePro excute()");	
 		
 		request.setCharacterEncoding("utf-8");
 		
@@ -29,7 +29,7 @@ public class FileBoardWritePro implements Action{
 		String trade_st = request.getParameter("trade_st");
 		String trade_inperson = request.getParameter("trade_inperson");
 		
-		boardDTO dto = new boardDTO();
+		MarketDTO dto = new MarketDTO();
 		dto.setInsert_id(insert_id);
 		dto.setTitle(title);
 		dto.setContent(content);
@@ -42,12 +42,12 @@ public class FileBoardWritePro implements Action{
 		dto.setTrade_type(trade_type);
 		dto.setTrade_st(trade_st);
 		
-		boardDAO dao = new boardDAO();
+		MarketDAO dao = new MarketDAO();
 		dao.insertBoard(dto);
 
 
 		ActionForward forward = new ActionForward();
-		forward.setPath("BoardList.bo");
+		forward.setPath("MarketList.ma");
 		forward.setRedirect(true);
 		
 		return forward;

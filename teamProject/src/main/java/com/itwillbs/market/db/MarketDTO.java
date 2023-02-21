@@ -1,17 +1,17 @@
-package com.itwillbs.board.db;
+package com.itwillbs.market.db;
 
 import java.sql.Timestamp;
 
-public class boardDTO {
-	/* DB 저장 변수 */
+public class MarketDTO {
+/* DB 저장 변수 */
 	//회원 정보
 	private int market_id;
 	private String insert_id;
 	//게시글 기본 정보
 	private String title;
 	private String content;
-	private int view_cnt;
 	private Timestamp insert_date;
+	private int view_cnt;
 	private int report_cnt;
 	private String review;
 	//책거래 정보
@@ -23,10 +23,10 @@ public class boardDTO {
 	private String trade_st;
 	private String trade_inperson;
 	private String trade_place;
-	//이미지 파일 정보
+	//이미지 url 정보
 	private String[] imgUrls;
 	
-	/* DB 저장 필요없이 글수정 계산에 사용되는 변수 */
+/* DB 저장 필요없이 이미지 url 계산에 사용되는 변수 */
 	private static int imgLengthMax = 5; // 게시글의 최대 이미지 수를 제한, 해당 static 변수 값은 수정 불가능하게 get함수만 사용
 	private String[] oldImgUrls;
 	private int oldImgNum;

@@ -5,36 +5,125 @@ import java.sql.Timestamp;
 public class MemberDTO {
 	// 데이터를 담아서 다른 클래스 전달 
 	//멤버변수 => 데이터 은닉 => 캡슐화
-	private String id;
-	private String pass;
-	private String name;
-	private Timestamp date;
-	
+	private String memId;
+	private String memPass;
+	private String memNm;
+	private String nickname;
+	private String birth;
+	private String zipcode;
+	private String addr;
+	private String addrDtl;
+	private String email;
+	private String memImg;
+	private String memSt;
+	private String memType;
+	private String adminYn;
+	private String snsType;
+	private String snsId;
+	private Timestamp joinDate;
+	private Timestamp deleteDate;
 	// set get 메서드
-	public String getId() {
-		return id;
+	public String getMemId() {
+		return memId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setMemId(String memId) {
+		this.memId = memId;
 	}
-	public String getPass() {
-		return pass;
+	public String getMemPass() {
+		return memPass;
 	}
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setMemPass(String memPass) {
+		this.memPass = memPass;
 	}
-	public String getName() {
-		return name;
+	public String getMemNm() {
+		return memNm;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setMemNm(String memNm) {
+		this.memNm = memNm;
 	}
-	public Timestamp getDate() {
-		return date;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setDate(Timestamp date) {
-		this.date = date;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
-	
+	public String getBirth() {
+		return birth;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+	public String getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+	public String getAddrDtl() {
+		return addrDtl;
+	}
+	public void setAddrDtl(String addrDtl) {
+		this.addrDtl = addrDtl;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getMemImg() {
+		return memImg;
+	}
+	public void setMemImg(String memImg) {
+		this.memImg = memImg;
+	}
+	public String getMemSt() {
+		return memSt;
+	}
+	public void setMemSt(String memSt) {
+		this.memSt = memSt;
+	}
+	public String getAdminYn() {
+		return adminYn;
+	}
+	public void setAdminYn(String adminYn) {
+		this.adminYn = adminYn;
+	}
+	public String getSnsType() {
+		return snsType;
+	}
+	public void setSnsType(String snsType) {
+		this.snsType = snsType;
+	}
+	public String getSnsId() {
+		return snsId;
+	}
+	public void setSnsId(String snsId) {
+		this.snsId = snsId;
+	}
+	public Timestamp getJoinDate() {
+		return joinDate;
+	}
+	public void setJoinDate(Timestamp joinDate) {
+		this.joinDate = joinDate;
+	}
+	public Timestamp getDeleteDate() {
+		return deleteDate;
+	}
+	public void setDeleteDate(Timestamp deleteDate) {
+		this.deleteDate = deleteDate;
+	}
+	public String getMemType() {
+		return memType;
+	}
+	public void setMemType(String memType) {
+		this.memType = memType;
+	}
 	
 }

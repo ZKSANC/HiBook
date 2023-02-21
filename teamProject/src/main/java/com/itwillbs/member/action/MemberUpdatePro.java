@@ -15,17 +15,17 @@ public class MemberUpdatePro implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberUpdatePro execute()");
 		
-		String id=request.getParameter("id");
-		String pass=request.getParameter("pass");
-		String name=request.getParameter("name");
+		String memId = request.getParameter("mem_id");
+		String memPass = request.getParameter("mem_pass");
+		String memName = request.getParameter("mem_nm");
 		
 		MemberDTO updateDto=new MemberDTO();
-		updateDto.setId(id);
-		updateDto.setPass(pass);
-		updateDto.setName(name);
+		updateDto.setMemId(memId);
+		updateDto.setMemPass(memPass);
+		updateDto.setMemNm(memName);
 		
 		MemberDAO dao=new MemberDAO();
-		MemberDTO dto=dao.userCheck(id, pass);
+		MemberDTO dto = dao.userCheck(memId, memPass);
 		
 		ActionForward forward = null;
 		

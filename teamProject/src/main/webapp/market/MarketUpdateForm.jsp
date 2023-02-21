@@ -1,7 +1,8 @@
-<%@page import="com.itwillbs.board.db.boardDTO"%>
-<%@page import="com.itwillbs.util.ComCdDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.itwillbs.util.ComCdDTO"%>
+<%@page import="com.itwillbs.util.ComCdDAO"%>
+<%@page import="com.itwillbs.market.db.MarketDTO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,9 +11,13 @@
 <title>Insert title here</title>
 
 <%
-String id = (String) session.getAttribute("id");
-if (id == null) {
-	response.sendRedirect("MemberloginForm.me");
+MarketDTO dto = (MarketDTO) request.getAttribute("dto");
+// DB 실제 url 개수 들고오기
+int realUrlLength = 0;
+for (int i = 0; i < dto.getImgUrls().length; i++) {
+	if (!(dto.getImgUrls()[i].equals("url"))) {
+		realUrlLength++;
+	}
 }
 // DB com_code 테이블 값 가져오기
 ComCdDAO cdao = new ComCdDAO();
@@ -27,16 +32,16 @@ ArrayList<ComCdDTO> cdtoList4 = cdao.getComCdList(cdto.getCdGrpnms()[4]);
 <script type="text/javascript" src="js/jquery-3.6.3.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){ // j쿼리 start
-		//멀티이미지 업로드 시 미리보기 불러오기
+		//멀티이미지 업로드 시 미리보기 불러오기 
 		$("#img").on("change", function(event) {
 			//파일 업로드 교체 시 동작
 			if($(".preview-image").length > 0) { 
-				 $(".preview-container").remove();   
-				
+					$(".preview-container").remove();
+
 				var files = event.target.files;
 				var imageContainer = $("#imgWrap");
 					
-				for (var i = 0; i < files.length; i++) {
+	 			for (var i = 0; i < files.length; i++) {
 				 	var file = files[i];
 				 	var reader = new FileReader();
 				 	reader.onload = (function(theFile) {
@@ -44,12 +49,12 @@ $(document).ready(function(){ // j쿼리 start
 				                var img = $('<img>', {
 				                    src: e.target.result,
 				                    class: 'preview-image'
-				                });
+				     						});
 				                var label = $('<div>', {
 				                    text: theFile.name,
 				                    class: 'preview-label'
 				                });
-				                var container = $('<div>', {
+		                		var container = $('<div>', {
 				                    class: 'preview-container'
 				                });
 				                container.append(label, img);
@@ -58,9 +63,9 @@ $(document).ready(function(){ // j쿼리 start
 					})(file);
 					reader.readAsDataURL(file);
 				}	 
-			//첫 파일 업로드 동작
-		  }else{
-		     var files = event.target.files;
+	      //첫 파일 업로드 동작	
+		    }else{
+		    	 var files = event.target.files;
 				 var imageContainer = $("#imgWrap");
 					
 				 for (var i = 0; i < files.length; i++) {
@@ -72,7 +77,7 @@ $(document).ready(function(){ // j쿼리 start
 				                    src: e.target.result,
 				                    class: 'preview-image'
 				                });
-				                var label = $('<div>', {
+		 										var label = $('<div>', {
 				                    text: theFile.name,
 				                    class: 'preview-label'
 				                });
@@ -109,35 +114,47 @@ $(document).ready(function(){ // j쿼리 start
  	 		  }
  	 		  deleteImgFile(index);
 		});
+		//기존 이미지 클릭 시 삭제 구동
+		$(".old-image").on("click", function(event) {
+			console.log("클릭");
+			$(this).remove("");
+		});	
+		//해당 글에 대해 DB에 저장된 select option값 나타내기
+		$('#book_st').val('<%=dto.getBook_st()%>').prop("selected",true);
+		$('#book_type').val('<%=dto.getBook_type()%>').prop("selected", true);
+		$('#trade_st').val('<%=dto.getTrade_st()%>').prop("selected",true);
+		$('#trade_type').val('<%=dto.getTrade_type()%>').prop("selected",true);
+		$('#trade_inperson').val('<%=dto.getTrade_inperson()%>').prop("selected",true);
 }); // j쿼리 end
-  //가격 콤마
-  function inputNumber(obj) {
-        obj.value = comma(uncomma(obj.value));
-  }
-  function comma(str) {
-      str = String(str);
-      return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-  }
-
-  function uncomma(str) {
-      str = String(str);
-      return str.replace(/[^\d]+/g, '');
-  } 
-  //제출 전 체크
+	//가격 콤마 
+	function inputNumber(obj) {
+	      obj.value = comma(uncomma(obj.value));
+	}
+	function comma(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+	
+	function uncomma(str) {
+	    str = String(str);
+	    return str.replace(/[^\d]+/g, '');
+	} 
+	//제출 전 체크
 	function checkWrite() {
-		 //내용 제한 변수 값
+		 //제한 사항 변수 값
 		 var oldImgLength = document.getElementsByClassName("old-image").length;
+		 console.log("oldimg개수 : "+oldImgLength);
 		 var preImgLength = document.getElementsByClassName("preview-image").length;
+		 console.log("preimg개수 : "+preImgLength);
 		 var totalImgLength = oldImgLength + preImgLength;
-		 var subjectLength = document.getElementsByName("title")[0].value.length;
+		 var titleLength = document.getElementsByName("title")[0].value.length;
 		 var contentLength = document.getElementsByName("content")[0].value.length;
-		 console.log(subjectLength);
 		 //게시글 submit 전 제한 사항
-		 if(totalImgLength > <%=boardDTO.getImgLengthMax()%>) {
+		 if(totalImgLength > <%=MarketDTO.getImgLengthMax()%>) {
 			 alert("게시글 당 이미지는 5개까지 올릴 수 있습니다.");
 			 return false;
 		 }
-		 if(subjectLength < 2) {
+		 if(titleLength < 2) {
 			 alert("제목을 2글자 이상 입력해주세요.");
 			 return false;
 		 }
@@ -145,8 +162,27 @@ $(document).ready(function(){ // j쿼리 start
 			 alert("내용을 2글자 이상 입력해주세요.");
 			 return false;
 		 }
+		 //기존 이미지 및 추가 이미지 개수 변수 저장
+		 var oldImgNum = document.getElementsByName("oldImgNum")[0];
+		 var preImgNum = document.getElementsByName("preImgNum")[0];
+		 oldImgNum.value = oldImgLength;
+		 preImgNum.value = preImgLength;
+		 //기존 이미지 배열 저장
+		 var oldImgUrls = [];
+		 var oldImages = document.getElementsByName("old-image");
+		 for (let i = 0; i < oldImages.length; i++) {
+  			oldImgUrls.push(oldImages[i].src);
+  			console.log(oldImgUrls[i]);
+		 }
+		 const oldImageElList = document.getElementsByName("oldImgUrls");
+		 	if(oldImgUrls[0]!=null) {
+			    for(let i = 0; i < oldImageElList.length; i++) {	
+			    	if(oldImgUrls[i]==null) {break;}
+			    	oldImageElList[i].value = oldImgUrls[i];
+			    }
+	   }
 		 //내용 제한 넘길 시 클라우디너리 업로드 진행
-		 var result = confirm("게시글을 등록하시겠습니까?");
+		 var result = confirm("게시글을 수정하시겠습니까?");
 		 if (result == true){     
 				 const url = "https://api.cloudinary.com/v1_1/dsbicmz4i/image/upload";	
 				 const files = document.getElementById("img").files;
@@ -174,57 +210,50 @@ $(document).ready(function(){ // j쿼리 start
 							    	if(imgUrls[i]==null) {break;}
 							    	imageElList[i].value = imgUrls[i];
 							    }
-					    	}
-				  }).then(() => {	 
-					alert("게시글 등록");
+					    }
+				  }).then(() => {	 			
+					alert("게시글 수정");
 					document.move.submit();  
 				}) 
-		 }else{   
+		 }else {
 		     return false;
 	   } 
-	}
+	} 
 </script>
-<style>
-.preview-image {
-	max-width: 200px;
-	max-height: 200px;
-	margin: 5px;
-}
-</style>
 </head>
 
 <body>
-	<h1>파일첨부</h1>
-	<form name="move" action="FileBoardWritePro.bo" method="post">
-		<table border="1">
+	<h1>거래글 수정</h1>
+	<form name="move" action="MarketUpdatePro.ma" method="post">
+	<table border="1">
 			<tr>
 				<td>글쓴이</td>
 				<td>
-					<input type="text" name="insert_id" value="<%=id%>" readonly>
+					<input type="text" name="insert_id" value="<%=dto.getInsert_id()%>" readonly>
 				</td>
 			</tr>
-	
+
 			<tr>
 				<td>글제목</td>
 				<td>
-					<input type="text" name="title" value="">
+					<input type="text" name="title" value="<%=dto.getTitle()%>">
 				</td>
 			</tr>
 
 			<tr>
 				<td>글내용</td>
 				<td>
-					<textarea name="content" rows="10" cols="20"></textarea>
+					<textarea name="content" rows="10" cols="20"><%=dto.getContent()%></textarea>
 				</td>
 			</tr>
-			
+
 			<tr>
 				<td>가격</td>
 				<td>
-					<input type="text" name="book_price" value="" onkeyup="inputNumber(this);">원
+					<input type="text" name="book_price" value="<%=dto.getBook_price()%>" onkeyup="inputNumber(this);">원
 				</td>
 			</tr>
-			
+
 			<!-- select box start -->
 			<tr>
 				<td><%=cdto.getCdGrpnms()[0]%></td>
@@ -303,22 +332,51 @@ $(document).ready(function(){ // j쿼리 start
 			</tr>
 			<!-- select box end -->
 
+			<%
+			for (int i = 0; i < realUrlLength; i++) {
+			%>
+			<tr>
+				<td>
+					첨부이미지<%=i + 1%></td>
+				<td>
+					<img class="old-image" name="old-image" src="<%=dto.getImgUrls()[i]%>" width=260px>
+				</td>
+			</tr>
+			<%
+			}
+			%>
 			<tr>
 				<td>첨부파일</td>
 				<td>
 					<input id="img" type="file" name="files[]" accept="image/*" multiple>
 				</td>
-		</table>
-		<div id="imgWrap">
-			이미지 미리보기<br>
-		</div>
-		<input type="button" value="글쓰기" name="sub" id="sub" onclick="checkWrite();"> 
-		<input type="button" value="돌아가기" onclick="location.href='MemberMain.me'">
+</table>
 
-		<!-- 클라우디너리 배열값 저장 -->
-		<% for(int i = 0; i < boardDTO.getImgLengthMax(); i++) { %>
+		<div id="imgWrap">
+			이미지 미리보기 <br>
+		</div>
+		<input type="button" value="게시글수정" name="sub" id="sub" onclick="checkWrite();"> 
+		<input type="button" value="게시글목록" onclick="location.href='MarketList.ma'">
+		
+		<!-- 이미지 수 저장 -->
+		<input type="hidden" value="0" name="oldImgNum"><br> 
+		<input type="hidden" value="0" name="preImgNum"><br> 
+		<!-- 게시글번호 저장 -->
+		<input type="hidden" name="market_id" value="<%=dto.getMarket_id()%>">
+		<!-- 기존 이미지 배열값 저장 -->
+		<%
+		for(int i = 0; i < MarketDTO.getImgLengthMax(); i++) {
+		%>
+			<input type="hidden" value="url" name="oldImgUrls"><br> 
+		<%
+ 		}
+ 		%> 
+		<!-- 클라우디너리의 새로운 배열값 저장 -->
+		<%
+		for(int i = 0; i < MarketDTO.getImgLengthMax(); i++) {
+		%>
 			<input type="hidden" value="url" name="imgUrls"><br> 
-		<% } %> 
+		<% } %>  
 	</form>
 </body>
 </html>

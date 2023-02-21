@@ -1,4 +1,4 @@
-package com.itwillbs.board.action;
+package com.itwillbs.main.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

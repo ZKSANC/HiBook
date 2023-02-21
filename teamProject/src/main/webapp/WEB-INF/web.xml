@@ -23,13 +23,24 @@
   </servlet-mapping>
   
   <servlet>
-	<servlet-name>BoardFrontController</servlet-name>
-	<servlet-class>com.itwillbs.board.action.BoardFrontController</servlet-class>
+	<servlet-name>MarketFrontController</servlet-name>
+	<servlet-class>com.itwillbs.market.action.MarketFrontController</servlet-class>
   </servlet>
   
     <servlet-mapping>
-  	<servlet-name>BoardFrontController</servlet-name>
-  	<url-pattern>*.bo</url-pattern>
+  	<servlet-name>MarketFrontController</servlet-name>
+  	<url-pattern>*.ma</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  		<servlet-name>BoardFrontController</servlet-name>
+  		<servlet-class>com.itwillbs.board.action.BoardFrontController</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+  <servlet-name>BoardFrontController</servlet-name>
+  <url-pattern>*.bo</url-pattern>
   </servlet-mapping>
   
 </web-app>

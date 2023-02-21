@@ -1,4 +1,4 @@
-package com.itwillbs.board.db;
+package com.itwillbs.market.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 
-public class boardDAO {
+public class MarketDAO {
 	
 	public Connection getConnection() throws Exception{
 		Context init=new InitialContext();
@@ -21,7 +21,7 @@ public class boardDAO {
 		return con;
 	}
 	
-	public void insertBoard(boardDTO dto) {
+	public void insertBoard(MarketDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -75,8 +75,8 @@ public class boardDAO {
 		}
 	}
 	
-	public ArrayList<boardDTO> getBoardList(int start, int num) {
-		ArrayList<boardDTO> dtolist = new ArrayList<>();
+	public ArrayList<MarketDTO> getBoardList(int start, int num) {
+		ArrayList<MarketDTO> dtolist = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -91,7 +91,7 @@ public class boardDAO {
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
-				boardDTO dto = new boardDTO();
+				MarketDTO dto = new MarketDTO();
 				dto.setMarket_id(rs.getInt("market_id"));
 				dto.setInsert_id(rs.getString("insert_id"));
 				dto.setTitle(rs.getString("title"));
@@ -109,8 +109,8 @@ public class boardDAO {
 		return dtolist;
 	}
 	
-	public boardDTO getBoard(int market_id) {
-		boardDTO dto = null;
+	public MarketDTO getBoard(int market_id) {
+		MarketDTO dto = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -124,7 +124,7 @@ public class boardDAO {
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
-				dto = new boardDTO();
+				dto = new MarketDTO();
 				dto.setMarket_id(rs.getInt("market_id"));
 				dto.setInsert_id(rs.getString("insert_id"));
 				dto.setTitle(rs.getString("title"));
@@ -145,11 +145,11 @@ public class boardDAO {
 			 
 			rs=pstmt.executeQuery();
 			
-			String[] url = new String[boardDTO.getImgLengthMax()];
+			String[] url = new String[MarketDTO.getImgLengthMax()];
 			int i = 0;
 			while(rs.next()) {
 				url[i] = rs.getString("url");
-				if (i <=boardDTO.getImgLengthMax()-2) {i++;}
+				if (i <=MarketDTO.getImgLengthMax()-2) {i++;}
 			}
 			dto.setImgUrls(url);
 			
@@ -163,7 +163,7 @@ public class boardDAO {
 		return dto;
 	}
 	
-	public void updateReadCount(boardDTO dto) {
+	public void updateReadCount(MarketDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {	
@@ -183,7 +183,7 @@ public class boardDAO {
 		}
 	}
 	
-	public void updateBoard(boardDTO dto) {
+	public void updateBoard(MarketDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
