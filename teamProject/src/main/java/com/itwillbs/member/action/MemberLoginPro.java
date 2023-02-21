@@ -27,6 +27,10 @@ public class MemberLoginPro implements Action{
 			HttpSession session=request.getSession();
 			session.setAttribute("id", id);
 			
+
+			// 관리자만 공지사항 쓸 수있음 
+			session.setAttribute("adminYn", dto.getAdminYn());
+			
 			forward = new ActionForward();
 			forward.setPath("MemberMain.me");
 			forward.setRedirect(true);

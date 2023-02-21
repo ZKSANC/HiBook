@@ -60,9 +60,6 @@ int pageBlock=(Integer)request.getAttribute("pageBlock");
 int endPage=(Integer)request.getAttribute("endPage");
 int pageCount=(Integer)request.getAttribute("pageCount");
 
-//게시판 유형을 공통코드로 구분.
-	String boardTypeCd = (String) request.getAttribute("boardTypeCd");
-	String boardTypeCdNm = (String) request.getAttribute("boardTypeCdNm");
 %>
 
 <!-- 체크박스로 선택해 글 여러개 삭제가능  -->
@@ -111,7 +108,7 @@ function allChk(obj){
 	<td><%=dto.getBoard_id() %></td>
 	<td><%=dto.getBoard_type()  %></td>
 	<td><img src="upload/<%=dto.getContent_img1() %>" width="100" height="100"></td>
-	<td><a href="BoardContent.bo?boardType=<%=boardTypeCd %>&boardId=<%=dto.getBoard_id()%>'"s><%=dto.getTitle() %></a></td>
+	<td><a href="BoardContent.bo?boardType=<%=dto.getBoard_type() %>&boardId=<%=dto.getBoard_id()%>"><%=dto.getTitle() %></a></td>
 	<td><%=dto.getView_cnt() %></td>
 	<td><%=dateFormat.format(dto.getInsert_date()) %></td>
 	<tr>

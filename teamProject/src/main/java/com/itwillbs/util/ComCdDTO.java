@@ -11,6 +11,9 @@ public class ComCdDTO {
 	private String cdNm;
 	private String[] cdGrpnms = {"도서종류", "제품상태", "거래종류", "거래상태", "거래방식"};
 	
+	// 시간을 시분초→연월일 로 바꿔주기 위한 변수
+	private String date; 
+	
 	
 	public String[] getCdGrpnms() {
 		return cdGrpnms;
@@ -42,7 +45,14 @@ public class ComCdDTO {
 	public void setCdNm(String cdNm) {
 		this.cdNm = cdNm;
 	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
 	
+
 	
 	
 }

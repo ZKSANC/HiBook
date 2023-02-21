@@ -35,7 +35,9 @@ if(id!=null){
 %>
 <a href="MarketWriteForm.ma">중고거래 글쓰기</a><br>
 <a href="MarketList.ma">중고거래 목록</a><br>
-<a href="BoardWriteForm.bo">글쓰기</a><br>
+<a href="BoardWriteForm.bo?boardType=free">자유게시판 글쓰기</a><br>
+<a href="BoardWriteForm.bo?boardType=notice">공지게시판 글쓰기</a><br>
+<a href="BoardWriteForm.bo?boardType=review">도서리뷰게시판 글쓰기</a><br>
 <a href="BoardList.bo?boardType=free">자유게시판 글목록</a><br>
 <a href="BoardList.bo?boardType=notice">공지게시판 글목록</a><br>
 <a href="BoardList.bo?boardType=review">리뷰게시판 글목록</a><br>

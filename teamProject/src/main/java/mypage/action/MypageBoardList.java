@@ -1,10 +1,14 @@
 package mypage.action;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.itwillbs.util.ComCdDTO;
+import com.itwillbs.util.ComCdUtil;
 
 import mypage.board.BoardDAO;
 import mypage.board.BoardDTO;
@@ -16,6 +20,7 @@ public class MypageBoardList implements Action{
 		//로그인 id 세션 받아오기 
 		HttpSession session=request.getSession();
 		String id = (String)session.getAttribute("id");
+		
 		// MarketDAO 객체생성 
 		// 리턴할형 ArrayList<MarketDAO> getMarketList() 메서드 정의 
 		BoardDAO dao = new BoardDAO();

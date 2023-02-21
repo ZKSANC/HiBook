@@ -27,7 +27,7 @@
 	<% } %>
 </div>
 <div class="top">
-	<div class="rogo" onclick="location.href='main.jsp'"><h2>Hibook</h2></div>
+	<div class="rogo" onclick="location.href='main.do'"><h2>Hibook</h2></div>
 	<div class="search">
 		<input type="text" value="" id="searchBox" placeholder="검색어 입력"
 		>
@@ -35,7 +35,7 @@
 	</div>
 	<div class="mypage">
 		<div id="mypageMenu" onclick="location.href='MarketWriteForm.ma'">판매하기</div>
-		<div id="mypageMenu" onclick="location.href='마이페이지'">마이페이지</div>
+		<div id="mypageMenu" onclick="location.href='MypageMain.mypage'">마이페이지</div>
 		<div id="mypageMenu" onclick="location.href='1:1채팅'">1:1 채팅</div>
 	</div>
 </div>
@@ -43,8 +43,8 @@
 	<div class="navBar">
 		<div class="navContanier">
 			<ul>
-				<li><a href="#">홈</a></li>
-				<li><a href="#">중고거래</a></li>
+				<li><a href="main.do">홈</a></li>
+				<li><a href="MarketList.ma">중고거래</a></li>
 				<li><a href="BoardList.bo?boardType=free">커뮤니티</a></li>
 				<li><a href="#">고객센터</a></li>
 			</ul>

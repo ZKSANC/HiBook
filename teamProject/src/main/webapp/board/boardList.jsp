@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.util.ChangeTime"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.itwillbs.board.db.BoardDTO"%>
 <%@page import="com.itwillbs.board.db.BoardDAO"%>
@@ -32,7 +33,7 @@
 <!-- 내용 시작 -->
 <div>
 <p id="boardTag"><%=boardTypeCdNm %> 💬</p>
-<h4 class="memId"><%=id %> 님이 로그인 하셨습니다.</h4>
+
 <form acion="BoardList.bo" method="get">
 	<div class="board_search">
 		<input type="text" id="keword" name="keword" value="<%=keyWord %>"  placeholder="검색어를 입력하세요">
@@ -65,6 +66,9 @@
 			for (int i = 0; i < NoticeList.size(); i++) {
 				// 배열 한칸에 내용 가져오기 
 				BoardDTO dto = NoticeList.get(i);
+				
+				// 시간계산해서 몇초전 몇분전 몇시간전 등 출력하는 함수사용.
+				String changeTime = ChangeTime.calculateTime(dto.getInsertDate());
 			%>
 	
 			<tr>
@@ -75,7 +79,7 @@
 					</a>
 				</td>
 				<td><%=dto.getInsertId()%></td>
-				<td><%=dto.getInsertDate()%></td>
+				<td><%=changeTime%></td>
 				<td><%=dto.getViewCnt()%></td>
 			</tr>
 	
@@ -89,6 +93,9 @@
 				// 배열 한칸에 내용 가져오기 
 				BoardDTO dto = BoardList.get(i);
 				int num = (count - (currentPage -1) * pageSize) - i; 
+				
+				// 시간계산해서 몇초전 몇분전 몇시간전 등 출력하는 함수사용.
+				String changeTime = ChangeTime.calculateTime(dto.getInsertDate());
 			%>
 	
 			<tr>
@@ -101,7 +108,7 @@
 					</a>
 				</td>
 				<td><%=dto.getInsertId()%></td>
-				<td><%=dto.getInsertDate()%></td>
+				<td><%=changeTime%></td>
 				<td><%=dto.getViewCnt()%></td>
 			</tr>
 	

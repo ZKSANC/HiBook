@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.util.ChangeTime"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.itwillbs.boardComment.db.BoardCmmtDTO"%>
 <%@page import="com.itwillbs.board.db.BoardDTO"%>
@@ -25,6 +26,7 @@
    
  	// 댓글 
  	ArrayList<BoardCmmtDTO> boardList = (ArrayList<BoardCmmtDTO>) request.getAttribute("boardList");
+ 	
    
  %>
    
@@ -32,10 +34,12 @@
 <jsp:include page="/inc/header.jsp"/>
 <!-- 헤더파일들어가는 곳 -->
 <link href="/resource/css/board.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <div class="boardContainer">
 <!-- 내용 시작 -->
 
-<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
+
 <script type="text/javascript">
 
 // 댓글등록
@@ -189,7 +193,6 @@ function writeCheck() {
 
 <div>
 <p id="boardTag"><%=boardTypeCdNm %>  💬</p>
-<h4 class="memId"><%=id %> 님이 로그인 하셨습니다.</h4>
 
 
 <div class="tableBar">
@@ -259,7 +262,7 @@ function writeCheck() {
              <textarea id="content" name="content" rows="8" placeholder="댓글을 입력하세요" style="width: 100%"></textarea>
              <input type="checkbox" id="secretYn" name="secretYn" value="Y" >비밀댓글
              <input type="hidden" id="boardId" name="boardId" class="testClass" value="<%=dto.getBoardId()%>">
-             <input type="button" class="smallButtonSubmit smallButtonBlueGray  "value="댓글등록" onclick="cmmtWrite();">
+             <input type="button" class="smallButtoncmmt smallButtonBlueGray  "value="댓글등록" onclick="cmmtWrite();">
          
             </td>
          </tr>
@@ -270,13 +273,17 @@ function writeCheck() {
             for (int i = 0; i < boardList.size(); i++) {
                // 배열 한칸에 내용 가져오기 
                BoardCmmtDTO cmmtDto = boardList.get(i);
+               
+           	// 시간계산해서 몇초전 몇분전 몇시간전 등 출력하는 함수사용.
+			   String changeTime = ChangeTime.calculateTime(dto.getInsertDate());
+               
             %> 
             
         <!-- 댓글조회  -->
             <tr id ="view_<%=cmmtDto.getCmmtId() %>">
                <td> 
                		<!-- 작성자아이디, 작성일 , 댓글내용, 비밀댓글여부 -->
-                	  <%=cmmtDto.getInsertId()%> &nbsp;&nbsp; <%=cmmtDto.getInsertDate()%><br> 
+                	  <%=cmmtDto.getInsertId()%> &nbsp;&nbsp; <%=changeTime%><br> 
                   
                   	<!-- 일반글 or 로그인아이디=댓글작성자아이디 or 로그인아이디=원글작성자아이디 or 관리자'Y' -->
                	  	 <% if( "N".equals(cmmtDto.getSecretYn()) || id.equals(cmmtDto.getInsertId()) 
@@ -290,15 +297,15 @@ function writeCheck() {
                       <%=cmmtDto.getContent()%> 
                      
                   <%} else {%>
-                    비공개 댓글입니다.
+                  		 🔒비공개 댓글입니다.
                   <%}%>
                   <br><br>
                   
        <!-- 세션값 = 글쓴이 -> 일치 -> 자기자신 쓴 글(글수정, 글삭제 ,비밀댓글 보이기)  -->     
                   <%   
                      if (id.equals(cmmtDto.getInsertId())) {%> 
-                 		<input type="button" value="댓글수정"  class="smallButton smallButtonBlueGray" onclick="cmmtEdit('<%=cmmtDto.getCmmtId() %>');" >
-                  		<input type="button" value="댓글삭제" class="smallButton smallButtonBlueGray cl " onclick="cmmtDelete('<%=cmmtDto.getCmmtId() %>');"> 
+                 		<input type="button" value="댓글수정"  class="smallButtonsubmit2 smallButtonBlueGray" onclick="cmmtEdit('<%=cmmtDto.getCmmtId() %>');" >
+                  		<input type="button" value="댓글삭제" class="smallButtonsubmit2 smallButtonBlueGray" onclick="cmmtDelete('<%=cmmtDto.getCmmtId() %>');"> 
                   		
                   <%} // if끝 %>
                </td>

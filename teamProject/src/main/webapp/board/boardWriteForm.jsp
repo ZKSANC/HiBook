@@ -46,7 +46,6 @@ function writeCheck() {
 
 <div>
 <p id="boardTag"><%=boardTypeCdNm %> 💬</p>
-<h4 class="memId" ><%=id %> 님이 로그인 하셨습니다.</h4>
 
 <div class="tableBar boardView th:first-child">
 <hr class="my-hr3">

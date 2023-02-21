@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.util.ChangeTime"%>
 <%@page import="com.itwillbs.board.db.BoardDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -264,6 +265,13 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 			<p id="boardTag">자유게시판💬</p>
 			<div class="tableBar">
 				<table>
+				<colgroup>
+						<col width="80px;">
+						<col width="*">
+						<col width="100px;">
+						<col width="80px;">
+						<col width="100px;">
+					</colgroup>
 				  <thead>
 				    <tr>
 				      <th>글번호</th>
@@ -280,16 +288,19 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 				    for (int i = 0; i < freeList.size(); i++) {
 						// 배열 한칸에 내용 가져오기 
 						BoardDTO dto = freeList.get(i);
+						
+						// 시간계산해서 몇초전 몇분전 몇시간전 등 출력하는 함수사용.
+						String changeTime = ChangeTime.calculateTime(dto.getInsertDate());
 						%>
 				      <td><%=dto.getBoardId() %></td>
-				      <td>
+				      <td class="skip">
 				      	<a href="BoardContent.bo?boardType=<%=dto.getBoardType() %>&boardId=<%=dto.getBoardId()%>">
 							<%=dto.getTitle()%>
 						</a>
 					  </td>
 				      <td><%=dto.getInsertId() %></td>
 				      <td><%=dto.getViewCnt() %></td>
-				      <td><%=dto.getInsertDate() %></td>
+				      <td><%=changeTime%></td>
 				    </tr>
 				   <%} %>
 				  </tbody>
@@ -300,7 +311,15 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 			<p id="boardTag">책 리뷰💬</p>
 			<div class="tableBar">
 					<table>
-				  <thead>
+					<colgroup>
+						<col width="80px;">
+						<col width="*">
+						<col width="100px;">
+						<col width="80px;">
+						<col width="100px;">
+					</colgroup>
+					<thead>
+			
 				    <tr>
 				 	  <th>글번호</th>
 				      <th>글제목</th>
@@ -316,16 +335,21 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 				    for (int i = 0; i < reviewList.size(); i++) {
 						// 배열 한칸에 내용 가져오기 
 						BoardDTO dto = reviewList.get(i);
+						
+						// 시간계산해서 몇초전 몇분전 몇시간전 등 출력하는 함수사용.
+						String changeTime = ChangeTime.calculateTime(dto.getInsertDate());
 						%>
 				      <td><%=dto.getBoardId() %></td>
 				      <td>
+				      	<div class="skip">
 				      	<a href="BoardContent.bo?boardType=<%=dto.getBoardType() %>&boardId=<%=dto.getBoardId()%>">
 							<%=dto.getTitle()%>
 						</a>
+						</div>
 					  </td>
 				      <td><%=dto.getInsertId() %></td>
 				      <td><%=dto.getViewCnt() %></td>
-				      <td><%=dto.getInsertDate() %></td>
+				      <td><%=changeTime%></td>
 				    </tr>
 				   <%} %>
 				    

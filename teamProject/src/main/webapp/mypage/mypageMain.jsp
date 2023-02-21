@@ -73,6 +73,10 @@
 <%
 //로그인 id 세션 받아오기 
 String id = (String)session.getAttribute("id");
+
+//관리자만 공지사항 쓸 수있음 
+String adminYn = (String)session.getAttribute("adminYn");
+
 //세션값이 없으면 => 로그인페이지 
 if(id == null){
 	response.sendRedirect("otherpage/loginForm.jsp");
@@ -87,14 +91,14 @@ MemberDTO dto = dao.getMemberImg(id);
 // 로그인 했을때 
 if(id != null){
 	// 관리자id일때 관리자페이지, 일반유저 마이페이지  
-	if(id.equals("admin")){
+	if("Y".equals(adminYn)){
 		%>
 		<h1>관리자 페이지</h1>
 		<div class=menu1><a href="AdminMemberList.adminpage">회원목록 보기</a></div>
 		<div class=menu2><a href="AdminMarketList.adminpage">게시글 관리</a></div>
 		<div class=menu3><a href="AdminCommentList.adminpage">댓글 관리</a></div>
 <!-- 		공지사항 글목록으로  -->
-		<div class=menu4><a href="noticeList.jsp">공지사항 관리</a></div>
+		<div class=menu4><a href="BoardList.bo?boardType=notice">공지사항 관리</a></div>
 <!-- 		사이트소개 페이지로  -->
 		<div class=menu5><a href="introduce.jsp">사이트 소개 관리</a></div>
 		<div class=menu6><a href="AdminReportList.adminpage">1:1 신고 접수</a></div>

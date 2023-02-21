@@ -100,7 +100,7 @@ function allChk(obj){
 	<td><%=dto.getBoard_id() %></td>
 	<td><%=dto.getBoard_type()  %></td>
 	<td><img src="upload/<%=dto.getContent_img1() %>" width="100" height="100"></td>
-	<td><a href="BoardContent.bo?board_id=<%=dto.getBoard_id() %>"><%=dto.getTitle() %></a></td>
+	<td><a href="BoardContent.bo?boardType=<%=dto.getBoard_type() %>&boardId=<%=dto.getBoard_id() %>"><%=dto.getTitle() %></a></td>
 	<td><%=dto.getInsert_id() %></td>
 	<td><%=dto.getView_cnt() %></td>
 	<td><%=dateFormat.format(dto.getInsert_date()) %></td>
