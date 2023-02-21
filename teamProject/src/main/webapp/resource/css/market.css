@@ -157,10 +157,10 @@ a {
   border-bottom: 3px solid #212529;
 }
 
-.boardContainer {
+.MarketContainer {
   width : 900px;
   margin : 0 auto;
-  padding : 30px 0px;
+  padding-top : 30px;
   background-color: #fff;
 }
 
@@ -219,7 +219,7 @@ a {
 }
 
 .board1 > #boardTag {
-	margin-bottom: 0px;
+	margin: 0px;
 
 }
 
@@ -310,6 +310,29 @@ ul > li {
 	color : #666666;
 }
 /* 공통 CSS END*/
+
+input[type="button"] {
+	cursor : pointer;
+	width: 100px;
+	padding: 0;
+	font-weight: 600;
+	text-align: center;
+	line-height: 35px;
+	background-color: #42444e;
+	color: #fff;
+	border-radius: 5px;
+	transition: all 0.2s;
+}
+
+
+.board2 {
+	padding-right : 17.5px;
+	text-align: right;
+}
+
+.board3 {
+	text-align: center;
+}
 
 
 
