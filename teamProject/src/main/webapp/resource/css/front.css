@@ -57,6 +57,11 @@ a {
 	background-color: #FBF7FF;
 }
 
+#login, #mypageMenu {
+	cursor : pointer;
+	z-index: 2;
+}
+
 .search {
   position : relative;
   width : 300px;

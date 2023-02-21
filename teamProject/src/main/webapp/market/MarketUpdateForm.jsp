@@ -8,8 +8,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="resource/css/market.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
-
+<!-- 자바 들어가는 곳 -->
 <%
 MarketDTO dto = (MarketDTO) request.getAttribute("dto");
 // DB 실제 url 개수 들고오기
@@ -28,8 +29,8 @@ ArrayList<ComCdDTO> cdtoList2 = cdao.getComCdList(cdto.getCdGrpnms()[2]);
 ArrayList<ComCdDTO> cdtoList3 = cdao.getComCdList(cdto.getCdGrpnms()[3]);
 ArrayList<ComCdDTO> cdtoList4 = cdao.getComCdList(cdto.getCdGrpnms()[4]);
 %>
-
-<script type="text/javascript" src="js/jquery-3.6.3.js"></script>
+<!-- 자바스크립트 들어가는 곳 -->
+<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){ // j쿼리 start
 		//멀티이미지 업로드 시 미리보기 불러오기 
@@ -221,11 +222,16 @@ $(document).ready(function(){ // j쿼리 start
 	} 
 </script>
 </head>
-
 <body>
+<!-- 헤더파일들어가는 곳 -->
+<jsp:include page="/inc/header.jsp" />
+<!-- 헤더파일들어가는 곳 -->
+
+<div class="boardContainer">
+<!-- 내용 시작 -->
 	<h1>거래글 수정</h1>
 	<form name="move" action="MarketUpdatePro.ma" method="post">
-	<table border="1">
+	<table>
 			<tr>
 				<td>글쓴이</td>
 				<td>
@@ -258,7 +264,7 @@ $(document).ready(function(){ // j쿼리 start
 			<tr>
 				<td><%=cdto.getCdGrpnms()[0]%></td>
 				<td>
-					<select name="<%=cdtoList0.get(0).getCdGrp()%>">
+					<select id="<%=cdtoList0.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList0.size(); i++) {
 						%>
@@ -273,7 +279,7 @@ $(document).ready(function(){ // j쿼리 start
 			<tr>
 				<td><%=cdto.getCdGrpnms()[1]%></td>
 				<td>
-					<select name="<%=cdtoList1.get(0).getCdGrp()%>">
+					<select id="<%=cdtoList1.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList1.size(); i++) {
 						%>
@@ -288,7 +294,7 @@ $(document).ready(function(){ // j쿼리 start
 			<tr>
 				<td><%=cdto.getCdGrpnms()[2]%></td>
 				<td>
-					<select name="<%=cdtoList2.get(0).getCdGrp()%>">
+					<select id="<%=cdtoList2.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList2.size(); i++) {
 						%>
@@ -303,7 +309,7 @@ $(document).ready(function(){ // j쿼리 start
 			<tr>
 				<td><%=cdto.getCdGrpnms()[3]%></td>
 				<td>
-					<select name="<%=cdtoList3.get(0).getCdGrp()%>">
+					<select id="<%=cdtoList3.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList3.size(); i++) {
 						%>
@@ -318,7 +324,7 @@ $(document).ready(function(){ // j쿼리 start
 			<tr>
 				<td><%=cdto.getCdGrpnms()[4]%></td>
 				<td>
-					<select name="<%=cdtoList4.get(0).getCdGrp()%>">
+					<select id="<%=cdtoList4.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList4.size(); i++) {
 						%>
@@ -378,5 +384,11 @@ $(document).ready(function(){ // j쿼리 start
 			<input type="hidden" value="url" name="imgUrls"><br> 
 		<% } %>  
 	</form>
+<!-- 내용 끝 -->
+</div>
+
+<!-- 푸터 들어가는 곳 -->
+<jsp:include page="/inc/footer.jsp" />
+<!-- 푸터 들어가는 곳 -->
 </body>
 </html>

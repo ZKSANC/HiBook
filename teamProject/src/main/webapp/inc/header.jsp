@@ -4,22 +4,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Hibook</title>
 
 <!-- 공통CSS -->
 <link href="resource/css/front.css" rel="stylesheet" type="text/css">
 
-<!-- 공통JS -->
-<script src="/resource/js/jquery/jquery-3.6.3.min.js"></script>
-
-<title>Hibook</title>
+<!-- 자바 들어가는 곳 -->
+<%String id = (String)session.getAttribute("id"); %>
+<!-- 자바스크립트 들어가는 곳 -->
 </head>
 
 <body>
 
 <header>
 <div class="topBar">
-	<div id="login"><a href="로그인.jsp">로그인</a></div>
-	<div id="joinMember"><a href="회원가입.jsp">회원가입</a></div>
+	<%if (id!=null) { %>
+		<div id="login"><%=id%>님 반갑습니다!🤗</div>
+		<div id="login" onclick="location.href='MemberLogout.me'">로그아웃</div>
+	<% }else{ %>
+		<div id="login" onclick="location.href='MemberLoginForm.me'">로그인</div>
+		<div id="joinMember" onclick="location.href='MemberInsertForm.me'">회원가입</div>
+	<% } %>
 </div>
 <div class="top">
 	<div class="rogo" onclick="location.href='main.jsp'"><h2>Hibook</h2></div>
@@ -29,9 +34,9 @@
 		<img src="/resource/image/search.png">
 	</div>
 	<div class="mypage">
-		<div id="mypageMenu"><a href="판매.jsp">판매하기</a></div>
-		<div id="mypageMenu"><a href="MypageMain.mypage">마이페이지</a></div>
-		<div id="mypageMenu"><a href="채팅.jsp">1:1 채팅</a></div>
+		<div id="mypageMenu" onclick="location.href='MarketWriteForm.ma'">판매하기</div>
+		<div id="mypageMenu" onclick="location.href='마이페이지'">마이페이지</div>
+		<div id="mypageMenu" onclick="location.href='1:1채팅'">1:1 채팅</div>
 	</div>
 </div>
 <nav>

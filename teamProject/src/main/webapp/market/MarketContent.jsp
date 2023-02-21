@@ -10,8 +10,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="resource/css/market.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
-
+<!-- 자바 변수들어가는 곳 -->
 <%
 String id = (String)session.getAttribute("id");
 
@@ -24,8 +25,8 @@ for(int i = 0; i < dto.getImgUrls().length; i++) {
 	if(!(dto.getImgUrls()[i].equals("url"))) {length++;}
 }
 %>
-
-<script type="text/javascript" src="js/jquery-3.6.3.js"></script>
+<!-- 자바스크립트 들어가는 곳 -->
+<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){ // j쿼리 시작
 	/* if() {
@@ -71,98 +72,110 @@ $(document).ready(function(){ // j쿼리 시작
 </script>
 </head>
 <body>
-<h1>제품상세 [로그인 : <%=id %>]</h1>
+<!-- 헤더파일들어가는 곳 -->
+<jsp:include page="/inc/header.jsp" />
+<!-- 헤더파일들어가는 곳 -->
 
-<table border="1">
-	<tr>
-	<td>글번호</td>
-	<td><%=dto.getMarket_id() %></td>
-	</tr>
+<div class="boardContainer">
+<!-- 내용 시작 -->
+
+	<h1>제품상세</h1>
 	
-	<tr>
-	<td>작성자</td>
-	<td><%=dto.getInsert_id() %></td>
-	</tr>
+	<table>
+		<tr>
+		<td>글번호</td>
+		<td><%=dto.getMarket_id() %></td>
+		</tr>
 		
-	<tr>
-	<td>등록일</td>
-	<td><%=dto.getInsert_date() %></td>
-	</tr>
-	
-	<tr>
-	<td>조회수</td>
-	<td><%=dto.getView_cnt() %></td>
-	</tr>
-	
-	<tr>
-	<td>찜개수</td>
-	<td><span id="wishCount"></span>
-	<% if(!(id.equals(dto.getInsert_id()))) { %>
-		<span id="heart">💖</span>
-		<% } %>
-	<% if(id != null){ 
-		if(!id.equals(dto.getInsert_id())){
-			ArrayList<WishDTO> wishCheck = dao.wishCheck(dto.getMarket_id(), id);
-			if(wishCheck.isEmpty()){ %>
-				<input type="button" class="wish-btn" value="찜하기">
-			<%} else{ %>
-				<input type="button" class="wish-btn" value="찜취소">
-			<%
-		  }
+		<tr>
+		<td>작성자</td>
+		<td><%=dto.getInsert_id() %></td>
+		</tr>
+			
+		<tr>
+		<td>등록일</td>
+		<td><%=dto.getInsert_date() %></td>
+		</tr>
+		
+		<tr>
+		<td>조회수</td>
+		<td><%=dto.getView_cnt() %></td>
+		</tr>
+		
+		<tr>
+		<td>찜개수</td>
+		<td><span id="wishCount"></span>
+		<% if(!(id.equals(dto.getInsert_id()))) { %>
+			<span id="heart">💖</span>
+			<% } %>
+		<% if(id != null){ 
+			if(!id.equals(dto.getInsert_id())){
+				ArrayList<WishDTO> wishCheck = dao.wishCheck(dto.getMarket_id(), id);
+				if(wishCheck.isEmpty()){ %>
+					<input type="button" class="wish-btn" value="찜하기">
+				<%} else{ %>
+					<input type="button" class="wish-btn" value="찜취소">
+				<%
+			  }
+			}
 		}
-	}
-    %>
-    </td>
-	</tr>
-	
-	
-	<tr>
-	<td>글제목</td>
-	<td><%=dto.getTitle() %></td>
-	</tr>
-	
-	<tr>
-	<td>글내용</td>
-	<td><%=dto.getContent() %></td>
-	</tr>
-	
-	<tr>
-	<td>가격</td>
-	<td><%=dto.getBook_price() %> 원</td>
-	</tr>
-	
-	<% if(length > 0) {
-			for(int i = 0; i < length; i++) { %>
-			<tr><td>첨부이미지<%=i+1%></td><td><img src="<%= dto.getImgUrls()[i]%>" width=260px ></td></tr>
-	 	<% }%>
-	<% } else { %>
-			<tr><td>첨부이미지</td><td>없음</td></tr>	
-	<% }%>
-	
-	<tr><td><%=cdto.getCdGrpnms()[0] %></td>
-		  <td><%=dto.getBook_type() %></td></tr>	
-	<tr><td><%=cdto.getCdGrpnms()[1] %></td>
-		  <td><%=dto.getBook_st() %></td></tr>
-	<tr><td><%=cdto.getCdGrpnms()[2] %></td>
-		  <td><%=dto.getTrade_type() %></td></tr>
-	<tr><td><%=cdto.getCdGrpnms()[3] %></td>
-		  <td><%=dto.getTrade_st() %></td></tr>
-	<tr><td><%=cdto.getCdGrpnms()[4] %></td>
-		  <td><%=dto.getTrade_inperson() %></td></tr>
-		  
-</table>
-	<input type="button" value="게시글목록" onclick="location.href='MarketList.ma'">
-	<% 
-	if(id != null) {
-		if(id.equals(dto.getInsert_id())) { %>
-			<input type="button" value="게시글삭제" onclick="checkDelete();">
-			<input type="button" value="게시글수정" onclick="location.href='MarketUpdateForm.ma?market_id=<%=dto.getMarket_id()%>'">
-	<%
+	    %>
+	    </td>
+		</tr>
+		
+		
+		<tr>
+		<td>글제목</td>
+		<td><%=dto.getTitle() %></td>
+		</tr>
+		
+		<tr>
+		<td>글내용</td>
+		<td><%=dto.getContent() %></td>
+		</tr>
+		
+		<tr>
+		<td>가격</td>
+		<td><%=dto.getBook_price() %> 원</td>
+		</tr>
+		
+		<% if(length > 0) {
+				for(int i = 0; i < length; i++) { %>
+				<tr><td>첨부이미지<%=i+1%></td><td><img src="<%= dto.getImgUrls()[i]%>" width=260px ></td></tr>
+		 	<% }%>
+		<% } else { %>
+				<tr><td>첨부이미지</td><td>없음</td></tr>	
+		<% }%>
+		
+		<tr><td><%=cdto.getCdGrpnms()[0] %></td>
+			  <td><%=dto.getBook_type() %></td></tr>	
+		<tr><td><%=cdto.getCdGrpnms()[1] %></td>
+			  <td><%=dto.getBook_st() %></td></tr>
+		<tr><td><%=cdto.getCdGrpnms()[2] %></td>
+			  <td><%=dto.getTrade_type() %></td></tr>
+		<tr><td><%=cdto.getCdGrpnms()[3] %></td>
+			  <td><%=dto.getTrade_st() %></td></tr>
+		<tr><td><%=cdto.getCdGrpnms()[4] %></td>
+			  <td><%=dto.getTrade_inperson() %></td></tr>
+			  
+	</table>
+		<input type="button" value="게시글목록" onclick="location.href='MarketList.ma'">
+		<% 
+		if(id != null) {
+			if(id.equals(dto.getInsert_id())) { %>
+				<input type="button" value="게시글삭제" onclick="checkDelete();">
+				<input type="button" value="게시글수정" onclick="location.href='MarketUpdateForm.ma?market_id=<%=dto.getMarket_id()%>'">
+		<%
+			}
 		}
-	}
-	%>
-	<br> 
-	<input type="button" value="1:1 채팅" onclick="location.href='채팅가상주소'">
-	<input type="button" value="신고하기" onclick="location.href='신고가상주소'">
+		%>
+		<input type="button" value="1:1 채팅" onclick="location.href='채팅가상주소'">
+		<input type="button" value="신고하기" onclick="location.href='신고가상주소'">
+<!-- 내용 끝 -->
+</div>
+
+<!-- 푸터 들어가는 곳 -->
+<jsp:include page="/inc/footer.jsp" />
+<!-- 푸터 들어가는 곳 -->
 </body>
 </html>

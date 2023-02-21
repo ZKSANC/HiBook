@@ -7,8 +7,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="resource/css/market.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
-
+<!-- 자바 들어가는 곳 -->
 <%
 String id = (String) session.getAttribute("id");
 if (id == null) {
@@ -23,8 +24,8 @@ ArrayList<ComCdDTO> cdtoList2 = cdao.getComCdList(cdto.getCdGrpnms()[2]);
 ArrayList<ComCdDTO> cdtoList3 = cdao.getComCdList(cdto.getCdGrpnms()[3]);
 ArrayList<ComCdDTO> cdtoList4 = cdao.getComCdList(cdto.getCdGrpnms()[4]);
 %>
-
-<script type="text/javascript" src="js/jquery-3.6.3.js"></script>
+<!-- 자바스크립트 들어가는 곳 -->
+<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){ // j쿼리 start
 		//멀티이미지 업로드 시 미리보기 불러오기
@@ -184,20 +185,18 @@ $(document).ready(function(){ // j쿼리 start
 	   } 
 	}
 </script>
-<style>
-.preview-image {
-	max-width: 200px;
-	max-height: 200px;
-	margin: 5px;
-}
-</style>
 </head>
-
 <body>
+<!-- 헤더파일들어가는 곳 -->
+<jsp:include page="/inc/header.jsp" />
+<!-- 헤더파일들어가는 곳 -->
+
+<div class="boardContainer">
+<!-- 내용 시작 -->
 	<h1>거래글 작성</h1>
 	
 	<form name="move" action="MarketWritePro.ma" method="post">
-		<table border="1">
+		<table>
 			<tr>
 				<td>글쓴이</td>
 				<td>
@@ -314,7 +313,7 @@ $(document).ready(function(){ // j쿼리 start
 			이미지 미리보기<br>
 		</div>
 		<input type="button" value="글쓰기" name="sub" id="sub" onclick="checkWrite();"> 
-		<input type="button" value="돌아가기" onclick="location.href='MemberMain.me'">
+		<input type="button" value="돌아가기" onclick="location.href='MarketList.ma'">
 
 		<!-- 클라우디너리 배열값 저장 -->
 		<%
@@ -323,5 +322,11 @@ $(document).ready(function(){ // j쿼리 start
 			<input type="hidden" value="url" name="imgUrls"><br> 
 		<% } %> 
 	</form>
+<!-- 내용 끝 -->
+</div>
+
+<!-- 푸터 들어가는 곳 -->
+<jsp:include page="/inc/footer.jsp" />
+<!-- 푸터 들어가는 곳 -->
 </body>
 </html>

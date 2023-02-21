@@ -35,7 +35,7 @@
 <div class="boardContainer">
 <!-- 내용 시작 -->
 
-
+<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <script type="text/javascript">
 
 // 댓글등록
