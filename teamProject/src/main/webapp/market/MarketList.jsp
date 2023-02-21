@@ -28,45 +28,62 @@ int allPage = (Integer)request.getAttribute("allPage");
 
 <div class="boardContainer">
 <!-- 내용 시작 -->
-
-	<h1>거래글 목록</h1>
-	<table>
-	<tr><td>글번호</td><td>글쓴이</td><td>글제목</td><td>조회수</td><td>등록일</td></tr>
-	<%
-	for(int i = 0; i < dtolist.size(); i++) {
-		MarketDTO dto = dtolist.get(i);
-	%>
-	<tr>
-	<td><%=dto.getMarket_id() %></td>
-	<td><%=dto.getInsert_id() %></td>
-	<td><a href="MarketContent.ma?market_id=<%=dto.getMarket_id()%>"><%=dto.getTitle() %></a></td>
-	<td><%=dto.getView_cnt() %></td>
-	<td><%=dto.getInsert_date() %></td>
-	</tr>	
-		<%
-	}
-	%>
-	</table>
-	<% 
-	if(startPage > pageBlock) { %>
-		<a href="MarketList.ma?pageNum=<%= currentPage-pageBlock%>">🔙</a>
-	<% 
-	}
-	for(int i = startPage; i <= endPage; i++) {	
-	%>
-		<a href="MarketList.ma?pageNum=<%= i%>"><%= i%></a> 
-	<% 
-	}
-	if(endPage > allPage) {
-	%>
-		<a href="MarketList.ma?pageNum=<%= currentPage+pageBlock%>">🔜</a> 
-	<%
-	}
-	%>
-	<br>
-	<input type="button" value="메인으로" onclick="location.href='MemberMain.me'">
-	<input type="button" value="거래글 쓰기" onclick="location.href='MarketWriteForm.ma'">
+<article class="board">
+	<div class="MarketContainer">
 	
+		<div class="board1">
+			<p id="boardTag">도서 거래게시판📚</p>
+			<p>새로운 책들을 확인해보세요!</p>
+		 	<div class="cardContainer">
+		 	
+		 	<%for(int i = 0; i < dtolist.size(); i++) {
+		 		MarketDTO dto = dtolist.get(i); %>	
+		 	
+				<div class="card" onclick="location.href='MarketContent.ma?market_id=<%=dto.getMarket_id()%>'">
+					<div class="innerCard">
+						<div class="innerTop">
+							<img src="<%=dto.getUrl() %>" class="books">
+						</div>
+						<div class="innerBottom">
+							<div class="cardText">
+								<p id="book_price"><%=dto.getBook_price() %> 원</p>
+								<p id="title"><span id=""><%=dto.getTrade_type() %></span> &#5; <%=dto.getTitle() %></p>
+								<p id="insert_date"><%=dto.getInsert_date() %></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			<% }%>
+			</div>
+		</div>
+		
+		<div class="board2">
+			<input type="button" value="메인으로" onclick="location.href='main.do'">
+			<input type="button" value="거래글 쓰기" onclick="location.href='MarketWriteForm.ma'">
+		</div>
+		
+		<div class="board3">
+			<% 
+			if(startPage > pageBlock) { %>
+				<a href="MarketList.ma?pageNum=<%= currentPage-pageBlock%>">🔙</a>
+			<% 
+			}
+			for(int i = startPage; i <= endPage; i++) {	
+			%>
+				<a href="MarketList.ma?pageNum=<%= i%>"><%= i%></a> 
+			<% 
+			}
+			if(endPage > allPage) {
+			%>
+				<a href="MarketList.ma?pageNum=<%= currentPage+pageBlock%>">🔜</a> 
+			<%
+			}
+			%>
+		</div>
+		
+	</div>
+</article>
+
 <!-- 내용 끝 -->
 </div>
 

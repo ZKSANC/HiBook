@@ -36,10 +36,10 @@ public class MarketList implements Action{
 		//mysql limit 함수 변수
 		int start = startRow-1; //시작행
 		int num = pageSize; //시작행으로부터 가져올 갯수
-		ArrayList<MarketDTO> dtolist = dao.getBoardList(start, num);
+		ArrayList<MarketDTO> dtolist = dao.getMarketList(start, num);
 		
 		//하단에 보여지는 페이지 번호
-		int pageBlock = 10;
+		int pageBlock = 5;
 		int startPage = (currentPage-1)/pageBlock*pageBlock+1;
 		int endPage = startPage+pageBlock-1;
 		

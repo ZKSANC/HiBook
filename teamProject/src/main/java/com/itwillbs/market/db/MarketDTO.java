@@ -24,16 +24,23 @@ public class MarketDTO {
 	private String trade_inperson;
 	private String trade_place;
 	//이미지 url 정보
-	private String[] imgUrls;
-	
-/* DB 저장 필요없이 이미지 url 계산에 사용되는 변수 */
+	private String[] imgUrls; // 판매게시판 이미지 5개 배열 저장
+	private String url; // 판매목록 대표이미지 1개 저장
+
+
+	/* DB 저장 필요없이 이미지 url 계산에 사용되는 변수 */
 	private static int imgLengthMax = 5; // 게시글의 최대 이미지 수를 제한, 해당 static 변수 값은 수정 불가능하게 get함수만 사용
 	private String[] oldImgUrls;
 	private int oldImgNum;
 	private int preImgNum;
 	
-	
 	//set, get 함수
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	public int getMarket_id() {
 		return market_id;
 	}
