@@ -11,6 +11,8 @@ public class CommentDTO {
 	private String secret_yn;
 	private String insert_id;
 	private Timestamp insert_date;
+	private String title;
+	private String board_type;
 	
 	// set get 메서드 
 	public int getCmmt_id() {
@@ -55,6 +57,18 @@ public class CommentDTO {
 	public void setInsert_date(Timestamp insert_date) {
 		this.insert_date = insert_date;
 	}
-
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getBoard_type() {
+		return board_type;
+	}
+	public void setBoard_type(String board_type) {
+		this.board_type = board_type;
+	}
+	
 	
 }

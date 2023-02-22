@@ -4,70 +4,8 @@
     pageEncoding="UTF-8"%>
 <!-- 헤더파일들어가는 곳 -->
 	<jsp:include page="/inc/header.jsp"/>
+	<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">	
 
-<style type="text/css">
-
-.menu1 {
-	border: 1px solid black;
-	width : 200px;
-	margin : 0 auto;
-}
-
-.menu1:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu2 {
-	border: 1px solid black;
-	width : 200px;
-}
-
-.menu2:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu3 {
-	border: 1px solid black;
-	width : 200px;
-}
-
-.menu3:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu4 {
-	border: 1px solid black;
-	width : 200px;
-}
-
-.menu4:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu5 {
-	border: 1px solid black;
-	width : 200px;
-}
-
-.menu5:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu6 {
-	border: 1px solid black;
-	width : 200px;
-}
-
-.menu6:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-</style>		
 	<div class="boardContainer">
 
 <%

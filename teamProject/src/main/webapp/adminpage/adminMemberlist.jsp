@@ -6,12 +6,7 @@
     pageEncoding="UTF-8"%>
 <!-- 헤더파일들어가는 곳 -->
 	<jsp:include page="/inc/header.jsp"/>
-	
-<style type="text/css">
-.pageNum {
-	text-align: center;
-}
-</style>	
+	<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">	
 	
 	<div class="boardContainer">
 
