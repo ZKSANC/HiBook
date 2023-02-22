@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.util.ChangeTime"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.itwillbs.market.db.MarketDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -37,8 +38,9 @@ int allPage = (Integer)request.getAttribute("allPage");
 		 	<div class="cardContainer">
 		 	
 		 	<%for(int i = 0; i < dtolist.size(); i++) {
-		 		MarketDTO dto = dtolist.get(i); %>	
-		 	
+		 		MarketDTO dto = dtolist.get(i); 
+		 		String changeTime = ChangeTime.calculateTime(dto.getInsert_date());
+		 		%>	
 				<div class="card" onclick="location.href='MarketContent.ma?market_id=<%=dto.getMarket_id()%>'">
 					<div class="innerCard">
 						<div class="innerTop">
@@ -48,7 +50,7 @@ int allPage = (Integer)request.getAttribute("allPage");
 							<div class="cardText">
 								<p id="book_price"><%=dto.getBook_price() %> 원</p>
 								<p id="title"><span id=""><%=dto.getTrade_type() %></span> &#5; <%=dto.getTitle() %></p>
-								<p id="insert_date"><%=dto.getInsert_date() %></p>
+								<p id="insert_date"><%=changeTime %></p>
 							</div>
 						</div>
 					</div>
