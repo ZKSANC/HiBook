@@ -65,6 +65,7 @@ a {
 	cursor : pointer;
 	width : 150px;
 	background-color: #FBF7FF;
+	position : relative;
 }
 
 #login, #mypageMenu {

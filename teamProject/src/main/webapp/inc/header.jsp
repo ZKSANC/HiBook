@@ -27,10 +27,11 @@
 	<% } %>
 </div>
 <div class="top">
-	<div class="rogo" onclick="location.href='main.do'"><h2>Hibook</h2></div>
+	<div class="rogo" onclick="location.href='main.do'">
+	<h2 id="rogotitle">Hibook</h2>
+	</div>
 	<div class="search">
-		<input type="text" value="" id="searchBox" placeholder="검색어 입력"
-		>
+		<input type="text" value="" id="searchBox" placeholder="검색어 입력">
 		<img src="/resource/image/search.png">
 	</div>
 	<div class="mypage">

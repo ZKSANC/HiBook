@@ -1,3 +1,5 @@
+<%@page import="com.itwillbs.market.db.MarketDAO"%>
+<%@page import="com.itwillbs.market.db.MarketDTO"%>
 <%@page import="com.itwillbs.util.ChangeTime"%>
 <%@page import="com.itwillbs.board.db.BoardDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -6,8 +8,13 @@
 <% 
 // request 가져온 데이터 담기 
 
+MarketDAO dao = new MarketDAO();
+ArrayList<MarketDTO> latestList = dao.getMainMarketLatestList();
+ArrayList<MarketDTO> viewList = dao.getMainMarketViewList();
+
 ArrayList<BoardDTO> freeList = (ArrayList<BoardDTO>) request.getAttribute("freeList");
 ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("reviewList");
+
 %>
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp"/>
@@ -29,238 +36,58 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 			<p id="boardTag">추천 도서📚</p>
 			<p>인기있는 책을 확인하세요!</p>
 		 	<div class="cardContainer">
-			<div class="card">
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
+		 	
+				<%for(int i = 0; i < viewList.size(); i++) {
+		 		MarketDTO dto = viewList.get(i); 
+		 		String changeTime = ChangeTime.calculateTime(dto.getInsert_date());
+		 		%>	
+				<div class="card" onclick="location.href='MarketContent.ma?market_id=<%=dto.getMarket_id()%>'">
+					<div class="innerCard">
+						<div class="innerTop">
+							<img src="<%=dto.getUrl() %>" class="books">
+						</div>
+						<div class="innerBottom">
+							<div class="cardText">
+								<p id="book_price"><%=dto.getBook_price() %> 원</p>
+								<p id="title"><span id=""><%=dto.getTrade_type() %></span> &#5; <%=dto.getTitle() %></p>
+								<p id="insert_date"><%=changeTime %></p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class=card>
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class=card>
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class=card>
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class=card>
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class=card>
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class=card>
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class=card>
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
-						</div>
-					</div>
-				</div>
-			</div> 
+				<% }%>
+
 			</div>
 		</div>
+		
 		<div class="board1">
 			<p id="boardTag">최신 도서📚</p>
 			<p>관심있던 책을 찾아보세요!</p>
 			<div class=cardContainer>
-			<div class=card>
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
+			
+				<%for(int i = 0; i < latestList.size(); i++) {
+		 		MarketDTO dto = latestList.get(i); 
+		 		String changeTime = ChangeTime.calculateTime(dto.getInsert_date());
+		 		%>	
+				<div class="card" onclick="location.href='MarketContent.ma?market_id=<%=dto.getMarket_id()%>'">
+					<div class="innerCard">
+						<div class="innerTop">
+							<img src="<%=dto.getUrl() %>" class="books">
+						</div>
+						<div class="innerBottom">
+							<div class="cardText">
+								<p id="book_price"><%=dto.getBook_price() %> 원</p>
+								<p id="title"><span id=""><%=dto.getTrade_type() %></span> &#5; <%=dto.getTitle() %></p>
+								<p id="insert_date"><%=changeTime %></p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class=card>
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class=card>
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class=card>
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class=card>
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class=card>
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class=card>
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class=card>
-				<div class="innerCard">
-					<div class="innerTop">
-						<img src="/resource/image/book.jpg" alt="...">
-					</div>
-					<div class="innerBottom">
-						<div class="cardText">
-							<p id="price">가격</p>
-							<p id="subject">책제목</p>
-							<p id="date">등록일</p>
-						</div>
-					</div>
-				</div>
-			</div> 
+				<% }%>
+			
 			</div>
 		</div>
+		
 		<div class="board2">
 			<p id="boardTag">자유게시판💬</p>
 			<div class="tableBar">
@@ -307,6 +134,7 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 				</table>
 			</div>
 		</div>
+		
 		<div class="board2">
 			<p id="boardTag">책 리뷰💬</p>
 			<div class="tableBar">

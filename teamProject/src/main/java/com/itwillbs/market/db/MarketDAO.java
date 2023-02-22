@@ -155,7 +155,97 @@ public class MarketDAO {
 		return dtolist;
 	}
 	
+	public ArrayList<MarketDTO> getMainMarketLatestList() {
+		ArrayList<MarketDTO> dtolist = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {	
+			con = getConnection();
+			
+			String sql="select m.market_id, m.trade_type, m.title, m.content, m.view_cnt, m.trade_st, m.book_price, "
+					+ "m.insert_id, m.insert_date, i.url "
+					+ "from (SELECT image_id, market_id, url "
+					+ "FROM market_image where mod(image_id,5)=1) i right join market m "
+					+ "on i.market_id = m.market_id order by market_id desc limit ?, ?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, 0);
+			pstmt.setInt(2, 8);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MarketDTO dto = new MarketDTO();
+				dto.setMarket_id(rs.getInt("market_id"));
+				dto.setTrade_type(rs.getString("trade_type"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setView_cnt(rs.getInt("view_cnt"));
+				dto.setTrade_st(rs.getString("trade_st"));
+				dto.setBook_price(rs.getString("book_price"));
+				dto.setInsert_id(rs.getString("insert_id"));
+				dto.setInsert_date(rs.getTimestamp("insert_date"));
+				dto.setUrl(rs.getString("url"));
+				
+				dtolist.add(dto);
+			}
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+			if(con!=null) try { con.close();} catch (Exception e2) {}
+			if(rs!=null) try { rs.close();} catch (Exception e2) {}
+		}
+		return dtolist;
+	}
 	
+	public ArrayList<MarketDTO> getMainMarketViewList() {
+		ArrayList<MarketDTO> dtolist = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {	
+			con = getConnection();
+			
+			String sql="select m.market_id, m.trade_type, m.title, m.content, m.view_cnt, m.trade_st, m.book_price, "
+					+ "m.insert_id, m.insert_date, i.url "
+					+ "from (SELECT image_id, market_id, url "
+					+ "FROM market_image where mod(image_id,5)=1) i right join market m "
+					+ "on i.market_id = m.market_id order by view_cnt desc, market_id desc limit ?, ?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, 0);
+			pstmt.setInt(2, 8);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MarketDTO dto = new MarketDTO();
+				dto.setMarket_id(rs.getInt("market_id"));
+				dto.setTrade_type(rs.getString("trade_type"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setView_cnt(rs.getInt("view_cnt"));
+				dto.setTrade_st(rs.getString("trade_st"));
+				dto.setBook_price(rs.getString("book_price"));
+				dto.setInsert_id(rs.getString("insert_id"));
+				dto.setInsert_date(rs.getTimestamp("insert_date"));
+				dto.setUrl(rs.getString("url"));
+				
+				dtolist.add(dto);
+			}
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+			if(con!=null) try { con.close();} catch (Exception e2) {}
+			if(rs!=null) try { rs.close();} catch (Exception e2) {}
+		}
+		return dtolist;
+	}
 	
 	public MarketDTO getBoard(int market_id) {
 		MarketDTO dto = null;
