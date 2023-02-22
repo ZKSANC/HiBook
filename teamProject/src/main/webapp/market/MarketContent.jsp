@@ -104,12 +104,12 @@ $(document).ready(function(){ // j쿼리 시작
 		
 		<tr>
 		<td>찜개수</td>
-		<td><span id="wishCount"></span>
-		<% if(!(id.equals(dto.getInsert_id()))) { %>
+		<td>
+		<span id="wishCount"></span>
+		<% if(id!=null && !(id.equals(dto.getInsert_id()))) { %>
 			<span id="heart">💖</span>
 			<% } %>
-		<% if(id != null){ 
-			if(!id.equals(dto.getInsert_id())){
+		<% if(id!=null && !(id.equals(dto.getInsert_id()))){
 				ArrayList<WishDTO> wishCheck = dao.wishCheck(dto.getMarket_id(), id);
 				if(wishCheck.isEmpty()){ %>
 					<input type="button" class="wish-btn" value="찜하기">
@@ -118,7 +118,6 @@ $(document).ready(function(){ // j쿼리 시작
 				<%
 			  }
 			}
-		}
 	    %>
 	    </td>
 		</tr>

@@ -1,44 +1,12 @@
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="mypage.market.MarketDTO"%>
+<%@page import="mypage.market.MarketDTO"%> 
 <%@page import="java.util.ArrayList"%>
 <%@page import="mypage.market.MarketDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- 헤더파일들어가는 곳 -->
 	<jsp:include page="/inc/header.jsp"/>
-	
-<style type="text/css">
-.pageNum {
-	text-align: center;
-}
-
-.category {
-	text-align: right;
-}
-
-.market:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.board:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.button {
- 	width: 100px;
- 	padding: 0;
- 	margin: 10px 20px 10px 0;
- 	font-weight: 600;
- 	text-align: center;
- 	line-height: 35px;
- 	color: #fff;
-  	border-radius: 5px;
- 	transition: all 0.2s;		
- 	background: #42444e;
-}
-</style>	
+	<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">	
 	
 	<div class="boardContainer">
 
@@ -59,7 +27,7 @@ int pageCount=(Integer)request.getAttribute("pageCount");
 <!-- 체크박스로 선택해 글 여러개 삭제가능  -->
 <form action="AdminMultidelMarketPro.adminpage" method="post">
 <div class=category>
-<a href="AdminMarketList.adminpage" class=market>중고거래</a>
+<a href="AdminMarketList.adminpage" class=market>중고거래</a><br>
 <a href="AdminBoardList.adminpage" class=board>커뮤니티</a>
 </div>
 <input type="submit" value="삭제" class=button>
@@ -87,20 +55,32 @@ function allChk(obj){
 
 <div class="tableBar">
 <table>
+<colgroup>
+<col width="50px;">
+<col width="80px;">
+<col width="110px;">
+<col width="100px;">
+<col width="200px;">
+<col width="90px;">
+<col width="80px;">
+<col width="80px;">
+<col width="90px;">
+</colgroup>
 <tr><th><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
-<th>글번호</th><th>게시판유형</th>
-<th>글제목</th><th>글쓴이</th><th>조회수</th><th>등록일</th></tr>
+<th>글번호</th><th>게시판유형</th><th>사진</th>
+<th>글제목</th><th>가격</th><th>글쓴이</th><th>조회수</th><th>등록일</th></tr>
 
 <%
 	for(int i=0; i<marketList.size(); i++){
-		MarketDTO dto = marketList.get(i);
+		MarketDTO dto = marketList.get(i);	
 	%>
 	<tr>
 	<td><input type="checkbox" name="chk" value="<%=dto.getMarket_id() %>"></td>
 	<td><%=dto.getMarket_id() %></td>
 	<td><%=dto.getTrade_type()  %></td>
-<%-- 	<td><img src="upload/<%=dto.getContent_img1() %>" width="100" height="100"></td> --%>
+	<td><img src="<%=dto.getUrl() %>" width="100" height="100"></td>
 	<td><a href="MarketContent.ma?market_id=<%=dto.getMarket_id() %>"><%=dto.getTitle() %></a></td>
+	<td><%=dto.getBook_price() %></td>
 	<td><%=dto.getInsert_id() %></td>
 	<td><%=dto.getView_cnt() %></td>
 	<td><%=dateFormat.format(dto.getInsert_date()) %></td>

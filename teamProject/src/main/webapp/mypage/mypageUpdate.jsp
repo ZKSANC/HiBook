@@ -4,47 +4,7 @@
     pageEncoding="UTF-8"%>
 <!-- 헤더파일들어가는 곳 -->
 	<jsp:include page="/inc/header.jsp"/>
-	
-<style type="text/css">
-/* id="fr" 모든자손 fieldset중에 마지막 테두리선 none  */
-#fr fieldset:last-of-type {
-	border: none;
-}
-
-/* id="fr" 모든자손 ul li 줄간격 30px, 목록스타일 없앰,  */
-/* 	안여백 위아래 5px 왼오른쪽 10px, 밖 아래 여백 2px  */
-#fr ul li {
-	line-height: 30px;
-	list-style-type: none;
-	padding: 5px 10px;
-	marign-bottom: 2px;
-	color: black;
-}
-
-/* id="fr" 모든자손 label 너비 110px, 글자크기 13px, 왼쪽으로 어울림 */
-#fr label {
-	width: 110px;
-	font-size: 13px;
-	float: left;
-}
-
-.button {
- 	width: 100px;
- 	padding: 0;
- 	margin: 10px 20px 10px 0;
- 	font-weight: 600;
- 	text-align: center;
- 	line-height: 35px;
- 	color: #fff;
-  	border-radius: 5px;
- 	transition: all 0.2s;		
- 	background: #42444e;
-}
-
-.submit {
-	text-align: center;
-}
-</style>
+	<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">	
 	
 	<div class="boardContainer">
 
@@ -90,7 +50,7 @@ function fun3() {
 MemberDTO dto=(MemberDTO)request.getAttribute("dto");
 %>
 
-<form id="fr" name="fr" action="MypageUpdatePro.mypage" method="post" onsubmit="return fun2()">
+<form id="fr2" name="fr" action="MypageUpdatePro.mypage" method="post" onsubmit="return fun2()">
     <fieldset>
       <ul>
         <li>

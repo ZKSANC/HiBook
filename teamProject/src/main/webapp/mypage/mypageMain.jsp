@@ -4,70 +4,8 @@
     pageEncoding="UTF-8"%>
 <!-- 헤더파일들어가는 곳 -->
 	<jsp:include page="/inc/header.jsp"/>
+	<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">	
 
-<style type="text/css">
-
-.menu1 {
-	border: 1px solid black;
-	width : 200px;
-	margin : 0 auto;
-}
-
-.menu1:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu2 {
-	border: 1px solid black;
-	width : 200px;
-}
-
-.menu2:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu3 {
-	border: 1px solid black;
-	width : 200px;
-}
-
-.menu3:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu4 {
-	border: 1px solid black;
-	width : 200px;
-}
-
-.menu4:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu5 {
-	border: 1px solid black;
-	width : 200px;
-}
-
-.menu5:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu6 {
-	border: 1px solid black;
-	width : 200px;
-}
-
-.menu6:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-</style>		
 	<div class="boardContainer">
 
 <%
@@ -79,7 +17,7 @@ String adminYn = (String)session.getAttribute("adminYn");
 
 //세션값이 없으면 => 로그인페이지 
 if(id == null){
-	response.sendRedirect("otherpage/loginForm.jsp");
+	response.sendRedirect("MemberLoginForm.me");
 }
 
 //일반유저 마이페이지- 프로필사진, 닉네임 보여줘야함 
@@ -103,7 +41,6 @@ if(id != null){
 		<div class=menu5><a href="introduce.jsp">사이트 소개 관리</a></div>
 		<div class=menu6><a href="AdminReportList.adminpage">1:1 신고 접수</a></div>
 		<br>
-		<a href="otherpage/logout.jsp">(임시)로그아웃</a>
 		<%
 	}else {
 		%>
@@ -117,8 +54,6 @@ if(id != null){
 		<div class=menu4><a href="MypageCommentList.mypage">내가 쓴 댓글</a></div>
 		<div class=menu5><a href="MypageWishList.mypage">찜목록</a></div>
 		<div class=menu6><a href="MypageDelete.mypage">회원탈퇴</a></div>
-		<a href="otherpage/list.jsp">(임시)중고거래 게시판 리스트</a><br>
-		<a href="otherpage/logout.jsp">(임시)로그아웃</a>
 		<%
 	}
 }

@@ -27,48 +27,52 @@ public class MarketDAO {
 		return con;
 	}
 	
-	// 본인이 쓴 중고거래(Market테이블) 글목록 불러오는 메서드 
-	public ArrayList<MarketDTO> getMarketList(String id,int startRow,int pageSize){
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		ArrayList<MarketDTO> marketList=new ArrayList<>();
-		try {
-			// 1~2 단계
-			con=getConnection();
-			// 3단계 sql
-			// 기본 num기준 오름차순 => 최근글 위로 올라오게 정렬 (num 내림차순)
-//			String sql="select * from board order by num desc limit 시작행-1, 몇개";
-			String sql="select * from market where insert_id=? order by market_id desc limit ?, ?";
+	// 본인이 쓴 중고거래(Market테이블) 글목록 불러오는 메서드 (사진 포함)
+	public ArrayList<MarketDTO> getMyMarketList(String id, int startRow, int pageSize) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<MarketDTO> marketList = new ArrayList<>();
+		try {	
+			con = getConnection();
+			
+			String sql="select m.market_id, m.trade_type, m.title, m.content, m.view_cnt, m.trade_st, m.book_price, "
+					+ "m.insert_id, m.insert_date, i.url "
+					+ "from (SELECT image_id, market_id, url "
+					+ "FROM market_image where mod(image_id,5)=1) i right join market m "
+					+ "on i.market_id = m.market_id where insert_id=? order by market_id desc limit ?, ?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setInt(2, startRow-1);
 			pstmt.setInt(3, pageSize);
-			//4
+			 
 			rs=pstmt.executeQuery();
-			//5
+			
 			while(rs.next()) {
-				// 하나의 글의 바구니에 저장
-				MarketDTO dto=new MarketDTO();
+				MarketDTO dto = new MarketDTO();
 				dto.setMarket_id(rs.getInt("market_id"));
 				dto.setTrade_type(rs.getString("trade_type"));
-//				dto.setContent_img1(rs.getString("content_img1"));
 				dto.setTitle(rs.getString("title"));
-				dto.setInsert_date(rs.getTimestamp("insert_date"));
+				dto.setContent(rs.getString("content"));
 				dto.setView_cnt(rs.getInt("view_cnt"));
-				// 바구니의 주소값을 배열 한칸에 저장
+				dto.setTrade_st(rs.getString("trade_st"));
+				dto.setBook_price(rs.getString("book_price"));
+				dto.setInsert_id(rs.getString("insert_id"));
+				dto.setInsert_date(rs.getTimestamp("insert_date"));
+				dto.setUrl(rs.getString("url"));
+				
 				marketList.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
-			if(rs!=null) try { rs.close();} catch (Exception e2) {}
-			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
-			if(con!=null) try { con.close();} catch (Exception e2) {}
+				if(rs!=null) try { rs.close();} catch (Exception e2) {}
+				if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+				if(con!=null) try { con.close();} catch (Exception e2) {}
 		}
 		return marketList;
-	}//
+	}
 	
 	// 본인이 쓴 전체글 개수 구하는 메서드 (페이징 처리를 위해)
 	public int getMarketCount(String id) {
@@ -100,50 +104,53 @@ public class MarketDAO {
 		return count;
 	}//
 	
-	// 중고거래 게시판 전체 글목록 불러오는 메서드 
-	public ArrayList<MarketDTO> getAllMarketList(int startRow,int pageSize){
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		ArrayList<MarketDTO> marketList=new ArrayList<>();
-		try {
-			// 1~2 단계
-			con=getConnection();
-			// 3단계 sql
-			// 기본 num기준 오름차순 => 최근글 위로 올라오게 정렬 (num 내림차순)
-//			String sql="select * from market order by num desc limit 시작행-1, 몇개";
-			String sql="select * from market order by market_id desc limit ?, ?";
+	// 관리자 - 중고거래 게시판 전체 글목록 불러오는 메서드 (사진 포함) 
+	public ArrayList<MarketDTO> getAdminMarketList(int startRow, int pageSize) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<MarketDTO> marketList = new ArrayList<>();
+		try {	
+			con = getConnection();
+			
+			String sql="select m.market_id, m.trade_type, m.title, m.content, m.view_cnt, m.trade_st, m.book_price, "
+					+ "m.insert_id, m.insert_date, i.url "
+					+ "from (SELECT image_id, market_id, url "
+					+ "FROM market_image where mod(image_id,5)=1) i right join market m "
+					+ "on i.market_id = m.market_id order by market_id desc limit ?, ?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow-1);
 			pstmt.setInt(2, pageSize);
-			//4
+			 
 			rs=pstmt.executeQuery();
-			//5
+			
 			while(rs.next()) {
-				// 하나의 글의 바구니에 저장
-				MarketDTO dto=new MarketDTO();
+				MarketDTO dto = new MarketDTO();
 				dto.setMarket_id(rs.getInt("market_id"));
 				dto.setTrade_type(rs.getString("trade_type"));
-//				dto.setContent_img1(rs.getString("content_img1"));
 				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setView_cnt(rs.getInt("view_cnt"));
+				dto.setTrade_st(rs.getString("trade_st"));
+				dto.setBook_price(rs.getString("book_price"));
 				dto.setInsert_id(rs.getString("insert_id"));
 				dto.setInsert_date(rs.getTimestamp("insert_date"));
-				dto.setView_cnt(rs.getInt("view_cnt"));
-				// 바구니의 주소값을 배열 한칸에 저장
+				dto.setUrl(rs.getString("url"));
+				
 				marketList.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
-			if(rs!=null) try { rs.close();} catch (Exception e2) {}
-			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
-			if(con!=null) try { con.close();} catch (Exception e2) {}
+				if(rs!=null) try { rs.close();} catch (Exception e2) {}
+				if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+				if(con!=null) try { con.close();} catch (Exception e2) {}
 		}
 		return marketList;
-	}//
+	}
 	
-	// 중고거래 게시판 전체글 개수 구하는 메서드 (페이징 처리를 위해)
+	// 관리자 - 중고거래 게시판 전체글 개수 구하는 메서드 (페이징 처리를 위해)
 	public int getAllMarketCount() {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -171,88 +178,6 @@ public class MarketDAO {
 		}
 		return count;
 	}//
-	
-	// 찜목록 기능 테스트를 위한 임시 메서드 (나중에 삭제할 예정)
-	// 임시로 중고거래 판매글목록, 중고거래 상세페이지 만드는 메서드 
-	public ArrayList<MarketDTO> getMarketList(int startRow,int pageSize){
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		ArrayList<MarketDTO> marketList=new ArrayList<>();
-		try {
-			// 1~2 단계
-			con=getConnection();
-			// 3단계 sql
-			// 기본 num기준 오름차순 => 최근글 위로 올라오게 정렬 (num 내림차순)
-//			String sql="select * from board order by num desc";
-//			String sql="select * from board order by num desc limit 시작행-1, 몇개";
-			String sql="select * from market order by market_id desc limit ?, ?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, startRow-1);
-			pstmt.setInt(2, pageSize);
-			//4
-			rs=pstmt.executeQuery();
-			//5
-			while(rs.next()) {
-				// 하나의 글의 바구니에 저장
-				MarketDTO dto=new MarketDTO();
-				dto.setMarket_id(rs.getInt("market_id"));
-//				dto.setContent_img1(rs.getString("content_img1"));
-				dto.setTitle(rs.getString("title"));
-				dto.setInsert_id(rs.getString("insert_id"));
-				dto.setBook_price(rs.getInt("book_price"));
-				dto.setInsert_date(rs.getTimestamp("insert_date"));
-				// 바구니의 주소값을 배열 한칸에 저장
-				marketList.add(dto);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
-			if(rs!=null) try { rs.close();} catch (Exception e2) {}
-			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
-			if(con!=null) try { con.close();} catch (Exception e2) {}
-		}
-		return marketList;
-	}//
-	
-	// 찜목록 기능 테스트를 위한 임시 메서드 (나중에 삭제할 예정)
-	// 임시로 중고거래 판매글목록, 중고거래 상세페이지 만드는 메서드 
-	public MarketDTO getMarket(int market_id) {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		MarketDTO dto=null;
-		try {
-			// 1~2 단계
-			con=getConnection();
-			// 3단계 sql
-			String sql="select * from market where market_id=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, market_id);
-			//4
-			rs=pstmt.executeQuery();
-			//5
-			while(rs.next()) {
-				// 하나의 글의 바구니에 저장
-				dto=new MarketDTO();
-				dto.setMarket_id(rs.getInt("market_id"));
-//				dto.setContent_img1(rs.getString("content_img1"));
-				dto.setTitle(rs.getString("title"));
-				dto.setInsert_id(rs.getString("insert_id"));
-				dto.setBook_price(rs.getInt("book_price"));
-				dto.setInsert_date(rs.getTimestamp("insert_date"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
-			if(rs!=null) try { rs.close();} catch (Exception e2) {}
-			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
-			if(con!=null) try { con.close();} catch (Exception e2) {}
-		}
-		return dto;
-	}// 
 	
 	// 1. 글목록에서 여러개 체크박스로 삭제하는 메서드 
 	public void multiDelete(String[] market_id) {
@@ -289,7 +214,7 @@ public class MarketDAO {
 			con = getConnection();
 		
 			// 3단계 SQL구문 만들어서 실행할 준비 
-			String sql = "delete from chatroom where market_id=?";			
+			String sql = "delete from chat where market_id=?";			
 			pstmt = con.prepareStatement(sql);
 
 			for(int i=0; i<market_id.length; i++) {
@@ -331,5 +256,93 @@ public class MarketDAO {
 			if(con!=null) try { con.close();} catch (Exception e2) {}
 		}
 	}
+	
+	// 본인이 쓴 중고거래(Market테이블) 글목록 불러오는 메서드 (현재 미사용)
+	public ArrayList<MarketDTO> getMarketList(String id,int startRow,int pageSize){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		ArrayList<MarketDTO> marketList=new ArrayList<>();
+		try {
+			// 1~2 단계
+			con=getConnection();
+			// 3단계 sql
+			// 기본 num기준 오름차순 => 최근글 위로 올라오게 정렬 (num 내림차순)
+//			String sql="select * from board order by num desc limit 시작행-1, 몇개";
+			String sql="select * from market where insert_id=? order by market_id desc limit ?, ?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, startRow-1);
+			pstmt.setInt(3, pageSize);
+			//4
+			rs=pstmt.executeQuery();
+			//5
+			while(rs.next()) {
+				// 하나의 글의 바구니에 저장
+				MarketDTO dto=new MarketDTO();
+				dto.setMarket_id(rs.getInt("market_id"));
+				dto.setTrade_type(rs.getString("trade_type"));
+//				dto.setContent_img1(rs.getString("content_img1"));
+				dto.setTitle(rs.getString("title"));
+				dto.setBook_price(rs.getString("book_price"));
+				dto.setInsert_date(rs.getTimestamp("insert_date"));
+				dto.setView_cnt(rs.getInt("view_cnt"));
+				// 바구니의 주소값을 배열 한칸에 저장
+				marketList.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
+			if(rs!=null) try { rs.close();} catch (Exception e2) {}
+			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+			if(con!=null) try { con.close();} catch (Exception e2) {}
+		}
+		return marketList;
+	}//
+	
+	// 관리자 - 중고거래 게시판 전체 글목록 불러오는 메서드 (현재 미사용) 
+	public ArrayList<MarketDTO> getAllMarketList(int startRow,int pageSize){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		ArrayList<MarketDTO> marketList=new ArrayList<>();
+		try {
+			// 1~2 단계
+			con=getConnection();
+			// 3단계 sql
+			// 기본 num기준 오름차순 => 최근글 위로 올라오게 정렬 (num 내림차순)
+//			String sql="select * from market order by num desc limit 시작행-1, 몇개";
+			String sql="select * from market order by market_id desc limit ?, ?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow-1);
+			pstmt.setInt(2, pageSize);
+			//4
+			rs=pstmt.executeQuery();
+			//5
+			while(rs.next()) {
+				// 하나의 글의 바구니에 저장
+				MarketDTO dto=new MarketDTO();
+				dto.setMarket_id(rs.getInt("market_id"));
+				dto.setTrade_type(rs.getString("trade_type"));
+//				dto.setContent_img1(rs.getString("content_img1"));
+				dto.setTitle(rs.getString("title"));
+				dto.setBook_price(rs.getString("book_price"));
+				dto.setInsert_id(rs.getString("insert_id"));
+				dto.setInsert_date(rs.getTimestamp("insert_date"));
+				dto.setView_cnt(rs.getInt("view_cnt"));
+				// 바구니의 주소값을 배열 한칸에 저장
+				marketList.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
+			if(rs!=null) try { rs.close();} catch (Exception e2) {}
+			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+			if(con!=null) try { con.close();} catch (Exception e2) {}
+		}
+		return marketList;
+	}//
 	
 }

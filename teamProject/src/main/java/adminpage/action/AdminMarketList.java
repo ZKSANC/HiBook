@@ -28,8 +28,8 @@ public class AdminMarketList implements Action{
 		int endRow = startRow + pageSize - 1;
 
 		// 메서드 호출 
-		ArrayList<MarketDTO> marketList = dao.getAllMarketList(startRow, pageSize);  
-		
+		ArrayList<MarketDTO> marketList = dao.getAdminMarketList(startRow, endRow);
+		 
 		//한 화면에 보여줄 페이지 개수 설정
 		int pageBlock = 10;
 		int startPage = (currentPage-1)/pageBlock*pageBlock + 1;

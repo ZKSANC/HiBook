@@ -5,40 +5,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- 헤더파일들어가는 곳 -->
-	<jsp:include page="/inc/header.jsp"/>
-	
-<style type="text/css">
-.pageNum {
-	text-align: center;
-}
-
-.category {
-	text-align: right;
-}
-
-.market:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.board:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.button {
- 	width: 100px;
- 	padding: 0;
- 	margin: 10px 20px 10px 0;
- 	font-weight: 600;
- 	text-align: center;
- 	line-height: 35px;
- 	color: #fff;
-  	border-radius: 5px;
- 	transition: all 0.2s;		
- 	background: #42444e;
-}
-</style>	
+	<jsp:include page="/inc/header.jsp"/>	
+	<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">	
 	
 	<div class="boardContainer">
 
@@ -59,7 +27,7 @@ int pageCount=(Integer)request.getAttribute("pageCount");
 <!-- 체크박스로 선택해 글 여러개 삭제가능  -->
 <form action="AdminMultidelBoardPro.adminpage" method="post">
 <div class=category>
-<a href="AdminMarketList.adminpage" class=market>중고거래</a>
+<a href="AdminMarketList.adminpage" class=market>중고거래</a><br>
 <a href="AdminBoardList.adminpage" class=board>커뮤니티</a>
 </div>
 <input type="submit" value="삭제" class=button>
@@ -87,6 +55,16 @@ function allChk(obj){
 
 <div class="tableBar">
 <table>
+<colgroup>
+<col width="50px;">
+<col width="80px;">
+<col width="100px;">
+<col width="100px;">
+<col width="*">
+<col width="80px;">
+<col width="80px;">
+<col width="110px;">
+</colgroup>
 <tr><th><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
 <th>글번호</th><th>게시판유형</th><th>사진</th>
 <th>글제목</th><th>글쓴이</th><th>조회수</th><th>등록일</th></tr>

@@ -15,10 +15,17 @@ public class MarketDTO {
 	private String trade_inperson;
 	private String book_st;
 	private String trade_st;
-	private int book_price;
+	private String book_price;
 	private String insert_id;
 	private Timestamp insert_date;
+	private String url;
 	
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	// set get 메서드 
 	public int getMarket_id() {
 		return market_id;
@@ -86,10 +93,10 @@ public class MarketDTO {
 	public void setTrade_st(String trade_st) {
 		this.trade_st = trade_st;
 	}
-	public int getBook_price() {
+	public String getBook_price() {
 		return book_price;
 	}
-	public void setBook_price(int book_price) {
+	public void setBook_price(String book_price) {
 		this.book_price = book_price;
 	}
 	public String getInsert_id() {
@@ -104,8 +111,6 @@ public class MarketDTO {
 	public void setInsert_date(Timestamp insert_date) {
 		this.insert_date = insert_date;
 	}
-
-
 
 	
 }

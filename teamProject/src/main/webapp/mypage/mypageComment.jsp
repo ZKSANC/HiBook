@@ -6,25 +6,7 @@
     pageEncoding="UTF-8"%>
 <!-- 헤더파일들어가는 곳 -->
 	<jsp:include page="/inc/header.jsp"/>
-	
-<style type="text/css">
-.pageNum {
-	text-align: center;
-}
-
-.button {
- 	width: 100px;
- 	padding: 0;
- 	margin: 10px 20px 10px 0;
- 	font-weight: 600;
- 	text-align: center;
- 	line-height: 35px;
- 	color: #fff;
-  	border-radius: 5px;
- 	transition: all 0.2s;		
- 	background: #42444e;
-}
-</style>
+	<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">	
 	
 	<div class="boardContainer">
 
@@ -69,8 +51,15 @@ function allChk(obj){
 
 <div class="tableBar">
 <table>
+<colgroup>
+<col width="50px;">
+<col width="*">
+<col width="100px;">
+<col width="*">
+<col width="110px;">
+</colgroup>
 <tr><th><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
-<th>비밀댓글</th><th>작성댓글</th><th>등록일</th></tr>
+<th>원문</th><th>비밀댓글</th><th>작성댓글</th><th>등록일</th></tr>
 
 <%
 	for(int i=0; i<commentList.size(); i++){
@@ -79,6 +68,7 @@ function allChk(obj){
 	%>
 	<tr>
 	<td><input type="checkbox" name="chk" value="<%=dto.getCmmt_id() %>"></td>
+	<td><a href="BoardContent.bo?boardType=<%=dto.getBoard_type() %>&boardId=<%=dto.getBoard_id() %>"><%=dto.getTitle() %></td>
 	<td><%=dto.getSecret_yn() %></td>
 	<td><%=dto.getContent() %></td>
 	<td><%=dateFormat.format(dto.getInsert_date()) %></td><tr>

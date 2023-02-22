@@ -36,7 +36,9 @@ public class CommentDAO {
 			// 3단계 sql
 			// 기본 num기준 오름차순 => 최근댓글 위로 올라오게 정렬 (num 내림차순)
 //			String sql="select * from board order by num desc limit 시작행-1, 몇개";
-			String sql="select * from board_cmmt where insert_id=? order by cmmt_id desc limit ?, ?";
+			String sql="select c.cmmt_id, c.secret_yn, c.content, c.insert_id, c.insert_date, "
+					+ "b.title, b.board_id, b.board_type from board_cmmt c join board b on c.board_id = b.board_id "
+					+ "where c.insert_id=? order by c.cmmt_id desc limit ?, ?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setInt(2, startRow-1);
@@ -51,6 +53,9 @@ public class CommentDAO {
 				dto.setSecret_yn(rs.getString("secret_yn"));
 				dto.setContent(rs.getString("content"));
 				dto.setInsert_date(rs.getTimestamp("insert_date"));
+				dto.setTitle(rs.getString("title"));
+				dto.setBoard_id(rs.getInt("board_id"));
+				dto.setBoard_type(rs.getString("board_type"));
 				// 바구니의 주소값을 배열 한칸에 저장
 				commentList.add(dto);
 			}
@@ -107,7 +112,9 @@ public class CommentDAO {
 			// 3단계 sql
 			// 기본 num기준 오름차순 => 최근댓글 위로 올라오게 정렬 (num 내림차순)
 //			String sql="select * from board_cmmt order by num desc limit 시작행-1, 몇개";
-			String sql="select * from board_cmmt order by cmmt_id desc limit ?, ?";
+			String sql="select c.cmmt_id, c.secret_yn, c.content, c.insert_id, c.insert_date, "
+					+ "b.title, b.board_id, b.board_type from board_cmmt c join board b "
+					+ "on c.board_id = b.board_id order by cmmt_id desc limit ?, ?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow-1);
 			pstmt.setInt(2, pageSize);
@@ -122,6 +129,9 @@ public class CommentDAO {
 				dto.setContent(rs.getString("content"));
 				dto.setInsert_id(rs.getString("insert_id"));
 				dto.setInsert_date(rs.getTimestamp("insert_date"));
+				dto.setTitle(rs.getString("title"));
+				dto.setBoard_id(rs.getInt("board_id"));
+				dto.setBoard_type(rs.getString("board_type"));
 				// 바구니의 주소값을 배열 한칸에 저장
 				commentList.add(dto);
 			}

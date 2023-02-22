@@ -264,7 +264,7 @@ $(document).ready(function(){ // j쿼리 start
 			<tr>
 				<td><%=cdto.getCdGrpnms()[0]%></td>
 				<td>
-					<select id="<%=cdtoList0.get(0).getCdGrp()%>">
+					<select id="<%=cdtoList0.get(0).getCdGrp()%>" name="<%=cdtoList0.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList0.size(); i++) {
 						%>
@@ -279,7 +279,7 @@ $(document).ready(function(){ // j쿼리 start
 			<tr>
 				<td><%=cdto.getCdGrpnms()[1]%></td>
 				<td>
-					<select id="<%=cdtoList1.get(0).getCdGrp()%>">
+					<select id="<%=cdtoList1.get(0).getCdGrp()%>" name="<%=cdtoList1.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList1.size(); i++) {
 						%>
@@ -294,7 +294,7 @@ $(document).ready(function(){ // j쿼리 start
 			<tr>
 				<td><%=cdto.getCdGrpnms()[2]%></td>
 				<td>
-					<select id="<%=cdtoList2.get(0).getCdGrp()%>">
+					<select id="<%=cdtoList2.get(0).getCdGrp()%>" name="<%=cdtoList2.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList2.size(); i++) {
 						%>
@@ -309,7 +309,7 @@ $(document).ready(function(){ // j쿼리 start
 			<tr>
 				<td><%=cdto.getCdGrpnms()[3]%></td>
 				<td>
-					<select id="<%=cdtoList3.get(0).getCdGrp()%>">
+					<select id="<%=cdtoList3.get(0).getCdGrp()%>" name="<%=cdtoList3.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList3.size(); i++) {
 						%>
@@ -324,7 +324,7 @@ $(document).ready(function(){ // j쿼리 start
 			<tr>
 				<td><%=cdto.getCdGrpnms()[4]%></td>
 				<td>
-					<select id="<%=cdtoList4.get(0).getCdGrp()%>">
+					<select id="<%=cdtoList4.get(0).getCdGrp()%>" name="<%=cdtoList4.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList4.size(); i++) {
 						%>
