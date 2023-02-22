@@ -59,7 +59,44 @@ $(document).ready(function(){ // j쿼리 시작
     });
 	
 });// j쿼리 끝 
- 
+	//마우스 우클릭 시 메뉴 동작
+	document.addEventListener("DOMContentLoaded", () => {
+ 	  var idSpan = document.getElementById("idSpan");
+	  var miniMenu = document.getElementById("miniMenu");
+	  var mmenu = document.getElementById("mmenu");
+	
+	  const mouse_end = (event) => {
+	    console.log("mouse_end called");
+	
+	    const is_right_click = (event.which == 3) || (event.button == 2);
+	    console.log("is_right_click:", is_right_click);
+	
+	    if (is_right_click) {
+	      miniMenu.style.display = "block";
+	      miniMenu.style.position = "absolute";
+	      miniMenu.style.top = 355+"px";
+	      miniMenu.style.right = 580+"px"; 
+	      miniMenu.style.zIndex = "1000";
+	      miniMenu.style.backgroundColor = "#FBF7FF";
+	      mmenu.style.m
+	    }
+	  };
+	  idSpan.addEventListener("mouseup", mouse_end);
+	  
+	  const hideMiniMenu = (event) => {
+		    console.log("hideMiniMenu called");
+
+		    if (!miniMenu.contains(event.target)) {
+		      miniMenu.style.display = "none";
+		    }
+		  };
+		document.addEventListener("click", hideMiniMenu); 
+		
+		window.oncontextmenu = function () {
+		    return false;
+		};
+	});
+	//게시글 삭제 동작
 	function checkDelete() {
 		var result = confirm("게시글을 삭제하시겠습니까?");
 		if (result == true){    
@@ -89,7 +126,7 @@ $(document).ready(function(){ // j쿼리 시작
 		
 		<tr>
 		<td>작성자</td>
-		<td><%=dto.getInsert_id() %></td>
+		<td><span id="idSpan"><%=dto.getInsert_id() %></span></td>
 		</tr>
 			
 		<tr>
@@ -158,6 +195,12 @@ $(document).ready(function(){ // j쿼리 시작
 			  <td><%=dto.getTrade_inperson() %></td></tr>
 			  
 	</table>
+	<div id="miniMenu" style="display: none;">
+			<div id="mmenu" onclick="location.href='main.do'">menu1</div>	
+			<div id="mmenu" onclick="location.href='main.do'">menu2</div>
+			<div id="mmenu" onclick="location.href='main.do'">menu3</div>
+			<div id="mmenu" onclick="location.href='main.do'">menu4</div>
+	</div>
 		<input type="button" value="게시글목록" onclick="location.href='MarketList.ma'">
 		<% 
 		if(id != null) {

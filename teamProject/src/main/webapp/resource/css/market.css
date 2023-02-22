@@ -334,5 +334,7 @@ input[type="button"] {
 	text-align: center;
 }
 
-
+#idSpan {
+	position: relative;
+}
 
