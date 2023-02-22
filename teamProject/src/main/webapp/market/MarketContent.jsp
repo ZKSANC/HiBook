@@ -78,7 +78,6 @@ $(document).ready(function(){ // j쿼리 시작
 	      miniMenu.style.right = 580+"px"; 
 	      miniMenu.style.zIndex = "1000";
 	      miniMenu.style.backgroundColor = "#FBF7FF";
-	      mmenu.style.m
 	    }
 	  };
 	  idSpan.addEventListener("mouseup", mouse_end);
