@@ -74,8 +74,6 @@ $(document).ready(function(){ // j쿼리 시작
 	    if (is_right_click) {
 	      miniMenu.style.display = "block";
 	      miniMenu.style.position = "absolute";
-	      miniMenu.style.top = 355+"px";
-	      miniMenu.style.right = 580+"px"; 
 	      miniMenu.style.zIndex = "1000";
 	      miniMenu.style.backgroundColor = "#FBF7FF";
 	    }
@@ -125,7 +123,13 @@ $(document).ready(function(){ // j쿼리 시작
 		
 		<tr>
 		<td>작성자</td>
-		<td><span id="idSpan"><%=dto.getInsert_id() %></span></td>
+		<td><span id="idSpan"><%=dto.getInsert_id() %></span>
+		<div id="miniMenu" style="display: none;">
+			<div id="mmenu" onclick="location.href='main.do'">menu1</div>	
+			<div id="mmenu" onclick="location.href='main.do'">menu2</div>
+			<div id="mmenu" onclick="location.href='main.do'">menu3</div>
+			<div id="mmenu" onclick="location.href='main.do'">menu4</div>
+		</div></td>
 		</tr>
 			
 		<tr>
@@ -194,12 +198,6 @@ $(document).ready(function(){ // j쿼리 시작
 			  <td><%=dto.getTrade_inperson() %></td></tr>
 			  
 	</table>
-	<div id="miniMenu" style="display: none;">
-			<div id="mmenu" onclick="location.href='main.do'">menu1</div>	
-			<div id="mmenu" onclick="location.href='main.do'">menu2</div>
-			<div id="mmenu" onclick="location.href='main.do'">menu3</div>
-			<div id="mmenu" onclick="location.href='main.do'">menu4</div>
-	</div>
 		<input type="button" value="게시글목록" onclick="location.href='MarketList.ma'">
 		<% 
 		if(id != null) {
