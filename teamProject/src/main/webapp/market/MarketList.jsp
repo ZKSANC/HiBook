@@ -56,6 +56,7 @@ int allPage = (Integer)request.getAttribute("allPage");
 					</div>
 				</div>
 			<% }%>
+			
 			</div>
 		</div>
 		
