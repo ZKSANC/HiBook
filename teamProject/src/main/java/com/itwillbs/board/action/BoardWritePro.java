@@ -1,5 +1,6 @@
 package com.itwillbs.board.action;
 
+import java.io.File;
 import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,7 @@ public class BoardWritePro implements Action {
 		// 객체생성
 		// 1. request // 2. 웹서버 업로드 폴더 위치 -> webapp - upload 폴더 만들기
 		String uploadPath = request.getRealPath("/upload");
-
+		
 		// 3. 파일크기
 		int maxSize = 100 * 1024 * 1024;
 		

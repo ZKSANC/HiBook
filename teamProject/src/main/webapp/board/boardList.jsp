@@ -28,9 +28,35 @@
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp"/>
 <!-- 헤더파일들어가는 곳 -->
+<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <link href="/resource/css/board.css" rel="stylesheet" type="text/css">
+<link href="/resource/css/util.css" rel="stylesheet" type="text/css">
 <div class="boardContainer">
+
 <!-- 내용 시작 -->
+<!-- 스크립트 파일 들어가는곳 -->
+<script type="text/javascript">
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    for (var d = 0; d < dropdowns.length; d++) {
+      var openDropdown = dropdowns[d];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+<!-- 스크립트 끝. -->
 <div>
 <p id="boardTag"><%=boardTypeCdNm %> 💬</p>
 
@@ -46,11 +72,13 @@
 		<colgroup>
 			<col width="60px;">
 			<col width="*">
-			<col width="80px;">
-			<col width="200px;">
+			<col width="100px;">
+			<col width="120px;">
 			<col width="60px;">
 		</colgroup>
 		
+
+	
 		<thead>
 			<tr>
 				<th>번호</th>
@@ -60,6 +88,7 @@
 				<th>조회</th>
 			</tr>
 		</thead>
+		
 		<tbody>
 			<%
 			// 공지사항 for
@@ -78,7 +107,18 @@
 						<%=dto.getTitle()%>
 					</a>
 				</td>
-				<td><%=dto.getInsertId()%></td>
+				<td>
+					<div class="dropdown">
+						<span onclick="myFunction()" class="dropbtn"><%=dto.getInsertId()%></span>
+  							<div id="myDropdown" class="dropdown-content">
+   								 <a href="#">프로필</a>
+   								 <a href="#">1:1채팅</a>
+   								 <a href="MypageMarketList.mypage">작성한 글 목록</a>
+   								 <a href="MypageCommentList.mypage">작성한 댓글 목록</a>
+ 							 </div>
+					</div>
+				      	
+				</td>
 				<td><%=changeTime%></td>
 				<td><%=dto.getViewCnt()%></td>
 			</tr>
@@ -104,10 +144,19 @@
 					<a href="BoardContent.bo?boardType=<%=boardTypeCd %>&boardId=<%=dto.getBoardId()%>">
 						<%if(dto.getParentId() != 0){%> &nbsp;&nbsp;ㄴ<%}%>
 						<%=dto.getTitle()%>
-						
 					</a>
 				</td>
-				<td><%=dto.getInsertId()%></td>
+				<td>
+					<div class="dropdown">
+						<span onclick="myFunction()" class="dropbtn"><%=dto.getInsertId()%></span>
+							<div id="myDropdown" class="dropdown-content1">
+								<a href="#">프로필</a>
+								<a href="#">1:1채팅</a> 
+								<a href="MypageMarketList.mypage">작성한 글 목록</a> 
+								<a href="MypageCommentList.mypage">작성한 댓글 목록</a>
+							</div>
+						</div> 
+				</td>
 				<td><%=changeTime%></td>
 				<td><%=dto.getViewCnt()%></td>
 			</tr>
