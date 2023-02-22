@@ -203,6 +203,8 @@ function writeCheck() {
 			<col width="*">
 			<col width="100px;">
 		</colgroup>
+		<% // 시간계산해서 몇초전 몇분전 몇시간전 등 출력하는 함수사용.
+		String changeTime = ChangeTime.calculateTime(dto.getInsertDate()); %>
 		
       <tr>
       	<td colspan="3"><%=dto.getTitle()%></td>
@@ -253,29 +255,24 @@ function writeCheck() {
    </table>
  
  <table class="bCmmtContent1">
- <!-- 공지사항에 댓글작성불가 -->
-    	 <%if("N".equals(dto.getNoticeyn())) {%>
-    	 
+ <!-- 공지사항게시판 모든글에 댓글작성불가 -->
+    	 <%if("N".equals(dto.getNoticeyn()) == "Y".equals(dto.getNoticeyn())) {%>
        <!-- 댓글 시작 -->	 
          <tr>
             <td>
              <textarea id="content" name="content" rows="8" placeholder="댓글을 입력하세요" style="width: 100%"></textarea>
              <input type="checkbox" id="secretYn" name="secretYn" value="Y" >비밀댓글
              <input type="hidden" id="boardId" name="boardId" class="testClass" value="<%=dto.getBoardId()%>">
-             <input type="button" class="smallButtoncmmt smallButtonBlueGray  "value="댓글등록" onclick="cmmtWrite();">
-         
+             <input type="button" class="smallButtonComment smallButtonBlueGray  "value="댓글등록" onclick="cmmtWrite();">
             </td>
          </tr>
-         
-    	 	<%}%>
+ 		<%} %>
          <% 
             // 댓글 반복- 배열저장.
             for (int i = 0; i < boardList.size(); i++) {
                // 배열 한칸에 내용 가져오기 
                BoardCmmtDTO cmmtDto = boardList.get(i);
                
-           	// 시간계산해서 몇초전 몇분전 몇시간전 등 출력하는 함수사용.
-			   String changeTime = ChangeTime.calculateTime(dto.getInsertDate());
                
             %> 
             
@@ -291,13 +288,13 @@ function writeCheck() {
                 		  
                 		<!-- 비밀글 -->  
                       <% if("Y".equals(cmmtDto.getSecretYn())){%>
-                    	  (비밀댓글) 
+                    	  🔒비밀댓글
                       <%}%>	
                      
                       <%=cmmtDto.getContent()%> 
                      
                   <%} else {%>
-                  		 🔒비공개 댓글입니다.
+                  		 🔒 비공개 댓글입니다.
                   <%}%>
                   <br><br>
                   
@@ -351,25 +348,32 @@ function writeCheck() {
 	<!-- 댓글 끝 -->
 
       <br>
-      
+      <span class="flote"> 
    <% // 로그인 -> 세션값 있음
          if (id != null) {
             // 세션값 = 글쓴이 -> 일치 -> 자기자신 쓴 글(글수정, 글삭제 보이기)
             if (id.equals(dto.getInsertId())) { %> 
-               <input type="button" value="글수정" class="smallButton smallButtonBlueGray"
+           
+               <input type="button" value="글수정" class="smallButtonSubmit smallButtonBlueGray"
                      onclick="location.href='BoardUpdateForm.bo?boardType=<%=boardTypeCd %>&boardId=<%=dto.getBoardId()%>'">
 
-               <input type="button" value="글삭제" class="smallButton smallButtonBlueGray"
+               <input type="button" value="글삭제" class="smallButtonSubmit smallButtonBlueGray"
                      onclick="location.href='BoardDeletePro.bo?boardType=<%=boardTypeCd %>&boardId=<%=dto.getBoardId()%>'"> <%}}%>
            
-   <input type="button" value="글목록"  class="smallButtonList smallButtonBlueGray"
+   <input type="button" value="글목록"  class="smallButtonSubmit smallButtonBlueGray"
    		  onclick="location.href='BoardList.bo?boardType=<%=boardTypeCd %>'">
    
    <!-- 원글이면서 일반글인경우 답글쓰기 보이게 -->
-   <%if(dto.getParentId() == 0 && "N".equals(dto.getNoticeyn())) {%> 
-  		 <input type="button" value="답글쓰기"  class="smallButtonReply smallButtonBlueGray"
-  		 		onclick="location.href='BoardWriteForm.bo?boardType=<%=boardTypeCd %>&parentId=<%=dto.getBoardId()%>'">
-	<%}%>
+   
+   <%
+   	 if(!"notice".equals(dto.getBoardType())){
+   		 
+   		if(dto.getParentId() == 0 && "N".equals(dto.getNoticeyn())) {%> 
+  			 <input type="button" value="답글쓰기"  class="smallButtonSubmit smallButtonBlueGray"
+  		 			onclick="location.href='BoardWriteForm.bo?boardType=<%=boardTypeCd %>&parentId=<%=dto.getBoardId()%>'">
+  		</span>
+			<%}%>
+	<%} %> 
     
   
     	

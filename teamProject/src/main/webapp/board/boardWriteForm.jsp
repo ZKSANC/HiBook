@@ -93,9 +93,10 @@ function writeCheck() {
 			</tbody>
 		</table>
 		</div>
-		<div class="btfl">
+		<div class="btfl"
+		       onclick="location.href='BoardList.bo?boardType=<%=boardTypeCd %>'">
 		<input type = "submit" class="smallButtonSubmit smallButtonBlueGray" name = "submit" value="등록">
-		<input type = "reset" class="smallButtonCancle smallButtonBlueGray" name = "reset" value="취소">
+		<input type = "reset" class="smallButtonCancle smallButtonBlueGray " name = "reset" value="취소">
 		</div>
 </form>
 </div>
