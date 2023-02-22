@@ -87,6 +87,16 @@ function allChk(obj){
 
 <div class="tableBar">
 <table>
+<colgroup>
+<col width="50px;">
+<col width="80px;">
+<col width="100px;">
+<col width="100px;">
+<col width="*">
+<col width="80px;">
+<col width="80px;">
+<col width="110px;">
+</colgroup>
 <tr><th><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
 <th>글번호</th><th>게시판유형</th><th>사진</th>
 <th>글제목</th><th>글쓴이</th><th>조회수</th><th>등록일</th></tr>

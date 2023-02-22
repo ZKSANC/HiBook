@@ -32,7 +32,7 @@ public class MypageWishList implements Action{
 		int endRow = startRow + pageSize - 1;
 
 		// 찜목록 메서드 호출 
-		ArrayList<MarketDTO> getwishlist = dao.getWishList(id, startRow, pageSize);
+		ArrayList<MarketDTO> getwishlist = dao.getMyWishList(id, startRow, pageSize);
 		
 		//한 화면에 보여줄 페이지 개수 설정
 		int pageBlock = 10;

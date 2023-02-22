@@ -70,8 +70,8 @@ function allChk(obj){
 <div class="tableBar">
 <table>
 <tr><th><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
-<th>글번호</th><th>글제목</th>
-<th>글쓴이</th><th>가격</th><th>등록일</th></tr>
+<th>글번호</th><th>사진</th><th>글제목</th>
+<th>가격</th><th>글쓴이</th><th>등록일</th></tr>
 
 <%
 	for(int i=0; i<getwishlist.size(); i++){
@@ -81,10 +81,10 @@ function allChk(obj){
 	<tr>
 	<td><input type="checkbox" name="chk" value="<%=dto.getMarket_id() %>"></td>
 	<td><%=dto.getMarket_id() %></td>
-<%-- 	<td><img src="upload/<%=dto.getContent_img1() %>" width="100" height="100"></td> --%>
+	<td><img src="<%=dto.getUrl() %>" width="100" height="100"></td>
 	<td><a href="MarketContent.ma?market_id=<%=dto.getMarket_id() %>"><%=dto.getTitle() %></a></td>
-	<td><%=dto.getInsert_id() %></td>
 	<td><%=dto.getBook_price() %></td>
+	<td><%=dto.getInsert_id() %></td>
 	<td><%=dateFormat.format(dto.getInsert_date()) %></td><tr>
 	<%
 }

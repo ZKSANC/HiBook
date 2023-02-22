@@ -32,7 +32,7 @@ public class MypageMarketList implements Action{
 		int endRow = startRow + pageSize - 1;
 
 		// 메서드 호출 
-		ArrayList<MarketDTO> marketList = dao.getMarketList(id, startRow, pageSize);
+		ArrayList<MarketDTO> marketList = dao.getMyMarketList(id, startRow, pageSize);
 		
 		//한 화면에 보여줄 페이지 개수 설정
 		int pageBlock = 10;

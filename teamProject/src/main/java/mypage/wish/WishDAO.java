@@ -143,47 +143,52 @@ public class WishDAO {
 			return count;
 		}//
 		
-		// 마이페이지- 찜목록 메서드 
-		public ArrayList<MarketDTO> getWishList(String id, int startRow, int pageSize){
-			Connection con=null;
-			PreparedStatement pstmt=null;
-			ResultSet rs=null;
+		// 마이페이지- 찜목록 메서드 (사진 포함)
+		public ArrayList<MarketDTO> getMyWishList(String id, int startRow, int pageSize) {
 			ArrayList<MarketDTO> getwishlist=new ArrayList<>();
-			try {
-				// 1~2 단계
-				con=getConnection();
-				// 3단계 sql
-				// 최근 판매글이 위로 올라오게, 페이징 처리 
-				String sql="select * from market where market_id in (select market_id from attention where insert_id=?) order by market_id desc limit ?, ?";
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {	
+				con = getConnection();
+				
+				String sql="select m.market_id, m.trade_type, m.title, m.content, m.view_cnt, m.trade_st, m.book_price, "
+						+ "m.insert_id, m.insert_date, i.url "
+						+ "from (SELECT image_id, market_id, url "
+						+ "FROM market_image where mod(image_id,5)=1) i right join market m "
+						+ "on i.market_id = m.market_id where m.market_id in (select market_id from attention where insert_id=?) order by market_id desc limit ?, ?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, id);
 				pstmt.setInt(2, startRow-1);
 				pstmt.setInt(3, pageSize);
-				//4
+				 
 				rs=pstmt.executeQuery();
-				//5
+				
 				while(rs.next()) {
-					// 하나의 글의 바구니에 저장
-					MarketDTO dto=new MarketDTO(); 
+					MarketDTO dto = new MarketDTO();
 					dto.setMarket_id(rs.getInt("market_id"));
-//					dto.setContent_img1(rs.getString("content_img1"));
+					dto.setTrade_type(rs.getString("trade_type"));
 					dto.setTitle(rs.getString("title"));
+					dto.setContent(rs.getString("content"));
+					dto.setView_cnt(rs.getInt("view_cnt"));
+					dto.setTrade_st(rs.getString("trade_st"));
+					dto.setBook_price(rs.getString("book_price"));
 					dto.setInsert_id(rs.getString("insert_id"));
-					dto.setBook_price(rs.getInt("book_price"));
 					dto.setInsert_date(rs.getTimestamp("insert_date"));
-					// 바구니의 주소값을 배열 한칸에 저장
+					dto.setUrl(rs.getString("url"));
+					
 					getwishlist.add(dto);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally {
 				// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
-				if(rs!=null) try { rs.close();} catch (Exception e2) {}
-				if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
-				if(con!=null) try { con.close();} catch (Exception e2) {}
+					if(rs!=null) try { rs.close();} catch (Exception e2) {}
+					if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+					if(con!=null) try { con.close();} catch (Exception e2) {}
 			}
 			return getwishlist;
-		}//
+		}
 		
 		// 본인이 찜한 전체글 개수 구하는 메서드 (페이징 처리를 위해)
 		public int getWishCount(String id) {
@@ -241,4 +246,47 @@ public class WishDAO {
 				if(con!=null) try { con.close();} catch (Exception e2) {}
 			}
 		}
+		
+		// 마이페이지- 찜목록 메서드 (현재 미사용)
+		public ArrayList<MarketDTO> getWishList(String id, int startRow, int pageSize){
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			ArrayList<MarketDTO> getwishlist=new ArrayList<>();
+			try {
+				// 1~2 단계
+				con=getConnection();
+				// 3단계 sql
+				// 최근 판매글이 위로 올라오게, 페이징 처리 
+				String sql="select * from market where market_id in (select market_id from attention where insert_id=?) order by market_id desc limit ?, ?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				pstmt.setInt(2, startRow-1);
+				pstmt.setInt(3, pageSize);
+				//4
+				rs=pstmt.executeQuery();
+				//5
+				while(rs.next()) {
+					// 하나의 글의 바구니에 저장
+					MarketDTO dto=new MarketDTO(); 
+					dto.setMarket_id(rs.getInt("market_id"));
+//					dto.setContent_img1(rs.getString("content_img1"));
+					dto.setTitle(rs.getString("title"));
+					dto.setInsert_id(rs.getString("insert_id"));
+					dto.setBook_price(rs.getString("book_price"));
+					dto.setInsert_date(rs.getTimestamp("insert_date"));
+					// 바구니의 주소값을 배열 한칸에 저장
+					getwishlist.add(dto);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
+				if(rs!=null) try { rs.close();} catch (Exception e2) {}
+				if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+				if(con!=null) try { con.close();} catch (Exception e2) {}
+			}
+			return getwishlist;
+		}//
+		
 }

@@ -1,5 +1,5 @@
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="mypage.market.MarketDTO"%>
+<%@page import="mypage.market.MarketDTO"%> 
 <%@page import="java.util.ArrayList"%>
 <%@page import="mypage.market.MarketDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -87,20 +87,32 @@ function allChk(obj){
 
 <div class="tableBar">
 <table>
+<colgroup>
+<col width="50px;">
+<col width="80px;">
+<col width="110px;">
+<col width="100px;">
+<col width="200px;">
+<col width="90px;">
+<col width="80px;">
+<col width="80px;">
+<col width="90px;">
+</colgroup>
 <tr><th><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
-<th>글번호</th><th>게시판유형</th>
-<th>글제목</th><th>글쓴이</th><th>조회수</th><th>등록일</th></tr>
+<th>글번호</th><th>게시판유형</th><th>사진</th>
+<th>글제목</th><th>가격</th><th>글쓴이</th><th>조회수</th><th>등록일</th></tr>
 
 <%
 	for(int i=0; i<marketList.size(); i++){
-		MarketDTO dto = marketList.get(i);
+		MarketDTO dto = marketList.get(i);	
 	%>
 	<tr>
 	<td><input type="checkbox" name="chk" value="<%=dto.getMarket_id() %>"></td>
 	<td><%=dto.getMarket_id() %></td>
 	<td><%=dto.getTrade_type()  %></td>
-<%-- 	<td><img src="upload/<%=dto.getContent_img1() %>" width="100" height="100"></td> --%>
+	<td><img src="<%=dto.getUrl() %>" width="100" height="100"></td>
 	<td><a href="MarketContent.ma?market_id=<%=dto.getMarket_id() %>"><%=dto.getTitle() %></a></td>
+	<td><%=dto.getBook_price() %></td>
 	<td><%=dto.getInsert_id() %></td>
 	<td><%=dto.getView_cnt() %></td>
 	<td><%=dateFormat.format(dto.getInsert_date()) %></td>
