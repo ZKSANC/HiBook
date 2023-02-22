@@ -130,13 +130,12 @@
 				<input type="button" class="button buttonBlueGray" value="글쓰기"
 					   onclick="location.href='BoardWriteForm.bo?boardType=<%=boardTypeCd%>'">
 		
-		<% }} else { %>
+			<% }}
+			else { %>
 				<input type="button" class="button buttonBlueGray" value="글쓰기"
 					   onclick="location.href='BoardWriteForm.bo?boardType=<%=boardTypeCd%>'">
 
-		<%
-		}
-		%>
+		<%}%>
 
 		<div class="ssgap page">	
 	
