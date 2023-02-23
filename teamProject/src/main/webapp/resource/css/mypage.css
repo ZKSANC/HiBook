@@ -60,6 +60,17 @@
 	float: left;
 }
 
+.menu7 {
+	border: 1px solid black;
+	width : 200px;
+	margin : 0 auto;
+}
+
+.menu7:hover {
+	background-color: #42444e;
+	color: #fff;
+}
+
 .menu1 {
 	border: 1px solid black;
 	width : 200px;
