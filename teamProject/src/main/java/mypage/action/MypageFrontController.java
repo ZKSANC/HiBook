@@ -164,6 +164,15 @@ public class MypageFrontController extends HttpServlet{
 			forward=new ActionForward();
 			forward.setPath("mypage/mypageDeletePro.jsp");
 			forward.setRedirect(false);	
+			
+		// 중고거래 게시글 본문에서 해당 유저의 판매글목록 조회 
+		}else if(sPath.equals("/MypageUserMarketList.mypage")) {
+			action=new MypageUserMarketList();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		//----------------------------------------------

@@ -135,7 +135,7 @@ $(document).ready(function(){ // j쿼리 시작
 		<div id="miniMenu">
 			<div id="profile"><img id="profilImg" src="resource/image/image.png"></div>
 			<div id="mmenu" onclick="location.href='profile.pr?insert_id=<%=dto.getInsert_id()%>'">프로필 보기</div>	
-			<div id="mmenu" onclick="location.href='MypageMarketList.mypage?insert_id=<%=dto.getInsert_id()%>'">작성글 보기</div>
+			<div id="mmenu" onclick="location.href='MypageUserMarketList.mypage?insert_id=<%=dto.getInsert_id()%>&nickname=<%=dao2.getNickname(dto.getMarket_id())%>'">작성글 보기</div>
 			<div id="mmenu" onclick=popup()>거래후기 쓰기</div>
 		</div></td>
 		</tr>

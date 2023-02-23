@@ -17,7 +17,7 @@ public class AdminMultidelMarketPro implements Action{
 		// 이유: 부모(중고거래 게시판)는 자식(채팅, 찜)이 있으면 삭제할 수 없음 
 		// 이후 중고거래 게시판 체크박스 삭제 메서드 호출 
 		MarketDAO dao = new MarketDAO();
-		dao.multiDelete2(market_id); 
+//		dao.multiDelete2(market_id); 
 		dao.multiDelete3(market_id); 
 		dao.multiDelete(market_id); 
 
