@@ -73,11 +73,9 @@ $(document).ready(function(){ // j쿼리 시작
 	
 	    if (is_right_click) {
 	      miniMenu.style.display = "block";
-	      miniMenu.style.position = "absolute";
-	      miniMenu.style.zIndex = "1000";
-	      miniMenu.style.backgroundColor = "#FBF7FF";
-	    }
+	    } 
 	  };
+	  
 	  idSpan.addEventListener("mouseup", mouse_end);
 	  
 	  const hideMiniMenu = (event) => {
@@ -124,11 +122,13 @@ $(document).ready(function(){ // j쿼리 시작
 		<tr>
 		<td>작성자</td>
 		<td><span id="idSpan"><%=dto.getInsert_id() %></span>
-		<div id="miniMenu" style="display: none;">
-			<div id="mmenu" onclick="location.href='main.do'">menu1</div>	
-			<div id="mmenu" onclick="location.href='main.do'">menu2</div>
-			<div id="mmenu" onclick="location.href='main.do'">menu3</div>
-			<div id="mmenu" onclick="location.href='main.do'">menu4</div>
+		<div id="miniMenu">
+			<div id="profile"><img id="profilImg" src="resource/image/image.png"></div>
+			<div id="stars">별점</div>
+			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">menu1</div>	
+			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">menu2</div>
+			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">menu3</div>
+			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">menu4</div>
 		</div></td>
 		</tr>
 			
