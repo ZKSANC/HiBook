@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.wish.WishDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.itwillbs.wish.WishDAO"%>
@@ -125,16 +126,17 @@ $(document).ready(function(){ // j쿼리 시작
 		<div id="miniMenu">
 			<div id="profile"><img id="profilImg" src="resource/image/image.png"></div>
 			<div id="stars">별점</div>
-			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">menu1</div>	
-			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">menu2</div>
-			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">menu3</div>
-			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">menu4</div>
+			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">아이디</div>	
+			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">작성글 보기</div>
+			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">1:1 채팅</div>
+			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">거래후기 쓰기</div>
 		</div></td>
 		</tr>
 			
 		<tr>
 		<td>등록일</td>
-		<td><%=dto.getInsert_date() %></td>
+		<% SimpleDateFormat dateformat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");%>
+		<td><%=dateformat.format(dto.getInsert_date()) %></td>
 		</tr>
 		
 		<tr>
