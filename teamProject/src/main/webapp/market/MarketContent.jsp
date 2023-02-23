@@ -30,9 +30,6 @@ for(int i = 0; i < dto.getImgUrls().length; i++) {
 <script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){ // j쿼리 시작
-	/* if() {
-		window.open()
-	} */
 	//처음으로 가져온 찜개수 저장
 	var count = <%= dao.getMarketWishCount(dto.getMarket_id())%>
 	document.getElementById("wishCount").innerHTML=count;
@@ -41,62 +38,66 @@ $(document).ready(function(){ // j쿼리 시작
 	} 
 	// 페이지 이동 없이 MarketWishPro 동작
 	$(document).on('click', '.wish-btn', function(){
-        var button = $(this);
-        $.ajax({ 
-            url:'MarketWishPro.ma',
-            data:{'market_id':<%=dto.getMarket_id() %>}, 
-            success:function(result) { 
-                count = result;
-                $('#wishCount').html(count);          
-                if(button.val() === "찜하기"){
-                    button.val("찜취소");
-                    $('#heart').show();  
-                }else{
-                    button.val("찜하기");
-                    $('#heart').hide();         
-                }
-            }   
-        });
+			var button = $(this);
+	        $.ajax({ 
+	            url:'MarketWishPro.ma',
+	            data:{'market_id':<%=dto.getMarket_id() %>}, 
+	            success:function(result) { 
+	                count = result;
+	                $('#wishCount').html(count);          
+	                if(button.val() === "찜하기"){
+	                    button.val("찜취소");
+	                    $('#heart').show();  
+	                }else{
+	                    button.val("찜하기");
+	                    $('#heart').hide();         
+	                }
+	            }   
+	        });
     });
 	
 });// j쿼리 끝 
 	//마우스 우클릭 시 메뉴 동작
-	document.addEventListener("DOMContentLoaded", () => {
- 	  var idSpan = document.getElementById("idSpan");
-	  var miniMenu = document.getElementById("miniMenu");
-	  var mmenu = document.getElementById("mmenu");
-	
-	  const mouse_end = (event) => {
-	
-	    const is_right_click = (event.which == 3) || (event.button == 2);
-		    if (is_right_click) {
-		      miniMenu.style.display = "block";
-		    } 
-	  };
-	  
-	  idSpan.addEventListener("mouseup", mouse_end);
-	  
-	  const hideMiniMenu = (event) => {
-		  
-		    if (!miniMenu.contains(event.target)) {
-		      miniMenu.style.display = "none";
-		    }
-		  };
-		document.addEventListener("click", hideMiniMenu); 
-		
-		window.oncontextmenu = function () {
-		    return false;
-		};
-	});
+		document.addEventListener("DOMContentLoaded", () => {	
+		  var id ='<%=(String)session.getAttribute("id")%>';
+		  console.log(id);
+		  if(id!=="null") {
+		 	  var idSpan = document.getElementById("idSpan");
+			  var miniMenu = document.getElementById("miniMenu");
+			  var mmenu = document.getElementById("mmenu");
+			
+			  const mouse_end = (event) => {
+			
+			    const is_right_click = (event.which == 3) || (event.button == 2);
+				    if (is_right_click) {
+				      miniMenu.style.display = "block";
+				    } 
+			  };
+			  
+			  idSpan.addEventListener("mouseup", mouse_end);
+			  
+			  const hideMiniMenu = (event) => {
+				  
+				    if (!miniMenu.contains(event.target)) {
+				      miniMenu.style.display = "none";
+				    }
+			  };
+			  document.addEventListener("click", hideMiniMenu); 
+			  
+			  window.oncontextmenu = function () {
+				  	return false;
+			  };
+		  }			
+		});
 	//리뷰 새창 띄우기
 	function popup(){
-	var link = "ReviewWrite.pr?insert_id=<%=dto.getInsert_id()%>";     
-	var popupWidth = 400;
-	var popupHeight = 400;
-	var popupX = (window.screen.width/2) - (popupWidth/2);
-	var popupY= (window.screen.height/2) - (popupHeight/2);
-	
-  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+		var link = "ReviewWrite.pr?insert_id=<%=dto.getInsert_id()%>";     
+		var popupWidth = 400;
+		var popupHeight = 400;
+		var popupX = (window.screen.width/2) - (popupWidth/2);
+		var popupY= (window.screen.height/2) - (popupHeight/2);
+		
+	  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
 	}
 	//게시글 삭제 동작
 	function checkDelete() {
