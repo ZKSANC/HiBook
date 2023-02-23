@@ -1,49 +1,195 @@
+<%@page import="com.itwillbs.market.db.MarketDAO"%>
+<%@page import="com.itwillbs.market.db.MarketDTO"%>
+<%@page import="com.itwillbs.util.ChangeTime"%>
+<%@page import="com.itwillbs.board.db.BoardDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>member/main.jsp</title>
-</head>
-<body>
-<h1>member/main.jsp</h1>
-<%
-// session.setAttribute("id", 모든 참조형값); => 업캐스팅(자동형변환)
-// 자식 = 업캐스팅된 부모(다운캐스팅 명시적으로 형변환)
-String id=(String)session.getAttribute("id");
-// 세션값이 없으면(세션값이 null 이면) => loginForm.jsp 
-if(id==null){
-	response.sendRedirect("MemberLoginForm.me");
-}
+<% 
+// request 가져온 데이터 담기 
+
+MarketDAO dao = new MarketDAO();
+ArrayList<MarketDTO> latestList = dao.getMainMarketLatestList();
+ArrayList<MarketDTO> viewList = dao.getMainMarketViewList();
+
+ArrayList<BoardDTO> freeList = (ArrayList<BoardDTO>) request.getAttribute("freeList");
+ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("reviewList");
+
 %>
-<%=id %>님 로그인 하셨습니다.
-<a href="MemberLogout.me">로그아웃</a><br>
-<a href="MemberInfo.me">회원정보조회</a><br>
-<a href="MemberUpdateForm.me">회원정보수정</a><br>
-<a href="MemberDeleteForm.me">회원정보삭제</a><br>
-<%
-//로그인 한 회원
-if(id!=null){
-	// admin 인 경우 
-	if(id.equals("admin")){
-		%>
-		<a href="MemberList.me">회원목록</a><br>
-		<%
-	}
-}
-%>
-<a href="MarketWriteForm.ma">중고거래 글쓰기</a><br>
-<a href="MarketList.ma">중고거래 목록</a><br>
-<a href="BoardWriteForm.bo?boardType=free">자유게시판 글쓰기</a><br>
-<a href="BoardWriteForm.bo?boardType=notice">공지게시판 글쓰기</a><br>
-<a href="BoardWriteForm.bo?boardType=review">도서리뷰게시판 글쓰기</a><br>
-<a href="BoardList.bo?boardType=free">자유게시판 글목록</a><br>
-<a href="BoardList.bo?boardType=notice">공지게시판 글목록</a><br>
-<a href="BoardList.bo?boardType=review">리뷰게시판 글목록</a><br>
-</body>
-</html>
+<!-- 헤더파일들어가는 곳 -->
+<jsp:include page="/inc/header.jsp"/>
+<!-- 헤더파일들어가는 곳 -->
+
+
+<section class="bannerBack">
+	<div class="banner">
+		<div class="bannerText">
+			<p id="mainText">Hibook 중고책 서점</p>
+			<p id="subText">잠자는 책들을 거래해보세요</p>
+	    </div>
+	</div>
+</section>
+
+<article class="board">
+	<div class="boardContainer">
+		<div class="board1">
+			<p id="boardTag">추천 도서📚</p>
+			<p>인기있는 책을 확인하세요!</p>
+		 	<div class="cardContainer">
+		 	
+				<%for(int i = 0; i < viewList.size(); i++) {
+		 		MarketDTO dto = viewList.get(i); 
+		 		String changeTime = ChangeTime.calculateTime(dto.getInsert_date());
+		 		%>	
+				<div class="card" onclick="location.href='MarketContent.ma?market_id=<%=dto.getMarket_id()%>'">
+					<div class="innerCard">
+						<div class="innerTop">
+							<img src="<%=dto.getUrl() %>" class="books">
+						</div>
+						<div class="innerBottom">
+							<div class="cardText">
+								<p id="book_price"><%=dto.getBook_price() %> 원</p>
+								<p id="title"><span id=""><%=dto.getTrade_type() %></span> &#5; <%=dto.getTitle() %></p>
+								<p id="insert_date"><%=changeTime %></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<% }%>
+
+			</div>
+		</div>
+		
+		<div class="board1">
+			<p id="boardTag">최신 도서📚</p>
+			<p>관심있던 책을 찾아보세요!</p>
+			<div class=cardContainer>
+			
+				<%for(int i = 0; i < latestList.size(); i++) {
+		 		MarketDTO dto = latestList.get(i); 
+		 		String changeTime = ChangeTime.calculateTime(dto.getInsert_date());
+		 		%>	
+				<div class="card" onclick="location.href='MarketContent.ma?market_id=<%=dto.getMarket_id()%>'">
+					<div class="innerCard">
+						<div class="innerTop">
+							<img src="<%=dto.getUrl() %>" class="books">
+						</div>
+						<div class="innerBottom">
+							<div class="cardText">
+								<p id="book_price"><%=dto.getBook_price() %> 원</p>
+								<p id="title"><span id=""><%=dto.getTrade_type() %></span> &#5; <%=dto.getTitle() %></p>
+								<p id="insert_date"><%=changeTime %></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<% }%>
+			
+			</div>
+		</div>
+		
+		<div class="board2">
+			<p id="boardTag">자유게시판💬</p>
+			<div class="tableBar">
+				<table>
+				<colgroup>
+						<col width="80px;">
+						<col width="*">
+						<col width="100px;">
+						<col width="80px;">
+						<col width="100px;">
+					</colgroup>
+				  <thead>
+				    <tr>
+				      <th>글번호</th>
+				      <th>글제목</th>
+				      <th>글쓴이</th>
+				      <th>조회수</th>
+				      <th>등록일</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				    <%
+				    // list반복해서 list에 담긴 boardDTO 뿌려주기
+				    for (int i = 0; i < freeList.size(); i++) {
+						// 배열 한칸에 내용 가져오기 
+						BoardDTO dto = freeList.get(i);
+						
+						// 시간계산해서 몇초전 몇분전 몇시간전 등 출력하는 함수사용.
+						String changeTime = ChangeTime.calculateTime(dto.getInsertDate());
+						%>
+				      <td><%=dto.getBoardId() %></td>
+				      <td class="skip">
+				      	<a href="BoardContent.bo?boardType=<%=dto.getBoardType() %>&boardId=<%=dto.getBoardId()%>">
+							<%=dto.getTitle()%>
+						</a>
+					  </td>
+				      <td><%=dto.getInsertId() %></td>
+				      <td><%=dto.getViewCnt() %></td>
+				      <td><%=changeTime%></td>
+				    </tr>
+				   <%} %>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		
+		<div class="board2">
+			<p id="boardTag">책 리뷰💬</p>
+			<div class="tableBar">
+					<table>
+					<colgroup>
+						<col width="80px;">
+						<col width="*">
+						<col width="100px;">
+						<col width="80px;">
+						<col width="100px;">
+					</colgroup>
+					<thead>
+			
+				    <tr>
+				 	  <th>글번호</th>
+				      <th>글제목</th>
+				      <th>글쓴이</th>
+				      <th>조회수</th>
+				      <th>등록일</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				   <tr>
+				    <%
+				    // list반복해서 list에 담긴 boardDTO 뿌려주기
+				    for (int i = 0; i < reviewList.size(); i++) {
+						// 배열 한칸에 내용 가져오기 
+						BoardDTO dto = reviewList.get(i);
+						
+						// 시간계산해서 몇초전 몇분전 몇시간전 등 출력하는 함수사용.
+						String changeTime = ChangeTime.calculateTime(dto.getInsertDate());
+						%>
+				      <td><%=dto.getBoardId() %></td>
+				      <td>
+				      	<div class="skip">
+				      	<a href="BoardContent.bo?boardType=<%=dto.getBoardType() %>&boardId=<%=dto.getBoardId()%>">
+							<%=dto.getTitle()%>
+						</a>
+						</div>
+					  </td>
+				      <td><%=dto.getInsertId() %></td>
+				      <td><%=dto.getViewCnt() %></td>
+				      <td><%=changeTime%></td>
+				    </tr>
+				   <%} %>
+				    
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</article>
 
 
 
-
+<!-- 푸터파일들어가는 곳 -->
+<jsp:include page="/inc/footer.jsp"/>
+<!-- 푸터파일들어가는 곳 -->   
