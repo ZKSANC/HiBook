@@ -67,21 +67,17 @@ $(document).ready(function(){ // j쿼리 시작
 	  var mmenu = document.getElementById("mmenu");
 	
 	  const mouse_end = (event) => {
-	    console.log("mouse_end called");
 	
 	    const is_right_click = (event.which == 3) || (event.button == 2);
-	    console.log("is_right_click:", is_right_click);
-	
-	    if (is_right_click) {
-	      miniMenu.style.display = "block";
-	    } 
+		    if (is_right_click) {
+		      miniMenu.style.display = "block";
+		    } 
 	  };
 	  
 	  idSpan.addEventListener("mouseup", mouse_end);
 	  
 	  const hideMiniMenu = (event) => {
-		    console.log("hideMiniMenu called");
-
+		  
 		    if (!miniMenu.contains(event.target)) {
 		      miniMenu.style.display = "none";
 		    }
@@ -92,6 +88,16 @@ $(document).ready(function(){ // j쿼리 시작
 		    return false;
 		};
 	});
+	//리뷰 새창 띄우기
+	function popup(){
+	var link = "ReviewWrite.pr?insert_id=<%=dto.getInsert_id()%>";     
+	var popupWidth = 400;
+	var popupHeight = 400;
+	var popupX = (window.screen.width/2) - (popupWidth/2);
+	var popupY= (window.screen.height/2) - (popupHeight/2);
+	
+  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+	}
 	//게시글 삭제 동작
 	function checkDelete() {
 		var result = confirm("게시글을 삭제하시겠습니까?");
@@ -125,11 +131,9 @@ $(document).ready(function(){ // j쿼리 시작
 		<td><span id="idSpan"><%=dto.getInsert_id() %></span>
 		<div id="miniMenu">
 			<div id="profile"><img id="profilImg" src="resource/image/image.png"></div>
-			<div id="stars">별점</div>
-			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">아이디</div>	
-			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">작성글 보기</div>
-			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">1:1 채팅</div>
-			<div id="mmenu" onclick="location.href='main.do?insert_id=<%=dto.getInsert_id()%>'">거래후기 쓰기</div>
+			<div id="mmenu" onclick="location.href='profile.pr?insert_id=<%=dto.getInsert_id()%>'">프로필 보기</div>	
+			<div id="mmenu" onclick="location.href='MypageMarketList.mypage?insert_id=<%=dto.getInsert_id()%>'">작성글 보기</div>
+			<div id="mmenu" onclick=popup()>거래후기 쓰기</div>
 		</div></td>
 		</tr>
 			
@@ -210,8 +214,8 @@ $(document).ready(function(){ // j쿼리 시작
 			}
 		}
 		%>
-		<input type="button" value="1:1 채팅" onclick="location.href='채팅가상주소'">
-		<input type="button" value="신고하기" onclick="location.href='신고가상주소'">
+		<input type="button" value="1:1 채팅" onclick="location.href='채팅가상주소?insert_id=<%=dto.getInsert_id()%>'">
+		<input type="button" value="신고하기" onclick="location.href='신고가상주소insert_id=<%=dto.getInsert_id()%>'">
 <!-- 내용 끝 -->
 </div>
 
