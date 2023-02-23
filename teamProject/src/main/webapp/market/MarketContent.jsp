@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.market.db.MarketDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.wish.WishDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -20,6 +21,7 @@ String id = (String)session.getAttribute("id");
 MarketDTO dto = (MarketDTO)request.getAttribute("dto");
 ComCdDTO cdto = new ComCdDTO();
 WishDAO dao = new WishDAO();
+MarketDAO dao2 = new MarketDAO();
 
 int length = 0;
 for(int i = 0; i < dto.getImgUrls().length; i++) {
@@ -57,7 +59,7 @@ $(document).ready(function(){ // j쿼리 시작
     });
 	
 });// j쿼리 끝 
-	//마우스 우클릭 시 메뉴 동작
+	//마우스 우클릭 시 프로필메뉴 동작
 		document.addEventListener("DOMContentLoaded", () => {	
 		  var id ='<%=(String)session.getAttribute("id")%>';
 		  console.log(id);
@@ -129,7 +131,7 @@ $(document).ready(function(){ // j쿼리 시작
 		
 		<tr>
 		<td>작성자</td>
-		<td><span id="idSpan"><%=dto.getInsert_id() %></span>
+		<td><span id="idSpan"><%=dao2.getNickname(dto.getMarket_id()) %></span>
 		<div id="miniMenu">
 			<div id="profile"><img id="profilImg" src="resource/image/image.png"></div>
 			<div id="mmenu" onclick="location.href='profile.pr?insert_id=<%=dto.getInsert_id()%>'">프로필 보기</div>	
