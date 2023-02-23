@@ -72,7 +72,7 @@ $(document).ready(function(){ // j쿼리 시작
 			
 			    const is_right_click = (event.which == 3) || (event.button == 2);
 				    if (is_right_click) {
-				      miniMenu.style.display = "block";
+				      miniMenu.style.display = "flex";
 				    } 
 			  };
 			  
