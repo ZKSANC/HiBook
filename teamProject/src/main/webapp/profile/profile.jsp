@@ -47,7 +47,6 @@
 							별점 :
 							<%=Double.toString(sDto.getScore()).substring(0, 3)%>
 						</h4>
-						<button class="jjimbtn">찜목록</button>
 						<button class="chatbtn">1:1채팅</button>
 					</div>
 					<!-- 					<hr class="board-box"> -->
@@ -62,9 +61,6 @@
 						<li class="list-group-item">
 							<h6 class="board2">내가쓴 판매글</h6>
 						</li>
-						<li class="list-group-item">
-							<h6 class="board3">내가쓴 댓글</h6>
-						</li>
 					</ul>
 				</div>
 			</div>
@@ -76,16 +72,16 @@
  				%>
 				<div class="reviewbox2">
 					<table>
+					<colgroup>
+						<col width="50px">
+						<col width="50px">
+						<col width="*">
+						<col width="100px">
+					</colgroup>
 						<tr>
 							<td><%=sdto.getScore()%></td>
-						</tr>
-						<tr>
 							<td><%=sdto.getInsert_id()%></td>
-						</tr>
-						<tr>
 							<td><%=sdto.getReview_content()%></td>
-						</tr>
-						<tr>
 							<td><%=sdto.getReview_date()%></td>
 						</tr>
 					</table>

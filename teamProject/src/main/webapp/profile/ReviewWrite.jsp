@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.market.db.MarketDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,6 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="./css/star.css" rel="stylesheet"/>
+<script type="text/javascript">
+	const urlParams = new URL(location.href).searchParams;
+
+	const id = urlParams.get('insert_id');
+
+	console.log(id)
+</script>
 </head>
 <body>
 <%
@@ -13,7 +21,7 @@ String insert_id=(String)session.getAttribute("id");
 %>
  	<form action="ReviewWritePro.pr" class="mb-3" id="myform" method="post">
 	<fieldset>
-	<input type="text" name="insert_id" value=<%=insert_id %>>
+	<input type="text" name="insert_id" value=>
 		<span class="text-bold">별점을 선택해주세요</span>
 		<input type="radio" name="score" value="5.0" id="rate1"><label
 			for="rate1">★</label>
@@ -25,7 +33,7 @@ String insert_id=(String)session.getAttribute("id");
 			for="rate4">★</label>
 		<input type="radio" name="score" value="1.0" id="rate5"><label
 			for="rate5">★</label><p>
-		<input type="text" name="tgt_id" placeholder="거래한 아이디 적어주세요">
+		<input type="text" name="tgt_id" value=>
 	</fieldset>
 	
 	<div>
