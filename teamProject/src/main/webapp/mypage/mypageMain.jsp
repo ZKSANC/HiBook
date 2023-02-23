@@ -58,8 +58,8 @@ if(id != null){
 		<h1>마이페이지</h1>
 <!-- 		프로필사진, 닉네임 뿌려줌  -->
 		<img src="upload/<%=dto.getMem_img() %>" width="100" height="100">
-		<%=dto.getNickname()%>
-		<a href="MypageImgUpdateForm.mypage"><input type="button" value="프로필사진 및 닉네임 수정"></a><br>
+		<%=dto.getNickname()%>&nbsp;
+		<a href="MypageImgUpdateForm.mypage"><input type="button" class=button2 value="프로필사진 및 닉네임 수정"></a><br>
 		<div class=menu1><a href="/profile.pr">내 프로필</a></div>			
 		<div class=menu2><a href="MypageUpdateForm.mypage">회원정보 수정</a></div>
 		<div class=menu3><a href="MypageMarketList.mypage">내가 쓴 글</a></div>
