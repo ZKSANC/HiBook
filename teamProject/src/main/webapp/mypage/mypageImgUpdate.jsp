@@ -18,7 +18,14 @@ MemberDTO dto=(MemberDTO)request.getAttribute("dto");
 <form id="fr" action="MypageImgUpdatePro.mypage" method="post" enctype="multipart/form-data">
 
 <p>
-<img src="upload/<%=dto.getMem_img() %>" width="100" height="100"><br>
+		<%if(dto.getMem_img().equals("url")) { %>
+<!-- 		기본 프로필사진 뿌려줌  -->
+		<img src="resource/image/image.png" width="100" height="100"><%
+		}else { %>
+<!-- 		프로필사진, 닉네임 뿌려줌  -->
+		<img src="upload/<%=dto.getMem_img() %>" width="100" height="100">
+		<%
+		}%>
 <ul>
 
 <li>
