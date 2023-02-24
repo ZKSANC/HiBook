@@ -4,12 +4,10 @@
 <%@page import="com.itwillbs.market.db.MarketDTO"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+<!-- 헤더파일들어가는 곳 -->
+<jsp:include page="/inc/header.jsp"/>
+<!-- 헤더파일들어가는 곳 -->
 <link href="resource/css/market.css" rel="stylesheet" type="text/css">
-<title>Insert title here</title>
 <!-- 자바 들어가는 곳 -->
 <%
 MarketDTO dto = (MarketDTO) request.getAttribute("dto");
@@ -30,7 +28,6 @@ ArrayList<ComCdDTO> cdtoList3 = cdao.getComCdList(cdto.getCdGrpnms()[3]);
 ArrayList<ComCdDTO> cdtoList4 = cdao.getComCdList(cdto.getCdGrpnms()[4]);
 %>
 <!-- 자바스크립트 들어가는 곳 -->
-<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){ // j쿼리 start
 		//멀티이미지 업로드 시 미리보기 불러오기 
@@ -225,11 +222,6 @@ $(document).ready(function(){ // j쿼리 start
 	   } 
 	} 
 </script>
-</head>
-<body>
-<!-- 헤더파일들어가는 곳 -->
-<jsp:include page="/inc/header.jsp" />
-<!-- 헤더파일들어가는 곳 -->
 
 <div class="boardContainer">
 <!-- 내용 시작 -->
@@ -394,5 +386,3 @@ $(document).ready(function(){ // j쿼리 start
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="/inc/footer.jsp" />
 <!-- 푸터 들어가는 곳 -->
-</body>
-</html>
