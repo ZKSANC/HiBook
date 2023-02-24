@@ -20,14 +20,22 @@
 	// 로그인 ID
 	String sid = request.getParameter("id");
 	String id = (String) session.getAttribute("id");
-// 	MemberDTO dto = (MemberDTO) request.getAttribute("id");
+	
+	// 타겟 ID
+	String tgt_id = (String)request.getAttribute("tgt_id");
+	
+	// 마이페이지 리뷰가 없는 회원의 NICKNMAE
+	String nickname = "";
+	if(request.getParameter("nickname")!=null) {
+		nickname = request.getParameter("nickname");
+	}
+	
 	StarReviewDAO sDao = new StarReviewDAO();
+	StarReviewDTO dto = new StarReviewDTO();
 	
 	// 페이징 처리 
 		ArrayList<StarReviewDTO> boardList = (ArrayList<StarReviewDTO>) request.getAttribute("boardList");
-		// 작성자 ID
-		StarReviewDTO dto = boardList.get(0);
-		String insert_id = dto.getTgt_id();
+	
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
 		int currentPage = (Integer) request.getAttribute("currentPage");
 		int startPage = (Integer) request.getAttribute("startPage");
@@ -35,12 +43,6 @@
 		int endPage = (Integer) request.getAttribute("endPage");
 		int pageCount = (Integer) request.getAttribute("pageCount");
 		
-		String tgt_id = "";
-		if(id.equals(insert_id)) {
-			tgt_id = id;
-		} else {
-			tgt_id = insert_id;
-		}
 		StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 	%>
 	<div class="container">
@@ -55,10 +57,20 @@
 					<div class="profile-chat">
 						<h4>
 							아이디 :
-							<%=sDto.getTgt_id() %></h4>
+							<%if(sDto.getTgt_id()==null) { %>
+							<%=tgt_id%>
+							<% } else { %>
+								<%=sDto.getTgt_id()%>
+							<%}%>
+						</h4>
 						<h4>
 							닉네임 :
-							<%=sDto.getNickname()%></h4>
+							<%if(sDto.getTgt_id()==null && !(nickname.equals(""))) { %>
+							<%=nickname%>
+							<% } else { %>
+							<%=sDto.getNickname()%>
+							<%}%> 
+						</h4>
 						<h4>
 							별점 :
 							<%=Double.toString(sDto.getScore()).substring(0, 3)%>

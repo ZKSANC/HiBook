@@ -14,6 +14,9 @@ public class MarketList implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MarketList excute()");
 		
+		String trade_type = request.getParameter("trade_type");
+		System.out.println(trade_type);
+		
 		MarketDAO dao = new MarketDAO();
 		//한 페이지에 불러올 market_id 열 수
 		int pageSize = 16;

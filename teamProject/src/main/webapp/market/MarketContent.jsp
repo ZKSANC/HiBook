@@ -134,7 +134,7 @@ $(document).ready(function(){ // j쿼리 시작
 		<td><span id="idSpan"><%=dao2.getNickname(dto.getMarket_id()) %></span>
 		<div id="miniMenu">
 			<div id="profile"><img id="profilImg" src="resource/image/image.png"></div>
-			<div id="mmenu" onclick="location.href='profile.pr?insert_id=<%=dto.getInsert_id()%>'">프로필 보기</div>	
+			<div id="mmenu" onclick="location.href='profile.pr?insert_id=<%=dto.getInsert_id()%>&nickname=<%=dao2.getNickname(dto.getMarket_id())%>'">프로필 보기</div>	
 			<div id="mmenu" onclick="location.href='MypageUserMarketList.mypage?insert_id=<%=dto.getInsert_id()%>&nickname=<%=dao2.getNickname(dto.getMarket_id())%>'">작성글 보기</div>
 			<div id="mmenu" onclick=popup()>거래후기 쓰기</div>
 		</div></td>
@@ -218,7 +218,7 @@ $(document).ready(function(){ // j쿼리 시작
 		}
 		%>
 		<input type="button" value="1:1 채팅" onclick="location.href='채팅가상주소?insert_id=<%=dto.getInsert_id()%>'">
-		<input type="button" value="신고하기" onclick="location.href='신고가상주소insert_id=<%=dto.getInsert_id()%>'">
+		<input type="button" value="신고하기" onclick="location.href='신고가상주소?insert_id=<%=dto.getInsert_id()%>'">
 <!-- 내용 끝 -->
 </div>
 

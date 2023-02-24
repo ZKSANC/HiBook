@@ -134,6 +134,10 @@ $(document).ready(function(){ // j쿼리 start
 		 var contentLength = document.getElementsByName("content")[0].value.length;
 		 console.log(subjectLength);
 		 //게시글 submit 전 제한 사항
+		 if(totalImgLength < 1) {
+			 alert("최소 1개의 이미지를 올려주세요.");
+			 return false;
+		 }
 		 if(totalImgLength > <%=MarketDTO.getImgLengthMax()%>) {
 			 alert("게시글 당 이미지는 5개까지 올릴 수 있습니다.");
 			 return false;

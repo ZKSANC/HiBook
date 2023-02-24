@@ -5,8 +5,8 @@
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
-    
-    /*  은숙 @font-face 변경  */
+/*  은숙 @font-face 변경  */
+
 }
 body {
   margin: 0px;
@@ -317,12 +317,9 @@ th, td {
 th {
   background: #42444e;
   color: #fff;
-  text-align: center;
+  text-align: left;
 }
 
-.td2 {
-  text-align: center;
-}
 tr:first-child th:first-child {
   border-top-left-radius: 6px;
 }
