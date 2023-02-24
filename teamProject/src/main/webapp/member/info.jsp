@@ -1,15 +1,9 @@
-
-
 <%@page import="com.itwillbs.member.db.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>member/info.jsp</title>
-</head>
-<body>
+<!-- 헤더파일들어가는 곳 -->
+<jsp:include page="/inc/header.jsp"/>	
+	
 	<h1>member/info.jsp</h1>
 	<%-- <%
 // 회원정보 기준값 id => 세션에 "id"값 저장 되어있음
@@ -34,5 +28,3 @@ MemberDTO dto=dao.getMember(id);
 	<%=dto.getMemType()%>
 
 	<a href="MemberMain.me">메인으로 이동</a>
-</body>
-</html>

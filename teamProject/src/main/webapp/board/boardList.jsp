@@ -32,7 +32,6 @@
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp"/>
 <!-- 헤더파일들어가는 곳 -->
-<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <link href="/resource/css/board.css" rel="stylesheet" type="text/css">
 <link href="resource/css/market.css" rel="stylesheet" type="text/css">
 <div class="boardContainer">
@@ -40,42 +39,6 @@
 <!-- 내용 시작 -->
 <!-- 스크립트 파일 들어가는곳 -->
 <script type="text/javascript">
-
-//마우스 우클릭 시 메뉴 동작
-document.addEventListener("DOMContentLoaded", () => {
-  var idSpan = document.getElementById("idSpan");
-  var miniMenu = document.getElementById("miniMenu");
-  var mmenu = document.getElementById("mmenu");
-
-  const mouse_end = (event) => {
-    console.log("mouse_end called");
-
-    const is_right_click = (event.which == 3) || (event.button == 2);
-    console.log("is_right_click:", is_right_click);
-
-    if (is_right_click) {
-      miniMenu.style.display = "block";
-      miniMenu.style.position = "absolute";
-      miniMenu.style.zIndex = "1000";
-      miniMenu.style.backgroundColor = "#FBF7FF";
-    }
-  };
-  idSpan.addEventListener("mouseup", mouse_end);
-  
-  const hideMiniMenu = (event) => {
-	    console.log("hideMiniMenu called");
-
-	    if (!miniMenu.contains(event.target)) {
-	      miniMenu.style.display = "none";
-	    }
-	  };
-	document.addEventListener("click", hideMiniMenu); 
-	
-	window.oncontextmenu = function () {
-	    return false;
-	};
-});
-
 
 </script>
 <!-- 스크립트 끝. -->
