@@ -1,4 +1,3 @@
-<%@page import="mypage.member.MemberDTO"%>
 <%@page import="com.itwillbs.review.db.StarReviewDTO"%>
 <%@page import="com.itwillbs.review.db.StarReviewDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -22,9 +21,8 @@
 	String sid = request.getParameter("id");
 	String id = (String) session.getAttribute("id");
 // 	MemberDTO dto = (MemberDTO) request.getAttribute("id");
-
 	StarReviewDAO sDao = new StarReviewDAO();
-
+	
 	// 페이징 처리 
 		ArrayList<StarReviewDTO> boardList = (ArrayList<StarReviewDTO>) request.getAttribute("boardList");
 		// 작성자 ID
@@ -49,11 +47,15 @@
 		<div class="main-box">
 			<div class="image-container">
 				<div class="image-box">
+<%-- 					<% if(dto.getMem_img().equals("url")) { %> --%>
+<!-- 					<img src="resource/image/image.png" width="100" height="100"> -->
+<%-- 					<% }else { %> --%>
 <%-- 					<img src="upload/<%=dto.getMem_img() %>" width="100" height="100"> --%>
+<%-- 					<% }%> --%>
 					<div class="profile-chat">
 						<h4>
 							아이디 :
-							<%=tgt_id %></h4>
+							<%=sDto.getTgt_id() %></h4>
 						<h4>
 							닉네임 :
 							<%=sDto.getNickname()%></h4>
@@ -61,7 +63,7 @@
 							별점 :
 							<%=Double.toString(sDto.getScore()).substring(0, 3)%>
 						</h4>
-						<button class="chatbtn">1:1채팅</button>
+						<button class="chatbtn" onclick="location.href='Chat.hi?to_id=<%=dto.getTgt_id()%>'">1:1채팅</button>
 					</div>
 					<!-- 					<hr class="board-box"> -->
 				</div>

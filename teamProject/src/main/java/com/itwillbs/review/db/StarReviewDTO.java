@@ -11,6 +11,7 @@ public class StarReviewDTO{
 	private Timestamp review_date;
 	private int count;
 	private String nickname;
+	private String mem_img;
 	
 	public int getManner_num() {
 		return manner_num;
@@ -59,5 +60,11 @@ public class StarReviewDTO{
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+	public String getMem_img() {
+		return mem_img;
+	}
+	public void setMem_img(String mem_img) {
+		this.mem_img = mem_img;
 	}
 }
