@@ -32,7 +32,7 @@ public class MemberLoginPro implements Action{
 			session.setAttribute("adminYn", dto.getAdminYn());
 			
 			forward = new ActionForward();
-			forward.setPath("MemberMain.me");
+			forward.setPath("main.do");
 			forward.setRedirect(true);
 			
 		}

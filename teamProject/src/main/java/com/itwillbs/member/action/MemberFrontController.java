@@ -70,10 +70,10 @@ public class MemberFrontController extends HttpServlet{
 		}
 		
 		
-		else if(sPath.equals("/MemberMain.me")) {
+		else if(sPath.equals("/main.do")) {
 			
 			forward=new ActionForward();
-			forward.setPath("member/main.jsp");
+			forward.setPath("main/main.jsp");
 			forward.setRedirect(false);
 		}
 		
