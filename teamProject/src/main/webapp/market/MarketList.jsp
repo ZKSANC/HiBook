@@ -13,11 +13,6 @@ int pageBlock = (Integer)request.getAttribute("pageBlock");
 int endPage= (Integer)request.getAttribute("endPage");
 int allPage = (Integer)request.getAttribute("allPage");
 %>
-<!-- 자바스크립트 들어가는 곳 -->
-<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
-<script type="text/javascript"></script>
-</head>
-<body>
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp" />
 <!-- 헤더파일들어가는 곳 -->

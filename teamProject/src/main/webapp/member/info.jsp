@@ -28,3 +28,6 @@ MemberDTO dto=dao.getMember(id);
 	<%=dto.getMemType()%>
 
 	<a href="MemberMain.me">메인으로 이동</a>
+<!-- 푸터파일들어가는 곳 -->
+<jsp:include page="/inc/footer.jsp"/>
+<!-- 푸터파일들어가는 곳 -->   
