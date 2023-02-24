@@ -4,9 +4,16 @@
 <%@page import="mypage.board.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">   
+<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">	
+<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
+</head>	
+<body>
 <!-- 헤더파일들어가는 곳 -->
-	<jsp:include page="/inc/header.jsp"/>
-	<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">	
+<jsp:include page="/inc/header.jsp" />
 	
 	<div class="boardContainer">
 
@@ -61,13 +68,12 @@ function allChk(obj){
 <col width="50px;">
 <col width="80px;">
 <col width="100px;">
-<col width="100px;">
 <col width="*">
 <col width="80px;">
 <col width="110px;">
 </colgroup>
 <tr><th><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
-<th>글번호</th><th>게시판유형</th><th>사진</th>
+<th>글번호</th><th>게시판유형</th>
 <th>글제목</th><th>조회수</th><th>등록일</th></tr>
 
 <%
@@ -79,7 +85,6 @@ function allChk(obj){
 	<td><input type="checkbox" name="chk" value="<%=dto.getBoard_id() %>"></td>
 	<td><%=dto.getBoard_id() %></td>
 	<td><%=dto.getBoard_type()  %></td>
-	<td><img src="upload/<%=dto.getContent_img1() %>" width="100" height="100"></td>
 	<td><a href="BoardContent.bo?boardType=<%=dto.getBoard_type() %>&boardId=<%=dto.getBoard_id()%>"><%=dto.getTitle() %></a></td>
 	<td><%=dto.getView_cnt() %></td>
 	<td><%=dateFormat.format(dto.getInsert_date()) %></td>
@@ -119,3 +124,5 @@ if(currentPage < pageCount){
 </div>
 <!-- 푸터파일들어가는 곳 -->
 <jsp:include page="/inc/footer.jsp"/>
+</body>
+</html>

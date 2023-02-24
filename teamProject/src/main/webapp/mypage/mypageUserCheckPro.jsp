@@ -2,9 +2,16 @@
 <%@page import="mypage.member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">   
+<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">	
+<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
+</head>	
+<body>
 <!-- 헤더파일들어가는 곳 -->
-	<jsp:include page="/inc/header.jsp"/>
-	<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">	
+<jsp:include page="/inc/header.jsp" />	
 	
 	<div class="boardContainer">
 
@@ -25,7 +32,7 @@ if(dto != null) {
 <div class=content>
 
 <p>
-북하이에서 정말 탈퇴하시겠습니까?
+하이북에서 정말 탈퇴하시겠습니까?
 <form action="MypageDeletePro.mypage" method="post">
 <input type="submit" value="탈퇴" class=button>
 <a href="MypageMain.mypage"><input type="button" value="취소" class=button></a>
@@ -48,3 +55,5 @@ if(dto != null) {
 </div>
 <!-- 푸터파일들어가는 곳 -->
 <jsp:include page="/inc/footer.jsp"/>
+</body>
+</html>
