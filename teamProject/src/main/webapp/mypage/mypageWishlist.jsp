@@ -1,3 +1,4 @@
+<%@page import="mypage.market.MarketDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="mypage.market.MarketDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -22,6 +23,8 @@ int startPage=(Integer)request.getAttribute("startPage");
 int pageBlock=(Integer)request.getAttribute("pageBlock");
 int endPage=(Integer)request.getAttribute("endPage");
 int pageCount=(Integer)request.getAttribute("pageCount");
+
+MarketDAO dao2 = new MarketDAO();
 %>
 
 <!-- 체크박스로 선택해 글 여러개 삭제가능  -->
@@ -66,7 +69,7 @@ function allChk(obj){
 	<td><img src="<%=dto.getUrl() %>" width="100" height="100"></td>
 	<td><a href="MarketContent.ma?market_id=<%=dto.getMarket_id() %>"><%=dto.getTitle() %></a></td>
 	<td><%=dto.getBook_price() %></td>
-	<td><%=dto.getInsert_id() %></td>
+	<td><%=dao2.getNickname(dto.getMarket_id()) %></td>
 	<td><%=dateFormat.format(dto.getInsert_date()) %></td><tr>
 	<%
 }

@@ -54,13 +54,30 @@ public class MemberDAO {
 			// 1~2 단계
 			con=getConnection();
 			// 3단계 SQL구문 만들어서 실행할 준비(insert)
-			String sql="insert into members(mem_id,mem_pass,mem_nm,join_date) values(?,?,?,?)";
+			String sql="insert into members(mem_id, mem_pass, mem_nm, nickname, birth, "
+					+ "zipcode, addr, addr_dtl, email, phone, mem_img, mem_st, "
+					+ "admin_yn, sns_type, sns_id, join_date, delete_date) "
+					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			
 			pstmt=con.prepareStatement(sql);
 			// ? 채워넣기
 			pstmt.setString(1, dto.getMemId());  
 			pstmt.setString(2, dto.getMemPass()); 
 			pstmt.setString(3, dto.getMemNm());
-			pstmt.setTimestamp(4, dto.getJoinDate());
+			pstmt.setString(4, dto.getNickname());
+			pstmt.setString(5, dto.getBirth());
+			pstmt.setString(6, dto.getZipcode());
+			pstmt.setString(7, dto.getAddr());
+			pstmt.setString(8, dto.getAddrDtl());
+			pstmt.setString(9, dto.getEmail());
+			pstmt.setString(10, dto.getPhone());
+			pstmt.setString(11, dto.getMemImg());
+			pstmt.setString(12, dto.getMemSt());
+			pstmt.setString(13, dto.getAdminYn());
+			pstmt.setString(14, dto.getSnsType());
+			pstmt.setString(15, dto.getSnsId());
+			pstmt.setTimestamp(16, dto.getJoinDate());
+			pstmt.setTimestamp(17, dto.getJoinDate());
 			// pstmt.setString(5, dto.getMemType());
 			// 4단계 SQL구문을 실행(insert,update,delete)
 			pstmt.executeUpdate();
@@ -168,94 +185,10 @@ public class MemberDAO {
 		return dto;
 	}//getMember()
 	
-	// 리턴값없음 updateMember(MemberDTO updateDto) 메서드 정의
-	public void updateMember(MemberDTO updateDto) {
-		Connection con =null;
-		PreparedStatement pstmt2=null;
-		try {
-			//1,2 디비연결 메서드
-			con=getConnection();
-			// if next() 다음행 => 리턴값 데이터 있으면 true => 아이디 비밀번호 일치
-			// => 3단계 pstmt2 SQL구문 만들어서 실행할 준비 (update set name=? where id=?)
-			String sql2="update members set mem_nm=? where mem_id =?";
-			pstmt2=con.prepareStatement(sql2);
-			//? 채워넣기
-			pstmt2.setString(1, updateDto.getMemNm()); //set 문자열(1번째 물음표, 값 name)
-			pstmt2.setString(2, updateDto.getMemId());  //set 문자열 (2번째 물음표, 값 id)
-			
-			// 4단계 SQL구문을 실행(insert,update,delete)
-			pstmt2.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
-			if(pstmt2!=null) try { pstmt2.close();} catch (Exception e2) {}
-			if(con!=null) try { con.close();} catch (Exception e2) {}
-		}
-	}//updateMember()
 	
-	// 리턴값없음 deleteMember(String id) 메서드 정의 
-	public void deleteMember(String id) {
-		Connection con =null;
-		PreparedStatement pstmt2=null;
-		try {
-			//1,2 디비연결 메서드
-			con=getConnection();
-			//3단계
-			String sql2="delete from members where mem_id =?";
-			pstmt2=con.prepareStatement(sql2);
-			//? 채워넣기
-			pstmt2.setString(1, id);  //set 문자열 (1번째 물음표, 값 id)
-			// 4단계 SQL구문을 실행(insert,update,delete)
-			pstmt2.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
-			if(pstmt2!=null) try { pstmt2.close();} catch (Exception e2) {}
-			if(con!=null) try { con.close();} catch (Exception e2) {}
-		}
-	}//deleteMember()
 	
-	// 리턴할형 ArrayList<MemberDTO>  getMemberList() 메서드 정의 
-	public ArrayList<MemberDTO> getMemberList(){
-		ArrayList<MemberDTO> memberList=new ArrayList<MemberDTO>();
-		Connection con =null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		try {
-			//1,2 디비연결 메서드
-			con=getConnection();
-			//3단계 SQL구문 만들어서 실행할 준비(select)
-			String sql="select * from members";
-			pstmt=con.prepareStatement(sql);
-			//4단계 SQL구문을 실행(select) => 결과 저장
-			rs=pstmt.executeQuery();	
-			//5단계	//조건이 true 실행문=> 다음행 데이터 있으면 true 
-			//     =>  열접근 => 한 명 정보 MemberDTO 저장 => 배열한칸 저장 
-			while(rs.next()) {
-				// MemberDTO 객체생성
-				MemberDTO dto=new MemberDTO();
-				System.out.println("회원정보저장 주소 : "+dto);
-				// set메서드 호출 <= 열접근
-				dto.setMemId(rs.getString("mem_id"));
-				dto.setMemPass(rs.getString("mem_pass"));
-				dto.setMemNm(rs.getString("mem_nm"));
-				dto.setJoinDate(rs.getTimestamp("join_date"));
-				// 배열 한칸에 회원정보주소 저장
-				memberList.add(dto);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
-			if(rs!=null) try { rs.close();} catch (Exception e2) {}
-			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
-			if(con!=null) try { con.close();} catch (Exception e2) {}
-		}
-		return memberList;
-	}//getMemberList()
+	
+	
 	
 }//클래스
 

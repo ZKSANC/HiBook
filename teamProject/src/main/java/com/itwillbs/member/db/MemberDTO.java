@@ -5,23 +5,25 @@ import java.sql.Timestamp;
 public class MemberDTO {
 	// 데이터를 담아서 다른 클래스 전달 
 	//멤버변수 => 데이터 은닉 => 캡슐화
-	private String memId;
-	private String memPass;
-	private String memNm;
-	private String nickname;
-	private String birth;
-	private String zipcode;
-	private String addr;
-	private String addrDtl;
-	private String email;
-	private String memImg;
-	private String memSt;
+	private String memId;//
+	private String memPass;//
+	private String memNm;//
+	private String nickname;//
+	private String birth;//
+	private String zipcode;//
+	private String addr;//
+	private String addrDtl;//
+	private String email;//
+	private String memImg;//
+	private String memSt;//
 	private String memType;
-	private String adminYn;
-	private String snsType;
-	private String snsId;
-	private Timestamp joinDate;
-	private Timestamp deleteDate;
+	private String phone;
+	private String adminYn;//
+	private String snsType;//
+	private String snsId;//
+	private Timestamp joinDate;//
+	private Timestamp deleteDate;//
+	 
 	// set get 메서드
 	public String getMemId() {
 		return memId;
@@ -31,6 +33,12 @@ public class MemberDTO {
 	}
 	public String getMemPass() {
 		return memPass;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public void setMemPass(String memPass) {
 		this.memPass = memPass;

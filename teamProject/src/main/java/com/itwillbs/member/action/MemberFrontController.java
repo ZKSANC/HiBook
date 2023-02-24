@@ -88,69 +88,7 @@ public class MemberFrontController extends HttpServlet{
 			}
 		}
 		
-		
-		else if(sPath.equals("/MemberInfo.me")) {
-			action = new MemberInfo();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		
-		else if(sPath.equals("/MemberUpdateForm.me")) {
-			action = new MemberUpdateForm();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		
-		else if(sPath.equals("/MemberUpdatePro.me")) {
-			action = new MemberUpdatePro();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch(Exception e) {
-				e.printStackTrace();
-			}	
-		}
-		
-		
-		else if(sPath.equals("/MemberDeleteForm.me")) {
-			forward=new ActionForward();
-			forward.setPath("member/deleteForm.jsp");
-			forward.setRedirect(false);
-		}
-		
-		
-		else if(sPath.equals("/MemberDeletePro.me")) {
-			action = new MemberDeletePro();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		
-		else if(sPath.equals("/MemberList.me")) {
-			action = new MemberList();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		
+	
 //		String path ="주소정보";
 //		boolean isRedirect = true;
 		// 이동정보 자바파일 있는지 확인
@@ -164,9 +102,10 @@ public class MemberFrontController extends HttpServlet{
 				RequestDispatcher dispatcher=
 				request.getRequestDispatcher(forward.getPath());
 		        dispatcher.forward(request, response);
+			
+		
 			}
 		}
-		
 	}//doProcess()
 	
 }//클래스

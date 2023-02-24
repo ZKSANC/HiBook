@@ -35,7 +35,8 @@ public class MemberLoginPro implements Action{
 			forward.setPath("MemberMain.me");
 			forward.setRedirect(true);
 			
-		}else{
+		}
+		else{
 			// id, pass 틀리면 MemberDTO 빈(null) 바구니 가져오기
 			// => script   "아이디 비밀번호 틀림" 뒤로이동
 //		    <script type="text/javascript">

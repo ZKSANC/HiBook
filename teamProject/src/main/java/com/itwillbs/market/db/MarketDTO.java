@@ -7,6 +7,7 @@ public class MarketDTO {
 	//회원 정보
 	private int market_id;
 	private String insert_id;
+	private String nickname;
 	//게시글 기본 정보
 	private String title;
 	private String content;
@@ -35,6 +36,12 @@ public class MarketDTO {
 	private int preImgNum;
 	
 	//set, get 함수
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public String getUrl() {
 		return url;
 	}

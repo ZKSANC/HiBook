@@ -1,3 +1,5 @@
+<%@page import="com.itwillbs.market.db.MarketDAO"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.wish.WishDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.itwillbs.wish.WishDAO"%>
@@ -19,6 +21,7 @@ String id = (String)session.getAttribute("id");
 MarketDTO dto = (MarketDTO)request.getAttribute("dto");
 ComCdDTO cdto = new ComCdDTO();
 WishDAO dao = new WishDAO();
+MarketDAO dao2 = new MarketDAO();
 
 int length = 0;
 for(int i = 0; i < dto.getImgUrls().length; i++) {
@@ -29,9 +32,6 @@ for(int i = 0; i < dto.getImgUrls().length; i++) {
 <script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){ // j쿼리 시작
-	/* if() {
-		window.open()
-	} */
 	//처음으로 가져온 찜개수 저장
 	var count = <%= dao.getMarketWishCount(dto.getMarket_id())%>
 	document.getElementById("wishCount").innerHTML=count;
@@ -40,59 +40,67 @@ $(document).ready(function(){ // j쿼리 시작
 	} 
 	// 페이지 이동 없이 MarketWishPro 동작
 	$(document).on('click', '.wish-btn', function(){
-        var button = $(this);
-        $.ajax({ 
-            url:'MarketWishPro.ma',
-            data:{'market_id':<%=dto.getMarket_id() %>}, 
-            success:function(result) { 
-                count = result;
-                $('#wishCount').html(count);          
-                if(button.val() === "찜하기"){
-                    button.val("찜취소");
-                    $('#heart').show();  
-                }else{
-                    button.val("찜하기");
-                    $('#heart').hide();         
-                }
-            }   
-        });
+			var button = $(this);
+	        $.ajax({ 
+	            url:'MarketWishPro.ma',
+	            data:{'market_id':<%=dto.getMarket_id() %>}, 
+	            success:function(result) { 
+	                count = result;
+	                $('#wishCount').html(count);          
+	                if(button.val() === "찜하기"){
+	                    button.val("찜취소");
+	                    $('#heart').show();  
+	                }else{
+	                    button.val("찜하기");
+	                    $('#heart').hide();         
+	                }
+	            }   
+	        });
     });
 	
 });// j쿼리 끝 
-	//마우스 우클릭 시 메뉴 동작
-	document.addEventListener("DOMContentLoaded", () => {
- 	  var idSpan = document.getElementById("idSpan");
-	  var miniMenu = document.getElementById("miniMenu");
-	  var mmenu = document.getElementById("mmenu");
-	
-	  const mouse_end = (event) => {
-	    console.log("mouse_end called");
-	
-	    const is_right_click = (event.which == 3) || (event.button == 2);
-	    console.log("is_right_click:", is_right_click);
-	
-	    if (is_right_click) {
-	      miniMenu.style.display = "block";
-	      miniMenu.style.position = "absolute";
-	      miniMenu.style.zIndex = "1000";
-	      miniMenu.style.backgroundColor = "#FBF7FF";
-	    }
-	  };
-	  idSpan.addEventListener("mouseup", mouse_end);
-	  
-	  const hideMiniMenu = (event) => {
-		    console.log("hideMiniMenu called");
-
-		    if (!miniMenu.contains(event.target)) {
-		      miniMenu.style.display = "none";
-		    }
-		  };
-		document.addEventListener("click", hideMiniMenu); 
+	//마우스 우클릭 시 프로필메뉴 동작
+		document.addEventListener("DOMContentLoaded", () => {	
+		  var id ='<%=(String)session.getAttribute("id")%>';
+		  console.log(id);
+		  if(id!=="null") {
+		 	  var idSpan = document.getElementById("idSpan");
+			  var miniMenu = document.getElementById("miniMenu");
+			  var mmenu = document.getElementById("mmenu");
+			
+			  const mouse_end = (event) => {
+			
+			    const is_right_click = (event.which == 3) || (event.button == 2);
+				    if (is_right_click) {
+				      miniMenu.style.display = "flex";
+				    } 
+			  };
+			  
+			  idSpan.addEventListener("mouseup", mouse_end);
+			  
+			  const hideMiniMenu = (event) => {
+				  
+				    if (!miniMenu.contains(event.target)) {
+				      miniMenu.style.display = "none";
+				    }
+			  };
+			  document.addEventListener("click", hideMiniMenu); 
+			  
+			  window.oncontextmenu = function () {
+				  	return false;
+			  };
+		  }			
+		});
+	//리뷰 새창 띄우기
+	function popup(){
+		var link = "ReviewWrite.pr?insert_id=<%=dto.getInsert_id()%>";     
+		var popupWidth = 400;
+		var popupHeight = 400;
+		var popupX = (window.screen.width/2) - (popupWidth/2);
+		var popupY= (window.screen.height/2) - (popupHeight/2);
 		
-		window.oncontextmenu = function () {
-		    return false;
-		};
-	});
+	  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+	}
 	//게시글 삭제 동작
 	function checkDelete() {
 		var result = confirm("게시글을 삭제하시겠습니까?");
@@ -123,18 +131,19 @@ $(document).ready(function(){ // j쿼리 시작
 		
 		<tr>
 		<td>작성자</td>
-		<td><span id="idSpan"><%=dto.getInsert_id() %></span>
-		<div id="miniMenu" style="display: none;">
-			<div id="mmenu" onclick="location.href='main.do'">menu1</div>	
-			<div id="mmenu" onclick="location.href='main.do'">menu2</div>
-			<div id="mmenu" onclick="location.href='main.do'">menu3</div>
-			<div id="mmenu" onclick="location.href='main.do'">menu4</div>
+		<td><span id="idSpan"><%=dao2.getNickname(dto.getMarket_id()) %></span>
+		<div id="miniMenu">
+			<div id="profile"><img id="profilImg" src="resource/image/image.png"></div>
+			<div id="mmenu" onclick="location.href='profile.pr?insert_id=<%=dto.getInsert_id()%>'">프로필 보기</div>	
+			<div id="mmenu" onclick="location.href='MypageUserMarketList.mypage?insert_id=<%=dto.getInsert_id()%>&nickname=<%=dao2.getNickname(dto.getMarket_id())%>'">작성글 보기</div>
+			<div id="mmenu" onclick=popup()>거래후기 쓰기</div>
 		</div></td>
 		</tr>
 			
 		<tr>
 		<td>등록일</td>
-		<td><%=dto.getInsert_date() %></td>
+		<% SimpleDateFormat dateformat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");%>
+		<td><%=dateformat.format(dto.getInsert_date()) %></td>
 		</tr>
 		
 		<tr>
@@ -208,8 +217,8 @@ $(document).ready(function(){ // j쿼리 시작
 			}
 		}
 		%>
-		<input type="button" value="1:1 채팅" onclick="location.href='채팅가상주소'">
-		<input type="button" value="신고하기" onclick="location.href='신고가상주소'">
+		<input type="button" value="1:1 채팅" onclick="location.href='채팅가상주소?insert_id=<%=dto.getInsert_id()%>'">
+		<input type="button" value="신고하기" onclick="location.href='신고가상주소insert_id=<%=dto.getInsert_id()%>'">
 <!-- 내용 끝 -->
 </div>
 

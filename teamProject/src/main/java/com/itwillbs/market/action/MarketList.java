@@ -16,7 +16,7 @@ public class MarketList implements Action{
 		
 		MarketDAO dao = new MarketDAO();
 		//한 페이지에 불러올 market_id 열 수
-		int pageSize = 20;
+		int pageSize = 16;
 		String pageNum = request.getParameter("pageNum");
 		
 		if(pageNum==null) {

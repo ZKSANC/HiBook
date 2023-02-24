@@ -28,6 +28,7 @@ public class MarketDAO {
 	}
 	
 	// 본인이 쓴 중고거래(Market테이블) 글목록 불러오는 메서드 (사진 포함)
+	// 상품 상세페이지 글쓴이의 전체 글목록 불러오는 메서드로도 사용 
 	public ArrayList<MarketDTO> getMyMarketList(String id, int startRow, int pageSize) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -75,6 +76,7 @@ public class MarketDAO {
 	}
 	
 	// 본인이 쓴 전체글 개수 구하는 메서드 (페이징 처리를 위해)
+	// 상품 상세페이지 글쓴이의 전체글 개수 구하는 용도로도 사용 
 	public int getMarketCount(String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -205,31 +207,31 @@ public class MarketDAO {
 		}
 	}
 
-	// 2. 글목록에서 여러개 체크박스로 삭제하는 메서드 - foreign key 삭제(채팅)
-	public void multiDelete2(String[] market_id) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		try {
-			// 1~2단계
-			con = getConnection();
-		
-			// 3단계 SQL구문 만들어서 실행할 준비 
-			String sql = "delete from chat where market_id=?";			
-			pstmt = con.prepareStatement(sql);
-
-			for(int i=0; i<market_id.length; i++) {
-				pstmt.setString(1, market_id[i]);
-				// 4단계 SQL구문을 실행(insert, update, delete)
-				pstmt.executeUpdate();	
-			}
-				
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
-			if(con!=null) try { con.close();} catch (Exception e2) {}
-		}
-	}
+//	// 2. 글목록에서 여러개 체크박스로 삭제하는 메서드 - foreign key 삭제(채팅)
+//	public void multiDelete2(String[] market_id) {
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		try {
+//			// 1~2단계
+//			con = getConnection();
+//		
+//			// 3단계 SQL구문 만들어서 실행할 준비 
+//			String sql = "delete from chat where market_id=?";			
+//			pstmt = con.prepareStatement(sql);
+//
+//			for(int i=0; i<market_id.length; i++) {
+//				pstmt.setString(1, market_id[i]);
+//				// 4단계 SQL구문을 실행(insert, update, delete)
+//				pstmt.executeUpdate();	
+//			}
+//				
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+//			if(con!=null) try { con.close();} catch (Exception e2) {}
+//		}
+//	}
 	
 	// 3. 글목록에서 여러개 체크박스로 삭제하는 메서드 - foreign key 삭제(찜)
 	public void multiDelete3(String[] market_id) {
@@ -344,5 +346,33 @@ public class MarketDAO {
 		}
 		return marketList;
 	}//
+	
+	// 닉네임 받아오는 메서드
+	   public String getNickname(int market_id) {
+		      String nickname = null;
+		      Connection con = null;
+		      PreparedStatement pstmt = null;
+		      ResultSet rs = null;
+		      try {   
+		         con = getConnection();
+		         
+		         String sql="select mem_id, nickname from members m join market mr where m.mem_id = mr.insert_id and mr.market_id=?";
+		         pstmt=con.prepareStatement(sql);
+		         pstmt.setInt(1, market_id);  
+		         
+		         rs=pstmt.executeQuery();
+		         
+		         if(rs.next()) {
+		            nickname = rs.getString("nickname");
+		         }
+		      } catch (Exception e) {
+		         e.printStackTrace();
+		      } finally {
+		         if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+		         if(con!=null) try { con.close();} catch (Exception e2) {}
+		         if(rs!=null) try { rs.close();} catch (Exception e2) {}
+		      }
+		      return nickname;
+		   }
 	
 }
