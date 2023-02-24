@@ -8,7 +8,6 @@
 /*  은숙 @font-face 변경  */
 
 }
-
 body {
   margin: 0px;
   padding: 0px;
@@ -19,11 +18,6 @@ body {
 
 div {
 	word-break : break-all;
-}
-
-a {
-	text-decoration: none;
-	color: inherit;
 }
 
 .topBar {
@@ -40,6 +34,11 @@ a {
 	color : #8C8C8C;
 	margin : 5px 0px;
 	padding : 0px 30px;
+}
+
+.aa {
+	text-decoration: none;
+	color: inherit;
 }
 
 #login:hover, #joinMember:hover {
@@ -141,10 +140,8 @@ a {
 }
 
 .navWrap {
-	position: relative;
 	width: 100%;
 	background-color: #F5F5F5;
-	z-index: 9999;
 }
 
 .navBar {
@@ -164,6 +161,7 @@ a {
 	display : flex;
 	width: 100%;
 	justify-content: space-between;
+	align-items: center;
 	padding-left: 0px;
 	margin: 0;
 }
@@ -180,22 +178,17 @@ a {
 	font-weight: bolder;
 }
 
-.cursor-pointer {
-	cursor: pointer;
+.navContanier li:hover {
+  border-bottom: 3px solid #212529;
 }
 
 .ul-main {
 	height: 50px;
-	align-items: center;
 }
 
 .li-main {
 	color: #212529;
 	height: 40px;
-}
-
-.ul-drop-main {
-	align-items: flex-start;
 }
 
 .li-drop {
@@ -217,14 +210,11 @@ a {
 }
 
 .dropdown-wrap {
-	display: block;
+	display: none;
 	position: absolute;
 	width: 100%;
-	height: 0px;
 	background-color: #F5F5F5;
 	border-top: 1px solid #E1E1E1;
-	opacity: 0;
-	transition: all .3s ease;
 }
 
 .dropdown-content-wrap {
@@ -236,8 +226,7 @@ a {
 }
 
 .navWrap:hover .dropdown-wrap {
-	height: 180px;
-	opacity: 1;
+	display: block;
 }
 
 .boardContainer {

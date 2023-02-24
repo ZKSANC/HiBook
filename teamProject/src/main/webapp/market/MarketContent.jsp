@@ -8,12 +8,6 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<link href="resource/css/market.css" rel="stylesheet" type="text/css">
-<title>Insert title here</title>
 <!-- 자바 변수들어가는 곳 -->
 <%
 String id = (String)session.getAttribute("id");
@@ -28,9 +22,15 @@ for(int i = 0; i < dto.getImgUrls().length; i++) {
 	if(!(dto.getImgUrls()[i].equals("url"))) {length++;}
 }
 %>
+
+<!-- 헤더파일들어가는 곳 -->
+<jsp:include page="/inc/header.jsp" />
+<!-- 헤더파일들어가는 곳 -->
+
+
 <!-- 자바스크립트 들어가는 곳 -->
-<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <script type="text/javascript">
+
 
 // chat function start
 function openchat() {
@@ -122,11 +122,7 @@ $(document).ready(function(){ // j쿼리 시작
 	  } 
 	}
 </script>
-</head>
-<body>
-<!-- 헤더파일들어가는 곳 -->
-<jsp:include page="/inc/header.jsp" />
-<!-- 헤더파일들어가는 곳 -->
+
 
 <div class="boardContainer">
 <!-- 내용 시작 -->

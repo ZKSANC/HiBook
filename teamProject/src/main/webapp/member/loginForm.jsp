@@ -1,28 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<header>
+
+<!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp"/>
-</header>
-<head>
-<meta charset="UTF-8">
+<!-- 헤더파일들어가는 곳 -->
+
 <link href="/resource/css/member.css" rel="stylesheet" type="text/css">
 
-</head>
-<body>
-		<h2 text align="center">Login</h2>
+	<div class="boardContainer">
+	<div>
+		<h2 style="text-align: center;">Login</h2>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 		<form  action="MemberLoginPro.me" method="post" >
-			<div text align="center">
+			<div style="text-align: center;">
 				<label>아이디: <input type="text"  placeholder="Enter id" name="id"></label>
+				<br>
 				<label>비밀번호:<input type="password"  placeholder="Enter password"	name="pass"></label> 
+				<br>
 			</div>
 
-			<div text align="center">
-				<label><input type="checkbox" name="remember">
-					Remember me</label>
-			</div>
-			<div text align="center">
+<!-- 			<div style="text-align: center;"> -->
+<!-- 				<label><input type="checkbox" name="remember"> -->
+<!-- 					Remember me</label> -->
+<!-- 			</div> -->
+			<br>
+			<div style="text-align: center;">
 			<label>	<button type="submit" value="Submit">Submit</button></label>
 			</div>
 
@@ -63,21 +69,10 @@
 			<!--      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
 			<!--      <script src="js/bootstrap.min.js"></script> -->
 		</form>
+	
+	</div>
 	</div>
 
-
-
-
-
-
-
-
-<footer>
-	<jsp:include page="/inc/footer.jsp"/>
-	</footer>
-
-</body>
-
-	
-
-</html>
+<!-- 푸터파일들어가는 곳 -->
+<jsp:include page="/inc/footer.jsp"/>
+<!-- 푸터파일들어가는 곳 -->
