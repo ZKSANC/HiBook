@@ -167,10 +167,13 @@ public class MarketDAO {
 					+ "m.insert_id, m.insert_date, i.url "
 					+ "from (SELECT image_id, market_id, url "
 					+ "FROM market_image where mod(image_id,5)=1) i right join market m "
-					+ "on i.market_id = m.market_id order by market_id desc limit ?, ?";
+					+ "on i.market_id = m.market_id "
+					+ "where trade_type = ? "
+					+ "order by market_id desc limit ?, ?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, num);
+			pstmt.setString(1, trade_type);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, num);
 			 
 			rs=pstmt.executeQuery();
 			

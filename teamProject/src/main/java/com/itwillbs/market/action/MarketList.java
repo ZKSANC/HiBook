@@ -43,10 +43,11 @@ public class MarketList implements Action{
 		int num = pageSize; //시작행으로부터 가져올 갯수
 		
 		//DAO에서 데이터 받기
-		if(request.getParameter("trade_type")!=null) {
-			ArrayList<MarketDTO> dtolist = dao.getMenuMarketList(trade_type, start, num);
+		ArrayList<MarketDTO> dtolist = new ArrayList<>();
+		if(!(trade_type.equals(""))) {
+			dtolist = dao.getMenuMarketList(trade_type, start, num);
 		} else {
-			ArrayList<MarketDTO> dtolist = dao.getMarketList(start, num);
+			dtolist = dao.getMarketList(start, num);
 		}
 		
 		//하단에 보여지는 페이지 번호
