@@ -9,8 +9,11 @@
 <!-- 공통CSS -->
 <link href="resource/css/front.css" rel="stylesheet" type="text/css">
 <link href="../resource/css/header.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <!-- 자바 들어가는 곳 -->
-<%String id = (String)session.getAttribute("id"); %>
+<%String id = (String)session.getAttribute("id"); 
+//관리자여부 받아옴 (관리자 로그인시 마이페이지 대신 관리자페이지 띄움) 
+String adminYn = (String)session.getAttribute("adminYn");%>
 <!-- 자바스크립트 들어가는 곳 -->
 <script type="text/javascript">
 //----------------------------------------chat관련 function
@@ -73,7 +76,11 @@ function showUnread(result){
 	</div>
 	<div class="mypage">
 		<div id="mypageMenu" onclick="location.href='MarketWriteForm.ma'">판매하기</div>
+		<% 	if("Y".equals(adminYn)){ %>
+		<div id="mypageMenu" onclick="location.href='MypageMain.mypage'">관리자페이지</div>
+	<% 	} else { %>
 		<div id="mypageMenu" onclick="location.href='MypageMain.mypage'">마이페이지</div>
+	<% 	} %>
 <!-- 		<div id="mypageMenu" onclick="location.href='1:1채팅'">1:1 채팅</div> -->
 	</div>
 		<div class="chatMenu"><img class="chatMenuimg" src="resource/image/closemessage.png" onclick="openchatbox()"><span id="unread" class="boxunread"></span>
@@ -83,10 +90,10 @@ function showUnread(result){
 	<div class="navBar">
 		<div class="navContanier">
 			<ul class="ul-main">
-				<li class="li-main">
+				<li class="li-main cursor-pointer">
 					<span onclick="location.href='main.do'">홈</span>
 				</li>
-				<li class="li-main" >
+				<li class="li-main cursor-pointer" >
 					<span onclick="location.href='MarketList.ma'">중고거래</span>
 				</li>
 				<li class="li-main">
@@ -101,7 +108,7 @@ function showUnread(result){
 	<div class="dropdown-wrap">
 		<div class="dropdown-content-wrap">
 			<div class="navContanier">
-				<ul>
+				<ul class="ul-drop-main">
 					<li class="li-drop">
 						<span class="drop-btn" onclick="location.href='사이트소개'">사이트 소개</span>
 						<span class="drop-btn" onclick="location.href='BoardList.bo?boardType=notice'">공지사항</span>
