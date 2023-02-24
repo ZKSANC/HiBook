@@ -83,10 +83,10 @@ function showUnread(result){
 	<div class="navBar">
 		<div class="navContanier">
 			<ul class="ul-main">
-				<li class="li-main">
+				<li class="li-main cursor-pointer">
 					<span onclick="location.href='main.do'">홈</span>
 				</li>
-				<li class="li-main" >
+				<li class="li-main cursor-pointer" >
 					<span onclick="location.href='MarketList.ma'">중고거래</span>
 				</li>
 				<li class="li-main">
@@ -101,7 +101,7 @@ function showUnread(result){
 	<div class="dropdown-wrap">
 		<div class="dropdown-content-wrap">
 			<div class="navContanier">
-				<ul>
+				<ul class="ul-drop-main">
 					<li class="li-drop">
 						<span class="drop-btn" onclick="location.href='사이트소개'">사이트 소개</span>
 						<span class="drop-btn" onclick="location.href='BoardList.bo?boardType=notice'">공지사항</span>
