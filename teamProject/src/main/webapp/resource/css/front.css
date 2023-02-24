@@ -317,9 +317,12 @@ th, td {
 th {
   background: #42444e;
   color: #fff;
-  text-align: left;
+  text-align: center;
 }
 
+.td2 {
+  text-align: center;
+}
 tr:first-child th:first-child {
   border-top-left-radius: 6px;
 }
