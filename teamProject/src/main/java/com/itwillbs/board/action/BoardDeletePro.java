@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.board.db.BoardDAO;
 import com.itwillbs.board.db.BoardDTO;
-import com.itwillbs.util.ComCdDTO;
-import com.itwillbs.util.ComCdUtil;
 
 public class BoardDeletePro implements Action {
 

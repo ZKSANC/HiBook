@@ -48,7 +48,7 @@ function writeUpdateCheck() { // 글수정시 유효성체크
 
 <div class="tableBar boardView th:first-child">
 <hr class="my-hr3">
-	<form name="boardUpdateFrom" action="BoardUpdatePro.bo" method="post" enctype="multipart/form-data" onsubmit="return writeUpdateCheck();">
+	<form name="boardUpdateForm" action="BoardUpdatePro.bo" method="post" enctype="multipart/form-data" onsubmit="return writeUpdateCheck();">
 	
 		<input type="hidden" name="boardId" value="<%=dto.getBoardId() %>">
 		<input type="hidden" name="boardType" value="<%=boardTypeCd %>">
@@ -90,8 +90,8 @@ function writeUpdateCheck() { // 글수정시 유효성체크
 			</tbody>
 			</table>
 		<div class="btfl">	
-		<input type = "submit" class="smallButton smallButtonBlueGray" name = "submit" value="등록">
-		<input type = "reset"  class="smallButton smallButtonBlueGray" name = "reset" value="취소">
+		<input type = "submit" class="smallButtonSubmit smallButtonBlueGray" name = "submit" value="등록">
+		<input type = "reset"  class="smallButtonCancle smallButtonBlueGray" name = "reset" value="취소">
 		</div>
 </form>
 

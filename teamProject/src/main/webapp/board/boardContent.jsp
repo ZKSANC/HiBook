@@ -7,6 +7,7 @@
    pageEncoding="UTF-8"%>
    
  <%
+ String id = (String)session.getAttribute("id");
   	// 게시판 유형을 공통코드로 구분.
   	String boardTypeCd = (String) request.getAttribute("boardTypeCd");
   	String boardTypeCdNm = (String) request.getAttribute("boardTypeCdNm");
@@ -21,12 +22,13 @@
 	int pageSize = (Integer) request.getAttribute("pageSize");
    
  	BoardDTO dto = (BoardDTO)request.getAttribute("dto");
- 	String id = (String) session.getAttribute("id");
  	String adminYn = (String)session.getAttribute("adminYn");
    
  	// 댓글 
  	ArrayList<BoardCmmtDTO> boardList = (ArrayList<BoardCmmtDTO>) request.getAttribute("boardList");
  	
+ 	// 글쓴이를 닉네임으로 불러오기
+ 	BoardDAO dao = new BoardDAO();
    
  %>
    
@@ -34,7 +36,7 @@
 <jsp:include page="/inc/header.jsp"/>
 <!-- 헤더파일들어가는 곳 -->
 <link href="/resource/css/board.css" rel="stylesheet" type="text/css">
-
+<link href="resource/css/market.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <div class="boardContainer">
 <!-- 내용 시작 -->
@@ -188,6 +190,7 @@ function writeCheck() {
 
 }// writeCheck()
 
+
 </script>
 
 
@@ -211,13 +214,16 @@ function writeCheck() {
       </tr>
       
       <tr>
-         <td><%=dto.getInsertId()%></td>
+<%--          <td><%=dto.getInsertId()%></td> --%>
+<!-- 		<span id="idSpan"> -->
+<%-- 		<input type="hidden" name=<%=dto.getInsertId() %>></span> --%>
+         <td><span id="idSpan"><%=dao.getNickname(dto.getBoardId()) %></span>
          <td><%=dto.getInsertDate()%></td>
          <td>조회 : <%=dto.getViewCnt()%></td>
       </tr>
       
       <tr>
-         <td colspan="3" class="boardContent pb40">
+         <td colspan="3" class="boardContent pb40 ">
          	<div style="min-height:300px;">
         		 <%=dto.getContent().replace("\r\n","<br>")%>
        		</div>
@@ -256,7 +262,7 @@ function writeCheck() {
  
  <table class="bCmmtContent1">
  <!-- 공지사항게시판 모든글에 댓글작성불가 -->
-    	 <%if("N".equals(dto.getNoticeyn()) == "Y".equals(dto.getNoticeyn())) {%>
+    	  <%if("N".equals(dto.getNoticeyn())) {%>
        <!-- 댓글 시작 -->	 
          <tr>
             <td>
@@ -280,7 +286,9 @@ function writeCheck() {
             <tr id ="view_<%=cmmtDto.getCmmtId() %>">
                <td> 
                		<!-- 작성자아이디, 작성일 , 댓글내용, 비밀댓글여부 -->
-                	  <%=cmmtDto.getInsertId()%> &nbsp;&nbsp; <%=changeTime%><br> 
+<%--                 	  <%=cmmtDto.getInsertId()%> --%>
+                	<span id="idSpan"><%=dao.getNickname(dto.getBoardId()) %></span>
+                	  &nbsp;&nbsp; <%=changeTime%><br> 
                   
                   	<!-- 일반글 or 로그인아이디=댓글작성자아이디 or 로그인아이디=원글작성자아이디 or 관리자'Y' -->
                	  	 <% if( "N".equals(cmmtDto.getSecretYn()) || id.equals(cmmtDto.getInsertId()) 
@@ -327,7 +335,9 @@ function writeCheck() {
 		if (startPage > pageBlock) {
 	%>
 	<a
-		href="BoardContent.bo?boardId=<%=dto.getBoardId()%>&boardType=<%=boardTypeCd%>&pageNum=<%=startPage - pageBlock%>">&lt;</a>
+		href="BoardContent.bo?boardId=<%=
+		
+		dto.getBoardId()%>&boardType=<%=boardTypeCd%>&pageNum=<%=startPage - pageBlock%>">&lt;</a>
 	<%
 	}
 

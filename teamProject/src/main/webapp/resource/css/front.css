@@ -139,37 +139,93 @@ a {
     display: block;
 }
 
-.navBar {
-	height : 60px;
+.navWrap {
+	width: 100%;
 	background-color: #F5F5F5;
+}
+
+.navBar {
+	position: relative;
+	width : 900px;
+	margin : 0px auto;
 	padding : 5px 0px;
 }
 
 .navContanier {
-	width : 900px;
+	display: flex;
+	align-items: center;
 	height : 100%;
-	margin : 0px auto;
 }
 
 .navContanier ul {
-	display : flex; 
+	display : flex;
+	width: 100%;
 	justify-content: space-between;
+	align-items: center;
 	padding-left: 0px;
+	margin: 0;
 }
 
 .navContanier li {
-	width : 100px;
-	height : 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width : 120px;
 	list-style: none;
-	color : rgba(0, 0, 0, 0.55);
 	text-align: center;
 	font-size: 17px;
 	font-weight: bolder;
 }
 
 .navContanier li:hover {
-  color :  #212529;
   border-bottom: 3px solid #212529;
+}
+
+.ul-main {
+	height: 50px;
+}
+
+.li-main {
+	color: #212529;
+	height: 40px;
+}
+
+.li-drop {
+	justify-content: flex-start !important;
+	gap: 10px;
+}
+
+.li-drop:hover {
+	border: none !important;
+}
+
+.drop-btn {
+	cursor: pointer;
+}
+
+.drop-btn:hover {
+	color: #c595ea;
+}
+
+.dropdown-wrap {
+	display: none;
+	position: absolute;
+	width: 100%;
+	background-color: #F5F5F5;
+	border-top: 1px solid #E1E1E1;
+}
+
+.dropdown-content-wrap {
+  z-index: 1;
+  width: 900px;
+  margin: 0 auto;
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+.navWrap:hover .dropdown-wrap {
+	display: block;
 }
 
 .boardContainer {
@@ -324,16 +380,4 @@ tr:last-child td:last-child {
 ul > li {
 	color : #666666;
 }
-
-.skip {
-	/* 은숙수정 - 글 ... 처리 */
-  overflow: hidden;  		 /* 을 사용해 영역을 감출 것 */
-  text-overflow: ellipsis;   /* 로 ... 을 만들기 */
-  white-space: nowrap; 		 /*아래줄로 내려가는 것을 막기위해 */
-  word-break:break-all;
-  width: 500px;
-  height: 20px;
-	
-}
-
 

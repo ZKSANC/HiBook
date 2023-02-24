@@ -8,7 +8,6 @@
 
 <!-- 공통CSS -->
 <link href="resource/css/front.css" rel="stylesheet" type="text/css">
-<link href="/resource/css/util.css" rel="stylesheet" type="text/css">
 
 <!-- 자바 들어가는 곳 -->
 <%String id = (String)session.getAttribute("id"); %>
@@ -18,27 +17,6 @@
 
 <body>
 <!-- 스크립트 파일 들어가는곳 -->
-<script type="text/javascript">
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    for (var d = 0; d < dropdowns.length; d++) {
-      var openDropdown = dropdowns[d];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-</script>
 <!-- 스크립트 끝. -->
 <header>
 <div class="topBar">
@@ -64,28 +42,47 @@ window.onclick = function(e) {
 		<div id="mypageMenu" onclick="location.href='1:1채팅'">1:1 채팅</div>
 	</div>
 </div>
-<nav>
+<div class="navWrap">
 	<div class="navBar">
 		<div class="navContanier">
-			<ul>
-				<li class="dropdown">
-					<span onclick="myFunction()" class="dropbtn">홈</span>
-						<div id="myDropdown" class="dropdown-content">
-							<a href="BoardList.bo?boardType=notice">공지사항</a>
-						</div>
+			<ul class="ul-main">
+				<li class="li-main">
+					<span onclick="location.href='main.do'">홈</span>
 				</li>
-				<li><a href="MarketList.ma">중고거래</a></li>
-				<li class="dropdown">
-					<span onclick="myFunction()" class="dropbtn">커뮤니티</span>
-						<div id="myDropdown" class="dropdown-content">
-							<a href="BoardList.bo?boardType=free">자유게시판💬</a>
-							<a href="BoardList.bo?boardType=review">도서리뷰게시판💬</a>
-						</div>
+				<li class="li-main">
+					<span>중고거래</span>
 				</li>
-				<li><a href="#">고객센터</a></li>
+				<li class="li-main">
+					<span>커뮤니티</span>
+				</li>
+				<li class="li-main">
+					<span>고객센터</span>
+				</li>
 			</ul>
-			
 		</div>
 	</div>
-</nav>
+	<div class="dropdown-wrap">
+		<div class="dropdown-content-wrap">
+			<div class="navContanier">
+				<ul>
+					<li class="li-drop">
+						<span class="drop-btn" onclick="location.href='사이트소개'">사이트 소개</span>
+						<span class="drop-btn" onclick="location.href='BoardList.bo?boardType=notice'">공지사항</span>
+					</li>
+					<li class="li-drop">
+						<span class="drop-btn" onclick="location.href='MarketList.ma'">판매/구매</span>
+						<span class="drop-btn" onclick="location.href='MarketList.ma'">무료나눔</span>
+					</li>
+					<li class="li-drop">
+						<span class="drop-btn" onclick="location.href='BoardList.bo?boardType=free'">자유게시판</span>
+						<span class="drop-btn" onclick="location.href='BoardList.bo?boardType=review'">도서리뷰게시판</span>
+					</li>
+					<li class="li-drop">
+						<span class="drop-btn" onclick="location.href='고객센터'">고객센터</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 </header>

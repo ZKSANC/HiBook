@@ -23,6 +23,10 @@
 	
 	String id = (String) session.getAttribute("id");
 	String adminYn = (String)session.getAttribute("adminYn"); 
+	BoardDTO dto2 = (BoardDTO)request.getAttribute("dto2");
+	
+	// 글쓴이를 닉네임으로 불러오기
+	 	BoardDAO dao = new BoardDAO();
 	%>
 
 <!-- 헤더파일들어가는 곳 -->
@@ -30,31 +34,49 @@
 <!-- 헤더파일들어가는 곳 -->
 <script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <link href="/resource/css/board.css" rel="stylesheet" type="text/css">
-<link href="/resource/css/util.css" rel="stylesheet" type="text/css">
+<link href="resource/css/market.css" rel="stylesheet" type="text/css">
 <div class="boardContainer">
 
 <!-- 내용 시작 -->
 <!-- 스크립트 파일 들어가는곳 -->
 <script type="text/javascript">
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
+//마우스 우클릭 시 메뉴 동작
+document.addEventListener("DOMContentLoaded", () => {
+  var idSpan = document.getElementById("idSpan");
+  var miniMenu = document.getElementById("miniMenu");
+  var mmenu = document.getElementById("mmenu");
 
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    for (var d = 0; d < dropdowns.length; d++) {
-      var openDropdown = dropdowns[d];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
+  const mouse_end = (event) => {
+    console.log("mouse_end called");
+
+    const is_right_click = (event.which == 3) || (event.button == 2);
+    console.log("is_right_click:", is_right_click);
+
+    if (is_right_click) {
+      miniMenu.style.display = "block";
+      miniMenu.style.position = "absolute";
+      miniMenu.style.zIndex = "1000";
+      miniMenu.style.backgroundColor = "#FBF7FF";
     }
-  }
-}
+  };
+  idSpan.addEventListener("mouseup", mouse_end);
+  
+  const hideMiniMenu = (event) => {
+	    console.log("hideMiniMenu called");
+
+	    if (!miniMenu.contains(event.target)) {
+	      miniMenu.style.display = "none";
+	    }
+	  };
+	document.addEventListener("click", hideMiniMenu); 
+	
+	window.oncontextmenu = function () {
+	    return false;
+	};
+});
+
+
 </script>
 <!-- 스크립트 끝. -->
 <div>
@@ -72,13 +94,11 @@ window.onclick = function(e) {
 		<colgroup>
 			<col width="60px;">
 			<col width="*">
-			<col width="100px;">
+			<col width="140px;">
 			<col width="120px;">
 			<col width="60px;">
 		</colgroup>
 		
-
-	
 		<thead>
 			<tr>
 				<th>번호</th>
@@ -108,14 +128,12 @@ window.onclick = function(e) {
 					</a>
 				</td>
 				<td>
-					<div class="dropdown">
-						<span onclick="myFunction()" class="dropbtn"><%=dto.getInsertId()%></span>
-  							<div id="myDropdown" class="dropdown-content">
-   								 <a href="#">프로필</a>
-   								 <a href="#">1:1채팅</a>
-   								 <a href="MypageMarketList.mypage">작성한 글 목록</a>
-   								 <a href="MypageCommentList.mypage">작성한 댓글 목록</a>
- 							 </div>
+				<span id="idSpan"><%=dao.getNickname(dto.getBoardId()) %></span>
+					<div id="miniMenu" style="display: none;">
+						<div id="mmenu" onclick="location.href='main.do'">menu1</div>	
+							<div id="mmenu" onclick="location.href='main.do'">menu2</div>
+							<div id="mmenu" onclick="location.href='main.do'">menu3</div>
+							<div id="mmenu" onclick="location.href='main.do'">menu4</div>
 					</div>
 				      	
 				</td>
@@ -147,15 +165,13 @@ window.onclick = function(e) {
 					</a>
 				</td>
 				<td>
-					<div class="dropdown">
-						<span onclick="myFunction()" class="dropbtn"><%=dto.getInsertId()%></span>
-							<div id="myDropdown" class="dropdown-content1">
-								<a href="#">프로필</a>
-								<a href="#">1:1채팅</a> 
-								<a href="MypageMarketList.mypage">작성한 글 목록</a> 
-								<a href="MypageCommentList.mypage">작성한 댓글 목록</a>
-							</div>
-						</div> 
+				<span id="idSpan"><%=dao.getNickname(dto.getBoardId()) %></span>
+					<div id="miniMenu" style="display: none;">
+						<div id="mmenu" onclick="location.href='main.do'">menu1</div>	
+							<div id="mmenu" onclick="location.href='main.do'">menu2</div>
+							<div id="mmenu" onclick="location.href='main.do'">menu3</div>
+							<div id="mmenu" onclick="location.href='main.do'">menu4</div>
+					</div>
 				</td>
 				<td><%=changeTime%></td>
 				<td><%=dto.getViewCnt()%></td>
@@ -167,10 +183,6 @@ window.onclick = function(e) {
 		</tbody>
 	</table>
 	</div>
-	
-<%-- 	<input type="button" class="button buttonBlueGray" value="글쓰기" onclick="location.href='BoardWriteForm.bo?boardType=<%=boardTypeCd %>'"> --%>
-
-
 		<%
 		if ("notice".equals(boardTypeCd)) {
 			
@@ -183,7 +195,6 @@ window.onclick = function(e) {
 			else { %>
 				<input type="button" class="button buttonBlueGray" value="글쓰기"
 					   onclick="location.href='BoardWriteForm.bo?boardType=<%=boardTypeCd%>'">
-
 		<%}%>
 
 		<div class="ssgap page">	

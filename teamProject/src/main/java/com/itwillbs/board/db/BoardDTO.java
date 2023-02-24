@@ -21,7 +21,9 @@ public class BoardDTO {
 	private Timestamp insertDate;
 	// 검색용 : db X
 	private String keyword;
-
+	
+	// 닉네임 추가
+	private String nickname;
 	// private String insertDate;
 	// private Date insertDate;
 
@@ -137,4 +139,12 @@ public class BoardDTO {
 		this.keyword = keyword;
 	}
 
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	
 }

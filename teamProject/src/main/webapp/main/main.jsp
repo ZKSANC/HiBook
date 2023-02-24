@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.board.db.BoardDAO"%>
 <%@page import="com.itwillbs.market.db.MarketDAO"%>
 <%@page import="com.itwillbs.market.db.MarketDTO"%>
 <%@page import="com.itwillbs.util.ChangeTime"%>
@@ -15,9 +16,14 @@ ArrayList<MarketDTO> viewList = dao.getMainMarketViewList();
 ArrayList<BoardDTO> freeList = (ArrayList<BoardDTO>) request.getAttribute("freeList");
 ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("reviewList");
 
+//글쓴이를 닉네임으로 불러오기
+	BoardDAO dao2 = new BoardDAO();
+
 %>
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp"/>
+<link href="/resource/css/board.css" rel="stylesheet" type="text/css">
+<link href="/resource/css/front.css" rel="stylesheet" type="text/css">
 <!-- 헤더파일들어가는 곳 -->
 
 
@@ -95,7 +101,7 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 				<colgroup>
 						<col width="80px;">
 						<col width="*">
-						<col width="100px;">
+						<col width="150px;">
 						<col width="80px;">
 						<col width="100px;">
 					</colgroup>
@@ -119,15 +125,15 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 						// 시간계산해서 몇초전 몇분전 몇시간전 등 출력하는 함수사용.
 						String changeTime = ChangeTime.calculateTime(dto.getInsertDate());
 						%>
-				      <td><%=dto.getBoardId() %></td>
-				      <td class="skip">
+				      <td class="td2" ><%=dto.getBoardId() %></td>
+				      <td>
 				      	<a href="BoardContent.bo?boardType=<%=dto.getBoardType() %>&boardId=<%=dto.getBoardId()%>">
 							<%=dto.getTitle()%>
 						</a>
 					  </td>
-				      <td><%=dto.getInsertId() %></td>
-				      <td><%=dto.getViewCnt() %></td>
-				      <td><%=changeTime%></td>
+				     <td class="td2"><span id="idSpan"><%=dao2.getNickname(dto.getBoardId()) %></span>
+				      <td class="td2"><%=dto.getViewCnt() %></td>
+				      <td class="td2"><%=changeTime%></td>
 				    </tr>
 				   <%} %>
 				  </tbody>
@@ -142,7 +148,7 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 					<colgroup>
 						<col width="80px;">
 						<col width="*">
-						<col width="100px;">
+						<col width="150px;">
 						<col width="80px;">
 						<col width="100px;">
 					</colgroup>
@@ -167,7 +173,7 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 						// 시간계산해서 몇초전 몇분전 몇시간전 등 출력하는 함수사용.
 						String changeTime = ChangeTime.calculateTime(dto.getInsertDate());
 						%>
-				      <td><%=dto.getBoardId() %></td>
+				      <td class="td2"><%=dto.getBoardId() %></td>
 				      <td>
 				      	<div class="skip">
 				      	<a href="BoardContent.bo?boardType=<%=dto.getBoardType() %>&boardId=<%=dto.getBoardId()%>">
@@ -175,9 +181,11 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 						</a>
 						</div>
 					  </td>
-				      <td><%=dto.getInsertId() %></td>
-				      <td><%=dto.getViewCnt() %></td>
-				      <td><%=changeTime%></td>
+				      <td class="td2">
+				      <span id="idSpan"><%=dao2.getNickname(dto.getBoardId()) %></span>
+				      </td>
+				      <td class="td2"><%=dto.getViewCnt() %></td>
+				      <td class="td2"><%=changeTime%></td>
 				    </tr>
 				   <%} %>
 				    
