@@ -28,6 +28,7 @@ public class MarketDAO {
 	}
 	
 	// 본인이 쓴 중고거래(Market테이블) 글목록 불러오는 메서드 (사진 포함)
+	// 상품 상세페이지 글쓴이의 전체 글목록 불러오는 메서드로도 사용 
 	public ArrayList<MarketDTO> getMyMarketList(String id, int startRow, int pageSize) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -75,6 +76,7 @@ public class MarketDAO {
 	}
 	
 	// 본인이 쓴 전체글 개수 구하는 메서드 (페이징 처리를 위해)
+	// 상품 상세페이지 글쓴이의 전체글 개수 구하는 용도로도 사용 
 	public int getMarketCount(String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -87,81 +89,6 @@ public class MarketDAO {
 			String sql="select count(*) from market where insert_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
-			//4
-			rs=pstmt.executeQuery();
-			//5
-			if(rs.next()) {
-				count=rs.getInt("count(*)");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
-				if(rs!=null) try { rs.close();} catch (Exception e2) {}
-				if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
-				if(con!=null) try { con.close();} catch (Exception e2) {}
-		}
-		return count;
-	}//
-	
-	// 다른 유저의 전체 글목록 불러오는 메서드 (사진 포함) 
-	public ArrayList<MarketDTO> getUserMarketList(String insert_id, int startRow, int pageSize) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ArrayList<MarketDTO> marketList = new ArrayList<>();
-		try {	
-			con = getConnection();
-			
-			String sql="select m.market_id, m.trade_type, m.title, m.content, m.view_cnt, m.trade_st, m.book_price, "
-					+ "m.insert_id, m.insert_date, i.url "
-					+ "from (SELECT image_id, market_id, url "
-					+ "FROM market_image where mod(image_id,5)=1) i right join market m "
-					+ "on i.market_id = m.market_id where m.insert_id=? order by market_id desc limit ?, ?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, startRow-1);
-			pstmt.setInt(2, pageSize);
-			 
-			rs=pstmt.executeQuery();
-			
-			while(rs.next()) {
-				MarketDTO dto = new MarketDTO();
-				dto.setMarket_id(rs.getInt("market_id"));
-				dto.setTrade_type(rs.getString("trade_type"));
-				dto.setTitle(rs.getString("title"));
-				dto.setContent(rs.getString("content"));
-				dto.setView_cnt(rs.getInt("view_cnt"));
-				dto.setTrade_st(rs.getString("trade_st"));
-				dto.setBook_price(rs.getString("book_price"));
-				dto.setInsert_id(rs.getString("insert_id"));
-				dto.setInsert_date(rs.getTimestamp("insert_date"));
-				dto.setUrl(rs.getString("url"));
-				
-				marketList.add(dto);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
-				if(rs!=null) try { rs.close();} catch (Exception e2) {}
-				if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
-				if(con!=null) try { con.close();} catch (Exception e2) {}
-		}
-		return marketList;
-	}
-	
-	// 다른 유저의 전체글 개수 구하는 메서드 (페이징 처리를 위해)
-	public int getUserMarketCount(String insert_id) {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		int count=0;
-		try {
-			// 1~2 단계
-			con=getConnection();
-			// 3단계 sql
-			String sql="select count(*) from market where insert_id=?";
-			pstmt=con.prepareStatement(sql);
 			//4
 			rs=pstmt.executeQuery();
 			//5
