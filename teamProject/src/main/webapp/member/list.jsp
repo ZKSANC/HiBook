@@ -2,8 +2,13 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- 헤더파일들어가는 곳 -->
-<jsp:include page="/inc/header.jsp"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>member/list.jsp</title>
+</head>
+<body>
 	<h1>member/list.jsp</h1>
 	<%
 	// MemberDAO 객체생성
@@ -39,9 +44,8 @@
 	</table>
 	<a href="MemberMain.me">메인으로</a>
 	<br>
-<!-- 푸터파일들어가는 곳 -->
-<jsp:include page="/inc/footer.jsp"/>
-<!-- 푸터파일들어가는 곳 -->   
+</body>
+</html>
 
 
 
