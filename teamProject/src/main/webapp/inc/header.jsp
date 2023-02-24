@@ -8,11 +8,44 @@
 
 <!-- 공통CSS -->
 <link href="resource/css/front.css" rel="stylesheet" type="text/css">
-
+<link href="../resource/css/header.css" rel="stylesheet" type="text/css">
 <!-- 자바 들어가는 곳 -->
 <%String id = (String)session.getAttribute("id"); %>
 <!-- 자바스크립트 들어가는 곳 -->
+<script type="text/javascript">
+//----------------------------------------chat관련 function
+function openchatbox() {
+	window.open("ChatList.hi", "a", "width=500, height=700");
+}
+function getUnread(){
+	$.ajax({
+		type: "POST",
+		url: "./chatUnread",
+		data: {
+			id: encodeURIComponent('<%= id%>'),
+		},
+		success: function(result) {
+			if(result >= 1){
+				showUnread(result);
+			} else {
+				showUnread('');
+			}
+		}
+	});
+}
+function getInfiniteUnread(){ //일정시간마다 자신이 읽지않은 메시지 개수를 알려줌
+	setInterval(function(){
+		getUnread();
+	}, 4000); //4초마다 getUnread를 실행 (그래서 ChatUnreadServlet.err이 계속 뜬다. )
+}
+function showUnread(result){
+	$('#unread').html(result);
+}
 
+//----------------------------------------chat관련 function end
+
+
+</script>
 </head>
 
 <body>
@@ -41,8 +74,10 @@
 	<div class="mypage">
 		<div id="mypageMenu" onclick="location.href='MarketWriteForm.ma'">판매하기</div>
 		<div id="mypageMenu" onclick="location.href='MypageMain.mypage'">마이페이지</div>
-		<div id="mypageMenu" onclick="location.href='1:1채팅'">1:1 채팅</div>
+<!-- 		<div id="mypageMenu" onclick="location.href='1:1채팅'">1:1 채팅</div> -->
 	</div>
+		<div class="chatMenu"><img class="chatMenuimg" src="resource/image/closemessage.png" onclick="openchatbox()"><span id="unread" class="boxunread"></span>
+		</div>
 </div>
 <div class="navWrap">
 	<div class="navBar">
@@ -89,3 +124,15 @@
 	</div>
 </div>
 </header>
+
+	<%
+		if(id != null) { // 사용자가 로그인 한 상태
+	%>
+	<script type="text/javascript">
+		$(document).ready(function() { 
+			getInfiniteUnread();
+		}); 
+	</script>	 
+	<%
+		}
+	%>

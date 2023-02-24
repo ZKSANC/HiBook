@@ -31,6 +31,16 @@ for(int i = 0; i < dto.getImgUrls().length; i++) {
 <!-- 자바스크립트 들어가는 곳 -->
 <script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <script type="text/javascript">
+
+// chat function start
+function openchat() {
+// 	window.open("ChatList.hi", "a", "width=500, height=700");
+ 	window.open("Chat.hi?to_id=<%=dto.getInsert_id()%>", "a", "width=500, height=700");
+<%-- 	location.href='Chat.hi?to_id=<%=dto.getInsert_id()%>' --%>
+}
+
+// chat function end
+
 $(document).ready(function(){ // j쿼리 시작
 	//처음으로 가져온 찜개수 저장
 	var count = <%= dao.getMarketWishCount(dto.getMarket_id())%>
@@ -217,7 +227,7 @@ $(document).ready(function(){ // j쿼리 시작
 			}
 		}
 		%>
-		<input type="button" value="1:1 채팅" onclick="location.href='채팅가상주소?insert_id=<%=dto.getInsert_id()%>'">
+		<input type="button" value="1:1 채팅" onclick="openchat();">
 		<input type="button" value="신고하기" onclick="location.href='신고가상주소?insert_id=<%=dto.getInsert_id()%>'">
 <!-- 내용 끝 -->
 </div>

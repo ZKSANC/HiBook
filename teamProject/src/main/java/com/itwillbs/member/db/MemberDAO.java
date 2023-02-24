@@ -185,6 +185,38 @@ public class MemberDAO {
 		return dto;
 	}//getMember()
 	
+	// ------------------------------------------------
+	// 채팅 method
+	
+	public String getProfile(String mem_id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String SQL = "SELECT mem_img FROM members WHERE mem_id = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, mem_id);
+			rs = pstmt.executeQuery();
+			if ( rs.next()) {
+				if(rs.getString("mem_img").equals("url")||rs.getString("mem_img")== null) {
+					return "http://localhost:8080/resource/image/hibookprofile.png";
+				}
+				return "/upload/" + rs.getString("mem_img");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return "http://localhost:8080/resource/image/hibookprofile.png";
+	}//getProfile
 	
 	
 	

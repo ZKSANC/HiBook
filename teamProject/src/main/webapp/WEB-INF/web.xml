@@ -75,4 +75,57 @@
   	<servlet-name>ReviewFrontController</servlet-name>
   	<url-pattern>*.pr</url-pattern>
   </servlet-mapping>
+  
+  
+    <!--   *.chat 가상주소 -> 주소매핑 처리 파일로 연결 -> 처리담당자(서블릿) -->
+  <servlet>
+	<servlet-name>ChatController</servlet-name>
+	<servlet-class>com.itwillbs.chat.action.ChatController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ChatController</servlet-name>
+  	<url-pattern>*.hi</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+	<servlet-name>ChatSubmitServlet</servlet-name>
+	<servlet-class>com.itwillbs.chat.action.ChatSubmitServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ChatSubmitServlet</servlet-name>
+  	<url-pattern>/chatSubmitServlet</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+	<servlet-name>ChatListServlet</servlet-name>
+	<servlet-class>com.itwillbs.chat.action.ChatListServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ChatListServlet</servlet-name>
+  	<url-pattern>/chatListServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+	<servlet-name>ChatUnreadServlet</servlet-name>
+	<servlet-class>com.itwillbs.chat.action.ChatUnreadServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ChatUnreadServlet</servlet-name>
+  	<url-pattern>/chatUnread</url-pattern>
+  </servlet-mapping>
+  
+  
+    <servlet>
+	<servlet-name>ChatBoxServlet</servlet-name>
+	<servlet-class>com.itwillbs.chat.action.ChatBoxServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ChatBoxServlet</servlet-name>
+  	<url-pattern>/chatBox</url-pattern>
+  </servlet-mapping>
 </web-app>
