@@ -10,6 +10,7 @@ public class StarReviewDTO{
 	private String review_content;
 	private Timestamp review_date;
 	private int count;
+	private String nickname;
 	
 	public int getManner_num() {
 		return manner_num;
@@ -52,5 +53,11 @@ public class StarReviewDTO{
 	}
 	public void setCount(int count) {
 		this.count = count;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 }

@@ -18,9 +18,10 @@
 		<jsp:include page="/inc/header.jsp" />
 	</header>
 	<%
+	
 	String sid = request.getParameter("id");
 	String tgt_id = (String) session.getAttribute("id");
-	MemberDTO dto = (MemberDTO) request.getAttribute("dto");
+// 	MemberDTO dto = (MemberDTO) request.getAttribute("id");
 	StarReviewDAO sDao = new StarReviewDAO();
 	StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 
@@ -43,6 +44,9 @@
 						<h4>
 							아이디 :
 							<%=tgt_id %></h4>
+						<h4>
+							닉네임 :
+							<%=sDto.getNickname()%></h4>
 						<h4>
 							별점 :
 							<%=Double.toString(sDto.getScore()).substring(0, 3)%>
@@ -105,6 +109,12 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+			var urlParams = new URL(location.href).searchParams;
+			var id = urlParams.get('insert_id');
+			console.log(id);
+			document.getElementById("tgt_id").value = id;
+	</script>
 	<footer>
 		<jsp:include page="/inc/footer.jsp" />
 	</footer>

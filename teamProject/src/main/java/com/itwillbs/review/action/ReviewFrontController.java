@@ -54,6 +54,10 @@ public class ReviewFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (sPath.equals("/ReviewBox.pr")) {
+			forward=new ActionForward();
+			forward.setPath("profile/ReviewWriteClose.jsp");
+			forward.setRedirect(false);
 		}
 			
 			if(forward!=null) {

@@ -33,7 +33,7 @@ public class StarReviewDAO{
 				// 1~2 단계
 				con=getConnection();
 				// 3단계 SQL구문 만들어서 실행할 준비(insert)
-				String sql="select tgt_id, avg(score) from manner where tgt_id=?";
+				String sql="select m.nickname, t.tgt_id, avg(score) from manner t join members m on t.tgt_id = m.mem_id where t.tgt_id=?";
 				pstmt=con.prepareStatement(sql);
 				System.out.println(pstmt);
 				System.out.println(tgt_id);
@@ -49,13 +49,9 @@ public class StarReviewDAO{
 					dto=new StarReviewDTO();
 					System.out.println(dto);
 					// set메서드호출 바구니에 디비에서 가져온 값 저장
-//					dto.setManner_num(rs.getInt("manner_num"));
-//					dto.setId(rs.getString("id"));
+					dto.setNickname(rs.getString("nickname"));
 					dto.setTgt_id(rs.getString("tgt_id"));
-					//System.out.println(rs.getDouble(1));
 					dto.setScore(rs.getDouble("avg(score)"));
-//					dto.setReadcount(rs.getInt("readcount"));
-//					
 				}
 			}
 			 catch (Exception e) {
