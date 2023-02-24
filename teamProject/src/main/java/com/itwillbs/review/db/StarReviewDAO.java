@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import mypage.member.MemberDTO;
 public class StarReviewDAO{
 
 		public Connection getConnection() throws Exception{
@@ -177,5 +178,42 @@ public class StarReviewDAO{
 					
 			}
 		}// insertReview
+		
+		public StarReviewDTO getMemberImg(String id) {
+			// 바구니 주소가 저장되는 변수에 null 초기화
+			StarReviewDTO dto = null;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				// 1,2단계 디비연결 메서드 호출 
+				con = getConnection();
+				
+				//3단계 SQL구문 만들어서 실행할 준비 (select where id=?)
+				String sql = "select * from members where mem_id=?";
+				pstmt = con.prepareStatement(sql);
+				//? 채워넣기
+					pstmt.setString(1, id); 
+
+				//4단계 SQL구문을 실행(select) => 결과 저장 
+				rs = pstmt.executeQuery();
+
+				//5단계 결과를 출력, 데이터 담기 (select)
+				if(rs.next()) {
+				// id, pass 일치하면 MemberDTO 바구니에 데이터 담아서 가져오기 
+				//	바구니 객체생성 dto => 기억장소 할당 
+					dto = new StarReviewDTO();
+					dto.setMem_img(rs.getString("mem_img"));
+					dto.setNickname(rs.getString("nickname"));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+				if(con!=null) try { con.close();} catch (Exception e2) {}
+				if(rs!=null) try { rs.close();} catch (Exception e2) {}
+			}
+			return dto;		
+		}
 
 }

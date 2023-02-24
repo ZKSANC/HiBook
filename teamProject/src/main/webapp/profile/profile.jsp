@@ -32,6 +32,7 @@
 	
 	StarReviewDAO sDao = new StarReviewDAO();
 	StarReviewDTO dto = new StarReviewDTO();
+	dto = sDao.getMemberImg(id);
 	
 	// 페이징 처리 
 		ArrayList<StarReviewDTO> boardList = (ArrayList<StarReviewDTO>) request.getAttribute("boardList");
@@ -55,12 +56,17 @@
 <%-- 					<img src="upload/<%=dto.getMem_img() %>" width="100" height="100"> --%>
 <%-- 					<% }%> --%>
 					<div class="profile-chat">
+						<%if(dto.getMem_img().equals("url")) { %>
+						<img src="resource/image/image.png" width="100" height="100">
+						<% }else { %>
+						<img src="upload/<%=dto.getMem_img() %>" width="100" height="100">
+						<%} %>
 						<h4>
 							아이디 :
 							<%if(sDto.getTgt_id()==null) { %>
 							<%=tgt_id%>
 							<% } else { %>
-								<%=sDto.getTgt_id()%>
+							<%=sDto.getTgt_id()%>
 							<%}%>
 						</h4>
 						<h4>
@@ -69,13 +75,14 @@
 							<%=nickname%>
 							<% } else { %>
 							<%=sDto.getNickname()%>
-							<%}%> 
+							<%}%>
 						</h4>
 						<h4>
 							별점 :
 							<%=Double.toString(sDto.getScore()).substring(0, 3)%>
 						</h4>
-						<button class="chatbtn" onclick="location.href='Chat.hi?to_id=<%=dto.getTgt_id()%>'">1:1채팅</button>
+						<button class="chatbtn"
+							onclick="location.href='Chat.hi?to_id=<%=dto.getTgt_id()%>'">1:1채팅</button>
 					</div>
 					<!-- 					<hr class="board-box"> -->
 				</div>
