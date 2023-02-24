@@ -116,7 +116,9 @@ function showUnread(result){
 						<span class="drop-btn" onclick="location.href='BoardList.bo?boardType=review'">도서리뷰게시판</span>
 					</li>
 					<li class="li-drop">
-						<span class="drop-btn" onclick="location.href='고객센터'">고객센터</span>
+						<span class="drop-btn" onclick="location.href='ReportForm.re'">신고하기</span>
+						<span class="drop-btn" onclick="location.href='ReportList.re'">신고목록</span>
+						<span class="drop-btn" onclick="location.href='List.re'">자주하는 질문</span>
 					</li>
 				</ul>
 			</div>
