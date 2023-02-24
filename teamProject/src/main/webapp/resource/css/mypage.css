@@ -170,3 +170,8 @@
 .submit {
 	text-align: center;
 }
+
+.bb {
+	text-decoration: none;
+	color: inherit;
+}
