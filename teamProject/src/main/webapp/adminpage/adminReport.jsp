@@ -72,7 +72,7 @@ function allChk(obj){
 	<td><input type="checkbox" name="chk" value="<%=dto.getReport_id() %>"></td>
 	<td><%=dto.getReport_id() %></td>
 	<td><img src="upload/<%=dto.getContent_img1() %>" width="100" height="100"></td>
-	<td><a href="content.jsp?report_id=<%=dto.getReport_id() %>"><%=dto.getTitle() %></a></td>
+	<td><a href="ReportContent.re?report_id=<%=dto.getReport_id() %>"><%=dto.getTitle() %></a></td>
 	<td><%=dto.getInsert_id() %></td>
 	<td><%=dateFormat.format(dto.getInsert_date()) %></td><tr>
 	<%
