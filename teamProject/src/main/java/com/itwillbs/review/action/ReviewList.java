@@ -14,16 +14,19 @@ public class ReviewList implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("ReviewList execute()");
+		String tgt_id = "";
 		
 		//로그인 ID받기
 		HttpSession session=request.getSession();
 		String id = (String)session.getAttribute("id");
 		System.out.println(id);
+		tgt_id = id;
 		
 		//작성자 ID받기
 		String insert_id = "";
 		if(request.getParameter("insert_id") != null) {
 		insert_id = request.getParameter("insert_id");
+		tgt_id = insert_id;
 		}
 		System.out.println(insert_id);
 		
@@ -41,12 +44,7 @@ public class ReviewList implements Action{
 		
 		//getReviewList 함수 호출
 		ArrayList<StarReviewDTO> boardList = null;
-		
-		if(insert_id.equals("")) {
-				boardList=dao.getReviewList(id, startRow,pageSize);
-			}else {
-				boardList=dao.getReviewList(insert_id, startRow,pageSize);
-			}
+		boardList=dao.getReviewList(tgt_id, startRow,pageSize);
 		
 		int pageBlock=3;
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
@@ -54,12 +52,8 @@ public class ReviewList implements Action{
 		
 		//getReviewCount 함수 호출
 		int count = 0;
-		if(insert_id.equals("")) {
-			count = dao.getReviewCount(id);
-		} else {
-			count = dao.getReviewCount(insert_id);
-		}
-		
+		count = dao.getReviewCount(tgt_id);
+
 		
 		int pageCount=count/pageSize+(count%pageSize==0?0:1);
 		if(endPage > pageCount){
@@ -68,6 +62,7 @@ public class ReviewList implements Action{
 		
 		// request 가져온 데이터 담기
 		request.setAttribute("boardList", boardList);
+		request.setAttribute("tgt_id", tgt_id);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("pageBlock", pageBlock);

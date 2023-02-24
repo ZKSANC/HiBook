@@ -442,7 +442,7 @@ input[type="button"] {
 }
 
 #profilImg {
-	width: 84px;
+  width: 84px;
   height: 84px;
   object-fit: cover;
 }

@@ -17,6 +17,8 @@
 
 <body>
 <!-- 스크립트 파일 들어가는곳 -->
+<script type="text/javascript">
+</script>
 <!-- 스크립트 끝. -->
 <header>
 <div class="topBar">
@@ -49,8 +51,8 @@
 				<li class="li-main">
 					<span onclick="location.href='main.do'">홈</span>
 				</li>
-				<li class="li-main">
-					<span>중고거래</span>
+				<li class="li-main" >
+					<span onclick="location.href='MarketList.ma'">중고거래</span>
 				</li>
 				<li class="li-main">
 					<span>커뮤니티</span>
@@ -70,8 +72,9 @@
 						<span class="drop-btn" onclick="location.href='BoardList.bo?boardType=notice'">공지사항</span>
 					</li>
 					<li class="li-drop">
-						<span class="drop-btn" onclick="location.href='MarketList.ma'">판매/구매</span>
-						<span class="drop-btn" onclick="location.href='MarketList.ma'">무료나눔</span>
+						<span class="drop-btn" onclick="location.href='MarketList.ma?trade_type=구매'">중고책 구매</span>
+						<span class="drop-btn" onclick="location.href='MarketList.ma?trade_type=판매'">중고책 판매</span>
+						<span class="drop-btn" onclick="location.href='MarketList.ma?trade_type=무료나눔'">무료나눔</span>
 					</li>
 					<li class="li-drop">
 						<span class="drop-btn" onclick="location.href='BoardList.bo?boardType=free'">자유게시판</span>
