@@ -32,7 +32,7 @@ if(dto != null) {
 <div class=content>
 
 <p>
-하이북에서 정말 탈퇴하시겠습니까?
+북하이에서 정말 탈퇴하시겠습니까?
 <form action="MypageDeletePro.mypage" method="post">
 <input type="submit" value="탈퇴" class=button>
 <a href="MypageMain.mypage"><input type="button" value="취소" class=button></a>

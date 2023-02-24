@@ -21,6 +21,7 @@ String parentId = request.getParameter("parentId")==null ? "0" : request.getPara
 <link href="/resource/css/board.css" rel="stylesheet" type="text/css">
 <div class="boardContainer">
 <!-- 내용 시작 -->
+<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <script type="text/javascript">
 function writeCheck() {
 

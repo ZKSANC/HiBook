@@ -1,4 +1,3 @@
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.util.ChangeTime"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.itwillbs.boardComment.db.BoardCmmtDTO"%>
@@ -6,6 +5,7 @@
 <%@page import="com.itwillbs.board.db.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+   
  <%
  String id = (String)session.getAttribute("id");
   	// 게시판 유형을 공통코드로 구분.
@@ -37,6 +37,7 @@
 <!-- 헤더파일들어가는 곳 -->
 <link href="/resource/css/board.css" rel="stylesheet" type="text/css">
 <link href="resource/css/market.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <div class="boardContainer">
 <!-- 내용 시작 -->
 
@@ -217,8 +218,7 @@ function writeCheck() {
 <!-- 		<span id="idSpan"> -->
 <%-- 		<input type="hidden" name=<%=dto.getInsertId() %>></span> --%>
          <td><span id="idSpan"><%=dao.getNickname(dto.getBoardId()) %></span>
-         <% SimpleDateFormat dateformat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");%>
-		<td><%=dateformat.format(dto.getInsertDate()) %></td>
+         <td><%=dto.getInsertDate()%></td>
          <td>조회 : <%=dto.getViewCnt()%></td>
       </tr>
       

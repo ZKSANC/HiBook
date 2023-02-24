@@ -50,7 +50,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>  
 <script type="text/javascript">
 	function chatbox(){
-			window.open("ChatList.hi", "vv", "width=500, height=700"); 
+			window.open("ChatList.hi", "a", "width=500, height=700"); 
 	}
 	function autoClosingAlert(selector, delay){
 		var alert = $(selector).alert();

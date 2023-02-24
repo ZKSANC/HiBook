@@ -3,7 +3,12 @@
 <%@page import="com.itwillbs.market.db.MarketDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="resource/css/market.css" rel="stylesheet" type="text/css">
+<title>Insert title here</title>
 <!-- 자바 들어가는 곳 -->
 <%
 ArrayList<MarketDTO> dtolist = (ArrayList<MarketDTO>)request.getAttribute("dtolist");
@@ -16,7 +21,7 @@ int allPage = (Integer)request.getAttribute("allPage");
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp" />
 <!-- 헤더파일들어가는 곳 -->
-<link href="resource/css/market.css" rel="stylesheet" type="text/css">
+
 <div class="boardContainer">
 <!-- 내용 시작 -->
 <article class="board">
@@ -79,6 +84,9 @@ int allPage = (Integer)request.getAttribute("allPage");
 
 <!-- 내용 끝 -->
 </div>
+
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="/inc/footer.jsp" />
 <!-- 푸터 들어가는 곳 -->
+</body>
+</html>
