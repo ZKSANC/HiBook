@@ -95,6 +95,7 @@ public class StarReviewDAO{
 					dto.setInsert_id(rs.getString("insert_id"));
 					dto.setReview_content(rs.getString("review_content"));
 					dto.setReview_date(rs.getTimestamp("review_date"));
+					dto.setTgt_id(rs.getString("tgt_id"));
 					// 바구니의 주소값을 배열 한칸에 저장
 					reviewList.add(dto);
 					System.out.println(dto);
@@ -115,11 +116,12 @@ public class StarReviewDAO{
 			PreparedStatement pstmt=null;
 			ResultSet rs=null;
 			int count=0;
+			String tgt_id = "";
 			try {
 				// 1~2 단계
 				con=getConnection();
 				// 3단계 sql
-				String sql="select count(*) from manner where tgt_id=?";
+				String sql="select tgt_id, count(*) from manner where tgt_id=?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, id);
 				//4
@@ -129,6 +131,7 @@ public class StarReviewDAO{
 				//5
 				if(rs.next()) {
 					count=rs.getInt("count(*)");
+					tgt_id=rs.getString("tgt_id");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

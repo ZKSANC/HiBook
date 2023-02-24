@@ -18,22 +18,32 @@
 		<jsp:include page="/inc/header.jsp" />
 	</header>
 	<%
-	
+	// 로그인 ID
 	String sid = request.getParameter("id");
-	String tgt_id = (String) session.getAttribute("id");
+	String id = (String) session.getAttribute("id");
 // 	MemberDTO dto = (MemberDTO) request.getAttribute("id");
+
 	StarReviewDAO sDao = new StarReviewDAO();
-	StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 
 	// 페이징 처리 
 		ArrayList<StarReviewDTO> boardList = (ArrayList<StarReviewDTO>) request.getAttribute("boardList");
-
+		// 작성자 ID
+		StarReviewDTO dto = boardList.get(0);
+		String insert_id = dto.getTgt_id();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
 		int currentPage = (Integer) request.getAttribute("currentPage");
 		int startPage = (Integer) request.getAttribute("startPage");
 		int pageBlock = (Integer) request.getAttribute("pageBlock");
 		int endPage = (Integer) request.getAttribute("endPage");
 		int pageCount = (Integer) request.getAttribute("pageCount");
+		
+		String tgt_id = "";
+		if(id.equals(insert_id)) {
+			tgt_id = id;
+		} else {
+			tgt_id = insert_id;
+		}
+		StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 	%>
 	<div class="container">
 		<div class="main-box">
