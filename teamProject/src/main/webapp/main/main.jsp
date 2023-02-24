@@ -127,7 +127,7 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 						%>
 				      <td class="td2" ><%=dto.getBoardId() %></td>
 				      <td>
-				      	<a href="BoardContent.bo?boardType=<%=dto.getBoardType() %>&boardId=<%=dto.getBoardId()%>">
+				      	<a class="aa" href="BoardContent.bo?boardType=<%=dto.getBoardType() %>&boardId=<%=dto.getBoardId()%>">
 							<%=dto.getTitle()%>
 						</a>
 					  </td>
@@ -176,7 +176,7 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 				      <td class="td2"><%=dto.getBoardId() %></td>
 				      <td>
 				      	<div class="skip">
-				      	<a href="BoardContent.bo?boardType=<%=dto.getBoardType() %>&boardId=<%=dto.getBoardId()%>">
+				      	<a class="aa" href="BoardContent.bo?boardType=<%=dto.getBoardType() %>&boardId=<%=dto.getBoardId()%>">
 							<%=dto.getTitle()%>
 						</a>
 						</div>

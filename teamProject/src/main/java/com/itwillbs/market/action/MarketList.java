@@ -14,8 +14,10 @@ public class MarketList implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MarketList excute()");
 		
-		String trade_type = request.getParameter("trade_type");
-		System.out.println(trade_type);
+		String trade_type = "";
+		if(request.getParameter("trade_type")!=null) {
+			trade_type = request.getParameter("trade_type");
+		}
 		
 		MarketDAO dao = new MarketDAO();
 		//한 페이지에 불러올 market_id 열 수
@@ -39,7 +41,13 @@ public class MarketList implements Action{
 		//mysql limit 함수 변수
 		int start = startRow-1; //시작행
 		int num = pageSize; //시작행으로부터 가져올 갯수
-		ArrayList<MarketDTO> dtolist = dao.getMarketList(start, num);
+		
+		//DAO에서 데이터 받기
+		if(request.getParameter("trade_type")!=null) {
+			ArrayList<MarketDTO> dtolist = dao.getMenuMarketList(trade_type, start, num);
+		} else {
+			ArrayList<MarketDTO> dtolist = dao.getMarketList(start, num);
+		}
 		
 		//하단에 보여지는 페이지 번호
 		int pageBlock = 5;

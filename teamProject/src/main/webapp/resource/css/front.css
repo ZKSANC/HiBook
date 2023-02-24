@@ -36,7 +36,7 @@ div {
 	padding : 0px 30px;
 }
 
-a {
+.aa {
 	text-decoration: none;
 	color: inherit;
 }
@@ -192,6 +192,7 @@ a {
 }
 
 .li-drop {
+	color : #666666;
 	justify-content: flex-start !important;
 	gap: 10px;
 }
@@ -377,7 +378,5 @@ tr:last-child td:last-child {
 	gap : 0px 15px;
 }
 
-ul > li {
-	color : #666666;
-}
+
 
