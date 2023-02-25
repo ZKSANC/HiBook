@@ -1,26 +1,6 @@
 @charset "UTF-8";
 
-@font-face {
-    font-family: 'Happiness-Sans-Title';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
 
-/* 공통 CSS STRAT*/
-
-body {
-  margin: 0px;
-  padding: 0px;
-  background-color: #fff;
-  font-family: 'Happiness-Sans-Title'; 
-}
-
-div {
-	word-break : break-all;
-}
-
-/* 공통 CSS END*/
 
 input[type="button"] {
 	cursor : pointer;
@@ -44,6 +24,40 @@ input[type="button"] {
 
 .board3 {
 	text-align: center;
+}
+
+.mpageNum {
+	font-family: 'Happiness-Sans-Title'; 
+	font-size: 16px;
+}
+
+.boardText, .boardArr {
+	margin-bottom : 20px; 
+}
+
+.boardArr {
+	margin-bottom: 30px;
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+}
+
+.boardList {
+	font-weight: bolder;
+	cursor: pointer;
+	color: #666666;
+}
+
+.boardList:last-of-type {
+	padding-right: 20px;
+}
+
+.boardList:hover {
+	color: #212529;
+}
+
+.baordList:active {
+	color: black;
 }
 
 /* MarketList END*/

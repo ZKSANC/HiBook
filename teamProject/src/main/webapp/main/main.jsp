@@ -38,8 +38,8 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 <article class="board">
 	<div class="boardContainer">
 		<div class="board1">
-			<p id="boardTag">추천 도서📚</p>
-			<p >인기있는 책을 확인하세요!</p>
+			<p class="boardTag">추천 도서📚</p>
+			<p class="boardTag2">인기있는 책을 확인하세요!</p>
 		 	<div class="cardContainer">
 		 	
 				<%for(int i = 0; i < viewList.size(); i++) {
@@ -53,9 +53,11 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 						</div>
 						<div class="innerBottom">
 							<div class="cardText">
-								<p id="book_price"><%=dto.getBook_price() %> 원</p>
-								<p id="title"><span id=""><%=dto.getTrade_type() %></span> &#5; <%=dto.getTitle() %></p>
-								<p id="insert_date"><%=changeTime %></p>
+								<p class="book_price"><%=dto.getBook_price() %> 원</p>
+								<div class="book_title">
+								<p><span class="trade_type"><%=dto.getTrade_type() %></span>&nbsp;&nbsp;<%=dto.getTitle() %></p>
+								</div>
+								<p class="insert_date"><%=changeTime %>&nbsp;&nbsp;<span class="view_cnt">조회수 <%=dto.getView_cnt() %> </span></p>
 							</div>
 						</div>
 					</div>
@@ -66,8 +68,8 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 		</div>
 		
 		<div class="board1">
-			<p id="boardTag">최신 도서📚</p>
-			<p>관심있던 책을 찾아보세요!</p>
+			<p class="boardTag">최신 도서📚</p>
+			<p class="boardTag2">관심있던 책을 찾아보세요!</p>
 			<div class=cardContainer>
 			
 				<%for(int i = 0; i < latestList.size(); i++) {
@@ -81,9 +83,11 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 						</div>
 						<div class="innerBottom">
 							<div class="cardText">
-								<p id="book_price"><%=dto.getBook_price() %> 원</p>
-								<p id="title"><span id=""><%=dto.getTrade_type() %></span> &#5; <%=dto.getTitle() %></p>
-								<p id="insert_date"><%=changeTime %></p>
+								<p class="book_price"><%=dto.getBook_price() %> 원</p>
+								<div class="book_title">
+								<p><span class="trade_type"><%=dto.getTrade_type() %></span>&nbsp;&nbsp;<%=dto.getTitle() %></p>
+								</div>
+								<p class="insert_date"><%=changeTime %>&nbsp;&nbsp;<span class="view_cnt">조회수 <%=dto.getView_cnt() %> </span></p>
 							</div>
 						</div>
 					</div>
@@ -94,7 +98,7 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 		</div>
 		
 		<div class="board2">
-			<p id="boardTag">자유게시판💬</p>
+			<p class="boardTag">자유게시판💬</p>
 			<div class="tableBar">
 				<table>
 				<colgroup>
@@ -141,7 +145,7 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 		</div>
 		
 		<div class="board2">
-			<p id="boardTag">책 리뷰💬</p>
+			<p class="boardTag">책 리뷰💬</p>
 			<div class="tableBar">
 					<table>
 					<colgroup>
