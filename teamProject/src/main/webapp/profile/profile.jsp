@@ -53,7 +53,7 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 						%>
 						<img src="resource/image/image.png" width="100" height="100">
 						<%
-						} else if(sDto.getMemImg() == null){ %>
+						} else if(sdto.getMemImg() == null){ %>
 							<img src="resource/image/image.png" width="100" height="100">
 						<% }else{
 						%>

@@ -31,11 +31,18 @@ int pageCount = (Integer)request.getAttribute("pageCount");
 	<div class="MarketContainer">
 	
 		<div class="board1">
-			<p id="boardTag">중고책 <%=trade_type %> 게시판📚</p>
-			<p>새로운 책들을 확인해보세요!</p>
-			<span class="list" onclick="location.href='MarketSortList.ma?trade_type=<%=trade_type%>&arr=Latest'">최신순</span> 
-			<span class="list" onclick="location.href='MarketSortList.ma?trade_type=<%=trade_type%>&arr=View'">조회순</span> 
-			<span class="list" onclick="location.href='MarketSortList.ma?trade_type=<%=trade_type%>&arr=Att'">인기순</span>
+			<div class="boardText">
+				<p class="boardTag">중고책 
+				<%if(trade_type.equals("")) { %>
+				종합<% } else { %>
+				<%=trade_type %><% }%> 게시판📚</p>
+			</div>
+			
+			<div class="boardArr">
+				<div class="boardList" onclick="location.href='MarketSortList.ma?trade_type=<%=trade_type%>&arr=Latest'">최신순</div> 
+				<div class="boardList" onclick="location.href='MarketSortList.ma?trade_type=<%=trade_type%>&arr=View'">조회순</div> 
+				<div class="boardList" onclick="location.href='MarketSortList.ma?trade_type=<%=trade_type%>&arr=Att'">인기순</div>
+			</div>
 			
 		 	<div class="cardContainer">
 		 	
@@ -50,9 +57,11 @@ int pageCount = (Integer)request.getAttribute("pageCount");
 						</div>
 						<div class="innerBottom">
 							<div class="cardText">
-								<p id="book_price"><%=dto.getBook_price() %> 원</p>
-								<p id="title"><span id=""><%=dto.getTrade_type() %></span> &#5; <%=dto.getTitle() %></p>
-								<p id="insert_date"><%=changeTime %></p>
+								<p class="book_price"><%=dto.getBook_price() %> 원</p>
+								<div class="book_title">
+								<p><span class="trade_type"><%=dto.getTrade_type() %></span>&nbsp;&nbsp;<%=dto.getTitle() %></p>
+								</div>
+								<p class="insert_date"><%=changeTime %>&nbsp;&nbsp;<span class="view_cnt">조회수 <%=dto.getView_cnt() %> </span></p>
 							</div>
 						</div>
 					</div>
@@ -76,7 +85,7 @@ int pageCount = (Integer)request.getAttribute("pageCount");
 			}
 			for(int i = startPage; i <= endPage; i++) {	
 			%>
-				<a href="MarketList.ma?pageNum=<%= i%>"><%= i%> </a> 
+				<a href="MarketList.ma?pageNum=<%= i%>"><span class="mpageNum"><%= i%>&nbsp;</span> </a> 
 			<% 
 			}
 			if(endPage < pageCount) {

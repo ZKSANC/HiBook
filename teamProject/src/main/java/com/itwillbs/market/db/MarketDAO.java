@@ -668,6 +668,33 @@ public class MarketDAO {
 		return nickname;
 	}
 	
+	public String getImg(int market_id) {
+		String img = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {	
+			con = getConnection();
+			
+			String sql="select mem_id, mem_img from members m join market mr where m.mem_id = mr.insert_id and mr.market_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, market_id);  
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				img = rs.getString("mem_img");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+			if(con!=null) try { con.close();} catch (Exception e2) {}
+			if(rs!=null) try { rs.close();} catch (Exception e2) {}
+		}
+		return img;
+	}
+	
 	public void updateReadCount(MarketDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;

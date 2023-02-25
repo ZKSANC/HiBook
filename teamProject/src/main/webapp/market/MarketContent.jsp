@@ -15,7 +15,7 @@ String id = (String)session.getAttribute("id");
 MarketDTO dto = (MarketDTO)request.getAttribute("dto");
 ComCdDTO cdto = new ComCdDTO();
 WishDAO dao = new WishDAO();
-MarketDAO dao2 = new MarketDAO();
+MarketDAO mdao = new MarketDAO();
 
 int length = 0;
 for(int i = 0; i < dto.getImgUrls().length; i++) {
@@ -131,11 +131,16 @@ $(document).ready(function(){ // j쿼리 시작
 		
 		<tr>
 		<td>작성자</td>
-		<td><span id="idSpan"><%=dao2.getNickname(dto.getMarket_id()) %></span>
+		<td><span id="idSpan"><%=mdao.getNickname(dto.getMarket_id()) %></span>
 		<div id="miniMenu">
-			<div id="profile"><img id="profilImg" src="resource/image/image.png"></div>
-			<div id="mmenu" onclick="location.href='profile.pr?insert_id=<%=dto.getInsert_id()%>&nickname=<%=dao2.getNickname(dto.getMarket_id())%>'">프로필 보기</div>	
-			<div id="mmenu" onclick="location.href='MypageUserMarketList.mypage?insert_id=<%=dto.getInsert_id()%>&nickname=<%=dao2.getNickname(dto.getMarket_id())%>'">작성글 보기</div>
+			<div id="profile">
+			<%if(mdao.getImg(dto.getMarket_id())==null) { %>
+				<img id="profilImg" src="resource/image/image.png">
+			<% } else{ %>
+				<img id="profilImg" src="upload/<%=mdao.getImg(dto.getMarket_id())%>">
+			<% } %> </div>
+			<div id="mmenu" onclick="location.href='profile.pr?insert_id=<%=dto.getInsert_id()%>&nickname=<%=mdao.getNickname(dto.getMarket_id())%>'">프로필 보기</div>	
+			<div id="mmenu" onclick="location.href='MypageUserMarketList.mypage?insert_id=<%=dto.getInsert_id()%>&nickname=<%=mdao.getNickname(dto.getMarket_id())%>'">작성글 보기</div>
 			<div id="mmenu" onclick="popup();">거래후기 쓰기</div>
 		</div></td>
 		</tr>
