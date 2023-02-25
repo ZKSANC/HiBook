@@ -30,6 +30,8 @@ public class MemberInsertPro implements Action{
 				(request, uploadPath,maxSize,"utf-8",new DefaultFileRenamePolicy());
 				System.out.println(uploadPath);
 				
+				
+				
 		// request 태그이름에 해당하는 값을 가져오기 => 변수에 저장
 				String mem_id=multi.getParameter("mem_id");
 				String mem_pass=multi.getParameter("mem_pass");
