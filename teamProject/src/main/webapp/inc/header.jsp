@@ -98,8 +98,8 @@ function showUnread(result){
 				<li class="li-main">
 					<span onclick="location.href='BoardList.bo?boardType=free'">커뮤니티</span>
 				</li>
-				<li class="li-main">
-					<span class="drop-btn" onclick="location.href='ReportForm.re'">고객센터</span>
+				<li class="li-main cursor-pointer">
+					<span onclick="location.href='ReportForm.re'">고객센터</span>
 				</li>
 			</ul>
 		</div>

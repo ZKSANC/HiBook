@@ -12,6 +12,7 @@ body {
   padding: 0px;
   background-color: #fff;
   font-family: 'Happiness-Sans-Title'; 
+  overflow-y: scroll;
 }
 
 div {
@@ -255,11 +256,6 @@ a {
   margin : 0 auto;
   padding : 30px 0px;
   background-color: #fff;
-}
-
-.boardContainer > div {
-	margin : 10px;
-	padding : 10px;
 }
 
 .cardContainer {
