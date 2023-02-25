@@ -95,16 +95,27 @@ a {
 }
 
 .mypage {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	width : 150px;
 }
 
 #mypageMenu {
+	width: 100%;
 	padding : 2px 0px;
 }
 
 #mypageMenu:hover {
 	background-color: #212529;
 	color: #fff;
+}
+
+.chatMenu {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .bannerBack {

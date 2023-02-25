@@ -81,10 +81,9 @@ function showUnread(result){
 	<% 	} else { %>
 		<div id="mypageMenu" onclick="location.href='MypageMain.mypage'">마이페이지</div>
 	<% 	} %>
-<!-- 		<div id="mypageMenu" onclick="location.href='1:1채팅'">1:1 채팅</div> -->
 	</div>
-		<div class="chatMenu"><img class="chatMenuimg" src="resource/image/closemessage.png" onclick="openchatbox()"><span id="unread" class="boxunread"></span>
-		</div>
+	<div class="chatMenu"><img class="chatMenuimg cursor-pointer" src="resource/image/closemessage.png" onclick="openchatbox()"><span id="unread" class="boxunread"></span>
+	</div>
 </div>
 <div class="navWrap">
 	<div class="navBar">
