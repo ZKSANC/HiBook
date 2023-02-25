@@ -287,7 +287,7 @@ function writeCheck() {
                <td> 
                		<!-- 작성자아이디, 작성일 , 댓글내용, 비밀댓글여부 -->
 <%--                 	  <%=cmmtDto.getInsertId()%> --%>
-                	<span id="idSpan"><%=dao.getNickname(dto.getBoardId()) %></span>
+                	<span id="idSpan"><%=cmmtDto.getNickname() %></span>
                 	  &nbsp;&nbsp; <%=changeTime%><br> 
                   
                   	<!-- 일반글 or 로그인아이디=댓글작성자아이디 or 로그인아이디=원글작성자아이디 or 관리자'Y' -->

@@ -85,13 +85,13 @@
 			%>
 	
 			<tr>
-				<td>공지</td>
-				<td class="tl">
+				<td class="back2">공지</td>
+				<td class="tl back2">
 					<a href="BoardContent.bo?boardType=<%=boardTypeCd %>&boardId=<%=dto.getBoardId()%>">
 						<%=dto.getTitle()%>
 					</a>
 				</td>
-				<td>
+				<td class="back2">
 				<span id="idSpan"><%=dao.getNickname(dto.getBoardId()) %></span>
 					<div id="miniMenu" style="display: none;">
 						<div id="mmenu" onclick="location.href='main.do'">menu1</div>	
@@ -101,8 +101,8 @@
 					</div>
 				      	
 				</td>
-				<td><% SimpleDateFormat dateformat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");%><%=changeTime%></td>
-				<td><%=dto.getViewCnt()%></td>
+				<td class="back2"><% SimpleDateFormat dateformat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");%><%=changeTime%></td>
+				<td class="back2"><%=dto.getViewCnt()%></td>
 			</tr>
 	
 			<%
@@ -126,6 +126,15 @@
 					<a href="BoardContent.bo?boardType=<%=boardTypeCd %>&boardId=<%=dto.getBoardId()%>">
 						<%if(dto.getParentId() != 0){%> &nbsp;&nbsp;ㄴ<%}%>
 						<%=dto.getTitle()%>
+						<% 
+						  if(dto.getCmmtCount() != 0){ %> 
+						  <span class= "cmmtnew cmmtbackground">(<%=dto.getCmmtCount()%>)</span>
+						  <%}%>
+						
+						
+						
+						
+						
 					</a>
 				</td>
 				<td>
@@ -173,7 +182,7 @@
 	
 	for (int i = startPage; i <= endPage; i++) {
 	%>
-	<a href="BoardList.bo?boardType=<%=boardTypeCd %>&keyword=<%=keyword%>&pageNum=<%=i%>"><%=i%></a>
+	<a href="BoardList.bo?boardType=<%=boardTypeCd %>&keyword=<%=keyword%>&pageNum=<%=i%>" <%if(currentPage == i){%> class="active" <%}%>><%=i%></a>
 	<%
 	}
 	// 10페이지 다음

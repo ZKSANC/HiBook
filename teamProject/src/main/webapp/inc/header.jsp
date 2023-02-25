@@ -109,7 +109,7 @@ function showUnread(result){
 			<div class="navContanier">
 				<ul class="ul-drop-main">
 					<li class="li-drop">
-						<span class="drop-btn" onclick="location.href='사이트소개'">사이트 소개</span>
+						<span class="drop-btn" onclick="location.href='Introduce.bo'">사이트 소개</span>
 						<span class="drop-btn" onclick="location.href='BoardList.bo?boardType=notice'">공지사항</span>
 					</li>
 					<li class="li-drop">
