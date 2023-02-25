@@ -55,22 +55,23 @@
 </table>
 
 <div>
+<input type="button"  class="smallButtonComment" value="사기목록" onclick="location.href='ReportList.re'">
 <%
 //  로그인 => 세션값 있음 
  if(id != null){ 
  	// 세션값  , 글쓴이  => 일치 => 자기자신 쓴 글(글수정, 글삭제 보이기) -->
  	if(id.equals("admin") || id.equals(dto.getInsert_id())){
  		%>
-<input type="button" class="smallButtonComment" value="글수정"
- onclick="location.href='ReportUpdateForm.re?num=<%=dto.getReport_id()%>'">
- <input type="button" class="smallButtonComment" value="글삭제" onclick="location.href='ReportDeletePro.re?num=<%=dto.getReport_id()%>'">		
+ <input type="button" class="smallButtonComment" value="글삭제" onclick="location.href='ReportDeletePro.re?num=<%=dto.getReport_id()%>'">
+ <input type="button" class="smallButtonComment" value="글수정"
+ onclick="location.href='ReportUpdateForm.re?num=<%=dto.getReport_id()%>'">		
 		<%
 	} 
  } 
 %> 
 
 
-<input type="button"  class="smallButtonComment" value="사기목록" onclick="location.href='ReportList.re'">
+
 </div>
 </form>
 <!-- 내용 끝 -->	
