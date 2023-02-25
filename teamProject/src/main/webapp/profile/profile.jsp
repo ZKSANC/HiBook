@@ -2,23 +2,12 @@
 <%@page import="com.itwillbs.review.db.StarReviewDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="/resource/css/profile.css" rel="stylesheet" />
-<link href="/resource/css/star.css" rel="stylesheet" />
-</head>
-<body>
-	<header>
-		<jsp:include page="/inc/header.jsp" />
-	</header>
-	<%
+<%
 	// 로그인 ID
-	String sid = request.getParameter("id");
+	//String sid = request.getParameter("id");
 	String id = (String) session.getAttribute("id");
 	
 	// 타겟 ID
@@ -46,6 +35,11 @@
 		
 		StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 	%>
+
+<!-- 헤더파일들어가는 곳 -->
+<jsp:include page="/inc/header.jsp" />
+<!-- 헤더파일들어가는 곳 -->
+	<link href="/resource/css/profile.css" rel="stylesheet" />
 	<div class="container">
 		<div class="main-box">
 			<div class="image-container">
@@ -81,8 +75,7 @@
 							별점 :
 							<%=Double.toString(sDto.getScore()).substring(0, 3)%>
 						</h4>
-						<button class="chatbtn"
-							onclick="location.href='Chat.hi?to_id=<%=dto.getTgt_id()%>'">1:1채팅</button>
+						<button class="chatbtn"	onclick="location.href='Chat.hi?to_id=<%=dto.getTgt_id()%>'">1:1채팅</button>
 					</div>
 					<!-- 					<hr class="board-box"> -->
 				</div>
@@ -146,8 +139,6 @@
 			console.log(id);
 			document.getElementById("tgt_id").value = id;
 	</script>
-	<footer>
-		<jsp:include page="/inc/footer.jsp" />
-	</footer>
-</body>
-</html>
+<!-- 푸터파일들어가는 곳 -->
+<jsp:include page="/inc/footer.jsp"/>
+<!-- 푸터파일들어가는 곳 -->   
