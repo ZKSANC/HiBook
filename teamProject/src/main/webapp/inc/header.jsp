@@ -63,7 +63,7 @@ function showUnread(result){
 		<div id="login" onclick="location.href='MemberLogout.me'">로그아웃</div>
 	<% }else{ %>
 		<div id="login" onclick="location.href='MemberLoginForm.me'">로그인</div>
-		<div id="joinMember" onclick="location.href='MemberInsertForm.me'">회원가입</div>
+		<div id="login" onclick="location.href='MemberInsertForm.me'">회원가입</div>
 	<% } %>
 </div>
 <div class="top">
@@ -81,10 +81,9 @@ function showUnread(result){
 	<% 	} else { %>
 		<div id="mypageMenu" onclick="location.href='MypageMain.mypage'">마이페이지</div>
 	<% 	} %>
-<!-- 		<div id="mypageMenu" onclick="location.href='1:1채팅'">1:1 채팅</div> -->
 	</div>
-		<div class="chatMenu"><img class="chatMenuimg" src="resource/image/closemessage.png" onclick="openchatbox()"><span id="unread" class="boxunread"></span>
-		</div>
+		<div class="chatMenu"><img class="chatMenuimg cursor-pointer" src="resource/image/closemessage.png" onclick="openchatbox()"><span id="unread" class="boxunread"></span>
+	</div>
 </div>
 <div class="navWrap">
 	<div class="navBar">
