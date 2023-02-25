@@ -11,7 +11,7 @@
 <%
 String id = (String) session.getAttribute("id");
 if (id == null) {
-	response.sendRedirect("MemberloginForm.me");
+	response.sendRedirect("MemberLoginForm.me");
 }
 // DB com_code 테이블 값 가져오기
 ComCdDAO cdao = new ComCdDAO();

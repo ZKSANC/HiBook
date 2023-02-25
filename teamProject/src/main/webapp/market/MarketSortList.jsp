@@ -8,6 +8,7 @@
 <%
 ArrayList<MarketDTO> dtolist = (ArrayList<MarketDTO>)request.getAttribute("dtolist");
 String trade_type = (String)request.getAttribute("trade_type");
+String arr = (String)request.getAttribute("arr");
 
 int currentPage = (Integer)request.getAttribute("currentPage");
 int pageBlock = (Integer)request.getAttribute("pageBlock");
@@ -23,6 +24,7 @@ int pageCount = (Integer)request.getAttribute("pageCount");
 
 <!-- 자바스크립트 들어가는 곳 -->
 <script type="text/javascript">
+
 </script>
 
 <div class="boardContainer">
@@ -71,17 +73,17 @@ int pageCount = (Integer)request.getAttribute("pageCount");
 		<div class="board3">
 			<% 
 			if(startPage > pageBlock) { %>
-				<a href="MarketList.ma?pageNum=<%= startPage-pageBlock%>">🔙</a>
+				<a href="MarketSortList.ma?pageNum=<%= startPage-pageBlock%>&arr=<%=arr%>">🔙</a>
 			<% 
 			}
 			for(int i = startPage; i <= endPage; i++) {	
 			%>
-				<a href="MarketList.ma?pageNum=<%= i%>"><%= i%> </a> 
+				<a href="MarketSortList.ma?pageNum=<%= i%>&arr=<%=arr%>"><%= i%> </a> 
 			<% 
 			}
 			if(endPage < pageCount) {
 			%>
-				<a href="MarketList.ma?pageNum=<%= startPage+pageBlock%>">🔜</a> 
+				<a href="MarketSortList.ma?pageNum=<%= startPage+pageBlock%>&arr=<%=arr%>">🔜</a> 
 			<%
 			}
 			%>
