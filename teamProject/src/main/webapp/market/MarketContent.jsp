@@ -195,16 +195,30 @@ $(document).ready(function(){ // j쿼리 시작
 				<tr><td>첨부이미지</td><td>없음</td></tr>	
 		<% }%>
 		
-		<tr><td><%=cdto.getCdGrpnms()[0] %></td>
-			  <td><%=dto.getBook_type() %></td></tr>	
-		<tr><td><%=cdto.getCdGrpnms()[1] %></td>
-			  <td><%=dto.getBook_st() %></td></tr>
-		<tr><td><%=cdto.getCdGrpnms()[2] %></td>
-			  <td><%=dto.getTrade_type() %></td></tr>
-		<tr><td><%=cdto.getCdGrpnms()[3] %></td>
-			  <td><%=dto.getTrade_st() %></td></tr>
-		<tr><td><%=cdto.getCdGrpnms()[4] %></td>
-			  <td><%=dto.getTrade_inperson() %></td></tr>
+		<tr>
+		<td><%=cdto.getCdGrpnms()[0] %></td>
+		<td><%=dto.getBook_type() %></td>
+		</tr>	
+		
+		<tr>
+		<td><%=cdto.getCdGrpnms()[1] %></td>
+	  <td><%=dto.getBook_st() %></td>
+	  </tr>
+	  
+		<tr>
+		<td><%=cdto.getCdGrpnms()[2] %></td>
+		<td><%=dto.getTrade_type() %></td>
+		</tr>
+			  
+		<tr>
+		<td><%=cdto.getCdGrpnms()[3] %></td>
+		<td><%=dto.getTrade_st() %></td>
+		</tr>
+			  
+		<tr>
+		<td><%=cdto.getCdGrpnms()[4] %></td>
+		<td><%=dto.getTrade_inperson() %></td>
+		</tr>
 			  
 	</table>
 		<input type="button" value="게시글목록" onclick="location.href='MarketList.ma'">
