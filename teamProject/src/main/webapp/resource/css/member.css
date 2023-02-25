@@ -43,12 +43,8 @@
   color: white;
 }
 
-.login-alert {
-    visibility: hidden;
+.insertTable{
+	border-collapse: separate;
+    border-spacing: 10px;
+    width: 100%;
 }
-
-.log-alert-view {
-    display: flex;
-    
-}
-

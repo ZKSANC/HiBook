@@ -1,14 +1,10 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
 <jsp:include page="../inc/header.jsp"/>
-<head>
-<meta charset="UTF-8">
 <link href="/resource/css/member.css" rel="stylesheet" type="text/css">
 
-  <script type="text/javascript" src="../script/jquery-3.6.3.js"></script>
+ <script type="text/javascript" src="../script/jquery-3.6.3.js"></script>
  <script type="text/javascript">
  	// jQuery 준비 => 대상.함수()
  	 	$(document).ready(function(){
@@ -38,14 +34,21 @@
 				return false;
             }
             
-            //
+            if($('.nickname').val()==""){
+            	alert("닉네임을 입력하세요");
+				$('.nickname').focus();
+				return false;
+            }
+            
             if($('.email').val()==""){
-            	alert("이메일 입력하세요");
+            	alert("이메일을 입력하세요");
 				$('.email').focus();
 				return false;
             }
             
-          
+            
+            
+            
             
 	 	});
             
@@ -85,15 +88,16 @@
 
  	});//준비
  </script>
-</head>
 
 
 
-<body>
-	
+
+
+
+	<div class="boardContainer" >
 	<form action="MemberInsertPro.me" id="join" method="post" enctype = "multipart/form-data">
-		<div class="" align="center">
-			<table >
+		
+			<table class="insertTable" >
 				<tr>
 					<th colspan="2">회원 기본 정보</th>
 				</tr>
@@ -132,7 +136,7 @@
 				<td align="center">주소:
 				  
 				  </td>
-					<li>
+					
        			 <td>
 				<input type="text" id="zipcode" name="zipcode"  placeholder="우편번호">
 				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
@@ -191,7 +195,7 @@
     }
 </script>
 
-        </li>
+        
 				</td>
 				</tr>
 				
@@ -204,7 +208,8 @@
 					<td><input type="text" id="phone" name="phone" >
 					</td>
 				</tr>
-				
+			
+			</table>
 					<input type="hidden" id="mem_st" value="default" name="mem_st" >
 					
 					<input type="hidden" id="admin_yn" value="N" name="admin_yn" >
@@ -216,22 +221,20 @@
 					<input type="hidden" id="join_date" name="join_date" value="join_date" >
 				
 					<input type="hidden" id="delete_date" name="delete_date" value="join_date">
-					
-				
-					
-			</table>
+			</form>	
 			</div>
 				<div align="center">
 					<input type="submit" value="회원 가입">
 					</div>
-	</form>
+					
+	
+	
 	
 			
-	<br/>
 	
-	<footer>
+	
+	
 <jsp:include page="/inc/footer.jsp"/>
-</footer>
-</body>
 
-</html>
+
+
