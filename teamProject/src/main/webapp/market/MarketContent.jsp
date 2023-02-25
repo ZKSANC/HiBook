@@ -35,7 +35,7 @@ for(int i = 0; i < dto.getImgUrls().length; i++) {
 // chat function start
 function openchat() {
 // 	window.open("ChatList.hi", "a", "width=500, height=700");
- 	window.open("Chat.hi?to_id=<%=dto.getInsert_id()%>", "a", "width=500, height=700");
+ 	window.open("Chat.hi?to_id=<%=dto.getInsert_id()%>", "vv", "width=500, height=700");
 <%-- 	location.href='Chat.hi?to_id=<%=dto.getInsert_id()%>' --%>
 }
 
