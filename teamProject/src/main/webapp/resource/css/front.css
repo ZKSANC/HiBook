@@ -39,7 +39,7 @@ a {
 	padding : 0px 30px;
 }
 
-#login:hover, #joinMember:hover {
+#login:hover {
 	background-color: #212529;
 	color: #fff;
 }
