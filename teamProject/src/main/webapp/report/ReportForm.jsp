@@ -13,9 +13,11 @@ String id =(String)session.getAttribute("id");
 <!-- 헤더파일들어가는 곳 -->
 <link href="resource/css/board.css" rel="stylesheet" type="text/css">
 <link href="resource/css/Reportcss.css " rel="stylesheet" 	type="text/css">
+<div>
+<div>
+
 <div class="boardContainer">
 	<!-- 내용 시작 -->
-<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <script type="text/javascript">
 
 // 글작성 없을시
@@ -80,6 +82,8 @@ function writeCheck() {
 			 <input type="reset" value="취소">
 		</div>
 	</form>
+</div>
+</div>
 </div>
 <!-- 푸터파일들어가는 곳 -->
 <jsp:include page="/inc/footer.jsp" />

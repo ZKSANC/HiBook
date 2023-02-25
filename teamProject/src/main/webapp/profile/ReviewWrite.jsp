@@ -1,14 +1,9 @@
 <%@page import="com.itwillbs.market.db.MarketDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<!-- 헤더파일들어가는 곳 -->
+<jsp:include page="/inc/header.jsp"/>
 <link href="./resource/css/star.css" rel="stylesheet" />
-</head>
-<body>
 	<%
 	String insert_id = (String) session.getAttribute("id");
 	%>
@@ -50,5 +45,6 @@
 			}
 		</script>
 	</form>
-</body>
-</html>
+<!-- 푸터파일들어가는 곳 -->
+<jsp:include page="/inc/footer.jsp"/>
+<!-- 푸터파일들어가는 곳 -->   

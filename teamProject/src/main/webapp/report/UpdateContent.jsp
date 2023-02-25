@@ -13,7 +13,6 @@ ReportDTO dto = (ReportDTO) request.getAttribute("dto");
 <link href="resource/css/ReportContent.css " rel="stylesheet" type="text/css">
 <div class="boardContainer">
 	<!-- 내용 시작 -->
-	<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <script type="text/javascript">
 function writeCheck() {
 

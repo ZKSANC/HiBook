@@ -4,18 +4,11 @@
 <%@page import="mypage.market.MarketDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">   
-<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">	
-<script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
-</head>	
-<body>
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp" />
+<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">	
 
-	<div class="boardContainer">
+<div class="boardContainer">
 
 <h1>내가 쓴 글(중고거래)</h1>
 <%
@@ -117,5 +110,3 @@ if(currentPage < pageCount){
 </div>
 <!-- 푸터파일들어가는 곳 -->
 <jsp:include page="/inc/footer.jsp"/>
-</body>
-</html>

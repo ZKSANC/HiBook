@@ -1,18 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
-<!-- <link rel="stylesheet" type="text/css" href="../css/listcss.css"> -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
-
-
-
-
-	<!-- 헤더파일들어가는 곳 -->
-	<jsp:include page="/inc/header.jsp"/>
-	<!-- 헤더파일들어가는 곳 -->
+<!-- 헤더파일들어가는 곳 -->
+<jsp:include page="/inc/header.jsp"/>
+<!-- 헤더파일들어가는 곳 -->
 <link href="resource/css/listcss.css" rel="stylesheet" type="text/css">
-	<div class="boardContainer">
+<div class="boardContainer">
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script> -->
+
 <!-- 내용 시작 -->
 <h1>자주하는 질문</h1>
 

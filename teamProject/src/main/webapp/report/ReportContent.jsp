@@ -24,8 +24,7 @@
 	<jsp:include page="/inc/header.jsp"/>
 	<!-- 헤더파일들어가는 곳 -->
 	<link href="resource/css/board.css" rel="stylesheet" type="text/css">
-	<link href="resource/css/ReportContent.css " rel="stylesheet"
-		type="text/css">
+	<link href="resource/css/ReportContent.css " rel="stylesheet" type="text/css">
 	<div class="boardContainer">
 <!-- 내용 시작 -->
 <form action="ReportWrite.re" method="post" enctype="multipart/form-data">

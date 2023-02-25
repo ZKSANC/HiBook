@@ -1,5 +1,3 @@
-
-
 <%@page import="com.itwillbs.report.db.ReportDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -23,12 +21,13 @@
 	<jsp:include page="/inc/header.jsp"/>
 	<!-- 헤더파일들어가는 곳 -->
 	<link href="resource/css/board.css" rel="stylesheet" type="text/css">
-	<link href="resource/css/ReportList.css " rel="stylesheet"
-		type="text/css">
-	<div class="boardContainer">
+	<link href="resource/css/ReportList.css " rel="stylesheet" type="text/css">
+
+
+
+
+<div class="boardContainer">
 <!-- 내용 시작 -->
-
-
 <div class=Left>
 	<h3>고객센터</h3>
 	<br>
@@ -43,6 +42,7 @@
 		</div>
 	</div>
 	</div>
+
 	<h1>📮신고접수 현황📮</h1>
 	<table border="1">
 		<tr class="title">
@@ -117,7 +117,7 @@
 <!-- 내용 끝 -->	
 
 
-
+</div>
 </div>
 <!-- 푸터파일들어가는 곳 -->
 <jsp:include page="/inc/footer.jsp"/>
