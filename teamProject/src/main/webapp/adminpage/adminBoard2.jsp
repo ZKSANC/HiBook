@@ -28,7 +28,7 @@ int pageCount=(Integer)request.getAttribute("pageCount");
 <form action="AdminMultidelBoardPro.adminpage" method="post">
 <div class=category>
 <a href="AdminMarketList.adminpage" class=market>중고거래</a><br>
-<a href="AdminBoardList.adminpage" class=board>커뮤니티</a>
+<a href="AdminBoardList.adminpage" class=board2>커뮤니티</a>
 </div>
 <input type="submit" value="삭제" class=button>
 

@@ -75,7 +75,7 @@ if(id != null){
 %>
 <script type="text/javascript">
 function popup1(){
-	var link = "profile.pr?nickname=<%=dto.getNickname()%>";     
+	var link = "profile.pr";     
 	var popupWidth = 500;
 	var popupHeight = 600;
 	var popupX = (window.screen.width/2) - (popupWidth/2);
