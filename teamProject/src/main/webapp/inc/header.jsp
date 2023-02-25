@@ -97,14 +97,14 @@ function showUnread(result){
 					<span onclick="location.href='MarketList.ma'">중고거래</span>
 				</li>
 				<li class="li-main">
-					<span>커뮤니티</span>
+					<span onclick="location.href='BoardList.bo?boardType=free'">커뮤니티</span>
 				</li>
 				<li class="li-main">
-					<span>고객센터</span>
+					<span class="drop-btn" onclick="location.href='ReportForm.re'">고객센터</span>
 				</li>
 			</ul>
 		</div>
-	</div>
+	</div> 
 	<div class="dropdown-wrap">
 		<div class="dropdown-content-wrap">
 			<div class="navContanier">
