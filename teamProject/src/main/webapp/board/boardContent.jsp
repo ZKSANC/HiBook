@@ -201,7 +201,7 @@ function writeCheck() {
 <hr class="my-hr3">
    <table class="boardView">
    		<colgroup>
-			<col width="100px;">
+			<col width="130px;">
 			<col width="*">
 			<col width="100px;">
 		</colgroup>

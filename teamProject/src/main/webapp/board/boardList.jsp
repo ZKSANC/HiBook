@@ -48,7 +48,7 @@
 
 <form acion="BoardList.bo" method="get">
 	<div class="board_search">
-		<input type="text" id="keyword" name="keyword" value="<%=keyword %>"  placeholder="검색어를 입력하세요">
+		<input type="text" id="keyword" name="keyword" value="<%=keyword %>" placeholder="검색어를 입력하세요">
 		<input type="hidden" name="boardType" value="<%=boardTypeCd %>">
 		<input type="submit" id="scrhBtn" value="검색">
 	</div>

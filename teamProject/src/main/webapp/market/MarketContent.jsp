@@ -232,7 +232,7 @@ $(document).ready(function(){ // j쿼리 시작
 		}
 		%>
 		<input type="button" value="1:1 채팅" onclick="openchat();">
-		<input type="button" value="신고하기" onclick="location.href='신고가상주소?insert_id=<%=dto.getInsert_id()%>'">
+		<input type="button" value="신고하기" onclick="location.href='ReportForm.re?insert_id=<%=dto.getInsert_id()%>'">
 <!-- 내용 끝 -->
 </div>
 
