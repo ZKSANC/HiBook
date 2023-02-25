@@ -25,7 +25,7 @@ if (request.getParameter("nickname") != null) {
 }
 
 StarReviewDAO sDao = new StarReviewDAO();
-StarReviewDTO dto = new StarReviewDTO();
+StarReviewDTO dto = sDao.getMemberImg(id);;
 dto = sDao.getMemberImg(id);
 
 // 페이징 처리 
@@ -54,13 +54,15 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 					<%-- 					<% }%> --%>
 					<div class="profile-chat">
 						<%
-						if (dto.getMem_img().equals("url")) {
+						if (sDto.getMem_img().equals("url")) {
 						%>
 						<img src="resource/image/image.png" width="100" height="100">
 						<%
-						} else {
+						} else if(tgt_id.equals("url")){ %>
+							<img src="resource/image/image.png" width="100" height="100">
+						<% }else{
 						%>
-						<img src="upload/<%=dto.getMem_img()%>" width="100" height="100">
+						<img src="upload/<%=sDto.getMem_img()%>" width="100" height="100">
 						<%
 						}
 						%>
@@ -95,9 +97,9 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 						<h4>
 							별점 :
 							<%=Double.toString(sDto.getScore()).substring(0, 3)%>
-						</h4>
-						<button class="chatbtn"
-							onclick="location.href='Chat.hi?to_id=<%=dto.getTgt_id()%>'">1:1채팅</button>
+<!-- 						</h4> -->
+<!-- 						<button class="chatbtn" -->
+<%-- 							onclick="location.href='Chat.hi?to_id=<%=dto.getTgt_id()%>'">1:1채팅</button> --%>
 					</div>
 					<!-- 					<hr class="board-box"> -->
 				</div>
@@ -106,10 +108,13 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 				<div class="info-box">
 					<ul class="list-group">
 						<li class="list-group-item">
-							<h6 class="board1">내가쓴 게시글</h6>
+							<h6 class="board1"><a href="MypageMarketList.mypage">중고장터 게시글</a></h6>
 						</li>
 						<li class="list-group-item">
-							<h6 class="board2">내가쓴 판매글</h6>
+							<h6 class="board2"><a href="MypageBoardList.mypage">커뮤니티 게시글</a></h6>
+						</li>
+						<li class="list-group-item">
+							<h6 class="board2"><a href="MypageReportList.mypage">1:1문의 글</a></h6>
 						</li>
 					</ul>
 				</div>

@@ -34,7 +34,7 @@ public class StarReviewDAO{
 				// 1~2 단계
 				con=getConnection();
 				// 3단계 SQL구문 만들어서 실행할 준비(insert)
-				String sql="select m.nickname, t.tgt_id, avg(score) from manner t join members m on t.tgt_id = m.mem_id where t.tgt_id=?";
+				String sql="select m.nickname, m.mem_img,t.tgt_id, avg(score) from manner t join members m on t.tgt_id = m.mem_id where t.tgt_id=?";
 				pstmt=con.prepareStatement(sql);
 				System.out.println(pstmt);
 				System.out.println(tgt_id);
@@ -53,6 +53,7 @@ public class StarReviewDAO{
 					dto.setNickname(rs.getString("nickname"));
 					dto.setTgt_id(rs.getString("tgt_id"));
 					dto.setScore(rs.getDouble("avg(score)"));
+					dto.setMem_img(rs.getString("mem_img"));
 				}
 			}
 			 catch (Exception e) {
@@ -205,6 +206,7 @@ public class StarReviewDAO{
 					dto = new StarReviewDTO();
 					dto.setMem_img(rs.getString("mem_img"));
 					dto.setNickname(rs.getString("nickname"));
+					System.out.println(id);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
