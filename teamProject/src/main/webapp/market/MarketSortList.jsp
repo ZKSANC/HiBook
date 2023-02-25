@@ -39,10 +39,10 @@ int pageCount = (Integer)request.getAttribute("pageCount");
 				<%=trade_type %><% }%> 게시판📚</p>
 			</div>
 			
-			<div class="baordArr">
-				<span class="list" onclick="location.href='MarketSortList.ma?trade_type=<%=trade_type%>&arr=Latest'">최신순</span> 
-				<span class="list" onclick="location.href='MarketSortList.ma?trade_type=<%=trade_type%>&arr=View'">조회순</span> 
-				<span class="list" onclick="location.href='MarketSortList.ma?trade_type=<%=trade_type%>&arr=Att'">인기순</span>
+			<div class="boardArr">
+				<div class="boardList" onclick="location.href='MarketSortList.ma?trade_type=<%=trade_type%>&arr=Latest'">최신순</div> 
+				<div class="boardList" onclick="location.href='MarketSortList.ma?trade_type=<%=trade_type%>&arr=View'">조회순</div> 
+				<div class="boardList" onclick="location.href='MarketSortList.ma?trade_type=<%=trade_type%>&arr=Att'">인기순</div>
 			</div>
 			
 		 	<div class="cardContainer">
