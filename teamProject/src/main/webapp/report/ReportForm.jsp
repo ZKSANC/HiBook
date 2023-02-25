@@ -82,9 +82,9 @@ if (id == null) {
 					</table>
 				</div>
 				
-				<div class="sub">
-					<input type="submit" value="등록">
-					<input type="reset" value="취소">
+			 <div>
+					<input type="reset"  class="smallButtonCancle" value="취소">
+					<input type="submit" class="smallButtonComment" value="등록">
 			</div>
 			</form>
 		</div>
