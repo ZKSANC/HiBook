@@ -26,7 +26,6 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 <link href="/resource/css/front.css" rel="stylesheet" type="text/css">
 <!-- 헤더파일들어가는 곳 -->
 
-
 <section class="bannerBack">
 	<div class="banner">
 		<div class="bannerText">
@@ -40,7 +39,7 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 	<div class="boardContainer">
 		<div class="board1">
 			<p id="boardTag">추천 도서📚</p>
-			<p>인기있는 책을 확인하세요!</p>
+			<p >인기있는 책을 확인하세요!</p>
 		 	<div class="cardContainer">
 		 	
 				<%for(int i = 0; i < viewList.size(); i++) {
