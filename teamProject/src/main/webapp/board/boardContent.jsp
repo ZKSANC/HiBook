@@ -7,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
  <%
- String id = (String)session.getAttribute("id");
+ String id = session.getAttribute("id") == null ? "" : (String)session.getAttribute("id");
   	// 게시판 유형을 공통코드로 구분.
   	String boardTypeCd = (String) request.getAttribute("boardTypeCd");
   	String boardTypeCdNm = (String) request.getAttribute("boardTypeCdNm");
@@ -262,7 +262,8 @@ function writeCheck() {
  
  <table class="bCmmtContent1">
  <!-- 공지사항게시판 모든글에 댓글작성불가 -->
-    	  <%if("N".equals(dto.getNoticeyn())) {%>
+    	  <%if(!"notice".equals(dto.getBoardType())){ %>  
+    	  		<% if("N".equals(dto.getNoticeyn())) {%>
        <!-- 댓글 시작 -->	 
          <tr>
             <td>
@@ -272,14 +273,12 @@ function writeCheck() {
              <input type="button" class="smallButtonComment smallButtonBlueGray  "value="댓글등록" onclick="cmmtWrite();">
             </td>
          </tr>
- 		<%} %>
+ 		<%} }%>
          <% 
             // 댓글 반복- 배열저장.
             for (int i = 0; i < boardList.size(); i++) {
                // 배열 한칸에 내용 가져오기 
                BoardCmmtDTO cmmtDto = boardList.get(i);
-               
-               
             %> 
             
         <!-- 댓글조회  -->
