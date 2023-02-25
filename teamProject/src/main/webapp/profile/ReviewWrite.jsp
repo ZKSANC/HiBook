@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="./resource/css/star.css" rel="stylesheet" />
 </head>
 <body>
 	<%
@@ -30,7 +31,7 @@
 		<div>
 			<textarea class="col-auto form-control" type="text"
 				id="reviewContents" name="review_content"
-				placeholder="좋은 수강평을 남겨주시면 Cocolo에 큰 힘이 됩니다! 포인트 5000p도 지급!!"></textarea>
+				placeholder="리뷰를 써주시면 다른사람에게 도움이 됩니다."></textarea>
 		</div>
 		<input type="submit" value="전송" onclick="TabClose()">
 		<input type="reset" value="취소" onclick="TabClose()">
