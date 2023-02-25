@@ -29,7 +29,7 @@ int pageCount=(Integer)request.getAttribute("pageCount");
 <form action="MypageMultidelBoardPro.mypage" method="post">
 <div class=category>
 <a href="MypageMarketList.mypage" class=market>중고거래</a><br>
-<a href="MypageBoardList.mypage" class=board>커뮤니티</a><br>
+<a href="MypageBoardList.mypage" class=board2>커뮤니티</a><br>
 <a href="MypageReportList.mypage" class=report>1:1문의</a>
 </div>
 <input type="submit" value="삭제" class=button>
