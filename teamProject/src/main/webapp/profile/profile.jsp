@@ -54,7 +54,7 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 						<img src="resource/image/image.png" width="100" height="100">
 						<%
 						} else if(sdto.getMemImg() == null){ %>
-							<img src="resource/image/image.png" width="100" height="100">
+						<img src="resource/image/image.png" width="100" height="100">
 						<% }else{
 						%>
 						<img src="upload/<%=sdto.getMemImg() %>" width="100" height="100">
@@ -93,27 +93,29 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 							별점 :
 							<%=Double.toString(sDto.getScore()).substring(0, 3)%>
 						</h4>
-<!-- 						<button class="chatbtn" -->
+						<h6 class="board1"><a href="MypageMarketList.mypage">중고장터 게시글</a></h6>
+						<h6 class="board2"><a href="MypageBoardList.mypage">커뮤니티 게시글</a></h6>
+<!-- 						<button type="hidden" class="chatbtn" -->
 <%-- 							onclick="location.href='Chat.hi?to_id=<%=dto.getTgt_id()%>'">1:1채팅</button> --%>
 					</div>
 					<!-- 					<hr class="board-box"> -->
 				</div>
 			</div>
-			<div class="info-container">
-				<div class="info-box">
-					<ul class="list-group">
-						<li class="list-group-item">
-							<h6 class="board1"><a href="MypageMarketList.mypage">중고장터 게시글</a></h6>
-						</li>
-						<li class="list-group-item">
-							<h6 class="board2"><a href="MypageBoardList.mypage">커뮤니티 게시글</a></h6>
-						</li>
-						<li class="list-group-item">
-							<h6 class="board2"><a href="MypageReportList.mypage">1:1문의 글</a></h6>
-						</li>
-					</ul>
-				</div>
-			</div>
+<!-- 			<div class="info-container"> -->
+<!-- 				<div class="info-box"> -->
+<!-- 					<ul class="list-group"> -->
+<!-- 						<li class="list-group-item"> -->
+<!-- 							<h6 class="board1"><a href="MypageMarketList.mypage">중고장터 게시글</a></h6> -->
+<!-- 						</li> -->
+<!-- 						<li class="list-group-item"> -->
+<!-- 							<h6 class="board2"><a href="MypageBoardList.mypage">커뮤니티 게시글</a></h6> -->
+<!-- 						</li> -->
+<!-- 						<li class="list-group-item"> -->
+<!-- 							<h6 class="board2"><a href="MypageReportList.mypage">1:1문의 글</a></h6> -->
+<!-- 						</li> -->
+<!-- 					</ul> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<div class="reviewbox">
 				<%
 				//배열 접근 => for => //배열 한칸에 내용 가져오기 => BoardDTO 저장 => 출력
