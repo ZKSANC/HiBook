@@ -7,23 +7,30 @@
 <!-- 자바 들어가는 곳 -->
 <%
 ArrayList<MarketDTO> dtolist = (ArrayList<MarketDTO>)request.getAttribute("dtolist");
+String trade_type = (String)request.getAttribute("trade_type");
+
 int currentPage = (Integer)request.getAttribute("currentPage");
-int startPage = (Integer)request.getAttribute("startPage");
 int pageBlock = (Integer)request.getAttribute("pageBlock");
+int startPage = (Integer)request.getAttribute("startPage");
 int endPage= (Integer)request.getAttribute("endPage");
-int allPage = (Integer)request.getAttribute("allPage");
+int pageCount = (Integer)request.getAttribute("pageCount");
 %>
+
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp" />
 <!-- 헤더파일들어가는 곳 -->
 <link href="resource/css/market.css" rel="stylesheet" type="text/css">
+
+<!-- 자바스크립트 들어가는 곳 -->
+<script type="text/javascript"></script>
+
 <div class="boardContainer">
 <!-- 내용 시작 -->
 <article class="board">
 	<div class="MarketContainer">
 	
 		<div class="board1">
-			<p id="boardTag">도서 거래게시판📚</p>
+			<p id="boardTag">중고책 <%=trade_type %> 게시판📚</p>
 			<p>새로운 책들을 확인해보세요!</p>
 		 	<div class="cardContainer">
 		 	
@@ -58,17 +65,17 @@ int allPage = (Integer)request.getAttribute("allPage");
 		<div class="board3">
 			<% 
 			if(startPage > pageBlock) { %>
-				<a href="MarketList.ma?pageNum=<%= currentPage-pageBlock%>">🔙</a>
+				<a href="MarketList.ma?pageNum=<%= startPage-pageBlock%>">🔙</a>
 			<% 
 			}
 			for(int i = startPage; i <= endPage; i++) {	
 			%>
-				<a href="MarketList.ma?pageNum=<%= i%>"><%= i%></a> 
+				<a href="MarketList.ma?pageNum=<%= i%>"><%= i%> </a> 
 			<% 
 			}
-			if(endPage > allPage) {
+			if(endPage < pageCount) {
 			%>
-				<a href="MarketList.ma?pageNum=<%= currentPage+pageBlock%>">🔜</a> 
+				<a href="MarketList.ma?pageNum=<%= startPage+pageBlock%>">🔜</a> 
 			<%
 			}
 			%>
@@ -79,6 +86,7 @@ int allPage = (Integer)request.getAttribute("allPage");
 
 <!-- 내용 끝 -->
 </div>
+
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="/inc/footer.jsp" />
 <!-- 푸터 들어가는 곳 -->

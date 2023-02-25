@@ -190,40 +190,31 @@ $(document).ready(function(){ // j쿼리 start
 	<h1>거래글 작성</h1>
 	
 	<form name="move" action="MarketWritePro.ma" method="post">
-		<table>
+	<table>
 			<tr>
-				<td>글쓴이</td>
-				<td>
-					<input type="text" name="insert_id" value="<%=id%>" readonly>
-				</td>
+			<td>글쓴이</td>
+			<td><input type="text" name="insert_id" value="<%=id%>" readonly></td>
 			</tr>
 	
 			<tr>
-				<td>글제목</td>
-				<td>
-					<input type="text" name="title" value="">
-				</td>
+			<td>글제목</td>
+			<td><input type="text" name="title" value=""></td>
 			</tr>
 
 			<tr>
-				<td>글내용</td>
-				<td>
-					<textarea name="content" rows="10" cols="20"></textarea>
-				</td>
+			<td>글내용</td>
+			<td><textarea name="content" rows="10" cols="20"></textarea></td>
 			</tr>
 			
 			<tr>
-				<td>가격</td>
-				<td>
-					<input type="text" name="book_price" value="" onkeyup="inputNumber(this);">원
-				</td>
+			<td>가격</td>
+			<td><input type="text" name="book_price" value="" onkeyup="inputNumber(this);">원</td>
 			</tr>
 			
 			<!-- select box start -->
 			<tr>
-				<td><%=cdto.getCdGrpnms()[0]%></td>
-				<td>
-					<select name="<%=cdtoList0.get(0).getCdGrp()%>">
+			<td><%=cdto.getCdGrpnms()[0]%></td>
+			<td><select name="<%=cdtoList0.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList0.size(); i++) {
 						%>
@@ -232,13 +223,12 @@ $(document).ready(function(){ // j쿼리 start
 						<%
 						}
 						%>
-					</select>
-				</td>
+					 </select></td>
 			</tr>
+			
 			<tr>
 				<td><%=cdto.getCdGrpnms()[1]%></td>
-				<td>
-					<select name="<%=cdtoList1.get(0).getCdGrp()%>">
+				<td><select name="<%=cdtoList1.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList1.size(); i++) {
 						%>
@@ -247,13 +237,12 @@ $(document).ready(function(){ // j쿼리 start
 						<%
 						}
 						%>
-					</select>
-				</td>
+					 </select></td>
 			</tr>
+			
 			<tr>
-				<td><%=cdto.getCdGrpnms()[2]%></td>
-				<td>
-					<select name="<%=cdtoList2.get(0).getCdGrp()%>">
+			<td><%=cdto.getCdGrpnms()[2]%></td>
+		  <td><select name="<%=cdtoList2.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList2.size(); i++) {
 						%>
@@ -262,13 +251,12 @@ $(document).ready(function(){ // j쿼리 start
 						<%
 						}
 						%>
-					</select>
-				</td>
+					 </select></td>
 			</tr>
+			
 			<tr>
-				<td><%=cdto.getCdGrpnms()[3]%></td>
-				<td>
-					<select name="<%=cdtoList3.get(0).getCdGrp()%>">
+			<td><%=cdto.getCdGrpnms()[3]%></td>
+			<td><select name="<%=cdtoList3.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList3.size(); i++) {
 						%>
@@ -277,13 +265,12 @@ $(document).ready(function(){ // j쿼리 start
 						<%
 						}
 						%>
-					</select>
-				</td>
+					 </select></td>
 			</tr>
+			
 			<tr>
-				<td><%=cdto.getCdGrpnms()[4]%></td>
-				<td>
-					<select name="<%=cdtoList4.get(0).getCdGrp()%>">
+			<td><%=cdto.getCdGrpnms()[4]%></td>
+			<td><select name="<%=cdtoList4.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList4.size(); i++) {
 						%>
@@ -292,17 +279,15 @@ $(document).ready(function(){ // j쿼리 start
 						<%
 						}
 						%>
-					</select>
-				</td>
+					 </select></td>
 			</tr>
 			<!-- select box end -->
 
 			<tr>
-				<td>첨부파일</td>
-				<td>
-					<input id="img" type="file" name="files[]" accept="image/*" multiple>
-				</td>
+			<td>첨부파일</td>
+			<td><input id="img" type="file" name="files[]" accept="image/*" multiple></td>
 		</table>
+		
 		<div id="imgWrap">
 			이미지 미리보기<br>
 		</div>

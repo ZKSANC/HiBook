@@ -229,38 +229,28 @@ $(document).ready(function(){ // j쿼리 start
 	<form name="move" action="MarketUpdatePro.ma" method="post">
 	<table>
 			<tr>
-				<td>글쓴이</td>
-				<td>
-					<input type="text" name="insert_id" value="<%=dto.getInsert_id()%>" readonly>
-				</td>
+			<td>글쓴이</td>
+			<td><input type="text" name="insert_id" value="<%=dto.getInsert_id()%>" readonly></td>
 			</tr>
 
 			<tr>
-				<td>글제목</td>
-				<td>
-					<input type="text" name="title" value="<%=dto.getTitle()%>">
-				</td>
+			<td>글제목</td>
+			<td><input type="text" name="title" value="<%=dto.getTitle()%>"></td>
+			</tr>
+
+			<tr><td>글내용</td>
+			<td><textarea name="content" rows="10" cols="20"><%=dto.getContent()%></textarea></td>
 			</tr>
 
 			<tr>
-				<td>글내용</td>
-				<td>
-					<textarea name="content" rows="10" cols="20"><%=dto.getContent()%></textarea>
-				</td>
-			</tr>
-
-			<tr>
-				<td>가격</td>
-				<td>
-					<input type="text" name="book_price" value="<%=dto.getBook_price()%>" onkeyup="inputNumber(this);">원
-				</td>
+			<td>가격</td>
+			<td><input type="text" name="book_price" value="<%=dto.getBook_price()%>" onkeyup="inputNumber(this);">원</td>
 			</tr>
 
 			<!-- select box start -->
 			<tr>
-				<td><%=cdto.getCdGrpnms()[0]%></td>
-				<td>
-					<select id="<%=cdtoList0.get(0).getCdGrp()%>" name="<%=cdtoList0.get(0).getCdGrp()%>">
+			<td><%=cdto.getCdGrpnms()[0]%></td>
+			<td><select id="<%=cdtoList0.get(0).getCdGrp()%>" name="<%=cdtoList0.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList0.size(); i++) {
 						%>
@@ -269,13 +259,12 @@ $(document).ready(function(){ // j쿼리 start
 						<%
 						}
 						%>
-					</select>
-				</td>
+					 </select></td>
 			</tr>
+			
 			<tr>
-				<td><%=cdto.getCdGrpnms()[1]%></td>
-				<td>
-					<select id="<%=cdtoList1.get(0).getCdGrp()%>" name="<%=cdtoList1.get(0).getCdGrp()%>">
+			<td><%=cdto.getCdGrpnms()[1]%></td>
+			<td><select id="<%=cdtoList1.get(0).getCdGrp()%>" name="<%=cdtoList1.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList1.size(); i++) {
 						%>
@@ -284,13 +273,12 @@ $(document).ready(function(){ // j쿼리 start
 						<%
 						}
 						%>
-					</select>
-				</td>
+					 </select></td>
 			</tr>
+			
 			<tr>
-				<td><%=cdto.getCdGrpnms()[2]%></td>
-				<td>
-					<select id="<%=cdtoList2.get(0).getCdGrp()%>" name="<%=cdtoList2.get(0).getCdGrp()%>">
+			<td><%=cdto.getCdGrpnms()[2]%></td>
+			<td><select id="<%=cdtoList2.get(0).getCdGrp()%>" name="<%=cdtoList2.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList2.size(); i++) {
 						%>
@@ -299,13 +287,12 @@ $(document).ready(function(){ // j쿼리 start
 						<%
 						}
 						%>
-					</select>
-				</td>
+					 </select></td>
 			</tr>
+			
 			<tr>
-				<td><%=cdto.getCdGrpnms()[3]%></td>
-				<td>
-					<select id="<%=cdtoList3.get(0).getCdGrp()%>" name="<%=cdtoList3.get(0).getCdGrp()%>">
+			<td><%=cdto.getCdGrpnms()[3]%></td>
+			<td><select id="<%=cdtoList3.get(0).getCdGrp()%>" name="<%=cdtoList3.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList3.size(); i++) {
 						%>
@@ -314,13 +301,12 @@ $(document).ready(function(){ // j쿼리 start
 						<%
 						}
 						%>
-					</select>
-				</td>
+				   </select></td>
 			</tr>
+			
 			<tr>
-				<td><%=cdto.getCdGrpnms()[4]%></td>
-				<td>
-					<select id="<%=cdtoList4.get(0).getCdGrp()%>" name="<%=cdtoList4.get(0).getCdGrp()%>">
+			<td><%=cdto.getCdGrpnms()[4]%></td>
+			<td><select id="<%=cdtoList4.get(0).getCdGrp()%>" name="<%=cdtoList4.get(0).getCdGrp()%>">
 						<%
 						for (int i = 0; i < cdtoList4.size(); i++) {
 						%>
@@ -329,8 +315,7 @@ $(document).ready(function(){ // j쿼리 start
 						<%
 						}
 						%>
-					</select>
-				</td>
+					 </select></td>
 			</tr>
 			<!-- select box end -->
 
@@ -338,21 +323,18 @@ $(document).ready(function(){ // j쿼리 start
 			for (int i = 0; i < realUrlLength; i++) {
 			%>
 			<tr>
-				<td>
-					첨부이미지<%=i + 1%></td>
-				<td>
-					<img class="old-image" name="old-image" src="<%=dto.getImgUrls()[i]%>" width=260px>
-				</td>
+			<td>첨부이미지<%=i + 1%></td>
+			<td><img class="old-image" name="old-image" src="<%=dto.getImgUrls()[i]%>" width=260px></td>
 			</tr>
 			<%
 			}
 			%>
+			
 			<tr>
-				<td>첨부파일</td>
-				<td>
-					<input id="img" type="file" name="files[]" accept="image/*" multiple>
-				</td>
-</table>
+			<td>첨부파일</td>
+			<td><input id="img" type="file" name="files[]" accept="image/*" multiple></td>
+			</tr>
+    </table>
 
 		<div id="imgWrap">
 			이미지 미리보기 <br>

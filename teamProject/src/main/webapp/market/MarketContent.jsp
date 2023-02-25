@@ -26,20 +26,10 @@ for(int i = 0; i < dto.getImgUrls().length; i++) {
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp" />
 <!-- 헤더파일들어가는 곳 -->
-
+<link href="resource/css/market.css" rel="stylesheet" type="text/css">
 
 <!-- 자바스크립트 들어가는 곳 -->
 <script type="text/javascript">
-
-
-// chat function start
-function openchat() {
-// 	window.open("ChatList.hi", "a", "width=500, height=700");
- 	window.open("Chat.hi?to_id=<%=dto.getInsert_id()%>", "vv", "width=500, height=700");
-<%-- 	location.href='Chat.hi?to_id=<%=dto.getInsert_id()%>' --%>
-}
-
-// chat function end
 
 $(document).ready(function(){ // j쿼리 시작
 	//처음으로 가져온 찜개수 저장
@@ -101,15 +91,19 @@ $(document).ready(function(){ // j쿼리 시작
 			  };
 		  }			
 		});
-	//리뷰 새창 띄우기
+	//리뷰작성 팝업 열기
 	function popup(){
 		var link = "ReviewWrite.pr?insert_id=<%=dto.getInsert_id()%>";     
-		var popupWidth = 400;
+		var popupWidth = 600;
 		var popupHeight = 400;
 		var popupX = (window.screen.width/2) - (popupWidth/2);
 		var popupY= (window.screen.height/2) - (popupHeight/2);
 		
 	  	window.open(link,'_blank','status=no height='+popupHeight+', width='+popupWidth +',left='+popupX+',top='+popupY);
+	}
+	// 채팅방 팝업 열기
+	function openchat() {
+	 	window.open("Chat.hi?to_id=<%=dto.getInsert_id()%>", "vv", "width=500, height=700");
 	}
 	//게시글 삭제 동작
 	function checkDelete() {
@@ -142,7 +136,7 @@ $(document).ready(function(){ // j쿼리 시작
 			<div id="profile"><img id="profilImg" src="resource/image/image.png"></div>
 			<div id="mmenu" onclick="location.href='profile.pr?insert_id=<%=dto.getInsert_id()%>&nickname=<%=dao2.getNickname(dto.getMarket_id())%>'">프로필 보기</div>	
 			<div id="mmenu" onclick="location.href='MypageUserMarketList.mypage?insert_id=<%=dto.getInsert_id()%>&nickname=<%=dao2.getNickname(dto.getMarket_id())%>'">작성글 보기</div>
-			<div id="mmenu" onclick=popup()>거래후기 쓰기</div>
+			<div id="mmenu" onclick="popup();">거래후기 쓰기</div>
 		</div></td>
 		</tr>
 			
@@ -231,5 +225,3 @@ $(document).ready(function(){ // j쿼리 시작
 <!-- 푸터 들어가는 곳 -->
 <jsp:include page="/inc/footer.jsp" />
 <!-- 푸터 들어가는 곳 -->
-</body>
-</html>

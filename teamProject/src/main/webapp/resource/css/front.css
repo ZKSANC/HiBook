@@ -5,19 +5,22 @@
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
-/*  은숙 @font-face 변경  */
-
 }
+
 body {
   margin: 0px;
   padding: 0px;
   background-color: #fff;
   font-family: 'Happiness-Sans-Title'; 
-/*  은숙 font-family 변경  */
 }
 
 div {
 	word-break : break-all;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
 }
 
 .topBar {
@@ -34,11 +37,6 @@ div {
 	color : #8C8C8C;
 	margin : 5px 0px;
 	padding : 0px 30px;
-}
-
-.aa {
-	text-decoration: none;
-	color: inherit;
 }
 
 #login:hover, #joinMember:hover {
@@ -377,6 +375,3 @@ tr:last-child td:last-child {
 	justify-content: flex-start;
 	gap : 0px 15px;
 }
-
-
-

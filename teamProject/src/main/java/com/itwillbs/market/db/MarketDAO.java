@@ -479,8 +479,8 @@ public class MarketDAO {
 		}
 	}
 	
-	public int getBoardPage() {
-		int allPage = 0;
+	public int getBoardWriteCount() {
+		int writeCount = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -493,7 +493,7 @@ public class MarketDAO {
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
-				allPage = rs.getInt("count(*)");
+				writeCount = rs.getInt("count(*)");
 		}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -502,7 +502,39 @@ public class MarketDAO {
 			if(con!=null) try { con.close();} catch (Exception e2) {}
 			if(rs!=null) try { rs.close();} catch (Exception e2) {}
 		}
-		return allPage;
+		return writeCount;
+	}
+	
+	public int getMenuWriteCount(String trade_type) {
+		int writeCount = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {	
+			con = getConnection();
+			
+			String sql="select COUNT(m.market_id) as writeCount "
+					+ "from (select image_id, market_id, url "
+					+ "from market_image where mod(image_id,5) = 1) i right join market m "
+					+ "on i.market_id = m.market_id "
+					+ "where m.trade_type = ? "
+					+ "order by m.market_id desc";
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setString(1, trade_type); 
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				writeCount = rs.getInt("writeCount");
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+			if(con!=null) try { con.close();} catch (Exception e2) {}
+			if(rs!=null) try { rs.close();} catch (Exception e2) {}
+		}
+		return writeCount;
 	}
 		
 	
