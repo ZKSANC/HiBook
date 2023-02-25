@@ -1,4 +1,10 @@
 @charset "UTF-8";
+@font-face {
+    font-family: 'Happiness-Sans-Title';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 * {
 	box-sizing: border-box;
 }
@@ -64,30 +70,41 @@ img{
 .reviewTable{
 	width: 95%;
 	margin: 0px auto;
+	margin-bottom: 1px;
+	border-collapse: collapse;
+	border-top-left-radius : 15px;
+	border-top-right-radius: 15px;
+	
 }
 .re_tr{
 	width: 100%;
 	text-align: center;
-	border-bottom: 0.5px solid black;
 }
 
 .re_td1{
-	width: 15%;	
+	width: 15%;
+	border-bottom: solid 0.5px black;
+	border-right: none;
+	background-color : #ccc;
+	border-top-left-radius: 15px;
 }
 .re_td2{
 	width: 23%;
 	text-align: center;
+	border-bottom: solid 0.5px black; 
+	background-color : #ccc;
 }
 .re_td3{
 	text-align: center;
+	border-bottom: solid 0.5px black;
+	background-color : #ccc;
+	border-top-right-radius: 15px;
 }
 
 .re_tr1{
 	text-align: center;
 }
-.re_td6{
-	text-align: left;
-}
+
 
 .probtn{
 	display: inline-flex;
@@ -113,3 +130,10 @@ img{
 	margin: 10px;
 }
 
+.page1{
+	text-align: center;
+	margin: 0 auto;
+}
+a{
+	text-decoration: none;
+}
