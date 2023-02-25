@@ -5,7 +5,7 @@
 <jsp:include page="../inc/header.jsp"/>
 <link href="/resource/css/member.css" rel="stylesheet" type="text/css">
 
- <script type="text/javascript" src="../script/jquery-3.6.3.js"></script>
+<!--  <script type="text/javascript" src="../script/jquery-3.6.3.js"></script> -->
  <script type="text/javascript">
  	// jQuery 준비 => 대상.함수()
  	 	$(document).ready(function(){
@@ -89,8 +89,6 @@
 
  	});//준비
  </script>
-
-
 
 
 
@@ -222,10 +220,10 @@
 					<input type="hidden" id="join_date" name="join_date" value="join_date" >
 				
 					<input type="hidden" id="delete_date" name="delete_date" value="join_date">
+					<input type="submit" value="회원 가입">
 			</form>	
 			</div>
 				<div align="center">
-					<input type="submit" value="회원 가입">
 					</div>
 					
 	

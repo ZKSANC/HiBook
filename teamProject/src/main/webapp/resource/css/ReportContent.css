@@ -1,10 +1,22 @@
 @charset "UTF-8";
-h1{
+
+.T{
 text-align: center; 	
 }
 
-table{
-margin-left: 150px;	
+.te{
+text-align: center;
+}
+
+.t{
+background-color:#A4A4A4;	
+}
+
+.call{
+color:blue;
+position:fixed;
+padding: 10px;
+margin-left:100px; 
 }
 
  .Left {
@@ -12,4 +24,9 @@ text-align:left;
 position:fixed;
 padding: 10px;
 cursor: pointer;
+margin-left:100px; 
+}
+
+.bt{
+float:right; 	
 }

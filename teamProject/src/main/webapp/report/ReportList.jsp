@@ -20,31 +20,28 @@
 	<!-- 헤더파일들어가는 곳 -->
 	<jsp:include page="/inc/header.jsp"/>
 	<!-- 헤더파일들어가는 곳 -->
-	<link href="resource/css/board.css" rel="stylesheet" type="text/css">
 	<link href="resource/css/ReportList.css " rel="stylesheet" type="text/css">
 
+	<h3 class="call">고객센터</h3>
+				<br><br>
+				<div class=Left>
+					<br> <br>
+					<div>
+						<div>
+							<a href="ReportForm.re"> 신고하기 </a><br> <br> <a
+								href="ReportList.re">신고목록</a><br> <br> <a
+								href="List.re">자주하는 질문</a>
 
+						</div>
+					</div>
+				</div>
 
 
 <div class="boardContainer">
 <!-- 내용 시작 -->
-<div class=Left>
-	<h3>고객센터</h3>
-	<br>
-		
-		<div>
-			<div>
-				<a href="ReportForm.re"> 신고하기 </a><br>
-				<br>
-				<a href="ReportList.re">신고목록</a><br>
-				<br>	
-				<a href="List.re">자주하는 질문</a>					
-		</div>
-	</div>
-	</div>
 
-	<h1>📮신고접수 현황📮</h1>
-	<table border="1">
+	<h1 class="T">신고접수 현황📮</h1>
+	<table  class="te" border="1">
 		<tr class="title">
 			<td>글번호</td>
 			<td>글쓴이</td>

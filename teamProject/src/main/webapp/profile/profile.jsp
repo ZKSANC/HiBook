@@ -25,8 +25,8 @@ if (request.getParameter("nickname") != null) {
 }
 
 StarReviewDAO sDao = new StarReviewDAO();
-StarReviewDTO dto = new StarReviewDTO();
-dto = sDao.getMemberImg(id);
+StarReviewDTO dto = sDao.getMemberImg(id);;
+StarReviewDTO sdto = sDao.getMemberImg(tgt_id);
 
 // 페이징 처리 
 ArrayList<StarReviewDTO> boardList = (ArrayList<StarReviewDTO>) request.getAttribute("boardList");
@@ -47,41 +47,38 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 		<div class="main-box">
 			<div class="image-container">
 				<div class="image-box">
-					<%-- 					<% if(dto.getMem_img().equals("url")) { %> --%>
-					<!-- 					<img src="resource/image/image.png" width="100" height="100"> -->
-					<%-- 					<% }else { %> --%>
-					<%-- 					<img src="upload/<%=dto.getMem_img() %>" width="100" height="100"> --%>
-					<%-- 					<% }%> --%>
 					<div class="profile-chat">
 						<%
-						if (dto.getMem_img().equals("url")) {
+						if (dto.getMemImg() == null) {
 						%>
 						<img src="resource/image/image.png" width="100" height="100">
 						<%
-						} else {
+						} else if(sDto.getMemImg() == null){ %>
+							<img src="resource/image/image.png" width="100" height="100">
+						<% }else{
 						%>
-						<img src="upload/<%=dto.getMem_img()%>" width="100" height="100">
+						<img src="upload/<%=sdto.getMemImg() %>" width="100" height="100">
 						<%
 						}
 						%>
-						<h4>
+						<h4 class="profileInfo">
 							아이디 :
 							<%
-						if (sDto.getTgt_id() == null) {
+						if (sDto.getMemId() == null) {
 						%>
 							<%=tgt_id%>
 							<%
 							} else {
 							%>
-							<%=sDto.getTgt_id()%>
+							<%=sDto.getMemId()%>
 							<%
 							}
 							%>
 						</h4>
-						<h4>
+						<h4 class="profileInfo">
 							닉네임 :
 							<%
-						if (sDto.getTgt_id() == null && !(nickname.equals(""))) {
+						if (sDto.getNickname() == null && !(nickname.equals(""))) {
 						%>
 							<%=nickname%>
 							<%
@@ -92,12 +89,12 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 							}
 							%>
 						</h4>
-						<h4>
+						<h4 class="profileInfo">
 							별점 :
 							<%=Double.toString(sDto.getScore()).substring(0, 3)%>
 						</h4>
-						<button class="chatbtn"
-							onclick="location.href='Chat.hi?to_id=<%=dto.getTgt_id()%>'">1:1채팅</button>
+<!-- 						<button class="chatbtn" -->
+<%-- 							onclick="location.href='Chat.hi?to_id=<%=dto.getTgt_id()%>'">1:1채팅</button> --%>
 					</div>
 					<!-- 					<hr class="board-box"> -->
 				</div>
@@ -106,10 +103,13 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 				<div class="info-box">
 					<ul class="list-group">
 						<li class="list-group-item">
-							<h6 class="board1">내가쓴 게시글</h6>
+							<h6 class="board1"><a href="MypageMarketList.mypage">중고장터 게시글</a></h6>
 						</li>
 						<li class="list-group-item">
-							<h6 class="board2">내가쓴 판매글</h6>
+							<h6 class="board2"><a href="MypageBoardList.mypage">커뮤니티 게시글</a></h6>
+						</li>
+						<li class="list-group-item">
+							<h6 class="board2"><a href="MypageReportList.mypage">1:1문의 글</a></h6>
 						</li>
 					</ul>
 				</div>
@@ -118,21 +118,27 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 				<%
 				//배열 접근 => for => //배열 한칸에 내용 가져오기 => BoardDTO 저장 => 출력
 				for (int i = 0; i < boardList.size(); i++) {
-					StarReviewDTO sdto = boardList.get(i);
+					StarReviewDTO Sdto = boardList.get(i);
 				%>
 				<div class="reviewbox2">
-					<table>
-						<colgroup>
+					<table class="reviewTable">
+						<colgroup class="TableGroup">
 							<col width="50px">
 							<col width="50px">
 							<col width="*">
 							<col width="100px">
 						</colgroup>
-						<tr>
-							<td><%=sdto.getScore()%></td>
-							<td><%=sdto.getInsert_id()%></td>
-							<td><%=sdto.getReview_content()%></td>
-							<td><%=sdto.getReview_date()%></td>
+						<tr class="re_tr">
+							<td class="re_td">별점</td>
+							<td class="re_td">작성자</td>
+							<td class="re_td">리뷰내용</td>
+							<td class="re_td">글쓴시간</td>
+						</tr>
+						<tr class="T_tr1">
+							<td class="re_td"><%=Sdto.getScore()%></td>
+							<td class="re_td"><%=Sdto.getInsert_id()%></td>
+							<td class="re_td"><%=Sdto.getReview_content()%></td>
+							<td class="re_td"><%=Sdto.getReview_date()%></td>
 						</tr>
 					</table>
 				</div>
@@ -160,6 +166,6 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 		var id = urlParams.get('insert_id');
 		console.log(id);
 		document.getElementById("tgt_id").value = id;
-	</script>
+	</script>	
 </body>
 </html>
