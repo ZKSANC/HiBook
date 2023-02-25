@@ -3,7 +3,7 @@
 	box-sizing: border-box;
 }
 
-.container {
+.reviewcontainer {
 	margin: 0 auto;
 }
 
@@ -11,14 +11,14 @@
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	width: 40%;
+	width: 100%;
 	margin: 20px auto;
 	background-color: white;
 	margin: 10px auto;
 }
 
 .image-container,.info-container{
-	width: 50%;
+	width: 100%;
 }
 .info-container{
 	text-align: center;
@@ -26,7 +26,6 @@
 
 .reviewbox {
 	width: 100%;
-	height: 300px;
 }
 .image-box{
 	text-align: center;
@@ -44,34 +43,59 @@ img{
 	border-style: none;
 	width: 200px;
 	height: 200px;
+	text-align: center;
 	vertical-align: middle;
 	overflow: hidden;
 }
 .reviewbox2{
 	display:inline-flex;
 	flex-wrap: nowrap;
-	width: 150px;
-	height: 300px;
+	width: 100%;
+	margin-top: 10px;
 	vertical-align: top;
 }
-table{
+.pr_hr1{
+	width:95%;
+	border: 0;
+	height: 3px;
+	background: #ccc;
+	margin-bottom: 1px;
+}
+.reviewTable{
+	width: 95%;
+	margin: 0px auto;
+}
+.re_tr{
 	width: 100%;
-	border-top: 1px solid;
-	margin: 15px auto;
+	text-align: center;
+	border-bottom: 0.5px solid black;
+}
+
+.re_td1{
+	width: 15%;	
+}
+.re_td2{
+	width: 23%;
 	text-align: center;
 }
-tr td {
-	border-bottom: 0.5px solid;
-	white-space : normal;
-	vertical-align: top;
+.re_td3{
+	text-align: center;
 }
-button{
+
+.re_tr1{
+	text-align: center;
+}
+.re_td6{
+	text-align: left;
+}
+
+.probtn{
 	display: inline-flex;
 	position: relative;
 	flex-direction: row;
 	justify-content:center;
-	width: 100px;
-	margin: 15px auto;
+	margin: 5px auto;
+	padding: 0px 5px;
 	font-weight: 600;
 	line-height: 35px;
 	color: #fff;
@@ -85,3 +109,7 @@ button{
 	height: 3px;
 	background: black;
 }
+.profileInfo{
+	margin: 10px;
+}
+

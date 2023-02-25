@@ -81,7 +81,8 @@ public class StarReviewDAO extends MemberDAO{
 				// 기본 num기준 오름차순 => 최근글 위로 올라오게 정렬 (num 내림차순)
 //				String sql="select * from board order by num desc";
 //				String sql="select * from board order by num desc limit 시작행-1, 몇개";
-				String sql="select * from manner where tgt_id=? order by review_date desc limit ?, ?";
+				//String sql="select * from manner where tgt_id=? order by review_date desc limit ?, ?";
+				String sql="select m2.nickname, m1.score, m1.insert_id, m1.review_content, m1.review_date, m1.tgt_id from manner m1 join members m2 on m2.mem_id = m1.insert_id where tgt_id=? order by review_date desc limit ?, ?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, tgt_id);
 				pstmt.setInt(2, startRow-1);
@@ -97,6 +98,7 @@ public class StarReviewDAO extends MemberDAO{
 					dto.setReview_content(rs.getString("review_content"));
 					dto.setReview_date(rs.getTimestamp("review_date"));
 					dto.setTgt_id(rs.getString("tgt_id"));
+					dto.setNickname(rs.getString("nickname"));
 					// 바구니의 주소값을 배열 한칸에 저장
 					reviewList.add(dto);
 					System.out.println(dto);

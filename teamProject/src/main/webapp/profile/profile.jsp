@@ -43,7 +43,7 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 <link href="/resource/css/profile.css" rel="stylesheet" />
 </head>
 <body>
-	<div class="container">
+	<div class="reviewcontainer">
 		<div class="main-box">
 			<div class="image-container">
 				<div class="image-box">
@@ -89,12 +89,11 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 							%>
 						</h4>
 						<h4 class="profileInfo">
-							별점 :
+							⭐ :
 							<%=Double.toString(sDto.getScore()).substring(0, 3)%>
 						</h4>
-						<h6 class="board1"><a href="MypageMarketList.mypage">중고장터 게시글</a></h6>
-						<h6 class="board2"><a href="MypageBoardList.mypage">커뮤니티 게시글</a></h6>
-<!-- 						<button type="hidden" class="chatbtn" -->
+						<input type="button" class="probtn" onclick="maketlist()" value="중고장터 게시글"></button>
+						<input type="button" class="probtn" onclick="boardlist()" value="커뮤니티 게시글"></button>
 <%-- 							onclick="location.href='Chat.hi?to_id=<%=dto.getTgt_id()%>'">1:1채팅</button> --%>
 					</div>
 					<!-- 					<hr class="board-box"> -->
@@ -115,7 +114,9 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 <!-- 					</ul> -->
 <!-- 				</div> -->
 <!-- 			</div> -->
+			
 			<div class="reviewbox">
+			<hr class="pr_hr1">
 				<%
 				//배열 접근 => for => //배열 한칸에 내용 가져오기 => BoardDTO 저장 => 출력
 				for (int i = 0; i < boardList.size(); i++) {
@@ -123,23 +124,20 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 				%>
 				<div class="reviewbox2">
 					<table class="reviewTable">
-						<colgroup class="TableGroup">
-							<col width="50px">
-							<col width="50px">
-							<col width="*">
-							<col width="100px">
-						</colgroup>
+<!-- 						<colgroup class="TableGroup"> -->
+<!-- 							<col width="50px"> -->
+<!-- 							<col width="*"> -->
+<!-- 							<col width="50px"> -->
+<!-- 						</colgroup> -->
 						<tr class="re_tr">
-							<td class="re_td">별점</td>
-							<td class="re_td">작성자</td>
-							<td class="re_td">리뷰내용</td>
-							<td class="re_td">글쓴시간</td>
+							<td class="re_td1">⭐별점</td>
+							<td class="re_td2">작성자</td>
+							<td class="re_td3">리뷰내용</td>
 						</tr>
-						<tr class="T_tr1">
-							<td class="re_td"><%=Sdto.getScore()%></td>
-							<td class="re_td"><%=Sdto.getInsert_id()%></td>
-							<td class="re_td"><%=Sdto.getReview_content()%></td>
-							<td class="re_td"><%=Sdto.getReview_date()%></td>
+						<tr class="re_tr1">
+							<td class="re_td4"><%=Sdto.getScore()%></td>
+							<td class="re_td5"><%=Sdto.getNickname()%></td>
+							<td class="re_td6"><%=Sdto.getReview_content()%></td>
 						</tr>
 					</table>
 				</div>
@@ -167,6 +165,15 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 		var id = urlParams.get('insert_id');
 		console.log(id);
 		document.getElementById("tgt_id").value = id;
+		
+		function maketlist(){
+		    //팝업창에서 부모창을 다른페이지로 이동합니다.
+		    window.opener.location.href="http://localhost:8080/MypageMarketList.mypage";
+		}
+		function boardlist(){
+		    //팝업창에서 부모창을 다른페이지로 이동합니다.
+		    window.opener.location.href="http://localhost:8080/MypageBoardList.mypage";
+		}
 	</script>	
 </body>
 </html>
