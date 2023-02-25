@@ -15,9 +15,9 @@
 			</form>
 	</div>
 	
-	<footer>
+<!-- 	<footer> -->
 	<jsp:include page="/inc/footer.jsp"/>
-	</footer>
+<!-- 	</footer> -->
 
 
 
