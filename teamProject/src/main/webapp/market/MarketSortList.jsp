@@ -33,7 +33,7 @@ int pageCount = (Integer)request.getAttribute("pageCount");
 	
 		<div class="board1">
 			<div class="boardText">
-				<p id="boardTag">중고책 
+				<p class="boardTag">중고책 
 				<%if(trade_type.equals("")) { %>
 				종합<% } else { %>
 				<%=trade_type %><% }%> 게시판📚</p>
