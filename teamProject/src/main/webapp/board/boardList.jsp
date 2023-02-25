@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.util.ChangeTime"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.itwillbs.board.db.BoardDTO"%>
@@ -9,7 +10,7 @@
 	String boardTypeCd = (String) request.getAttribute("boardTypeCd");
 	String boardTypeCdNm = (String) request.getAttribute("boardTypeCdNm");
 	// 검색
-	String keyWord = request.getParameter("keyWord")==null ? "" : request.getParameter("keyWord");
+	String keyword = request.getParameter("keyword")==null ? "" : request.getParameter("keyword");
 	ArrayList<BoardDTO> BoardList = (ArrayList<BoardDTO>) request.getAttribute("boardList");
 	ArrayList<BoardDTO> NoticeList = (ArrayList<BoardDTO>) request.getAttribute("noticeList");
 	
@@ -47,7 +48,7 @@
 
 <form acion="BoardList.bo" method="get">
 	<div class="board_search">
-		<input type="text" id="keword" name="keword" value="<%=keyWord %>"  placeholder="검색어를 입력하세요">
+		<input type="text" id="keyword" name="keyword" value="<%=keyword %>"  placeholder="검색어를 입력하세요">
 		<input type="hidden" name="boardType" value="<%=boardTypeCd %>">
 		<input type="submit" id="scrhBtn" value="검색">
 	</div>
@@ -100,7 +101,7 @@
 					</div>
 				      	
 				</td>
-				<td><%=changeTime%></td>
+				<td><% SimpleDateFormat dateformat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");%><%=changeTime%></td>
 				<td><%=dto.getViewCnt()%></td>
 			</tr>
 	
@@ -166,19 +167,19 @@
 			// 10페이지 이전
 			if (startPage > pageBlock) {
 			%>
-	<a href="BoardList.bo?boardType=<%=boardTypeCd %>&keword=<%=keyWord%>&pageNum=<%=startPage - pageBlock%>">&lt;&lt;</a>
+	<a href="BoardList.bo?boardType=<%=boardTypeCd %>&keyword=<%=keyword%>&pageNum=<%=startPage - pageBlock%>">&lt;&lt;</a>
 	<%
 	}
 	
 	for (int i = startPage; i <= endPage; i++) {
 	%>
-	<a href="BoardList.bo?boardType=<%=boardTypeCd %>&keword=<%=keyWord%>&pageNum=<%=i%>"><%=i%></a>
+	<a href="BoardList.bo?boardType=<%=boardTypeCd %>&keyword=<%=keyword%>&pageNum=<%=i%>"><%=i%></a>
 	<%
 	}
 	// 10페이지 다음
 	if (endPage < pageCount) {
 		%>
-	<a href="BoardList.bo?boardType=<%=boardTypeCd %>&keword=<%=keyWord%>&pageNum=<%=startPage + pageBlock%>">&gt;&gt;</a>
+	<a href="BoardList.bo?boardType=<%=boardTypeCd %>&keyword=<%=keyword%>&pageNum=<%=startPage + pageBlock%>">&gt;&gt;</a>
 	<%
 	}%>
 	
