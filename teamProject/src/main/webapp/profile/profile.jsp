@@ -49,13 +49,12 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 				<div class="image-box">
 					<div class="profile-chat">
 						<%
-						if (dto.getMemImg() == null) {
+						if (sdto.getMemImg() == null) {
 						%>
 						<img src="resource/image/image.png" width="100" height="100">
 						<%
-						} else if(sdto.getMemImg() == null){ %>
-						<img src="resource/image/image.png" width="100" height="100">
-						<% }else{
+						} else 
+						{
 						%>
 						<img src="upload/<%=sdto.getMemImg() %>" width="100" height="100">
 						<%
