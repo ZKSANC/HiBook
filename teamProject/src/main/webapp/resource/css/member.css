@@ -40,7 +40,7 @@
   border: none;
   padding: 10px;
   width: 270px;
-  background-color: #1BBC9B;
+  background-color: #B4B4DC;
   margin-bottom: 30px;
   color: white;
 }
@@ -52,5 +52,9 @@
 .log-alert-view {
     display: flex;
     
+}
+
+.submit1{
+	text-align: center;
 }
 
