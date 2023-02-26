@@ -308,8 +308,8 @@ function writeCheck() {
        <!-- 세션값 = 글쓴이 -> 일치 -> 자기자신 쓴 글(글수정, 글삭제 ,비밀댓글 보이기)  -->     
                   <%   
                      if (id.equals(cmmtDto.getInsertId())) {%> 
-                 		<input type="button" value="댓글수정"  class="smallButtonsubmit2 smallButtonBlueGray" onclick="cmmtEdit('<%=cmmtDto.getCmmtId() %>');" >
-                  		<input type="button" value="댓글삭제" class="smallButtonsubmit2 smallButtonBlueGray" onclick="cmmtDelete('<%=cmmtDto.getCmmtId() %>');"> 
+                 		<input type="button" value="댓글삭제" class="smallButtonSubmit12 smallButtonBlueGray" onclick="cmmtDelete('<%=cmmtDto.getCmmtId() %>');" >
+                  		<input type="button" value="댓글수정"  class="smallButtonCancle12 smallButtonBlueGray" onclick="cmmtEdit('<%=cmmtDto.getCmmtId() %>');"> 
                   		
                   <%} // if끝 %>
                </td>
@@ -319,9 +319,9 @@ function writeCheck() {
              <tr id ="edit_<%=cmmtDto.getCmmtId() %>" style="display:none">
                <td> 
                  <textarea id="content_<%=cmmtDto.getCmmtId() %>" name="content" rows="8" placeholder="댓글을 입력하세요" style="width: 80%"><%=cmmtDto.getContent()%> </textarea>
-	             <input type="checkbox" id="secretYn_<%=cmmtDto.getCmmtId() %>" name="secretYn" value="Y" <%if("Y".equals(cmmtDto.getSecretYn())){%> checked <%}%> >비밀댓글
-	             <input type="button"  value="댓글수정" onclick="cmmtUpdate('<%=cmmtDto.getCmmtId() %>');">
-	             <input type="button" value="댓글취소" onclick="cmmtCancle('<%=cmmtDto.getCmmtId() %>');">
+	             <input type="checkbox" id="secretYn_<%=cmmtDto.getCmmtId() %>" name="secretYn" value="Y" <%if("Y".equals(cmmtDto.getSecretYn())){%> checked <%}%> >비밀댓글 <br>
+	             <input type="button" class="smallButtonCancle12 smallButtonBlueGray" value="댓글취소" onclick="cmmtCancle('<%=cmmtDto.getCmmtId() %>');">
+	             <input type="button" class="smallButtonSubmit12 smallButtonBlueGray" value="댓글수정" onclick="cmmtUpdate('<%=cmmtDto.getCmmtId() %>');" >
                </td>
             </tr>
             

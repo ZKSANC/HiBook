@@ -96,7 +96,7 @@ function showUnread(result){
 				<li class="li-main cursor-pointer" >
 					<span onclick="location.href='MarketList.ma'">중고거래</span>
 				</li>
-				<li class="li-main">
+				<li class="li-main cursor-pointer"">
 					<span onclick="location.href='BoardList.bo?boardType=free'">커뮤니티</span>
 				</li>
 				<li class="li-main cursor-pointer">

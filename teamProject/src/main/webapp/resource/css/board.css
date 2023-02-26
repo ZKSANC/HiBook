@@ -419,3 +419,48 @@
 .f18 {font-size:18px;}
 .f15 {font-size:15px;}
 .f13 {font-size:13px;}
+
+.smallButtonCancle12 {
+	display: block;
+	position: relative;
+	float: right;
+	width: 80px;
+	padding: 0;
+	margin: 10px;
+	font-weight: 300;
+	text-align: center;
+	line-height: 25px;
+	color: #fff;
+	border-radius: 5px;
+	transition: all 0.2s;
+}
+
+.smallButtonSubmit12 {
+	display: block;
+	position: relative;
+	float: right;
+	width: 80px;
+	padding: 0;
+	margin: 10px 4px;
+	font-weight: 300;
+	text-align: center;
+	line-height: 25px;
+	color: #fff;
+	border-radius: 5px;
+	transition: all 0.2s;
+}
+
+.smallButtonSubmit12 {
+	display: block;
+	position: relative;
+	float: right;
+	width: 80px;
+	padding: 0;
+	margin: 10px 4px;
+	font-weight: 300;
+	text-align: center;
+	line-height: 25px;
+	color: #fff;
+	border-radius: 5px;
+	transition: all 0.2s;
+}
