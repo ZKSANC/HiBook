@@ -44,7 +44,7 @@ function writeCheck() {
 </script>
 
 <div>
-<p id="boardTag"><%=boardTypeCdNm %> 💬</p>
+<p class="boardTag"><%=boardTypeCdNm %> 💬</p>
 
 <div class="tableBar boardView th:first-child">
 <hr class="my-hr3">
