@@ -82,7 +82,7 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 							<%
 							} else {
 							%>
-							<%=sdto.getNickname()%>1
+							<%=sdto.getNickname()%>
 							<%
 							}
 							%>
