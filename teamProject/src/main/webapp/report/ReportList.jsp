@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.report.db.ReportDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -66,9 +67,9 @@
  		%><tr>
 			<td><%=dto.getReport_id()%></td>
 			<td><%=dto.getInsert_id() %></td>
-			<td><a href="ReportContent.re?id=<%=dto.getReport_id()%>"><%=dto.getTitle()%>
-			</a></td>
-			<td><%=dto.getInsert_date()%></td>
+			<td><a href="ReportContent.re?id=<%=dto.getReport_id()%>"><%=dto.getTitle()%></td>
+			<td><%SimpleDateFormat dateformat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");%>
+			<%=dateformat.format(dto.getInsert_date()) %> </td>
 		<%
  	}
 	} 
