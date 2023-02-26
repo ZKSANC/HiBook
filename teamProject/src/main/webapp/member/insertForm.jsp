@@ -1,11 +1,9 @@
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:include page="../inc/header.jsp"/>
 <link href="/resource/css/member.css" rel="stylesheet" type="text/css">
 
-<!--  <script type="text/javascript" src="../script/jquery-3.6.3.js"></script> -->
+ <script type="text/javascript" src="../script/jquery-3.6.3.js"></script>
  <script type="text/javascript">
  	// jQuery 준비 => 대상.함수()
  	 	$(document).ready(function(){
@@ -41,56 +39,44 @@
 				return false;
             }
             
-            if($('.email').val()==""){
-            	alert("이메일을 입력하세요");
-				$('.email').focus();
-				return false;
-            }
-            
-            
-            
-            
-            
 	 	});
             
             
 	 	//
 	 	
 //		class="dup" 클릭했을때
-		$('.dup').click(function(){
-//			alert("클릭");
-			if($('.id').val()==""){
-				alert("아이디 입력하세요");
-				$('.id').focus();
-				return false;
-			}
-			// 페이지 이동없이 디비에 가서 중복체크해서 결과를 가져와 출력 
-			// idCheck.jsp
-			$.ajax({
-				url:'idCheck.jsp',
-				data:{'id':$('.id').val()},
-				success:function(result){
-// 					alert(result);
-					//result.trim() => 결과값 앞뒤로 공백제거
-					if(result.trim()=="아이디 중복"){
-						$('.divresult').html(result).css("color","red");
-					}else{
-						$('.divresult').html(result).css("color","blue");
-					}
-				}	
+// 		$('.dup').click(function(){
+// //			alert("클릭");
+// 			if($('.id').val()==""){
+// 				alert("아이디 입력하세요");
+// 				$('.id').focus();
+// 				return false;
+// 			}
+// 			// 페이지 이동없이 디비에 가서 중복체크해서 결과를 가져와 출력 
+// 			// idCheck.jsp
+// 			$.ajax({
+// 				url:'MemberIdCheck.me',
+// 				data:{'mem_id':$('.mem_id').val()},
+// 				success:function(result){
+// // 					alert(result);
+// 					//result.trim() => 결과값 앞뒤로 공백제거
+// 					if(result.trim()=="아이디 중복"){
+// 						$('.divresult').html(result).css("color","red");
+// 					}else{
+// 						$('.divresult').html(result).css("color","blue");
+// 					}
+// 				}	
 				
-			});
+// 			});
 			
 		
 			
-		});
+// 		});
 
 
 
  	});//준비
  </script>
-
-
 
 
 	<div class="boardContainer" >
@@ -102,20 +88,24 @@
 				</tr>
 				<tr>
 					<td align="center">아이디 :</td>
-					<td><input type="text" id="mem_id" name="mem_id" class="mem_id" ></td>
+					<td><input type="text" id="mem_id" name="mem_id" class="mem_id" 
+					placeholder="아이디를 입력해주세요">
+<!-- 						<input type="button" value="ID 중복확인" class="dup"> -->
+<!-- 						<div class="divresult">아이디 중복체크</div></td> -->
 				</tr>
 				<tr>
 					<td align="center">비밀번호 :</td>
-					<td><input type="password" id="mem_pass" name="mem_pass" class="mem_pass"></td>
+					<td><input type="password" id="mem_pass" name="mem_pass" class="mem_pass" 
+					placeholder="비밀번호를 입력해주세요" minlength="6" maxlength="12"></td>
 				</tr>
 				<tr>
 					<td align="center">이름 :</td>
-					<td><input type="text" id="mem_nm" name="mem_nm" class="mem_nm">
+					<td><input type="text" id="mem_nm" name="mem_nm" class="mem_nm" placeholder="이름을 입력해주세요">
 					</td>
 				</tr>
 				<tr>
 					<td align="center">닉네임 :</td>
-					<td><input type="text" id="nickname" name="nickname" ></td>
+					<td><input type="text" id="nickname" name="nickname" class="nickname" placeholder="별명을 입력해주세요"></td>
 				</tr>
 
 				<tr>	
@@ -127,8 +117,8 @@
 				
 				<tr>
 					<td align="center">생년월일 :</td>
-					<td><input type="text" id="birth" name="birth" 
-						style="width: 150px;" placeholder="년-월-일">  </td>
+					<td><input type="date" id="birth" name="birth" 
+						style="width: 150px;" >  </td>
 				</tr>
 				
 				<tr>
@@ -204,12 +194,12 @@
 				</tr>
 				<tr>
 					<td align="center">핸드폰번호 :</td>
-					<td><input type="text" id="phone" name="phone" >
+					<td><input type="text" id="phone" name="phone" placeholder="000-0000-0000">
 					</td>
 				</tr>
 			
 			</table>
-					<input type="hidden" id="mem_st" value="default" name="mem_st" >
+					<input type="hidden" id="mem_st" value="정상" name="mem_st" >
 					
 					<input type="hidden" id="admin_yn" value="N" name="admin_yn" >
 					
@@ -220,16 +210,13 @@
 					<input type="hidden" id="join_date" name="join_date" value="join_date" >
 				
 					<input type="hidden" id="delete_date" name="delete_date" value="join_date">
-					<input type="submit" value="회원 가입">
+					<input type="submit" value="회원 가입" class="submit1">
 			</form>	
 			</div>
-				<div align="center">
-					</div>
+				
+				
 					
 	
-	
-	
-			
 	
 	
 	
