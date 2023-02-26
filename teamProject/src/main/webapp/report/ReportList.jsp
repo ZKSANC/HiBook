@@ -67,7 +67,7 @@
 			<td><%=dto.getReport_id()%></td>
 			<td><%=dto.getInsert_id() %></td>
 			<td><a href="ReportContent.re?id=<%=dto.getReport_id()%>"><%=dto.getTitle()%>
-			</td>
+			</a></td>
 			<td><%=dto.getInsert_date()%></td>
 		<%
  	}

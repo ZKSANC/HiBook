@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.report.db.ReportDTO"%>
 <%@page import="com.itwillbs.report.db.ReportDAO"%>
 
@@ -50,7 +51,7 @@
 <tr><td class="t">작성자</td><td><%=dto.getInsert_id() %> </td></tr>
 <tr><td class="t">글제목</td><td><%=dto.getTitle() %></td></tr>
 <tr><td class="t">글내용</td><td><%=dto.getContent() %></td></tr>
-<tr><td class="t">글쓴날짜</td><td><%=dto.getInsert_date() %></td></tr>
+<tr><td class="t">글쓴날짜</td><td><% SimpleDateFormat dateformat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");%><%=dto.getInsert_date() %></td></tr>
 <tr><td class="t">첨부파일</td><td><img src="upload/<%=dto.getContent_img1()%>" width="600"></td></tr>
 </table>
 
