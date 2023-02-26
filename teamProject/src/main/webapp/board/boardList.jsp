@@ -44,7 +44,7 @@
 </script>
 <!-- 스크립트 끝. -->
 <div>
-<p id="boardTag"><%=boardTypeCdNm %> 💬</p>
+<p class="boardTag"><%=boardTypeCdNm %> 💬</p>
 
 <form acion="BoardList.bo" method="get">
 	<div class="board_search">

@@ -328,7 +328,7 @@ function writeCheck() {
          <%} // 댓글for문 끝%>
       </table>
 		</div>
-	<div class="Page">
+	<div class="page">
 	<% // 댓글 페이징
 	// 10페이지 이전
 		if (startPage > pageBlock) {

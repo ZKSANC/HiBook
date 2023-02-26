@@ -120,25 +120,30 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 				  <tbody>
 				    <tr>
 				    <%
-				    // list반복해서 list에 담긴 boardDTO 뿌려주기
-				    for (int i = 0; i < freeList.size(); i++) {
-						// 배열 한칸에 내용 가져오기 
-						BoardDTO dto = freeList.get(i);
-						
-						// 시간계산해서 몇초전 몇분전 몇시간전 등 출력하는 함수사용.
-						String changeTime = ChangeTime.calculateTime(dto.getInsertDate());
-						%>
-				      <td class="tc" ><%=dto.getBoardId() %></td>
-				      <td>
-				      	<a class="aa" href="BoardContent.bo?boardType=<%=dto.getBoardType() %>&boardId=<%=dto.getBoardId()%>">
-							<%=dto.getTitle()%>
-						</a>
-					  </td>
-				     <td class="tc"><span id="idSpan"><%=dao2.getNickname(dto.getBoardId()) %></span>
-				      <td class="tc"><%=dto.getViewCnt() %></td>
-				      <td class="tc"><%=changeTime%></td>
-				    </tr>
-				   <%} %>
+				    if(freeList.size()>0){
+					    int freeBoardCnt = dao2.getBoardCount(freeList.get(0));
+					    // list반복해서 list에 담긴 boardDTO 뿌려주기
+					    for (int i = 0; i < freeList.size(); i++) {
+							// 배열 한칸에 내용 가져오기 
+							BoardDTO dto = freeList.get(i);
+							
+							int num = freeBoardCnt -i;
+							// 시간계산해서 몇초전 몇분전 몇시간전 등 출력하는 함수사용.
+							String changeTime = ChangeTime.calculateTime(dto.getInsertDate());
+							%>
+					      <td class="tc" ><%=num %></td>
+					      <td>
+					      	<a class="aa" href="BoardContent.bo?boardType=<%=dto.getBoardType() %>&boardId=<%=dto.getBoardId()%>">
+								<%=dto.getTitle()%>
+							</a>
+						  </td>
+					     <td class="tc"><span id="idSpan"><%=dao2.getNickname(dto.getBoardId()) %></span>
+					      <td class="tc"><%=dto.getViewCnt() %></td>
+					      <td class="tc"><%=changeTime%></td>
+					    </tr>
+				   <%} 
+				    }
+				   %>
 				  </tbody>
 				</table>
 			</div>
@@ -168,29 +173,34 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 				  <tbody>
 				   <tr>
 				    <%
+				    if(reviewList.size()>0){
+					    int reviewBoardCnt = dao2.getBoardCount(reviewList.get(0));
 				    // list반복해서 list에 담긴 boardDTO 뿌려주기
-				    for (int i = 0; i < reviewList.size(); i++) {
-						// 배열 한칸에 내용 가져오기 
-						BoardDTO dto = reviewList.get(i);
-						
-						// 시간계산해서 몇초전 몇분전 몇시간전 등 출력하는 함수사용.
-						String changeTime = ChangeTime.calculateTime(dto.getInsertDate());
-						%>
-				      <td class="tc"><%=dto.getBoardId() %></td>
-				      <td>
-				      	<div class="skip">
-				      	<a class="aa" href="BoardContent.bo?boardType=<%=dto.getBoardType() %>&boardId=<%=dto.getBoardId()%>">
-							<%=dto.getTitle()%>
-						</a>
-						</div>
-					  </td>
-				      <td class="tc">
-				      <span id="idSpan"><%=dao2.getNickname(dto.getBoardId()) %></span>
-				      </td>
-				      <td class="tc"><%=dto.getViewCnt() %></td>
-				      <td class="tc"><%=changeTime%></td>
-				    </tr>
-				   <%} %>
+					    for (int i = 0; i < reviewList.size(); i++) {
+							// 배열 한칸에 내용 가져오기 
+							BoardDTO dto = reviewList.get(i);
+							
+							int num = reviewBoardCnt -i;
+							// 시간계산해서 몇초전 몇분전 몇시간전 등 출력하는 함수사용.
+							String changeTime = ChangeTime.calculateTime(dto.getInsertDate());
+							%>
+					      <td class="tc"><%=num %></td>
+					      <td>
+					      	<div class="skip">
+					      	<a class="aa" href="BoardContent.bo?boardType=<%=dto.getBoardType() %>&boardId=<%=dto.getBoardId()%>">
+								<%=dto.getTitle()%>
+							</a>
+							</div>
+						  </td>
+					      <td class="tc">
+					      <span id="idSpan"><%=dao2.getNickname(dto.getBoardId()) %></span>
+					      </td>
+					      <td class="tc"><%=dto.getViewCnt() %></td>
+					      <td class="tc"><%=changeTime%></td>
+					    </tr>
+				   <%} 
+				    }
+				   %>
 				    
 				  </tbody>
 				</table>
