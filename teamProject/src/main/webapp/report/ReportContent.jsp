@@ -27,7 +27,7 @@
 	
 		<h3 class="call">고객센터</h3>
 				<br><br>
-				<div class=Left>
+				<div class="left">
 					<br> <br>
 					<div>
 						<div>

@@ -7,7 +7,7 @@ padding: 10px;
 margin-left:100px; 
 }
 
- .Left {
+ .left {
 text-align:left;
 position:fixed;
 padding: 10px;
@@ -46,6 +46,6 @@ color:#819FF7;
 
 .a{
 font-weight:bold;
-color: #FA5882;	
+color:#848484;	
 
 }

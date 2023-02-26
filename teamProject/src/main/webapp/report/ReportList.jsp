@@ -16,6 +16,10 @@
 	
 	ReportDTO dto1= new ReportDTO(); 
 	String id = (String) session.getAttribute("id");
+	
+	if(id == null){
+		response.sendRedirect("MemberLoginForm.me");
+	}
 	%>
 	<!-- 헤더파일들어가는 곳 -->
 	<jsp:include page="/inc/header.jsp"/>
@@ -24,13 +28,13 @@
 
 	<h3 class="call">고객센터</h3>
 				<br><br>
-				<div class=Left>
+				<div class="left">
 					<br> <br>
 					<div>
 						<div>
-							<a href="ReportForm.re"> 신고하기 </a><br> <br> <a
-								href="ReportList.re">신고목록</a><br> <br> <a
-								href="List.re">자주하는 질문</a>
+							<a href="ReportForm.re"> 신고하기 </a><br> <br> 
+							<a href="ReportList.re">신고목록</a><br> <br> 
+							<a	href="List.re">자주하는 질문</a>
 
 						</div>
 					</div>
