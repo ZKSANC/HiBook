@@ -15,7 +15,6 @@ body {
   overflow-y: scroll;
 }
 
-
 div {
 	word-break : break-all;
 }
@@ -48,6 +47,10 @@ a {
 
 .book_title > p {
 	line-height: 1.5;
+	overflow: hidden;  		
+  text-overflow: ellipsis;  	
+  white-space: nowrap; 		
+  word-break:break-all;
 }
 
 .trade_type {
@@ -64,7 +67,7 @@ a {
 }
 
 .view_cnt {
-	font-size: 14px;
+	font-size: 13px;
 	color: #666666;
 }
 

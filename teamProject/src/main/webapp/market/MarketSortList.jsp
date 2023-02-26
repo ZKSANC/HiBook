@@ -20,7 +20,7 @@ int pageCount = (Integer)request.getAttribute("pageCount");
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp" />
 <!-- 헤더파일들어가는 곳 -->
-<link href="resource/css/market.css" rel="stylesheet" type="text/css">
+<link href="resource/css/marketList.css" rel="stylesheet" type="text/css">
 
 <!-- 자바스크립트 들어가는 곳 -->
 <script type="text/javascript">
@@ -99,7 +99,10 @@ int pageCount = (Integer)request.getAttribute("pageCount");
 		
 	</div>
 </article>
-
+	<form>
+		<input type="hidden" value="none" name="trade_type">
+	</form>
+	
 <!-- 내용 끝 -->
 </div>
 
