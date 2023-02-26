@@ -34,7 +34,7 @@
 				placeholder="리뷰를 써주시면 다른사람에게 도움이 됩니다."></textarea>
 		</div>
 		<input type="submit" class = "probtn" value="전송" onclick="TabClose()">
-		<input type="button" class = "probtn" value="취소" onclick="close()">
+		<input type="button" class = "probtn" value="취소" onclick="close2()">
 		<script type="text/javascript">
 			var urlParams = new URL(location.href).searchParams;
 			var id = urlParams.get('insert_id');
@@ -45,8 +45,9 @@
 	          setTime('close()',3000);
 	        }
 			
-			function close(){
-				window.close;
+			function close2(){
+				window.close();
+				return false;
 			}
 		</script>
 	</form>
