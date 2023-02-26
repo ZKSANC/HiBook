@@ -82,7 +82,7 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 							<%
 							} else {
 							%>
-							<%=sDto.getNickname()%>
+							<%=sdto.getNickname()%>1
 							<%
 							}
 							%>
@@ -92,11 +92,10 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 							<%=Double.toString(sDto.getScore()).substring(0, 3)%>
 						</h4>
 						<input type="button" class="probtn" onclick="maketlist()"
-							value="중고장터 게시글">
-						</button>
+							value="중고거래 게시글">
+						<P>
 						<input type="button" class="probtn" onclick="boardlist()"
 							value="커뮤니티 게시글">
-						</button>
 						<%-- 							onclick="location.href='Chat.hi?to_id=<%=dto.getTgt_id()%>'">1:1채팅</button> --%>
 					</div>
 					<!-- 					<hr class="board-box"> -->
