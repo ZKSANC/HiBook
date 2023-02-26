@@ -39,7 +39,7 @@ if(id != null){
 <!-- 		공지사항 글목록으로  -->
 		<div class=menu4><a class=me1 href="BoardList.bo?boardType=notice">공지사항 관리</a></div>
 <!-- 		사이트소개 페이지로  -->
-		<div class=menu5><a class=me1 href="introduce.jsp">사이트 소개 관리</a></div>
+		<div class=menu5><a class=me1 href="Introduce.bo">사이트 소개 관리</a></div>
 		<div class=menu6><a class=me1 href="AdminReportList.adminpage">1:1 신고 접수</a></div>
 		<br>
 		<%
