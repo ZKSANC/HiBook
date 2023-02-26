@@ -194,7 +194,7 @@ function writeCheck() {
 
 
 <div>
-<p id="boardTag"><%=boardTypeCdNm %>  💬</p>
+<p class="boardTag"><%=boardTypeCdNm %>  💬</p>
 
 
 <div class="tableBar">

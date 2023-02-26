@@ -8,6 +8,7 @@
 
 <!-- 공통CSS -->
 <link href="resource/css/front.css" rel="stylesheet" type="text/css">
+<link href="resource/css/board2.css" rel="stylesheet" type="text/css">
 <link href="../resource/css/header.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <!-- 자바 들어가는 곳 -->

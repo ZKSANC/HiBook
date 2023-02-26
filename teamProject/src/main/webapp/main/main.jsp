@@ -23,6 +23,7 @@ ArrayList<BoardDTO> reviewList = (ArrayList<BoardDTO>) request.getAttribute("rev
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp"/>
 <link href="/resource/css/board.css" rel="stylesheet" type="text/css">
+<link href="/resource/css/board2.css" rel="stylesheet" type="text/css">
 <link href="/resource/css/front.css" rel="stylesheet" type="text/css">
 <!-- 헤더파일들어가는 곳 -->
 
