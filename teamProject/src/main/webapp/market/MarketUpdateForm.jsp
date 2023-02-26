@@ -149,6 +149,7 @@ $(document).ready(function(){ // j쿼리 start
 		 var titleLength = document.getElementsByName("title")[0].value.length;
 		 var contentLength = document.getElementsByName("content")[0].value.length;
 		 var priceLength = document.getElementsByName("book_price")[0].value.length;
+		 var tradeTypeLength = document.getElementsByName("trade_type")[0].value.length;
 		 //게시글 submit 전 제한 사항
 		 if(titleLength < 2) {
 			 alert("제목을 2글자 이상 입력해주세요.");
@@ -160,6 +161,10 @@ $(document).ready(function(){ // j쿼리 start
 		 }
 		 if(priceLength < 1) {
 			 alert("가격을 입력해주세요.");
+			 return false;
+		 }
+		 if(tradeTypeLength < 1) {
+			 alert("거래종류를 선택해주세요.");
 			 return false;
 		 }
 		 if(totalImgLength < 1) {

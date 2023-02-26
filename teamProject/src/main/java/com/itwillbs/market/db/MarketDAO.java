@@ -75,6 +75,34 @@ public class MarketDAO {
 		}
 	}
 	
+	public int getMarketId(String insert_id) {
+		MarketDTO dto = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int market_id = 0;
+		try {	
+			con = getConnection();
+			
+			String sql="select max(market_id) from market where insert_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, insert_id);  
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				market_id = rs.getInt("max(market_id)");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+			if(con!=null) try { con.close();} catch (Exception e2) {}
+			if(rs!=null) try { rs.close();} catch (Exception e2) {}
+		}
+		return market_id;
+	}
+	
 	public ArrayList<MarketDTO> getBoardList(int start, int num) {
 		ArrayList<MarketDTO> dtolist = new ArrayList<>();
 		Connection con = null;
