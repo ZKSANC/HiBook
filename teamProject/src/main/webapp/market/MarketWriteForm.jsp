@@ -13,6 +13,7 @@ String id = (String) session.getAttribute("id");
 if (id == null) {
 	response.sendRedirect("MemberLoginForm.me");
 }
+String trade_type = request.getParameter("trade_type");
 // DB com_code 테이블 값 가져오기
 ComCdDAO cdao = new ComCdDAO();
 ComCdDTO cdto = new ComCdDTO();
@@ -106,6 +107,7 @@ $(document).ready(function(){ // j쿼리 start
  	 		  }
  	 		  deleteImgFile(index);
 		});
+		$('#trade_type').val('<%=trade_type%>').prop("selected",true);
 }); // j쿼리 end
   //가격 콤마
   function inputNumber(obj) {
@@ -125,24 +127,29 @@ $(document).ready(function(){ // j쿼리 start
 		 var oldImgLength = document.getElementsByClassName("old-image").length;
 		 var preImgLength = document.getElementsByClassName("preview-image").length;
 		 var totalImgLength = oldImgLength + preImgLength;
+		 
 		 var subjectLength = document.getElementsByName("title")[0].value.length;
 		 var contentLength = document.getElementsByName("content")[0].value.length;
-		 console.log(subjectLength);
+		 var priceLength = document.getElementsByName("book_price")[0].value.length;
 		 //게시글 submit 전 제한 사항
-		 if(totalImgLength < 1) {
-			 alert("최소 1개의 이미지를 올려주세요.");
-			 return false;
-		 }
-		 if(totalImgLength > <%=MarketDTO.getImgLengthMax()%>) {
-			 alert("게시글 당 이미지는 5개까지 올릴 수 있습니다.");
-			 return false;
-		 }
 		 if(subjectLength < 2) {
 			 alert("제목을 2글자 이상 입력해주세요.");
 			 return false;
 		 }
 		 if(contentLength < 2) {
 			 alert("내용을 2글자 이상 입력해주세요.");
+			 return false;
+		 }
+		 if(priceLength < 1) {
+			 alert("가격을 입력해주세요.");
+			 return false;
+		 }
+		 if(totalImgLength < 1) {
+			 alert("최소 1개의 이미지를 올려주세요.");
+			 return false;
+		 }
+		 if(totalImgLength > <%=MarketDTO.getImgLengthMax()%>) {
+			 alert("게시글 당 이미지는 5개까지 올릴 수 있습니다.");
 			 return false;
 		 }
 		 //내용 제한 넘길 시 클라우디너리 업로드 진행
@@ -217,22 +224,8 @@ $(document).ready(function(){ // j쿼리 start
 					
 					<!-- select box start -->
 					<tr>
-					<td><%=cdto.getCdGrpnms()[2]%></td>
-				  <td><select class="selectText" name="<%=cdtoList2.get(0).getCdGrp()%>">
-								<%
-								for (int i = 0; i < cdtoList2.size(); i++) {
-								%>
-								<option value="<%=cdtoList2.get(i).getCdNm()%>"><%=cdtoList2.get(i).getCdNm()%>
-								</option>
-								<%
-								}
-								%>
-							 </select></td>
-					</tr>
-					
-					<tr>
 					<td><%=cdto.getCdGrpnms()[0]%></td>
-					<td><select class="selectText" name="<%=cdtoList0.get(0).getCdGrp()%>">
+					<td><select class="selectText" name="<%=cdtoList0.get(0).getCdGrp()%>" id="<%=cdtoList0.get(0).getCdGrp()%>">
 								<%
 								for (int i = 0; i < cdtoList0.size(); i++) {
 								%>
@@ -246,7 +239,7 @@ $(document).ready(function(){ // j쿼리 start
 					
 					<tr>
 						<td><%=cdto.getCdGrpnms()[1]%></td>
-						<td><select class="selectText" name="<%=cdtoList1.get(0).getCdGrp()%>">
+						<td><select class="selectText" name="<%=cdtoList1.get(0).getCdGrp()%>" id="<%=cdtoList1.get(0).getCdGrp()%>">
 								<%
 								for (int i = 0; i < cdtoList1.size(); i++) {
 								%>
@@ -259,8 +252,22 @@ $(document).ready(function(){ // j쿼리 start
 					</tr>
 					
 					<tr>
+					<td><%=cdto.getCdGrpnms()[2]%></td>
+				  <td><select class="selectText" name="<%=cdtoList2.get(0).getCdGrp()%>" id="<%=cdtoList2.get(0).getCdGrp()%>">
+								<%
+								for (int i = 0; i < cdtoList2.size(); i++) {
+								%>
+								<option value="<%=cdtoList2.get(i).getCdNm()%>"><%=cdtoList2.get(i).getCdNm()%>
+								</option>
+								<%
+								}
+								%>
+							 </select></td>
+					</tr>
+					
+					<tr>
 					<td><%=cdto.getCdGrpnms()[3]%></td>
-					<td><select class="selectText" name="<%=cdtoList3.get(0).getCdGrp()%>">
+					<td><select class="selectText" name="<%=cdtoList3.get(0).getCdGrp()%>" id="<%=cdtoList3.get(0).getCdGrp()%>">
 								<%
 								for (int i = 0; i < cdtoList3.size(); i++) {
 								%>
@@ -274,7 +281,7 @@ $(document).ready(function(){ // j쿼리 start
 					
 					<tr>
 					<td><%=cdto.getCdGrpnms()[4]%></td>
-					<td><select class="selectText" name="<%=cdtoList4.get(0).getCdGrp()%>">
+					<td><select class="selectText" name="<%=cdtoList4.get(0).getCdGrp()%>" id="<%=cdtoList4.get(0).getCdGrp()%>">
 								<%
 								for (int i = 0; i < cdtoList4.size(); i++) {
 								%>

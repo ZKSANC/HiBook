@@ -76,7 +76,7 @@ trade_type[0].value = <%=trade_type %>;
 		
 		<div class="board2">
 			<input type="button" value="메인으로" onclick="location.href='main.do'">
-			<input type="button" value="거래글 쓰기" onclick="location.href='MarketWriteForm.ma'">
+			<input type="button" value="거래글 쓰기" onclick="location.href='MarketWriteForm.ma?trade_type=<%=trade_type%>'">
 		</div>
 		
 		<div class="board3">
