@@ -16,6 +16,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	
 }
 
 .loginContainer{
@@ -45,16 +46,22 @@
   color: white;
 }
 
-.login-alert {
-    visibility: hidden;
+.insertTable{
+	
+	border-spacing: 10px;
 }
 
-.log-alert-view {
-    display: flex;
-    
-}
 
-.submit1{
-	text-align: center;
-}
 
+.button{
+	width: 100px;
+ 	padding: 0;
+ 	margin: 10px 20px 10px 0;
+ 	font-weight: 600;
+ 	text-align: center;
+ 	line-height: 35px;
+ 	color: #fff;
+  	border-radius: 5px;
+ 	transition: all 0.2s;		
+ 	background: #42444e;
+}

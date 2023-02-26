@@ -82,7 +82,8 @@
 	<div class="boardContainer" >
 	<form action="MemberInsertPro.me" id="join" method="post" enctype = "multipart/form-data">
 		
-			<table class="insertTable" >
+			<table class="insertTable">
+			
 				<tr>
 					<th colspan="2">회원 기본 정보</th>
 				</tr>
@@ -197,8 +198,14 @@
 					<td><input type="text" id="phone" name="phone" placeholder="000-0000-0000">
 					</td>
 				</tr>
-			
+					
+					
+					
 			</table>
+					<p align="center">
+					<input type="submit" value="회원 가입" class="button">
+					</p>
+			
 					<input type="hidden" id="mem_st" value="정상" name="mem_st" >
 					
 					<input type="hidden" id="admin_yn" value="N" name="admin_yn" >
@@ -210,7 +217,8 @@
 					<input type="hidden" id="join_date" name="join_date" value="join_date" >
 				
 					<input type="hidden" id="delete_date" name="delete_date" value="join_date">
-					<input type="submit" value="회원 가입" class="submit1">
+					
+					
 			</form>	
 			</div>
 				

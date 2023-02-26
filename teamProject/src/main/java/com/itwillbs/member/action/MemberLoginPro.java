@@ -46,7 +46,7 @@ public class MemberLoginPro implements Action{
 			response.setContentType("text/html; charset=UTF-8"); // 자바에서 html(자바스크립트) 동작 코드 생성
 			PrintWriter out = response.getWriter();
 			out.println("<script type='text/javascript'>"); // PrintWrite 자바 출력클래스, response(HttServlet 클래스 내장객체)
-			out.println("alert('아이디 비밀번호 틀림');");
+			out.println("alert('아이디 비밀번호가 틀립니다');");
 			out.println("history.back();");
 			out.println("</script>");
 			out.close();
