@@ -197,7 +197,7 @@ public class MemberDAO {
 			pstmt.setString(1, mem_id);
 			rs = pstmt.executeQuery();
 			if ( rs.next()) {
-				if(rs.getString("mem_img").equals("url")||rs.getString("mem_img")== null) {
+				if(rs.getString("mem_img").equals("")||rs.getString("mem_img")== null) {
 					return "http://localhost:8080/resource/image/hibookprofile.png";
 				}
 				return "/upload/" + rs.getString("mem_img");
