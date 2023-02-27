@@ -44,34 +44,34 @@
             
 	 	//
 	 	
-//		class="dup" 클릭했을때
-// 		$('.dup').click(function(){
-// //			alert("클릭");
-// 			if($('.id').val()==""){
-// 				alert("아이디 입력하세요");
-// 				$('.id').focus();
-// 				return false;
-// 			}
-// 			// 페이지 이동없이 디비에 가서 중복체크해서 결과를 가져와 출력 
-// 			// idCheck.jsp
-// 			$.ajax({
-// 				url:'MemberIdCheck.me',
-// 				data:{'mem_id':$('.mem_id').val()},
-// 				success:function(result){
-// // 					alert(result);
-// 					//result.trim() => 결과값 앞뒤로 공백제거
-// 					if(result.trim()=="아이디 중복"){
-// 						$('.divresult').html(result).css("color","red");
-// 					}else{
-// 						$('.divresult').html(result).css("color","blue");
-// 					}
-// 				}	
+// 		class="dup" 클릭했을때
+		$('.dup').click(function(){
+//			alert("클릭");
+			if($('.mem_id').val()==""){
+				alert("아이디 입력하세요");
+				$('.mem_id').focus();
+				return false;
+			}
+			// 페이지 이동없이 디비에 가서 중복체크해서 결과를 가져와 출력 
+			// idCheck.jsp
+			$.ajax({
+				url:'MemberIdCheck.me',
+				data:{'id':$('.mem_id').val()},
+				success:function(result){
+// 					alert(result);
+					//result.trim() => 결과값 앞뒤로 공백제거
+					if(result.trim()=="아이디 중복"){
+						$('.divresult').html(result).css("color","red");
+					}else{
+						$('.divresult').html(result).css("color","blue");
+					}
+				}	
 				
-// 			});
+			});
 			
 		
 			
-// 		});
+		});
 
 
 
@@ -91,8 +91,8 @@
 					<td align="center">아이디 :</td>
 					<td><input type="text" id="mem_id" name="mem_id" class="mem_id" 
 					placeholder="아이디를 입력해주세요">
-<!-- 						<input type="button" value="ID 중복확인" class="dup"> -->
-<!-- 						<div class="divresult">아이디 중복체크</div></td> -->
+						<input type="button" value="ID 중복확인" class="dup">
+						<div class="divresult"></div></td>
 				</tr>
 				<tr>
 					<td align="center">비밀번호 :</td>

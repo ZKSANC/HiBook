@@ -68,15 +68,15 @@ public class MemberFrontController extends HttpServlet{
 				e.printStackTrace();
 			}	
 		}
-//		else if (sPath.equals("/MemberIdCheck.me")) {
-//			System.out.println("==========");
-//			action=new MemberIdCheck();
-//			try {
-//				forward=action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+		else if (sPath.equals("/MemberIdCheck.me")) {
+			System.out.println("==========");
+			action=new MemberIdCheck();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 //		else if(sPath.equals("/main.do")) {
 //			
