@@ -180,8 +180,8 @@ function emailChk(val) {
         </li>     
       </ul>
     </fieldset>
-    <div class=submit>
     <fieldset>
+    <div class=submit>
     	<input type="submit" value="회원정보 수정" class=button>
     	<input type="button" value="취소" onclick="fun3()" class=button> 
     </fieldset>
