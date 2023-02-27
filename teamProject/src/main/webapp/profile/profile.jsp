@@ -94,8 +94,7 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 						<input type="button" class="probtn" onclick="maketlist()"
 							value="중고거래 게시글">
 						<P>
-						<input type="button" class="probtn" onclick="boardlist()"
-							value="커뮤니티 게시글">
+			
 						<%-- 							onclick="location.href='Chat.hi?to_id=<%=dto.getTgt_id()%>'">1:1채팅</button> --%>
 					</div>
 					<!-- 					<hr class="board-box"> -->

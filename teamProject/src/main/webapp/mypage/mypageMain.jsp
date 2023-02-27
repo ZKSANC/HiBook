@@ -19,7 +19,7 @@ String adminYn = (String)session.getAttribute("adminYn");
 if(id == null){
 	response.sendRedirect("MemberLoginForm.me");
 }
-
+System.out.print(id);
 //일반유저 마이페이지- 프로필사진, 닉네임 보여줘야함 
 //MemberDAO 객체생성 
 MemberDAO dao = new MemberDAO();
@@ -73,9 +73,11 @@ if(id != null){
 %>
 <script type="text/javascript">
 function popup1(){
-	var link = "profile.pr?nickname=<%=dto.getNickname()%>";     
+	<%if(id!=null) { %>
+		var link = "profile.pr?nickname=<%=dto.getNickname()%>";
+	<%} %>
 	var popupWidth = 500;
-	var popupHeight = 600;
+	var popupHeight = 700;
 	var popupX = (window.screen.width/2) - (popupWidth/2);
 	var popupY= (window.screen.height/2) - (popupHeight/2);
 	

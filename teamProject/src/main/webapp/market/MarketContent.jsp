@@ -115,7 +115,7 @@ $(document).ready(function(){ // j쿼리 시작
 		function popup1(){
 			var link = "profile.pr?insert_id=<%=dto.getInsert_id()%>&nickname=<%=mdao.getNickname(dto.getMarket_id())%>";     
 			var popupWidth = 500;
-			var popupHeight = 600;
+			var popupHeight = 700;
 			var popupX = (window.screen.width/2) - (popupWidth/2);
 			var popupY= (window.screen.height/2) - (popupHeight/2);
 			
