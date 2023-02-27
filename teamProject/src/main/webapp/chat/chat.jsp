@@ -50,7 +50,9 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>  
 <script type="text/javascript">
 	function chatbox(){
-			window.open("ChatList.hi", "vv", "width=500, height=700"); 
+// 			window.open("ChatList.hi", "vv", "width=500, height=700"); 
+		var link = "/ChatList.hi";
+		location.replace(link);
 	}
 	function autoClosingAlert(selector, delay){
 		var alert = $(selector).alert();
@@ -190,10 +192,10 @@
 				<span class="yourid"><%= nickname %> 님 와의 대화</span>
 				<span class="gobox"><img src="../resource/image/bookmark.png" onclick="chatbox();"></span>
 		</div>
-		<div id="chatList"  style="overflow-y: auto; width: 100%; height : 520px;">
+		<div id="chatList"  style="overflow-y: auto; width: 100%; height : 500px;">
 		</div>
 				<div class="submitarea">
-					<textarea id="chat_content" style="height: 80px;" class="chatarea" placeholder=" 메시지를 입력하세요." maxlength="100"  onkeyup="onKeyUp()"></textarea>
+					<textarea id="chat_content" style="height: 80px;" class="chatarea" placeholder=" 메시지를 입력하세요." maxlength="100"  onkeyup="onKeyUp()" onfocus="this.placeholder = ''"></textarea>
 					<img src="../resource/image/quill-pen.png" onclick="submitFunction();">
 <!-- 					<input class="chatsubmitbutton" type="button" onclick="submitFunction();" value="전송"> -->
 				</div>

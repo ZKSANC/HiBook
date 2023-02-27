@@ -40,7 +40,7 @@ function getUnread(){
 function getInfiniteUnread(){ //일정시간마다 자신이 읽지않은 메시지 개수를 알려줌
 	setInterval(function(){
 		getUnread();
-	}, 4000); //4초마다 getUnread를 실행 (그래서 ChatUnreadServlet.err이 계속 뜬다. )
+	}, 1000); //1초마다 getUnread를 실행 (그래서 ChatUnreadServlet.err이 계속 뜬다. )
 }
 function showUnread(result){
 	$('#unread').html(result);
