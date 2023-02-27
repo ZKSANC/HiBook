@@ -151,8 +151,9 @@ $(document).ready(function(){ // j쿼리 start
 		 var priceLength = document.getElementsByName("book_price")[0].value.length;
 		 var tradeTypeLength = document.getElementsByName("trade_type")[0].value.length;
 		 //게시글 submit 전 제한 사항
-		 if(titleLength < 2) {
-			 alert("제목을 2글자 이상 입력해주세요.");
+		 console.log(titleLength);
+		 if(titleLength < 2 || titleLength > 20) {
+			 alert("제목은 2글자에서 20글자 사이로 입력해주세요.");
 			 return false;
 		 }
 		 if(contentLength < 2) {
