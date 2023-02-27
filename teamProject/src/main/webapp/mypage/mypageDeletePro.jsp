@@ -13,5 +13,5 @@ session.invalidate();
 
 <script type="text/javascript">
 	alert("탈퇴 완료되었습니다.");
-	location.href="MypageMain.mypage";
+	location.href="/main.do";
 </script>
