@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.report.db.ReportDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -5,6 +6,7 @@
 <%
 String id =(String)session.getAttribute("id");
 ReportDTO dto = (ReportDTO) request.getAttribute("dto");
+SimpleDateFormat dateformat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");
 %>
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp" />
@@ -69,7 +71,7 @@ function writeCheck() {
 			</tr>
 			<tr>
 				<td class="t">제보 날짜</td>
-				<td><input type="text" name="date"  value="<%=dto.getInsert_date()%>" readonly></td>
+				<td><input type="text" name="date"  value="<%=dateformat.format(dto.getInsert_date())%>" readonly></td>
 			</tr>
 			<tr>
 				<td class="t">첨부파일</td>

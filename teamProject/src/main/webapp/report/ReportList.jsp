@@ -59,61 +59,45 @@
 			ReportDTO dto = reportlist.get(i);
 		%>
 		
-		<% 
-			//  로그인 => 세션값 있음 
- if(id != null){ 
- 	// 세션값  , 글쓴이  => 일치 => 자기자신 쓴 글(글수정, 글삭제 보이기) -->
- 	if(id.equals("admin") || id.equals(dto.getInsert_id())){
- 		%><tr>
+			<tr>
 			<td><%=dto.getReport_id()%></td>
 			<td><%=dto.getInsert_id() %></td>
-			<td><a href="ReportContent.re?id=<%=dto.getReport_id()%>"><%=dto.getTitle()%></td>
+			<td><a href="ReportContent.re?id=<%=dto.getReport_id()%>"><%=dto.getTitle()%></a></td>
 			<td><%SimpleDateFormat dateformat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");%>
 			<%=dateformat.format(dto.getInsert_date()) %> </td>
+			</tr>
 		<%
- 	}
-	} 
- } 
-%> 
+		 } 
+		%> 
 
 	</table>
 <div class="page">
-	<%
 
-	if (currentPage > 1) {
-	%>
-		<a href="BoardList.bo?pageNum=<%=currentPage-1%>">[1페이지 이전]</a>
-	<%
-	}
-
-	// 10페이지 이전
+	<% 
+	//5페이지 이전
 	if (startPage > pageBlock) {
 	%>
-	<a href="ReportList.re?pageNum=<%=startPage - pageBlock%>">[10페이지 이전]</a>
+	<a href="ReportList.re?pageNum=<%=startPage - pageBlock%>">[5페이지 이전]</a>
 	<%
 	}
-
+	%>
+	
+	<% 
+	//현재페이지
 	for (int i =startPage;  i <= endPage; i++) {
 	%>
 	<a href="ReportList.re?pageNum=<%=i%>"><%=i%></a>
 	<%
 	}
-
-	//1페이지 다음
-	if (currentPage < pageCount) {
 	%>
-		<a href="BoardList.bo?pageNum=<%=currentPage+1%>">[1페이지 다음]</a>
-	<%
-	}
-	%>
+	
 	<% 
-	//10페이지 다음
+	//5페이지 다음
 	if (endPage < pageCount) {
 	 %>
-	<a href="ReportList.re?pageNum=<%=startPage + pageBlock%>">[10페이지 다음]</a>
+	<a href="ReportList.re?pageNum=<%=startPage + pageBlock%>">[5페이지 다음]</a>
 	<%
 	}
-	
 	%>
 
 <!-- 내용 끝 -->	
