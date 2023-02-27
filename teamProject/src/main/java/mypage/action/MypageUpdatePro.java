@@ -36,7 +36,7 @@ public class MypageUpdatePro implements Action{
 		dto.setAddr_dtl(addr_dtl);
 		dto.setEmail(email);
 		dto.setMem_id(id);
-
+System.out.println("------------------------------1");
 		// MemberDAO 객체생성 
 		// 메서드 호출 
 		MemberDAO dao = new MemberDAO();

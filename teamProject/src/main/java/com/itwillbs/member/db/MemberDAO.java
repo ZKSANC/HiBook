@@ -142,7 +142,6 @@ public class MemberDAO {
 	
 //	 MemberDTO 리턴할형 getMember(String id) 메서드 정의
 	public MemberDTO getMember(String id) {
-		System.out.println("11111111111");
 		MemberDTO dto=null;
 		Connection con =null;
 		PreparedStatement pstmt=null;
@@ -150,16 +149,13 @@ public class MemberDAO {
 		try {
 			//1,2 디비연결 메서드
 			con=getConnection();
-			System.out.println("2222222222222222");
 			//3단계 SQL구문 만들어서 실행할 준비(select 조건 where id=?)
 			String sql = "select * from members where mem_id=?";
-			System.out.println("3333333333333333");
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 
 			//4단계 SQL구문을 실행(select) => 결과 저장
 			rs=pstmt.executeQuery();
-			System.out.println("444444444444");
 			//5단계 결과를 출력, 데이터 담기 (select)
 			// next() 다음행 => 리턴값 데이터 있으면 true/ 데이터 없으면 false
 			//조건이 true 실행문=> 다음행 데이터 있으면 true =>  열접근 출력
@@ -182,6 +178,46 @@ public class MemberDAO {
 		}
 		return dto;
 	}//getMember()
+	
+	
+	public MemberDTO nicknameCheck(String nickname) {
+		MemberDTO dto=null;
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			//1,2 디비연결 메서드
+			con=getConnection();
+			//3단계 SQL구문 만들어서 실행할 준비(select 조건 where id=?)
+			String sql = "select * from members where nickname=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, nickname);
+
+			//4단계 SQL구문을 실행(select) => 결과 저장
+			rs=pstmt.executeQuery();
+			//5단계 결과를 출력, 데이터 담기 (select)
+			// next() 다음행 => 리턴값 데이터 있으면 true/ 데이터 없으면 false
+			//조건이 true 실행문=> 다음행 데이터 있으면 true =>  열접근 출력
+			if(rs.next()){
+				//next() 다음행 => 리턴값 데이터 있으면 true/ 아이디 일치
+				// 바구니 객체생성 => 기억장소 할당
+				dto=new MemberDTO();
+				// set메서드호출 바구니에 디비에서 가져온 값 저장
+				dto.setMemId(rs.getString("mem_id"));
+				dto.setMemPass(rs.getString("mem_pass"));
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
+			if(rs!=null) try { rs.close();} catch (Exception e2) {}
+			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+			if(con!=null) try { con.close();} catch (Exception e2) {}
+		}
+		return dto;
+	}
+	
 	
 	// ------------------------------------------------
 	// 채팅 method
