@@ -30,7 +30,7 @@
 
 		<div>
 			<textarea class="col-auto form-control" type="text"
-				id="reviewContents" name="review_content"
+				id="reviewContents" name="review_content" maxlength="10"
 				placeholder="리뷰를 써주시면 다른사람에게 도움이 됩니다."></textarea>
 		</div>
 		<input type="submit" class = "probtn" value="전송" onclick="TabClose()">
@@ -49,6 +49,9 @@
 				window.close();
 				return false;
 			}
+			
+			  var pikabu = document.getElementById('reviewContents'); 
+			  var count = pikabu.value.length;//문자수
 		</script>
 	</form>
 </body>

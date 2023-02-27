@@ -181,11 +181,11 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 
 			function maketlist() {
 				//팝업창에서 부모창을 다른페이지로 이동합니다.
-				window.opener.location.href = "http://localhost:8080/MypageMarketList.mypage";
+				window.opener.location.href = "http://localhost:8080/MypageUserMarketList.mypage?insert_id=<%=tgt_id%>";
 			}
 			function boardlist() {
 				//팝업창에서 부모창을 다른페이지로 이동합니다.
-				window.opener.location.href = "http://localhost:8080/MypageBoardList.mypage";
+				window.opener.location.href = "http://localhost:8080/MypageBoardList.mypage?insert_id=<%=tgt_id%>";
 			}
 		</script>
 </body>
