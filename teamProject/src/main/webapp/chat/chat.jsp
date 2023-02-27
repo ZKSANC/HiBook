@@ -22,21 +22,37 @@
  		if (mem_id == null){
  			session.setAttribute("messageType", "오류 메시지");
  			session.setAttribute("messageContent", "현재 로그인이 되어 있지 않습니다.");
-//  			response.sendRedirect("index.jsp");
- 			return;
+			%>
+			<script type="text/javascript">
+			alert("현재 로그인이 되어 있지 않습니다.");
+			window.close();
+			</script>
+			<% 
+			return;
  		}
  		if (to_id == null) {
  			session.setAttribute("messageType", "오류 메시지");
  			session.setAttribute("messageContent", "대화 상대가 지정되지 않았습니다.");
-//  			response.sendRedirect("index.jsp");
+						%>
+			<script type="text/javascript">
+			alert("대화 상대가 지정되지 않았습니다.");
+			window.close();
+			</script>
+ 			<% 
  			return;
  		}
  		if(mem_id.equals(URLDecoder.decode(to_id,"UTF-8"))){
  			session.setAttribute("messageType", "오류 메시지");
  			session.setAttribute("messageContent", "자기 자신에게는 쪽지를 보낼 수 없습니다.");
-//  			response.sendRedirect("index.jsp");
+			%>
+			<script type="text/javascript">
+			alert("자기 자신에게는 채팅을 보낼 수 없습니다.");
+			window.close();
+			</script>
+ 			<% 
  			return;
  		}
+ 		
  		
  		String fromProfile = new MemberDAO().getProfile(mem_id);
  		String toProfile = new MemberDAO().getProfile(to_id);

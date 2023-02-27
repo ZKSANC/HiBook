@@ -96,6 +96,12 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 						<P>
 			
 						<%-- 							onclick="location.href='Chat.hi?to_id=<%=dto.getTgt_id()%>'">1:1채팅</button> --%>
+						<%if(id != tgt_id) { %>
+						<button value="1:1채팅" class="probtn" onclick="openchat();">1:1채팅</button>
+						<%
+							}
+						%> 
+						
 					</div>
 					<!-- 					<hr class="board-box"> -->
 				</div>
@@ -164,6 +170,10 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 			function boardlist() {
 				//팝업창에서 부모창을 다른페이지로 이동합니다.
 				window.opener.location.href = "http://localhost:8080/MypageBoardList.mypage?insert_id=<%=tgt_id%>";
+			}
+			function openchat() {
+				window.open("/Chat.hi?to_id=<%=tgt_id%>", "a", "width=500, height=700"); 
+				<%-- 채팅 버튼 open 함수 --%>
 			}
 		</script>
 </body>
