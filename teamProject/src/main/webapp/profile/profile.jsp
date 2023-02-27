@@ -101,22 +101,6 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 					<!-- 					<hr class="board-box"> -->
 				</div>
 			</div>
-			<!-- 			<div class="info-container"> -->
-			<!-- 				<div class="info-box"> -->
-			<!-- 					<ul class="list-group"> -->
-			<!-- 						<li class="list-group-item"> -->
-			<!-- 							<h6 class="board1"><a href="MypageMarketList.mypage">중고장터 게시글</a></h6> -->
-			<!-- 						</li> -->
-			<!-- 						<li class="list-group-item"> -->
-			<!-- 							<h6 class="board2"><a href="MypageBoardList.mypage">커뮤니티 게시글</a></h6> -->
-			<!-- 						</li> -->
-			<!-- 						<li class="list-group-item"> -->
-			<!-- 							<h6 class="board2"><a href="MypageReportList.mypage">1:1문의 글</a></h6> -->
-			<!-- 						</li> -->
-			<!-- 					</ul> -->
-			<!-- 				</div> -->
-			<!-- 			</div> -->
-
 			<div class="reviewbox">
 				<hr class="pr_hr1">
 				<%
@@ -126,11 +110,6 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 				%>
 				<div class="reviewbox2">
 					<table class="reviewTable">
-						<!-- 						<colgroup class="TableGroup"> -->
-						<!-- 							<col width="50px"> -->
-						<!-- 							<col width="*"> -->
-						<!-- 							<col width="50px"> -->
-						<!-- 						</colgroup> -->
 						<tr class="re_tr">
 							<td class="re_td1">⭐별점</td>
 							<td class="re_td2">작성자</td>
@@ -181,7 +160,7 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 
 			function maketlist() {
 				//팝업창에서 부모창을 다른페이지로 이동합니다.
-				window.opener.location.href = "http://localhost:8080/MypageUserMarketList.mypage?insert_id=<%=tgt_id%>";
+				window.opener.location.href = "MypageUserMarketList.mypage?insert_id=<%=tgt_id%>&nickname=<%=nickname%>";
 			}
 			function boardlist() {
 				//팝업창에서 부모창을 다른페이지로 이동합니다.

@@ -31,7 +31,7 @@
 		<div>
 			<textarea class="col-auto form-control" type="text"
 				id="reviewContents" name="review_content" maxlength="10"
-				placeholder="리뷰를 써주시면 다른사람에게 도움이 됩니다."></textarea>
+				placeholder="리뷰는 100자로 제한 되어있습니다."></textarea>
 		</div>
 		<input type="submit" class = "probtn" value="전송" onclick="TabClose()">
 		<input type="button" class = "probtn" value="취소" onclick="close2()">
