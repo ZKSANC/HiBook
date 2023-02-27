@@ -123,6 +123,7 @@ public class MemberDAO {
 				dto.setMemNm(rs.getString("mem_nm"));
 				dto.setAdminYn(rs.getString("admin_yn"));
 				dto.setJoinDate(rs.getTimestamp("join_date"));
+				dto.setMemSt(rs.getString("mem_st"));
 			}else{
 				//next() 다음행 =>       데이터 없으면 false => 아이디 비밀번호 틀림
 			    // 	           => script   "아이디 비밀번호 틀림" 뒤로이동
