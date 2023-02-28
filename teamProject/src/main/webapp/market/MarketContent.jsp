@@ -203,7 +203,7 @@ $(document).ready(function(){ // j쿼리 시작
 			<div class="conWriter"><span class="conSt">작성자</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="idSpan"><%=mdao.getNickname(dto.getMarket_id()) %></span>
 				<div id="miniMenu">
 						<div id="profile">
-							<%if(mdao.getImg(dto.getMarket_id())==null) { %>
+							<%if(mdao.getImg(dto.getMarket_id())==null || mdao.getImg(dto.getMarket_id()).equals("")) { %>
 								<img id="profilImg" src="resource/image/image.png">
 							<% } else{ %>
 								<img id="profilImg" src="upload/<%=mdao.getImg(dto.getMarket_id())%>">
