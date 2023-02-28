@@ -30,7 +30,7 @@
 
 		<div>
 			<textarea class="col-auto form-control" type="text"
-				id="reviewContents" name="review_content" maxlength="10"
+				id="reviewContents" name="review_content" maxlength="100"
 				placeholder="리뷰는 100자로 제한 되어있습니다."></textarea>
 		</div>
 		<input type="submit" class = "probtn" value="전송" onclick="TabClose()">
