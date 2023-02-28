@@ -23,8 +23,6 @@ int pageCount = (Integer)request.getAttribute("pageCount");
 
 <!-- 자바스크립트 들어가는 곳 -->
 <script type="text/javascript">
-const trade_type = document.getElementsByName("trade_type")[0];
-trade_type[0].value = <%=trade_type %>;
 </script>
 
 <div class="boardContainer">
