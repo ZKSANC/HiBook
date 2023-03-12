@@ -1,15 +1,16 @@
 <%@page import="mypage.member.MemberDTO"%>
 <%@page import="mypage.member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
-MemberDTO dto=(MemberDTO)request.getAttribute("dto");
+MemberDTO dto = (MemberDTO) request.getAttribute("dto");
 %>
 
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp" />
-<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">	
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <!-- 입력 제어 -->
 <script type="text/javascript">
@@ -132,62 +133,53 @@ function emailChk(val) {
 	
 </script>
 
-	
+
 <div class="boardContainer">
-<h1>회원정보 수정</h1>
+	<h1>회원정보 수정</h1>
 
 
-<form id="fr2" name="fr" action="MypageUpdatePro.mypage" method="post" onsubmit="return fun2();">
-    <fieldset>
-      <ul>
-        <li>
-          <label>아이디</label>
-          <input type="text" name="mem_id" value="<%=dto.getMem_id()%>" readonly>
-        </li>
-        <li>
-          <label>비밀번호</label>
-          <input type="password" name="mem_pass" placeholder="6~12자, 특수문자 포함">
-        </li>
-        <li>
-          <label>비밀번호 확인</label>
-          <input type="password" name="mem_pass2">
-        </li>
-        <li>
-          <label>이름</label>
-          <input type="text" name="mem_nm" value="<%=dto.getMem_nm()%>" readonly>
-        </li>
-        <li>
-          <label>휴대폰번호</label>
-          <input type="tel" id="phone" name="phone" value="<%=dto.getPhone()%>" placeholder="000-0000-0000" oninput="autoHyphen(this)" maxlength="13">
-        </li>                  
-        <li>
-          <label>생년월일</label>
-          <input type="date" name="birth" value="<%=dto.getBirth()%>" readonly>   
-        </li>
-		<!--         주소 카카오API 사용  -->
-        <li>
-          	<label>주소</label>
-			<input type="text" id="zipcode" name="zipcode" value="<%=dto.getZipcode()%>" placeholder="우편번호" readonly="readonly">
-			<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" ><br>
-			<label>&nbsp;</label><input type="text" id="addr" name="addr" value="<%=dto.getAddr()%>" placeholder="주소" readonly="readonly"><br>
-			<label>&nbsp;</label><input type="text" id="addr_dtl" name="addr_dtl" value="<%=dto.getAddr_dtl()%>" placeholder="상세주소">
-			<input type="text" id="sample6_extraAddress" placeholder="참고항목">
-        </li>
-        <!--         주소 카카오API 사용  -->
-        <li>
-          <label>이메일</label>
-		<input type="text" id="email" name="email" value="<%=dto.getEmail()%>">
-        </li>     
-      </ul>
-    </fieldset>
-    <fieldset>
-    <div class=submit>
-    	<input type="submit" value="회원정보 수정" class=button>
-    	<input type="button" value="취소" onclick="fun3()" class=button> 
-    </fieldset>
-    </div>
+	<form id="fr2" name="fr" action="MypageUpdatePro.mypage" method="post"
+		onsubmit="return fun2();">
+		<fieldset>
+			<ul>
+				<li><label>아이디</label> <input type="text" name="mem_id"
+					value="<%=dto.getMem_id()%>" readonly></li>
+				<li><label>비밀번호</label> <input type="password" name="mem_pass"
+					placeholder="6~12자, 특수문자 포함"></li>
+				<li><label>비밀번호 확인</label> <input type="password"
+					name="mem_pass2"></li>
+				<li><label>이름</label> <input type="text" name="mem_nm"
+					value="<%=dto.getMem_nm()%>" readonly></li>
+				<li><label>휴대폰번호</label> <input type="tel" id="phone"
+					name="phone" value="<%=dto.getPhone()%>"
+					placeholder="000-0000-0000" oninput="autoHyphen(this)"
+					maxlength="13"></li>
+				<li><label>생년월일</label> <input type="date" name="birth"
+					value="<%=dto.getBirth()%>" readonly></li>
+				<!--         주소 카카오API 사용  -->
+				<li><label>주소</label> <input type="text" id="zipcode"
+					name="zipcode" value="<%=dto.getZipcode()%>" placeholder="우편번호"
+					readonly="readonly"> <input type="button"
+					onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+					<label>&nbsp;</label><input type="text" id="addr" name="addr"
+					value="<%=dto.getAddr()%>" placeholder="주소" readonly="readonly"><br>
+					<label>&nbsp;</label><input type="text" id="addr_dtl"
+					name="addr_dtl" value="<%=dto.getAddr_dtl()%>" placeholder="상세주소">
+					<input type="text" id="sample6_extraAddress" placeholder="참고항목">
+				</li>
+				<!--         주소 카카오API 사용  -->
+				<li><label>이메일</label> <input type="text" id="email"
+					name="email" value="<%=dto.getEmail()%>"></li>
+			</ul>
+		</fieldset>
+		<fieldset>
+			<div class=submit>
+				<input type="submit" value="회원정보 수정" class=button> <input
+					type="button" value="취소" onclick="fun3()" class=button>
+		</fieldset>
+</div>
 </form>
 </div>
 
 <!-- 푸터파일들어가는 곳 -->
-<jsp:include page="/inc/footer.jsp"/>
+<jsp:include page="/inc/footer.jsp" />
