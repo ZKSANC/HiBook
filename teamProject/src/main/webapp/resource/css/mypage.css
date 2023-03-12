@@ -73,18 +73,6 @@
 	float: left;
 }
 
-.menu7 {
-	border: 1px solid black;
-	width : 200px;
-	height: 40px;
-    margin: 10px;
-}
-
-.menu7:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
 .menu1 {
 	border: 1px solid black;
 	width : 200px;
@@ -97,92 +85,7 @@
 	color: #fff;
 }
 
-.menu2 {
-	border: 1px solid black;
-    width: 200px;
-    height: 40px;
-    margin: 10px;
-}
-
-.menu2:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu3 {
-	border: 1px solid black;
-	width : 200px;
-	height: 40px;
-    margin: 10px;
-}
-
-.menu3:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu4 {
-	border: 1px solid black;
-	width : 200px;
-	height: 40px;
-    margin: 10px;
-}
-
-.menu4:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu5 {
-	border: 1px solid black;
-	width : 200px;
-	height: 40px;
-    margin: 10px;
-}
-
-.menu5:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu6 {
-	border: 1px solid black;
-	width : 200px;
-	height: 40px;
-    margin: 10px;
-}
-
-.menu6:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
 .me1 {
-	display: block;
-	padding: 10px;
-}
-
-.me2 {
-	display: block;
-	padding: 10px;
-}
-
-.me3 {
-	display: block;
-	padding: 10px;
-}
-
-.me4 {
-	display: block;
-	padding: 10px;
-}
-
-.me5 {
-	display: block;
-	padding: 10px;
-}
-
-.me6 {
 	display: block;
 	padding: 10px;
 }

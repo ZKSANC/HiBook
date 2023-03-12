@@ -227,7 +227,7 @@ public class MarketDAO {
 		return count;
 	}//
 
-	// 1. 글목록에서 여러개 체크박스로 삭제하는 메서드
+	// 글목록에서 여러개 체크박스로 삭제하는 메서드
 	public void multiDelete(String[] market_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -237,66 +237,6 @@ public class MarketDAO {
 
 			// 3단계 SQL구문 만들어서 실행할 준비
 			String sql = "delete from market where market_id=?";
-			pstmt = con.prepareStatement(sql);
-
-			for (int i = 0; i < market_id.length; i++) {
-				pstmt.setString(1, market_id[i]);
-				// 4단계 SQL구문을 실행(insert, update, delete)
-				pstmt.executeUpdate();
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (Exception e2) {
-				}
-			if (con != null)
-				try {
-					con.close();
-				} catch (Exception e2) {
-				}
-		}
-	}
-
-//	// 2. 글목록에서 여러개 체크박스로 삭제하는 메서드 - foreign key 삭제(채팅)
-//	public void multiDelete2(String[] market_id) {
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//		try {
-//			// 1~2단계
-//			con = getConnection();
-//		
-//			// 3단계 SQL구문 만들어서 실행할 준비 
-//			String sql = "delete from chat where market_id=?";			
-//			pstmt = con.prepareStatement(sql);
-//
-//			for(int i=0; i<market_id.length; i++) {
-//				pstmt.setString(1, market_id[i]);
-//				// 4단계 SQL구문을 실행(insert, update, delete)
-//				pstmt.executeUpdate();	
-//			}
-//				
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
-//			if(con!=null) try { con.close();} catch (Exception e2) {}
-//		}
-//	}
-
-	// 3. 글목록에서 여러개 체크박스로 삭제하는 메서드 - foreign key 삭제(찜)
-	public void multiDelete3(String[] market_id) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		try {
-			// 1~2단계
-			con = getConnection();
-
-			// 3단계 SQL구문 만들어서 실행할 준비
-			String sql = "delete from attention where market_id=?";
 			pstmt = con.prepareStatement(sql);
 
 			for (int i = 0; i < market_id.length; i++) {

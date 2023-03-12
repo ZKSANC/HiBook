@@ -217,7 +217,7 @@ public class BoardDAO {
 		return count;
 	}//
 
-	// 1. 글목록에서 여러개 체크박스로 삭제하는 메서드
+	// 글목록에서 여러개 체크박스로 삭제하는 메서드
 	public void multiDelete(String[] board_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -227,40 +227,6 @@ public class BoardDAO {
 
 			// 3단계 SQL구문 만들어서 실행할 준비
 			String sql = "delete from board where board_id=?";
-			pstmt = con.prepareStatement(sql);
-
-			for (int i = 0; i < board_id.length; i++) {
-				pstmt.setString(1, board_id[i]);
-				// 4단계 SQL구문을 실행(insert, update, delete)
-				pstmt.executeUpdate();
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (Exception e2) {
-				}
-			if (con != null)
-				try {
-					con.close();
-				} catch (Exception e2) {
-				}
-		}
-	}
-
-	// 2. 글목록에서 여러개 체크박스로 삭제하는 메서드 - foreign key 삭제(댓글)
-	public void multiDelete2(String[] board_id) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		try {
-			// 1~2단계
-			con = getConnection();
-
-			// 3단계 SQL구문 만들어서 실행할 준비
-			String sql = "delete from board_cmmt where board_id=?";
 			pstmt = con.prepareStatement(sql);
 
 			for (int i = 0; i < board_id.length; i++) {

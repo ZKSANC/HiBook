@@ -35,23 +35,22 @@
 	<div class=menu1>
 		<a class=me1 href="AdminMemberList.adminpage">회원목록 보기</a>
 	</div>
-	<div class=menu2>
+	<div class=menu1>
 		<a class=me1 href="AdminMarketList.adminpage">게시글 관리</a>
 	</div>
-	<div class=menu3>
+	<div class=menu1>
 		<a class=me1 href="AdminCommentList.adminpage">댓글 관리</a>
 	</div>
 	<!-- 		공지사항 글목록으로  -->
-	<div class=menu4>
+	<div class=menu1>
 		<a class=me1 href="BoardList.bo?boardType=notice">공지사항 관리</a>
 	</div>
-	<div class=menu6>
+	<div class=menu1>
 		<a class=me1 href="AdminReportList.adminpage">1:1 신고 접수</a>
 	</div>
 	<br>
 	<%
 	} else {
-	//	if(dto.getMem_img().equals("url")) {
 	if (dto.getMem_img() == null) {
 	%>
 	<!-- 		기본 프로필사진 뿌려줌  -->
@@ -61,19 +60,19 @@
 	<div class=menu1>
 		<a class=me1 onclick="popup1();"">내 프로필</a>
 	</div>
-	<div class=menu2>
+	<div class=menu1>
 		<a class=me1 href="MypageUpdateForm.mypage">회원정보 수정</a>
 	</div>
-	<div class=menu3>
+	<div class=menu1>
 		<a class=me1 href="MypageMarketList.mypage">내가 쓴 글</a>
 	</div>
-	<div class=menu4>
+	<div class=menu1>
 		<a class=me1 href="MypageCommentList.mypage">내가 쓴 댓글</a>
 	</div>
-	<div class=menu5>
+	<div class=menu1>
 		<a class=me1 href="MypageWishList.mypage">찜목록</a>
 	</div>
-	<div class=menu6>
+	<div class=menu1>
 		<a class=me1 href="MypageDelete.mypage">회원탈퇴</a>
 	</div>
 	<%
@@ -87,20 +86,20 @@
 	<div class=menu1>
 		<a class=me1 onclick="popup1();">내 프로필</a>
 	</div>
-	<div class=menu2>
-		<a class=me2 href="MypageUpdateForm.mypage">회원정보 수정</a>
+	<div class=menu1>
+		<a class=me1 href="MypageUpdateForm.mypage">회원정보 수정</a>
 	</div>
-	<div class=menu3>
-		<a class=me3 href="MypageMarketList.mypage">내가 쓴 글</a>
+	<div class=menu1>
+		<a class=me1 href="MypageMarketList.mypage">내가 쓴 글</a>
 	</div>
-	<div class=menu4>
-		<a class=me4 href="MypageCommentList.mypage">내가 쓴 댓글</a>
+	<div class=menu1>
+		<a class=me1 href="MypageCommentList.mypage">내가 쓴 댓글</a>
 	</div>
-	<div class=menu5>
-		<a class=me5 href="MypageWishList.mypage">찜목록</a>
+	<div class=menu1>
+		<a class=me1 href="MypageWishList.mypage">찜목록</a>
 	</div>
-	<div class=menu6>
-		<a class=me6 href="MypageDelete.mypage">회원탈퇴</a>
+	<div class=menu1>
+		<a class=me1 href="MypageDelete.mypage">회원탈퇴</a>
 	</div>
 	<%
 	}

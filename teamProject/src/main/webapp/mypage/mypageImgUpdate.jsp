@@ -20,7 +20,7 @@
 
 			<p>
 				<%
-				if (dto.getMem_img().equals("url")) {
+				if (dto.getMem_img() == null) {
 				%>
 				<!-- 		기본 프로필사진 뿌려줌  -->
 				<img src="resource/image/image.png" width="100" height="100">
