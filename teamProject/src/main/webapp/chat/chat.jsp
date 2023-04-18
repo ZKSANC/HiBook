@@ -67,7 +67,7 @@
 <script type="text/javascript">
 	function chatbox(){
 // 			window.open("ChatList.hi", "vv", "width=500, height=700"); 
-		var link = "/ChatList.hi";
+		var link = "<%=request.getContextPath()%>/ChatList.hi";
 		location.replace(link);
 	}
 	function autoClosingAlert(selector, delay){

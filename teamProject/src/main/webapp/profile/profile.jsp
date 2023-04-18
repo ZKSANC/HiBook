@@ -172,7 +172,7 @@ StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 				window.opener.location.href = "http://localhost:8080/MypageBoardList.mypage?insert_id=<%=tgt_id%>";
 			}
 			function openchat() {
-				window.open("/Chat.hi?to_id=<%=tgt_id%>", "a", "width=500, height=700"); 
+				window.open("<%=request.getContextPath()%>/Chat.hi?to_id=<%=tgt_id%>", "a", "width=500, height=700"); 
 				<%-- 채팅 버튼 open 함수 --%>
 			}
 		</script>
