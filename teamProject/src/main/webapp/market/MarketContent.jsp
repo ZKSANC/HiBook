@@ -58,8 +58,8 @@ $(document).ready(function(){ // j쿼리 시작
 	            }   
 	        });
     });
-		//인디케이터 캐러셀
-		  var interval = 5000; // Change image every 5 seconds
+		//캐러셀 
+		  var interval = 3000; // Change image every 3 seconds
 		  var slides = $('.carousel-item');
 		  var i = 0;
 
@@ -174,10 +174,10 @@ $(document).ready(function(){ // j쿼리 시작
 								}%>
 	 				 </div>
 	 				 <%if(length > 1) { %>
-	  			<a class="carousel-control-prev" href="#" role="button">
+	  			<a class="carousel-control-prev" role="button">
 	   				<span class="carousel-control-icon" aria-hidden="true">&#129152;</span>
 				  </a>
-	 			  <a class="carousel-control-next" href="#" role="button">
+	 			  <a class="carousel-control-next" role="button">
 	  			  <span class="carousel-control-icon" aria-hidden="true">&#129154;</span>
 				  </a>
 				  <% } %>
