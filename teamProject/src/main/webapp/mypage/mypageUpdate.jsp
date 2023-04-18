@@ -8,7 +8,7 @@ MemberDTO dto = (MemberDTO) request.getAttribute("dto");
 
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp" />
-<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">
+<link href="resource/css/mypage.css" rel="stylesheet" type="text/css">
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 

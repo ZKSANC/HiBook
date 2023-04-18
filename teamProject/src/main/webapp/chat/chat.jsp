@@ -61,7 +61,7 @@
 	%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
-<link rel="stylesheet" href="../resource/css/chat.css">
+<link rel="stylesheet" href="resource/css/chat.css">
 <title>채팅</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>  
 <script type="text/javascript">
@@ -204,15 +204,15 @@
 <!-- ==========================================================채팅창 디자인 -->
 	<div class="container">
 		<div class="chatlogo">
-				<span class="logoimg"><img src="../resource/image/hibookchat.PNG"></span><!--로고나 해당 웹사이트 제목을 넣어줄 수 있는 부분-->
+				<span class="logoimg"><img src="resource/image/hibookchat.PNG"></span><!--로고나 해당 웹사이트 제목을 넣어줄 수 있는 부분-->
 				<span class="yourid"><%= nickname %> 님 와의 대화</span>
-				<span class="gobox"><img src="../resource/image/bookmark.png" onclick="chatbox();"></span>
+				<span class="gobox"><img src="resource/image/bookmark.png" onclick="chatbox();"></span>
 		</div>
 		<div id="chatList"  style="overflow-y: auto; width: 100%; height : 500px;">
 		</div>
 				<div class="submitarea">
 					<textarea id="chat_content" style="height: 80px;" class="chatarea" placeholder=" 메시지를 입력하세요." maxlength="100"  onkeyup="onKeyUp()" onfocus="this.placeholder = ''"></textarea>
-					<img src="../resource/image/quill-pen.png" onclick="submitFunction();">
+					<img src="resource/image/quill-pen.png" onclick="submitFunction();">
 <!-- 					<input class="chatsubmitbutton" type="button" onclick="submitFunction();" value="전송"> -->
 				</div>
 	</div>

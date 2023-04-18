@@ -9,7 +9,7 @@
 <!-- 공통CSS -->
 <link href="resource/css/front.css" rel="stylesheet" type="text/css">
 <link href="resource/css/board2.css" rel="stylesheet" type="text/css">
-<link href="../resource/css/header.css" rel="stylesheet" type="text/css">
+<link href="resource/css/header.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="resource/js/jquery/jquery-3.6.3.js"></script>
 <!-- 자바 들어가는 곳 -->
 <%String id = (String)session.getAttribute("id"); 
@@ -73,7 +73,7 @@ function showUnread(result){
 	</div>
 	<div class="search">
 		<input type="text" value="" id="searchBox" placeholder="검색어 입력">
-		<img src="/resource/image/search.png">
+		<img src="resource/image/search.png">
 	</div>
 	<div class="mypage">
 		<div id="mypageMenu" onclick="location.href='MarketWriteForm.ma'">판매하기</div>

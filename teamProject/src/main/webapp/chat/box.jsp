@@ -27,7 +27,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
-<link rel="stylesheet" href="../resource/css/box.css">
+<link rel="stylesheet" href="resource/css/box.css">
 <title>채팅</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>  
 <script type="text/javascript">
@@ -124,7 +124,7 @@
 	
 	<div class="container">
 		<div class="chatboxlogo">
-				<img src="../resource/image/hibooklogoblack.png"><!--로고나 해당 웹사이트 제목을 넣어줄 수 있는 부분-->
+				<img src="resource/image/hibooklogoblack.png"><!--로고나 해당 웹사이트 제목을 넣어줄 수 있는 부분-->
 				<span class="mylist"><%=nickname %>님의 채팅 리스트</span>
 		</div>
 			<div class="dd" style="overflow-y:auto; width: 100%; max-height:540px;">
@@ -136,7 +136,7 @@
 	<div class="chatboxfoot">
 		<div class="footlogo">
 			<span class="hibook">Hibook</span>
-			<img src="../resource/image/quill-pen.png">
+			<img src="resource/image/quill-pen.png">
 		</div>
 	</div>
 	</div>

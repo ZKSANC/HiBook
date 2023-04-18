@@ -40,7 +40,7 @@ int pageCount = (Integer) request.getAttribute("pageCount");
 
 StarReviewDTO sDto = sDao.ReviewStar(tgt_id);
 %>
-<link href="/resource/css/profile.css" rel="stylesheet" />
+<link href="resource/css/profile.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="reviewcontainer">

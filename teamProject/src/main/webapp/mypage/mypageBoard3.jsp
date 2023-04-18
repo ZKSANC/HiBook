@@ -7,7 +7,7 @@
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp" />
 <!-- 헤더파일들어가는 곳 -->
-<link href="/resource/css/mypage.css" rel="stylesheet" type="text/css">
+<link href="resource/css/mypage.css" rel="stylesheet" type="text/css">
 <div class="boardContainer">
 
 	<h1>내가 쓴 글(1:1문의)</h1>
