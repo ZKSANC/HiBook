@@ -3,7 +3,7 @@
 #### 1. 개발도구 : Eclipse, Github  
 #### 2. 개발언어 : Java(OpenJDK version 11.0.2), MySQL(version 8.0.17), JavaScript
 #### 3. 라이브러리 : jQuery(version 3.6.3)
-#### 4. 웹어플리케이션도구 : JSP
+#### 4. 웹어플리케이션도구 : JSP(MVC model2)
 #### 5. 웹 호스팅 : cafe24
 
 ***
