@@ -27,8 +27,8 @@
 
 #### 중고거래 페이지 
 1. Model 
-    - Data Access Object [MarketDAO.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/db/MarketDAO.java)  
-    - Data Transfer Object [MarketDTO.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/db/MarketDTO.java)  
+    - 중고거래 DAO [MarketDAO.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/db/MarketDAO.java)  
+    - 중고거래 DTO [MarketDTO.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/db/MarketDTO.java)  
     - 중고거래 글상세 [MarketContent.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketContent.java)   
     - 중고거래 리스트(기본) [MarketList.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketList.java)  
     - 중고거래 리스트(최신/조회/인기) [MarketSortList.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketSortList.java)   
