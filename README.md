@@ -12,10 +12,19 @@
 #### 담당 페이지 : 메인 페이지, 중고거래 페이지
 
 ### <코드>
-#### 메인페이지 
-메인 페이지 : [main.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/main/main.jsp)  
-헤더 페이지 : [header.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/inc/header.jsp)  
-푸터 페이지 : [footer.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/inc/footer.jsp)  
+#### 메인 페이지  
+
+1. Model  
+
+2. View   
+메인 [main.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/main/main.jsp)  
+헤더 [header.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/inc/header.jsp)  
+푸터 [footer.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/inc/footer.jsp)  
+
+3. Controller 
 
 #### 중고거래 페이지 
+Model
+View  
+Controller 
 
