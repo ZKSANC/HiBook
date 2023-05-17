@@ -1,4 +1,4 @@
-<img width="11%" src="https://github.com/ZKSANC/HiBook/assets/114744493/594c439c-5e0a-428e-835e-96c4ed2c804b"/>
+<img width="12%" src="https://github.com/ZKSANC/HiBook/assets/114744493/594c439c-5e0a-428e-835e-96c4ed2c804b"/>
 
 
 # HiBook
