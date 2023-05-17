@@ -1,49 +1,44 @@
-# HiBook 중고책 거래 사이트
-### 호스팅 사이트 : http://itwillbs7.cafe24.com/teamProject/main.do
-#### 1. 개발도구 : Eclipse, Github  
-#### 2. 개발언어 : Java(OpenJDK 11.0.2), MySQL(8.0.17), JavaScript
-#### 3. 라이브러리 : jQuery(3.6.3)
-#### 4. 웹 애플리케이션도구 : JSP(MVC model2)
-#### 5. 웹 호스팅 : cafe24
+# HiBook
+중고책 거래 및 커뮤니티 사이트
+- Website : http://itwillbs7.cafe24.com/teamProject/main.do 
+- 개발 기간 : 2023.01.30~2023.02.24 
+- 팀 구성 : 7명 (기획, 프론트엔드, 백엔드 공동참여) 
 
-***
+## 서비스 내용
+회원 간 커뮤니티가 가능한 '중고도서 거래 사이트'입니다. 
 
-#### 개발 기간 : 1월 30일 ~ 2월 24일
-#### 역할 : 깃허브 관리, 클라우디너리 연동
-#### 개발 페이지 : 메인 페이지, 중고거래 페이지 
+사용하지 않는 책들이 폐기되는 것을 방지하고, 지속 가능한 소비와 자원 재활용을 장려하고자 서비스 기획을 시작하게 되었습니다. 
+- 중고책 구매, 판매글 작성 및 조회 
+- 커뮤니티 글 댓글 작성 및 조회 
+- 채팅 및 거래후기(별점) 기능 
 
-### <상세 코드>
-#### 메인 페이지  
-1. Model 
-    - 메인 리스트 [MainPro.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/main/action/MainPro.java)  
+## 담당 역할
+- 사이트 기획 및 프로젝트 전체 진행 주도, 팀 PPT 제작 
+- 담당 페이지 백엔드, 프론트엔드 개발
+- 상품 페이지 - 찜 기능, 글쓴이 작성글 조회
+- 마이 페이지 - 회원정보 수정, 작성 글/댓글, 찜 목록, 회원 탈퇴 
+- 관리자 페이지 - 회원목록 조회, 게시글/댓글 관리, 1:1 신고 접수
 
-2. View    
-    - 메인 [Main.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/main/main.jsp)  
-    - 헤더 [Header.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/inc/header.jsp)  
-    - 푸터 [Footer.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/inc/footer.jsp)  
+## 개발 환경
+- 언어 : Java (JDK 1.8), JavaScript ES6, HTML5/CSS3
+- 서버 : Apache Tomcat 9.0
+- 웹 애플리케이션 도구 : JSP(MVC model2)
+- DB : MySQL(8.0.31)
+- 개발 도구 : Eclipse, Github
+- API, 라이브러리 : KAKAO Address API, jQuery(3.6.3)
 
-3. Controller  
-    - 컨트롤러 [MainFrontController.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/main/action/MainFrontController.java)  
+## 서비스 기획 
+- 간트차트, erd
 
-#### 중고거래 페이지 
-1. Model 
-    - 중고거래 DAO [MarketDAO.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/db/MarketDAO.java)  
-    - 중고거래 DTO [MarketDTO.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/db/MarketDTO.java)  
-    - 중고거래 글상세 [MarketContent.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketContent.java)   
-    - 중고거래 리스트(기본) [MarketList.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketList.java)  
-    - 중고거래 리스트(최신/조회/인기) [MarketSortList.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketSortList.java)   
-    - 중고거래 글수정 [MarketUpdateForm.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketUpdateForm.java), [MarketUpdatePro.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketUpdatePro.java)  
-    - 중고거래 글작성 [MarketWritePro.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketWritePro.java) 
-    - 중고거래 글삭제 [MarketDeletePro.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketDeletePro.java)
-    - 중고거래 찜하기 [MarketWishPro.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketWishPro.java)
-    
-2. View  
-    - 중고거래 글상세 페이지 [MarketContent.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/market/MarketContent.jsp)   
-    - 중고거래 리스트(기본) [MarketList.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/market/MarketList.jsp)  
-    - 중고거래 리스트(최신/조회/인기) [MarketSortList.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/market/MarketSortList.jsp)   
-    - 중고거래 글수정 페이지 [MarketUpdateForm.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/market/MarketUpdateForm.jsp)
-    - 중고거래 글작성 페이지 [MarketWriteForm.jsp](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/webapp/market/MarketWriteForm.jsp)  
+## 개발 코드  
+#### 상품 페이지 찜 기능 
+- Model, Controller
+- View
+#### 마이 페이지 
+- Model, Controller
+- View
+#### 관리자 페이지
+- Model, Controller
+- View
 
-3. Controller  
-    - 컨트롤러 [MarketFrontController.java](https://github.com/MEMOZ00/Project_team2/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketFrontController.java)
-
+![image](https://user-images.githubusercontent.com/59406944/172750733-a0a3ff5e-7810-4923-8ff4-990130e7a192.png)
