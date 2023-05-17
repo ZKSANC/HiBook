@@ -1,6 +1,5 @@
 <img width="14%" src="https://github.com/ZKSANC/HiBook/assets/114744493/594c439c-5e0a-428e-835e-96c4ed2c804b"/>
 
-
 # HiBook
 중고책 거래 및 커뮤니티 사이트
 - Website : http://itwillbs7.cafe24.com/teamProject/main.do 
