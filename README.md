@@ -47,7 +47,7 @@
 - Model, Controller [Mypage](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/java/mypage)
 - View [Mypage](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/webapp/mypage)
 #### 관리자 페이지
-<img width="25%" src="https://github.com/ZKSANC/SomsomTown/assets/114744493/2a8bb164-2f77-494b-8d2c-4e7c840cd97c"/>
+<img width="30%" src="https://github.com/ZKSANC/SomsomTown/assets/114744493/2a8bb164-2f77-494b-8d2c-4e7c840cd97c"/>
 
 - Model, Controller [Adminpage](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/java/adminpage/action)
 - View [Adminpage](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/webapp/adminpage)
