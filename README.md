@@ -42,7 +42,7 @@
 - Model [MarketWishPro](https://github.com/ZKSANC/HiBook/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketWishPro.java), [DAO DTO](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/java/com/itwillbs/wish)
 - View [MarketContent](https://github.com/ZKSANC/HiBook/blob/cafe24/teamProject/src/main/webapp/market/MarketContent.jsp)
 #### 마이 페이지 
-<img width="40%" src="https://github.com/ZKSANC/SomsomTown/assets/114744493/cd0c7766-c3bc-43fa-bd00-0858d000499a"/>
+<img width="35%" src="https://github.com/ZKSANC/SomsomTown/assets/114744493/cd0c7766-c3bc-43fa-bd00-0858d000499a"/>
 
 - Model, Controller [Mypage](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/java/mypage)
 - View [Mypage](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/webapp/mypage)
