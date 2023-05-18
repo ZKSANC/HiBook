@@ -37,6 +37,7 @@
 
 ## 개발 코드  
 #### 상품 페이지 찜 기능 
+![1차 찜하기](https://github.com/ZKSANC/SomsomTown/assets/114744493/d48e91c1-8d29-4f75-864f-a2b9f17db26e)
 - Model [MarketWishPro](https://github.com/ZKSANC/HiBook/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketWishPro.java), [DAO DTO](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/java/com/itwillbs/wish)
 - View [MarketContent](https://github.com/ZKSANC/HiBook/blob/cafe24/teamProject/src/main/webapp/market/MarketContent.jsp)
 #### 마이 페이지 
