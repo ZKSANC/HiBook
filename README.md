@@ -30,7 +30,7 @@
 - API, 라이브러리 : KAKAO Address API, jQuery(3.6.3)
 
 ## 서비스 기획 
-- 간트차트
+- 간트 차트
 ![1차 간트차트](https://github.com/ZKSANC/SomsomTown/assets/114744493/3285a1e9-2240-44e9-88ce-4ce50a64887f)
 - ERD
 ![1차 erd](https://github.com/ZKSANC/SomsomTown/assets/114744493/e7948547-8802-4270-94e2-464d9af8417a) 
