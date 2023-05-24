@@ -1,4 +1,4 @@
-<img width="14%" src="https://github.com/ZKSANC/wsb/assets/114744493/a7af44f2-e94e-4162-a43a-ffa2b16a6d76"/>
+<img width="14%" src="https://github.com/ZKSANC/HiBook/assets/114744493/928b1ec6-62c9-40b1-aa27-94b056a56495"/>
 
 # HiBook
 중고책 거래 및 커뮤니티 사이트
@@ -31,23 +31,23 @@
 
 ## 서비스 기획 
 - 간트 차트
-![1차 간트차트](https://github.com/ZKSANC/wsb/assets/114744493/83b6e7fd-b62e-4ff6-bc4e-f27550d67a88)
+![1차 간트차트](https://github.com/ZKSANC/HiBook/assets/114744493/8e734096-1df0-480e-a002-f172e90bea7d)
 - ERD
-![1차 erd](https://github.com/ZKSANC/wsb/assets/114744493/4c343165-d8a7-49fc-a113-68336af83ea3)
+![1차 erd](https://github.com/ZKSANC/HiBook/assets/114744493/2fbe1035-c0ea-450e-9521-4d99de1db14e)
 
 ## 개발 코드  
 #### 상품 페이지 찜 기능 
-<img width="75%" src="https://github.com/ZKSANC/wsb/assets/114744493/8b04a8a9-2963-4594-897b-826bdc8da115"/>
+<img width="75%" src="https://github.com/ZKSANC/HiBook/assets/114744493/f6d174aa-0bd9-4931-9761-3b45f5de4512"/>
 
 - Model [MarketWishPro](https://github.com/ZKSANC/HiBook/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketWishPro.java), [DAO DTO](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/java/com/itwillbs/wish)
 - View [MarketContent](https://github.com/ZKSANC/HiBook/blob/cafe24/teamProject/src/main/webapp/market/MarketContent.jsp)
 #### 마이 페이지 
-<img width="35%" src="https://github.com/ZKSANC/wsb/assets/114744493/edd9c739-ccd9-451f-937a-bf3f23812617"/>
+<img width="35%" src="https://github.com/ZKSANC/HiBook/assets/114744493/d1a02453-ef8b-42ca-ac79-aabcffac7293"/>
 
 - Model, Controller [Mypage](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/java/mypage)
 - View [Mypage](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/webapp/mypage)
 #### 관리자 페이지
-<img width="27%" src="https://github.com/ZKSANC/wsb/assets/114744493/0eb843da-5e64-4f11-b023-c43cdfe36db7"/>
+<img width="27%" src="https://github.com/ZKSANC/HiBook/assets/114744493/90ed3350-1874-4b5c-8ffc-54f514f31f75"/>
 
 - Model, Controller [Adminpage](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/java/adminpage/action)
 - View [Adminpage](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/webapp/adminpage)
