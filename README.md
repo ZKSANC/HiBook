@@ -1,4 +1,4 @@
-<img width="14%" src="https://github.com/ZKSANC/HiBook/assets/114744493/594c439c-5e0a-428e-835e-96c4ed2c804b"/>
+<img width="14%" src="https://github.com/ZKSANC/wsb/assets/114744493/a7af44f2-e94e-4162-a43a-ffa2b16a6d76"/>
 
 # HiBook
 중고책 거래 및 커뮤니티 사이트
@@ -31,23 +31,23 @@
 
 ## 서비스 기획 
 - 간트 차트
-![1차 간트차트](https://github.com/ZKSANC/SomsomTown/assets/114744493/3285a1e9-2240-44e9-88ce-4ce50a64887f)
+![1차 간트차트](https://github.com/ZKSANC/wsb/assets/114744493/83b6e7fd-b62e-4ff6-bc4e-f27550d67a88)
 - ERD
-![1차 erd](https://github.com/ZKSANC/SomsomTown/assets/114744493/e7948547-8802-4270-94e2-464d9af8417a) 
+![1차 erd](https://github.com/ZKSANC/wsb/assets/114744493/4c343165-d8a7-49fc-a113-68336af83ea3)
 
 ## 개발 코드  
 #### 상품 페이지 찜 기능 
-<img width="75%" src="https://github.com/ZKSANC/SomsomTown/assets/114744493/d48e91c1-8d29-4f75-864f-a2b9f17db26e"/>
+<img width="75%" src="https://github.com/ZKSANC/wsb/assets/114744493/8b04a8a9-2963-4594-897b-826bdc8da115"/>
 
 - Model [MarketWishPro](https://github.com/ZKSANC/HiBook/blob/cafe24/teamProject/src/main/java/com/itwillbs/market/action/MarketWishPro.java), [DAO DTO](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/java/com/itwillbs/wish)
 - View [MarketContent](https://github.com/ZKSANC/HiBook/blob/cafe24/teamProject/src/main/webapp/market/MarketContent.jsp)
 #### 마이 페이지 
-<img width="35%" src="https://github.com/ZKSANC/SomsomTown/assets/114744493/cd0c7766-c3bc-43fa-bd00-0858d000499a"/>
+<img width="35%" src="https://github.com/ZKSANC/wsb/assets/114744493/edd9c739-ccd9-451f-937a-bf3f23812617"/>
 
 - Model, Controller [Mypage](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/java/mypage)
 - View [Mypage](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/webapp/mypage)
 #### 관리자 페이지
-<img width="27%" src="https://github.com/ZKSANC/SomsomTown/assets/114744493/2a8bb164-2f77-494b-8d2c-4e7c840cd97c"/>
+<img width="27%" src="https://github.com/ZKSANC/wsb/assets/114744493/0eb843da-5e64-4f11-b023-c43cdfe36db7"/>
 
 - Model, Controller [Adminpage](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/java/adminpage/action)
 - View [Adminpage](https://github.com/ZKSANC/HiBook/tree/cafe24/teamProject/src/main/webapp/adminpage)
